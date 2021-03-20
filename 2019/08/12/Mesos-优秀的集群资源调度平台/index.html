@@ -1,0 +1,945 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Kubernetes,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="Mesos 项目是源自 UC Berkeley 的对集群资源进行抽象和管理的开源项目，类似于操作系统内核，使用它可以很容易地实现分布式应用的自动化调度。同时，Mesos 自身也很好地结合和支持了 Docker 等相关容器技术，基于 Mesos 已有的大量应用框架，可以是实现用户应用的快速上线。 简介Mesos 可以将整个数据中心的资源（包括 CPU、内存、存储、网络等）进行抽象和调度，使得多个应用">
+<meta name="keywords" content="Kubernetes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mesos - 优秀的集群资源调度平台">
+<meta property="og:url" content="http://yoursite.com/2019/08/12/Mesos-优秀的集群资源调度平台/index.html">
+<meta property="og:site_name" content="DevPrepares">
+<meta property="og:description" content="Mesos 项目是源自 UC Berkeley 的对集群资源进行抽象和管理的开源项目，类似于操作系统内核，使用它可以很容易地实现分布式应用的自动化调度。同时，Mesos 自身也很好地结合和支持了 Docker 等相关容器技术，基于 Mesos 已有的大量应用框架，可以是实现用户应用的快速上线。 简介Mesos 可以将整个数据中心的资源（包括 CPU、内存、存储、网络等）进行抽象和调度，使得多个应用">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/01.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/02.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/03.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/04.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/05.jpg">
+<meta property="og:updated_time" content="2021-03-20T11:50:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mesos - 优秀的集群资源调度平台">
+<meta name="twitter:description" content="Mesos 项目是源自 UC Berkeley 的对集群资源进行抽象和管理的开源项目，类似于操作系统内核，使用它可以很容易地实现分布式应用的自动化调度。同时，Mesos 自身也很好地结合和支持了 Docker 等相关容器技术，基于 Mesos 已有的大量应用框架，可以是实现用户应用的快速上线。 简介Mesos 可以将整个数据中心的资源（包括 CPU、内存、存储、网络等）进行抽象和调度，使得多个应用">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/01.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/12/Mesos-优秀的集群资源调度平台/">
+
+
+
+
+
+  <title> Mesos - 优秀的集群资源调度平台 | DevPrepares </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DevPrepares</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/12/Mesos-优秀的集群资源调度平台/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Mesos - 优秀的集群资源调度平台
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-12T21:37:29+08:00">
+                2019-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Mesos 项目是源自 UC Berkeley 的对集群资源进行抽象和管理的开源项目，类似于操作系统内核，使用它可以很容易地<strong>实现分布式应用的自动化调度</strong>。同时，Mesos 自身也很好地结合和支持了 Docker 等相关容器技术，基于 Mesos 已有的大量应用框架，可以是实现用户应用的快速上线。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Mesos 可以将整个数据中心的<code>资源</code>（包括 CPU、内存、存储、网络等）进行抽象和调度，使得多个应用同时运行在集群中分享资源，并无须关心资源的物理分布情况。<br>如果把数据中心的集群资源看作一台服务器，那么 Mesos 要做的事情，其实就是今天操作系统内核的职责：<strong>抽象资源 + 调度任务</strong>；Mesos 拥有许多引人注目的特性，包括：</p>
+<ul>
+<li>支持数万个节点的<strong>大规模场景</strong>（Apple、Twitter、eBay 等公司使用）；</li>
+<li>支持多种应用框架，包括 Marathon、Singularity、Aurora 等；</li>
+<li>支持 <code>HA</code>（基于 ZooKeeper 实现）；</li>
+<li>支持 Docker、LXC 等容器机制进行任务隔离；</li>
+<li>提供了多个流行语言的 API，包括 Python、Java、C++ 等；</li>
+<li>自带了简洁易用的 <code>WebUI</code>，方便用户直接进行操作。</li>
+</ul>
+<blockquote>
+<p>Mesos 自身只是一个资源抽象的平台，要使用它往往需要结合运行在其上的分布式应用（<code>framework</code>）。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="Mesos-安装与使用"><a href="#Mesos-安装与使用" class="headerlink" title="Mesos 安装与使用"></a>Mesos 安装与使用</h2><p>以 Mesos 结合 Marathon 应用框架为例，来看一下如何快速搭建一套 Mesos 平台。<br>ZooKeeper 是一个分布式集群中<code>信息同步的工具</code>，通过<strong>自动在多个节点中选举 leader</strong>，保障多个节点之间的某些信息保持一致性。</p>
+<blockquote>
+<p>一般在生产环境中，需要启动多个 Mesos master 服务（3 个或 5 个），并且使用 Supervisord 等进程管理器来自动保持服务的运行。</p>
+</blockquote>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>Mesos 也采用了经典的<code>主-从结构</code>，一般包括若干主节点和大量从节点。<br>安装可以通过<strong>源码编译</strong>、<strong>软件源</strong>、<strong>Docker 方式</strong>进行。</p>
+<h4 id="源码编译"><a href="#源码编译" class="headerlink" title="源码编译"></a>源码编译</h4><p>可以保证获取到最新版本，但编译过程比较费时间。<br>常规 C++ 项目的方法，配置之后利用 Makefile 进行编译和安装。</p>
+<h4 id="软件源安装"><a href="#软件源安装" class="headerlink" title="软件源安装"></a>软件源安装</h4><p>安装相对会省时间，但往往不是最新版本。<br>可以通过 service 命令来方便进行管理，实际上是通过调用 <code>/usr/bin/mesos-init-wrapper</code> 脚本文件进行处理。</p>
+<h4 id="Docker-方式安装"><a href="#Docker-方式安装" class="headerlink" title="Docker 方式安装"></a>Docker 方式安装</h4><p>需要如下三个镜像：ZooKeeper、Mesos、Marathon，其中 <code>mesos-master</code> 镜像在后面将分别作为 master 和 slave 角色进行使用。<br>可以通过访问本地 8080 端口来使用 Marathon 启动服务。</p>
+<h3 id="配置说明"><a href="#配置说明" class="headerlink" title="配置说明"></a>配置说明</h3><h4 id="ZooKeeper"><a href="#ZooKeeper" class="headerlink" title="ZooKeeper"></a>ZooKeeper</h4><p>ZooKeeper 是一个分布式应用的协调工具，用来<strong>管理多个主节点的选举和冗余</strong>，监听在 <code>2181</code> 端口。推荐至少布置三个主节点来被 ZooKeeper 维护。<br>配置文件默认都在 /etc/zookeeper/conf/ 目录下，比较关键的配置文件有两个：</p>
+<ul>
+<li><strong>myid</strong>：记录加入 ZooKeeper 集群的节点的序号（1~255）；</li>
+<li><strong>zoo.cfg</strong>：添加上加入 ZooKeeper 集群的机器的序号和对应的监听地址。</li>
+</ul>
+<blockquote>
+<p>可以用主机名形式，需要各个节点 <code>/etc/hosts</code> 文件中都记录地址到主机名对应的映射关系。</p>
+</blockquote>
+<h4 id="Mesos"><a href="#Mesos" class="headerlink" title="Mesos"></a>Mesos</h4><p>Mesos 的默认配置目录有三个：</p>
+<ul>
+<li><strong>/etc/mesos/</strong>：主节点和从节点都会读取的配置文件，需要在所有节点上修改 /etc/mesos/zk，写入主节点集群的 ZooKeeper 地址列表；</li>
+<li><strong>/etc/mesos-master</strong>：只有主节点会读取的配置，等价于启动 mesos-master 命令时的默认选项。建议配置至少四个参数文件：ip、quorum、work_dir、cluster；</li>
+<li><strong>/etc/mesos-slave</strong>：建议在从节点上，创建 ip 文件，在其中写入跟主节点通信的地址。</li>
+</ul>
+<p>修改配置之后，启动服务即可生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service mesos-master/slave start</span><br></pre></td></tr></table></figure>
+
+<h4 id="Marathon"><a href="#Marathon" class="headerlink" title="Marathon"></a>Marathon</h4><p>Marathon 作为 Mesos 的一个应用框架，配置要更为简单，<strong>必需的配置项有 --master 和 --zk</strong>。<br>手动创建配置目录，并添加配置项，让 Marathon 能连接到已创建的 Mesos 集群中。</p>
+<h3 id="访问-Mesos-图形界面"><a href="#访问-Mesos-图形界面" class="headerlink" title="访问 Mesos 图形界面"></a>访问 Mesos 图形界面</h3><p>Mesos 自带了 Web 图形界面，可以方便用户查看集群状态。<br>用户在 Mesos 主节点服务和从节点服务都启动后，可以通过浏览器访问主节点 <code>5050</code> 端口，看到如下界面：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/01.jpg" alt></p>
+<h3 id="访问-Marathon-图形界面"><a href="#访问-Marathon-图形界面" class="headerlink" title="访问 Marathon 图形界面"></a>访问 Marathon 图形界面</h3><p>Marathon 服务启动后，在 Mesos 的 Web 界面的 Frameworks 标签页下面将能看到名称为 marathon 的框架出现。<br>同时，可以通过浏览器访问 <code>8080</code> 端口，看到 Marathon 自己的管理界面：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/02.jpg" alt></p>
+<h2 id="原理与架构"><a href="#原理与架构" class="headerlink" title="原理与架构"></a>原理与架构</h2><p>基于 Mesos，可以比较容易地为各种应用管理框架或者中间件平台，<strong>提供分布式运行能力</strong>；同时多个框架也可以同时运行在一个 Mesos 集群中，<strong>提高整体的资源使用率</strong>。</p>
+<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p>Mesos 的基本架构：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/03.jpg" alt><br>Mesos 采用了经典的主-从架构，其中主节点可以使用 ZooKeeper 来做 HA。<br>Mesos slave 服务运行在各个计算任务节点上，负责完成具体任务的应用框架，并与 Mesos master 进行交互申请资源。</p>
+<h3 id="基本单元"><a href="#基本单元" class="headerlink" title="基本单元"></a>基本单元</h3><p>Mesos 有三个基本的组件：</p>
+<ul>
+<li><strong>管理服务（master）</strong>：主节点起到管理作用，将看到全局的信息，负责不同应用框架之间的资源调度和逻辑控制；</li>
+<li><strong>任务服务（slave）</strong>：负责汇报本从节点上的资源状态给主节点，并负责隔离本地资源来执行主节点分配的具体任务；</li>
+<li><strong>应用框架（framework）</strong>：应用框架是实际干活的，包括两个主要组件：<ul>
+<li><code>调度器</code>（scheduler）：注册到主节点，等待分配资源；</li>
+<li><code>执行器</code>（executor）：在从节点上执行框架指定的任务。</li>
+</ul>
+</li>
+</ul>
+<p>应用框架可以分两种：</p>
+<ul>
+<li>对资源的<strong>需求会扩展</strong>，申请后还可能调整，比如 Hadoop、Spark 等；</li>
+<li>对资源的<strong>需求将会固定</strong>，一次申请即可，比如 MPI 等。</li>
+</ul>
+<h3 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h3><p>对于一个资源调度框架来说，最核心的就是<code>调度机制</code>，如何快速高效地完成对某个应用框架资源的分配，是其核心竞争力所在。<br>Mesos 为了实现尽量优化的调度，采取了<strong>两层调度算法</strong>。</p>
+<h4 id="算法基本过程"><a href="#算法基本过程" class="headerlink" title="算法基本过程"></a>算法基本过程</h4><p>master 先全局调度一大块资源给某个 framework，framework 自己再实现内部的细粒度调度，决定哪个任务用多少资源。<br>调度机制支持插件机制来实现不同的策略，默认是 Dominant Resource Fairness（<code>DRF</code>）。</p>
+<blockquote>
+<p>两层调度简化了 Mesos master 自身的调度过程，通过将复杂的细粒度调度交由 framework 实现，<strong>避免了 Mesos master 成为性能瓶颈</strong>。</p>
+</blockquote>
+<h4 id="调度过程"><a href="#调度过程" class="headerlink" title="调度过程"></a>调度过程</h4><p>基本调度过程如下：</p>
+<ol>
+<li>slave 节点会周期性汇报自己可用的资源给 master；</li>
+<li>某个时候，master 收到应用框架发来的资源请求，根据调度策略，计算出来一个资源 offer 给 framework；</li>
+<li>framework 收到 offer 后可以决定要不要，如果接受的话，<strong>返回一个描述</strong>，说明自己如何使用和分配这些资源来运行某些任务；</li>
+<li>master 则根据 framework 答复的具体分配情况发送给 slave，以使 framework 的 executor 按照分配的资源策略执行任务。</li>
+</ol>
+<h4 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h4><p>framework 可以通过<code>过滤器机制</code>告诉 master 它的资源偏好。过滤器可以避免某些应用资源长期分配不到所需要的资源的情况，<strong>加速整个资源分配的交互过程</strong>。</p>
+<h4 id="回收机制"><a href="#回收机制" class="headerlink" title="回收机制"></a>回收机制</h4><p>为了避免某些任务长期占用集群中资源，Mesos 也支持<code>回收机制</code>。主节点可以定期回收计算节点上的任务所占用的资源，<strong>动态调整长期任务和短期任务的分布</strong>。</p>
+<h3 id="高可用性"><a href="#高可用性" class="headerlink" title="高可用性"></a>高可用性</h3><p>除了使用 ZooKeeper 来解决单点失效问题之外，Mesos 的 master 节点自身还提供了很高的鲁棒性。Mesos master 节点再重启后，可以动态通过 slave 和 framework 发来的消息<strong>重建内部状态</strong>，虽然可能导致一定的时延，但这<strong>避免了传统控制节点对数据库的依赖</strong>。<br>当然，为了减少 master 节点的负载过大，在集群中 slave 节点数目较多的时候，要<strong>避免把各种通知的周期配置得过短</strong>。</p>
+<blockquote>
+<p>实践中，可以通过部署多个 Mesos 集群来保持单个集群的规模不要过大。</p>
+</blockquote>
+<h2 id="Mesos-配置解析"><a href="#Mesos-配置解析" class="headerlink" title="Mesos 配置解析"></a>Mesos 配置解析</h2><p>Mesos 的配置项分为三种类型：通用项、master 专属配置项、slave 专属配置项。</p>
+<h3 id="通用项"><a href="#通用项" class="headerlink" title="通用项"></a>通用项</h3><p>通用项数量不多，主要涉及服务绑定地址和日志信息等：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/04.jpg" alt></p>
+<h3 id="master-专属配置项"><a href="#master-专属配置项" class="headerlink" title="master 专属配置项"></a>master 专属配置项</h3><p>这些配置项是针对主节点上的 Mesos master 服务的，围绕高可用、注册信息、对应用框架的资源管理等。<br><strong>必须指定</strong>的配置项有以下三个：</p>
+<ul>
+<li>--quorum=VALUE：利用 ZooKeeper 实现 HA 时，参与投票时的最少节点个数；</li>
+<li>--work_dir=VALUE：注册表持久化信息存储位置；</li>
+<li>--zk=VALUE：指定 ZooKeeper 的服务地址，支持多个地址，之间用逗号隔离。</li>
+</ul>
+<h3 id="slave-专属配置项"><a href="#slave-专属配置项" class="headerlink" title="slave 专属配置项"></a>slave 专属配置项</h3><p><strong>slave 节点支持的配置项是最多的</strong>，因为它所完成的事情也最复杂。这些配置项既包括跟主节点打交道的一些参数，也包括对本地资源的配置，包括隔离机制、本地任务的资源限制等。<br>必备项就一个：--master=VALUE，master 所在地址，或对应 ZooKeeper 服务地址，或文件路径，可以是列表。<br>为了避免主机分配的临时端口，跟我们指定的临时端口范围冲突，需要在主机节点上进行配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">"57345 61000"</span> &gt; /proc/sys/net/ipv4/ip_local_port_range</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>非临时端口是 Mesos 分配给框架</strong>，绑定到任务使用的，端口号往往有明确的意义；<strong>临时端口是系统分配的</strong>，往往不太关心具体端口号。</p>
+</blockquote>
+<h2 id="日志与监控"><a href="#日志与监控" class="headerlink" title="日志与监控"></a>日志与监控</h2><p>Mesos 自身提供了强大的日志和监控功能，某些应用框架也提供了针对框架中任务的监控能力。</p>
+<h3 id="日志配置"><a href="#日志配置" class="headerlink" title="日志配置"></a>日志配置</h3><p>日志文件默认在 <code>/var/log/mesos</code> 目录下，根据日志等级带有不同后缀。用户可以<strong>通过日志来调试</strong>使用中碰到的问题。</p>
+<h3 id="监控"><a href="#监控" class="headerlink" title="监控"></a>监控</h3><p>Mesos 提供了方便的<code>监控接口</code>，供用户查看集群中各个节点的状态：</p>
+<ul>
+<li><strong>主节点</strong>：通过 <a href="http://MASTER_NODE:5050/metrics/snapshot" target="_blank" rel="noopener">http://MASTER_NODE:5050/metrics/snapshot</a> 地址，可以获取到 Mesos 主节点的各种状态统计信息，包括资源使用、系统状态、从节点、应用框架、任务状态等。</li>
+<li><strong>从节点</strong>：通过 <a href="http://SLAVE_NODE:5051/metrics/snapshot" target="_blank" rel="noopener">http://SLAVE_NODE:5051/metrics/snapshot</a> 地址，可以获取到 Mesos 从节点的各种状态统计信息，包括资源、系统状态、各种消息状态等。</li>
+</ul>
+<h2 id="常见应用框架"><a href="#常见应用框架" class="headerlink" title="常见应用框架"></a>常见应用框架</h2><p>应用框架是实际干活的，可以理解为 Mesos 之上跑的应用，应用框架<strong>注册到 Mesos master 服务</strong>上即可使用。<br>Mesos 目前支持的应用框架分为四大类：<strong>长期运行任务</strong>、<strong>大数据处理</strong>、<strong>批量调度</strong>、<strong>数据存储</strong>。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/05.jpg" alt></p>
+<blockquote>
+<p>结合 Docker，Mesos 可以很容易部署一套私有的容器云，可以很好地应用并集成到生产环境中；但它的定位集中在资源调度，往往需要结合应用框架或二次开发。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Kubernetes/" rel="tag"># Kubernetes</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/12/Networking/" rel="next" title="Networking">
+                <i class="fa fa-chevron-left"></i> Networking
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/18/Meetings/" rel="prev" title="Meetings">
+                Meetings <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="snlndod">
+          <p class="site-author-name" itemprop="name">snlndod</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">201</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/snlndod" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/snlndod" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mesos-安装与使用"><span class="nav-number">2.</span> <span class="nav-text">Mesos 安装与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#源码编译"><span class="nav-number">2.1.1.</span> <span class="nav-text">源码编译</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#软件源安装"><span class="nav-number">2.1.2.</span> <span class="nav-text">软件源安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker-方式安装"><span class="nav-number">2.1.3.</span> <span class="nav-text">Docker 方式安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置说明"><span class="nav-number">2.2.</span> <span class="nav-text">配置说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ZooKeeper"><span class="nav-number">2.2.1.</span> <span class="nav-text">ZooKeeper</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mesos"><span class="nav-number">2.2.2.</span> <span class="nav-text">Mesos</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Marathon"><span class="nav-number">2.2.3.</span> <span class="nav-text">Marathon</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问-Mesos-图形界面"><span class="nav-number">2.3.</span> <span class="nav-text">访问 Mesos 图形界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问-Marathon-图形界面"><span class="nav-number">2.4.</span> <span class="nav-text">访问 Marathon 图形界面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理与架构"><span class="nav-number">3.</span> <span class="nav-text">原理与架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#架构"><span class="nav-number">3.1.</span> <span class="nav-text">架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本单元"><span class="nav-number">3.2.</span> <span class="nav-text">基本单元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调度"><span class="nav-number">3.3.</span> <span class="nav-text">调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法基本过程"><span class="nav-number">3.3.1.</span> <span class="nav-text">算法基本过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调度过程"><span class="nav-number">3.3.2.</span> <span class="nav-text">调度过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过滤器"><span class="nav-number">3.3.3.</span> <span class="nav-text">过滤器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回收机制"><span class="nav-number">3.3.4.</span> <span class="nav-text">回收机制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高可用性"><span class="nav-number">3.4.</span> <span class="nav-text">高可用性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mesos-配置解析"><span class="nav-number">4.</span> <span class="nav-text">Mesos 配置解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通用项"><span class="nav-number">4.1.</span> <span class="nav-text">通用项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#master-专属配置项"><span class="nav-number">4.2.</span> <span class="nav-text">master 专属配置项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#slave-专属配置项"><span class="nav-number">4.3.</span> <span class="nav-text">slave 专属配置项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志与监控"><span class="nav-number">5.</span> <span class="nav-text">日志与监控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#日志配置"><span class="nav-number">5.1.</span> <span class="nav-text">日志配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监控"><span class="nav-number">5.2.</span> <span class="nav-text">监控</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见应用框架"><span class="nav-number">6.</span> <span class="nav-text">常见应用框架</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">snlndod</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

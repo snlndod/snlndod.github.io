@@ -1,0 +1,908 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="MachineLearning,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="基本形式xi 是 x 在第 i 个属性上的取值。w 和 b 学得之后，模型就得以确定。许多功能更为强大的非线性模型（nolinear model）可在线性模型的基础上，通过引入层级结构或高维映射而得。w 直观表达了各属性在预测中的重要性，因此线性模型有很好的可解释性（comprehensibility）。">
+<meta name="keywords" content="MachineLearning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性模型">
+<meta property="og:url" content="http://yoursite.com/2017/04/06/线性模型/index.html">
+<meta property="og:site_name" content="DevPrepares">
+<meta property="og:description" content="基本形式xi 是 x 在第 i 个属性上的取值。w 和 b 学得之后，模型就得以确定。许多功能更为强大的非线性模型（nolinear model）可在线性模型的基础上，通过引入层级结构或高维映射而得。w 直观表达了各属性在预测中的重要性，因此线性模型有很好的可解释性（comprehensibility）。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/3_1.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/3_2.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/3_3.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/3_4.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/3_5.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/3_6.jpeg">
+<meta property="og:updated_time" content="2021-03-20T11:50:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="线性模型">
+<meta name="twitter:description" content="基本形式xi 是 x 在第 i 个属性上的取值。w 和 b 学得之后，模型就得以确定。许多功能更为强大的非线性模型（nolinear model）可在线性模型的基础上，通过引入层级结构或高维映射而得。w 直观表达了各属性在预测中的重要性，因此线性模型有很好的可解释性（comprehensibility）。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/3_1.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/06/线性模型/">
+
+
+
+
+
+  <title> 线性模型 | DevPrepares </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DevPrepares</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/06/线性模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                线性模型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-06T17:50:27+08:00">
+                2017-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="基本形式"><a href="#基本形式" class="headerlink" title="基本形式"></a>基本形式</h2><p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/3_1.jpeg" alt><br>xi 是 x 在第 i 个属性上的取值。<br>w 和 b 学得之后，模型就得以确定。<br>许多功能更为强大的非线性模型（nolinear model）可在线性模型的基础上，通过引入<strong>层级结构</strong>或<strong>高维映射</strong>而得。<br>w 直观表达了各属性在预测中的重要性，因此线性模型有很好的可解释性（comprehensibility）。</p>
+<a id="more"></a>
+<h2 id="线性回归（linear-regression）"><a href="#线性回归（linear-regression）" class="headerlink" title="线性回归（linear regression）"></a>线性回归（linear regression）</h2><p>试图学得一个线性模型以尽可能准确地预测实值输出标记。</p>
+<ul>
+<li>若属性值间存在序（order）关系，可通过连续化将其转化为连续值。如：高度的取值高、中、低，可转化为 {1.0, 0.5, 0.0}。</li>
+<li>若属性值间不存在序关系，通常转化为 k 维向量。如：瓜类的取值西瓜、南瓜、黄瓜，可转化为：(0, 0, 1)、(0, 1, 0)、(1, 0, 0)。</li>
+</ul>
+<p>将无序属性连续化，会不恰当地引入序关系，对后续处理如距离计算等造成误导。<br>基于<strong>均方误差</strong>最小化来进行模型求解的方法称为<strong>最小二乘法</strong>（least square method）。<br>最小二乘法，试图找到一条直线，使所有样本到直线的<strong>欧氏距离</strong>（Eucidean distance）之和最小。<br>多元线性回归（multivariate linear regression）模型为：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/3_2.jpeg" alt><br>XTX 往往不是满秩矩阵，因变量过多，会解出多组解都能使均方误差最小化。选择哪一个解作为输出，将由学习算法的<strong>归纳偏好</strong>决定，常见的做法是引入正则化（regularization）。<br>广义线性模型（generalized linear model）：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/3_3.jpeg" alt><br>单调可微函数 g(·) 称为<strong>联系函数</strong>（link function），对数线性回归是广义线性模型在 g(·)=ln(·) 时的特例。<br>广义线性模型的参数估计（parameter estimation）常通过最小二乘法或<strong>极大似然法</strong>进行。</p>
+<h2 id="对数几率回归"><a href="#对数几率回归" class="headerlink" title="对数几率回归"></a>对数几率回归</h2><p>对于分类任务，只需找一个单调可微函数将真实标记 y 与线性回归模型的预测值联系起来。<br><strong>单位阶跃函数</strong>（unit-step function）不连续，选择近似的<strong>对数几率函数</strong>（logistic function）作为<strong>替代函数</strong>（surrogate function）。<br>对率函数是 Sigmoid 函数最重要的代表<br>将 y 视为样本x作为正例的可能性，则 1-y 是其反例可能性。两者的比值 y/(1-y) 称为<strong>几率</strong>（odds），反映了x作为正例的相对可能性，取对数得到<strong>对数几率</strong>（log odds）：ln[y/(1-y)]。<br>对率回归实际是一种分类学习方法（优点）：</p>
+<ul>
+<li>避免了假设分布不准确带来的问题</li>
+<li>对许多需利用概率辅助决策的任务很有用</li>
+<li>对率函数是任意阶可导的凸函数，许多<strong>数值优化算法</strong>都可直接用于求取最优解。</li>
+</ul>
+<p>经典的数值优化算法：<strong>梯度下降法</strong>（gradient descent method）、<strong>牛顿法</strong>（Newton method）。</p>
+<h2 id="线性判别分析"><a href="#线性判别分析" class="headerlink" title="线性判别分析"></a>线性判别分析</h2><p>线性判别分析（Linear Discriminant Analysis），亦称 Fisher 判别分析。<br>LDA 的思想非常朴素，设法将样例投影到一条直线上：</p>
+<ul>
+<li>使得同类样例的投影点尽可能接近，投影点的<strong>协方差</strong>尽可能小。</li>
+<li>使得异样样例的投影点尽可能远离，让类中心之间的<strong>距离</strong>尽可能大。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/3_4.jpeg" alt></li>
+</ul>
+<p>定义：</p>
+<ul>
+<li>类内散度矩阵（within-class scatter matrix）：Sw</li>
+<li>类间散度矩阵（between-class scatter matrix）：Sb</li>
+</ul>
+<p>LDA 欲最大化的目标，即 Sb 与 Sw 的<strong>广义瑞利商</strong>（generalized Rayleigh quotient）。<br>考虑到数值解的稳定性，在实践中通常是对 Sw 进行奇异值分解。<br>LDA 可从<strong>贝叶斯决策理论</strong>的角度阐释并证明。当两类数据同先验、满足高斯分布且协方差相等时，LDA 可达到最优分类。<br>可以将 LDA 推广到多分类任务中，多分类 LDA 将样本投影到 d’ 维空间，d’ 通常远小于数据原有的属性数 d。因此 LDA 也常被视为一种经典的监督降维技术。</p>
+<h2 id="多分类学习"><a href="#多分类学习" class="headerlink" title="多分类学习"></a>多分类学习</h2><h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p><strong>拆解法</strong>，将多分类任务拆为若干个二分类任务求解：</p>
+<ul>
+<li>如何对多分类任务进行拆分</li>
+<li>如何对多个分类器（classifier）进行集成</li>
+</ul>
+<h3 id="拆分策略"><a href="#拆分策略" class="headerlink" title="拆分策略"></a>拆分策略</h3><p>最经典的拆分策略有三种：</p>
+<ol>
+<li>一对一（OvO）：产生 N(N-1)/2 个分类任务，把预测得最多的类别作为最终分类结果。</li>
+<li>一对其余（OvR）：训练 N 个分类器，若有多个分类器预测为正类，选择置信度最大的类别标记作为分类结果。</li>
+<li>多对多（MvM）：OvO、OvR 是 MvM 的特例，正、反类构造必须有特殊的设计。例如，<strong>纠错输出码</strong>（Error Correcting Output Codes）。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/3_5.jpeg" alt></li>
+</ol>
+<p>OvO 的存储开销和测试时间开销通常比 OvR 更大，在类别很多时，OvO 的训练时间开销通常比 OvR 更小。预测性能，多数情况下两者差不多。</p>
+<h3 id="纠错输出码"><a href="#纠错输出码" class="headerlink" title="纠错输出码"></a>纠错输出码</h3><p>ECOC 工作过程主要分为两步：</p>
+<ul>
+<li>编码：将 N 个类别做M次划分，训练出 M 个分类器。</li>
+<li>解码：将预测编码与每个类别各自的编码进行比较，返回其中距离最小的类别作为最终预测结果。</li>
+</ul>
+<p>类别划分通过<strong>编码矩阵</strong>（coding matrix）：</p>
+<ul>
+<li>二元码：正类、反类；</li>
+<li>三元码：正类、反类、停用类；</li>
+</ul>
+<p>ECOC 编码越长，纠错能力越强，意味着所需训练的分类器越多，计算、存储开销都会增大。<br>由于类别数有限，可能的组合数目也是有限的，码长超过一定范围后就失去了意义。<br><strong>同等长度</strong>的编码，两个类别之间的编码距离越远，则纠错能力越强。通常并不需获得理论最优编码（原因）：</p>
+<ul>
+<li>非最优编码在实践中往往已能产生足够好的分类器。</li>
+<li>机器学习问题涉及很多因素，不同拆解方式导致的二分类问题的难度不同。</li>
+</ul>
+<h2 id="类别不平衡问题"><a href="#类别不平衡问题" class="headerlink" title="类别不平衡问题"></a>类别不平衡问题</h2><p>类别不平衡（class-imbalance）就是指分类任务中不同类别的训练样例数目差别很大的情况。</p>
+<h3 id="基本策略"><a href="#基本策略" class="headerlink" title="基本策略"></a>基本策略</h3><p>类别不平衡学习的一个基本策略——<strong>再缩放</strong>（rescaling）：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/3_6.jpeg" alt><br><strong>无偏采样</strong>意味着，真实样本总体的类别比例在训练集中得以保持。</p>
+<h3 id="再缩放"><a href="#再缩放" class="headerlink" title="再缩放"></a>再缩放</h3><p>再缩放的三类做法：</p>
+<ul>
+<li>对训练集里的反类样例进行<strong>欠采样</strong>（undersampling），去除一些反例。避免丢失一些重要信息，代表性算法 EasyEnsemble。</li>
+<li>对正类样例进行<strong>过采样</strong>（oversampling），增加一些正例。避免招致严重的过拟合，代表性算法 SMOTE。</li>
+<li>直接基于原始训练集进行学习，预测时，将式 (3.48) 嵌入到决策过程中，称为<strong>阈值移动</strong>（threshold-moving）。</li>
+</ul>
+<p>再缩放是<strong>代价敏感学习</strong>（cost-sensitive learning）的基础。</p>
+<h2 id="阅读材料"><a href="#阅读材料" class="headerlink" title="阅读材料"></a>阅读材料</h2><p>非均等代价和类别不平衡性虽然都可借助<strong>再缩放</strong>技术，但两者本质不同。<br>类别不平衡学习中通常是较小类的代价更高，否则无需进行特殊处理。<br>多分类学习中虽然有多个类别，但每个样例仅属于一个类别。如果希望一个样本同时预测出多个类别标记，这样的任务是<strong>多标记学习</strong>（multi-label learning）。</p>
+<p><a href="http://blog.csdn.net/icefire_tyh/article/details/52069025" target="_blank" rel="noopener">习题答案</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MachineLearning/" rel="tag"># MachineLearning</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/29/模型评估与选择/" rel="next" title="模型评估与选择">
+                <i class="fa fa-chevron-left"></i> 模型评估与选择
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/25/决策树/" rel="prev" title="决策树">
+                决策树 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="snlndod">
+          <p class="site-author-name" itemprop="name">snlndod</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">201</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/snlndod" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/snlndod" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本形式"><span class="nav-number">1.</span> <span class="nav-text">基本形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性回归（linear-regression）"><span class="nav-number">2.</span> <span class="nav-text">线性回归（linear regression）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对数几率回归"><span class="nav-number">3.</span> <span class="nav-text">对数几率回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性判别分析"><span class="nav-number">4.</span> <span class="nav-text">线性判别分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多分类学习"><span class="nav-number">5.</span> <span class="nav-text">多分类学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本思路"><span class="nav-number">5.1.</span> <span class="nav-text">基本思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拆分策略"><span class="nav-number">5.2.</span> <span class="nav-text">拆分策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#纠错输出码"><span class="nav-number">5.3.</span> <span class="nav-text">纠错输出码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类别不平衡问题"><span class="nav-number">6.</span> <span class="nav-text">类别不平衡问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本策略"><span class="nav-number">6.1.</span> <span class="nav-text">基本策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#再缩放"><span class="nav-number">6.2.</span> <span class="nav-text">再缩放</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阅读材料"><span class="nav-number">7.</span> <span class="nav-text">阅读材料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">snlndod</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

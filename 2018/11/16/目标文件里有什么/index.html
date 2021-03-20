@@ -1,0 +1,940 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="DevPrepares,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="目标文件的格式目标文件就是源代码编译后但未进行链接的那些中间文件（Windows 的 .obj 和 Linux 的 .o），它跟可执行文件的内容和结构很相似，所以一般跟可执行文件采用同一种格式存储。PC 平台流行的可执行文件格式主要是 Windows 下的 PE（Portable Executable）和 Linux 下的 ELF（Executable Linkable Format），它们都是">
+<meta name="keywords" content="DevPrepares">
+<meta property="og:type" content="article">
+<meta property="og:title" content="目标文件里有什么">
+<meta property="og:url" content="http://yoursite.com/2018/11/16/目标文件里有什么/index.html">
+<meta property="og:site_name" content="DevPrepares">
+<meta property="og:description" content="目标文件的格式目标文件就是源代码编译后但未进行链接的那些中间文件（Windows 的 .obj 和 Linux 的 .o），它跟可执行文件的内容和结构很相似，所以一般跟可执行文件采用同一种格式存储。PC 平台流行的可执行文件格式主要是 Windows 下的 PE（Portable Executable）和 Linux 下的 ELF（Executable Linkable Format），它们都是">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/3-1.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/3-2.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/3-3.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/3-4.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/3-5.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/3-6.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/3-7.jpeg">
+<meta property="og:updated_time" content="2021-03-20T11:50:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="目标文件里有什么">
+<meta name="twitter:description" content="目标文件的格式目标文件就是源代码编译后但未进行链接的那些中间文件（Windows 的 .obj 和 Linux 的 .o），它跟可执行文件的内容和结构很相似，所以一般跟可执行文件采用同一种格式存储。PC 平台流行的可执行文件格式主要是 Windows 下的 PE（Portable Executable）和 Linux 下的 ELF（Executable Linkable Format），它们都是">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/3-1.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/16/目标文件里有什么/">
+
+
+
+
+
+  <title> 目标文件里有什么 | DevPrepares </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DevPrepares</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/目标文件里有什么/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                目标文件里有什么
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T23:07:26+08:00">
+                2018-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="目标文件的格式"><a href="#目标文件的格式" class="headerlink" title="目标文件的格式"></a>目标文件的格式</h2><p>目标文件就是源代码编译后但未进行链接的那些<strong>中间文件</strong>（Windows 的 .obj 和 Linux 的 .o），它跟可执行文件的内容和结构很相似，所以一般跟可执行文件采用同一种格式存储。<br>PC 平台流行的<strong>可执行文件格式</strong>主要是 Windows 下的 PE（Portable Executable）和 Linux 下的 ELF（Executable Linkable Format），它们都是 COFF（Common file format）格式的变种。<br><strong>动态链接库</strong>（DLL，Dynamic Linking Library）（Windows 的 .dll 和 Linux 的 .so）及<strong>静态链接库</strong>（Static Linking Library）（Windows 的 .lib 和 Linux 的 .a）文件也按照可执行文件格式存储。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/3-1.jpeg" alt></p>
+<a id="more"></a>
+<h2 id="目标文件是什么样的"><a href="#目标文件是什么样的" class="headerlink" title="目标文件是什么样的"></a>目标文件是什么样的</h2><p>目标文件中的内容有编译后的机器指令代码、数据，还包括了链接时所需要的一些信息，比如：符号表、调试信息、字符串等。目标文件将这些信息按不同的属性，以<code>段（Segment）</code>的形式存储。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/3-2.jpeg" alt><br>ELF 文件的开头是一个“文件头”，它描述了整个文件的文件属性，包括文件是否可执行、是静态链接还是动态链接及入口地址。<br>执行语句编译成机器代码，保存在 <code>.text</code> 段；已初始化的全局变量和局部静态变量都保存在 <code>.data</code> 段；未初始化的全局变量和局部静态变量一般放在一个叫 <code>.bss</code> 的段里。</p>
+<blockquote>
+<p>.bss 段只是为未初始化的全局变量和局部静态变量预留位置而已，没有内容，在文件中不占据空间。</p>
+</blockquote>
+<p>总体来说，主要分成两种段：</p>
+<ul>
+<li>程序指令：代码段</li>
+<li>程序数据：数据段、.bss 段</li>
+</ul>
+<h3 id="数据和指令分段的好处"><a href="#数据和指令分段的好处" class="headerlink" title="数据和指令分段的好处"></a>数据和指令分段的好处</h3><ul>
+<li>数据区域对于进程来说是可读写的，而指令区域对于进程来说是只读的，将这两个虚存区域的权限分别设置成可读写和只读，可以<strong>防止程序的指令被改写</strong>。</li>
+<li>现代 CPU 的缓存一般都被设计成数据缓存和指令缓存分离，所以程序的指令和数据分开存放对 <strong>CPU 的缓存命中率提高</strong>有好处。</li>
+<li>当系统中运行着多个该程序的副本时，它们的指令都是一样的，只须要保存一份该程序的指令部分，将<strong>节省大量空间</strong>。</li>
+</ul>
+<h2 id="挖掘-SimpleSection-o"><a href="#挖掘-SimpleSection-o" class="headerlink" title="挖掘 SimpleSection.o"></a>挖掘 SimpleSection.o</h2><blockquote>
+<p>真正了不起的程序员对自己的程序的每一个字节都了如指掌。</p>
+</blockquote>
+<p>不了解 ELF 文件的结构细节就像学习了 TCP/IP 网络没有了解 IP 包头的结构一样。<br>参数“-c”表示只编译不链接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -c SimpleSection.c</span><br></pre></td></tr></table></figure>
+
+<p>“-h”参数就是把 ELF 文件的各个段的基本信息打印出来，也可以使用“objdump -x”把更多的信息打印出来。查看各种目标文件的结构和内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ objdump -h SimpleSection.o</span><br></pre></td></tr></table></figure>
+
+<p>其中，最容易理解的是段的长度（Size）和段所在的位置（File Offset），“CONTENTS”表示该段在文件中存在。</p>
+<h3 id="代码段"><a href="#代码段" class="headerlink" title="代码段"></a>代码段</h3><p>“-s”参数可以将所有段的内容以十六进制的方式打印出来，“-d”参数可以将所有包含指令的段<strong>反汇编</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ objdump -s -d SimpleSection.o</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据段和只读数据段"><a href="#数据段和只读数据段" class="headerlink" title="数据段和只读数据段"></a>数据段和只读数据段</h3><p>.data 段保存的是那些已经<strong>初始化了的全局静态变量和局部静态变量</strong>。<br>.rodata 段存放的是只读数据，一般是程序里面的只读变量（如 const 修饰的变量）和字符串常量，在语义上支持了 C++ 的 const 关键字。<br>CPU 的<strong>字节序</strong>（Byte Order）的问题，也就是所谓的<code>大端（Big-endian）</code>和<code>小端（Little-endian）</code>的问题。在不同的计算机体系结构中，对于数据（比特、字节、字）等的存储和传输机制有所不同，如果达不成一致的规则，计算机的通信与存储将会无法进行。<br>定义两个概念：</p>
+<ul>
+<li><code>MSB</code>是 Most Significant Bit/Byte 的首字母缩写，通常译为最重要的位或最重要的字节。</li>
+<li><code>LSB</code>是 Least Significant Bit/Byte 的首字母缩写，通常译为最不重要的位或最不重要的字节。</li>
+</ul>
+<p>大端和小端的区别就是：大端规定 MSB 在存储时放在低地址，在传输时 MSB 放在流的开始；LSB 存储时放在高地址，在传输时放在流的末尾。小端则与之相反。<br>目前的 TCP/IP 网络及 Java 虚拟机的字节序都是大端的。</p>
+<h3 id="BSS-段"><a href="#BSS-段" class="headerlink" title="BSS 段"></a>BSS 段</h3><p>.bss 段存放的是<strong>未初始化的全局变量和局部静态变量</strong>。<br>变量存放的位置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">static int x1 = 0;</span><br><span class="line">static int x2 = 1;</span><br></pre></td></tr></table></figure>
+
+<p>x1 会被放在 .bss 中，x2 会被放在 .data 中。x1 为 0，可以认为是未初始化的，因为未初始化的都是 0，所以被优化掉了可以放在 .bss，这样可以节省磁盘空间，因为 .bss 不占磁盘空间。</p>
+<h3 id="其他段"><a href="#其他段" class="headerlink" title="其他段"></a>其他段</h3><p>“.”作为前缀，表示这些段的名字是系统保留的，应用程序也可以使用一些非系统保留的名字作为段名。<br>在全局变量或函数之前加上“_attribute_((section(“name”)))”属性就可以把相应的变量或函数放到以“name”作为段名的段中。</p>
+<h2 id="ELF-文件结构描述"><a href="#ELF-文件结构描述" class="headerlink" title="ELF 文件结构描述"></a>ELF 文件结构描述</h2><p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/3-3.jpeg" alt><br>ELF 目标文件格式的最前部是 <strong>ELF 文件头</strong>（ELF Header），它包含了描述整个文件的基本属性，比如：ELF 文件版本、目标机器型号、程序入口地址等。<br>与段有关的重要结构就是<strong>段表</strong>（Section Header Table），该表描述了 ELF 文件包含的所有段的信息，比如每个段的段名、段的长度、在文件中的偏移、读写权限及段的其他属性。</p>
+<h3 id="文件头"><a href="#文件头" class="headerlink" title="文件头"></a>文件头</h3><blockquote>
+<p>我们可以用 readelf -h 命令来详细查看 ELF 文件。</p>
+</blockquote>
+<p>ELF 文件头结构及相关常数被定义在“/usr/include/elf.h”里，“elf.f”使用 <code>typedef</code> 定义了一套自己的变量体系。以 32 版本的头文件结构“Elf32_Ehdr”为例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> e_ident[<span class="number">16</span>];</span><br><span class="line">    Elf32_Half e_type;</span><br><span class="line">    Elf32_Half e_machine;</span><br><span class="line">    Elf32_Word e_version;</span><br><span class="line">    Elf32_Addr e_entry;</span><br><span class="line">    Elf32_Off  e_phoff;</span><br><span class="line">    Elf32_Off  e_shoff;</span><br><span class="line">    Elf32_Word e_flags;</span><br><span class="line">    Elf32_Half e_ehsize;</span><br><span class="line">    Elf32_Half e_phentsize;</span><br><span class="line">    Elf32_Half e_phnum;</span><br><span class="line">    Elf32_Half e_shentsize;</span><br><span class="line">    Elf32_Half e_shnum;</span><br><span class="line">    Elf32_Half e_shstrndx;</span><br><span class="line">&#125; Elf32_Ehdr;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/3-4.jpeg" alt></p>
+<h4 id="ELF-魔数"><a href="#ELF-魔数" class="headerlink" title="ELF 魔数"></a>ELF 魔数</h4><p>对应 <code>e_ident 成员</code>，最开始的 4 个字节是所有 ELF 文件都必须相同的标识码，分别为 0x7F、0x45、0x4c、0x46，第一个字节对应 ASCII 字符里面的 DEL 控制符，后面 3 个字节刚好是 ELF 这 3 个字母的 ASCII 码。</p>
+<blockquote>
+<p>操作系统在加载可执行文件的时候会确认魔数是否正确，如果不正确会拒绝加载。</p>
+</blockquote>
+<h4 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h4><p><code>e_type 成员</code>表示 ELF 文件类型，系统通过这个常量来判断 ELF 的 真正文件类型，而不是通过文件的扩展名。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/3-5.jpeg" alt></p>
+<h4 id="机器类型"><a href="#机器类型" class="headerlink" title="机器类型"></a>机器类型</h4><p><code>e_machine 成员</code>表示 ELF 文件的平台属性。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/3-6.jpeg" alt></p>
+<h3 id="段表"><a href="#段表" class="headerlink" title="段表"></a>段表</h3><p>段表是保存这些段的基本属性的结构。段表的结构比较简单，它是一个以“Elf32_Shdr”结构体为元素的数组。数组元素的个数等于段的个数，每个“Elf32_Shdr”结构体对应一个段。<br>“Elf32_Shdr”又被称为<strong>段描述符</strong>（Section Descriptor）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    Elf32_Word sh_name;</span><br><span class="line">    Elf32_Word sh_type;</span><br><span class="line">    Elf32_Word sh_flags;</span><br><span class="line">    Elf32_Addr sh_addr;</span><br><span class="line">    Elf32_Off  sh_offset;</span><br><span class="line">    Elf32_Word sh_size;</span><br><span class="line">    Elf32_Word sh_link;</span><br><span class="line">    Elf32_Word sh_info;</span><br><span class="line">    Elf32_Word sh_addralign;</span><br><span class="line">    Elf32_Word sh_entsize;</span><br><span class="line">&#125; Elf32_Shdr;</span><br></pre></td></tr></table></figure>
+
+<h4 id="段的类型（sh-type）"><a href="#段的类型（sh-type）" class="headerlink" title="段的类型（sh_type）"></a>段的类型（sh_type）</h4><p>段的名字对于编译器、链接器来说是有意义的，但是对于操作系统来说并没有实质的意义。一个段该如何处理取决于它的属性和权限，即由段的类型（sh_type）和段的标志位（sh_flags）这两个成员决定。</p>
+<h4 id="段的标志位（sh-flags）"><a href="#段的标志位（sh-flags）" class="headerlink" title="段的标志位（sh_flags）"></a>段的标志位（sh_flags）</h4><p>表示该段在进程虚拟地址空间中的<code>属性</code>，比如是否可写，是否可执行等。</p>
+<h4 id="段的链接信息（sh-link、sh-info）"><a href="#段的链接信息（sh-link、sh-info）" class="headerlink" title="段的链接信息（sh_link、sh_info）"></a>段的链接信息（sh_link、sh_info）</h4><p>段的类型是与链接相关的（不论动态链接或静态链接），比如重定位表、符号表等。</p>
+<h3 id="重定位表"><a href="#重定位表" class="headerlink" title="重定位表"></a>重定位表</h3><p>重定位的信息都记录在 ELF 文件的重定位表里面，对于每个需要重定位的代码段或数据段，都会有一个相应的重定位表。<br>一个重定位表同时也是 ELF 的一个段，它的“sh_link”表示符号表的下标，它的“sh_info”表示它作用于哪个段。</p>
+<h3 id="字符串表"><a href="#字符串表" class="headerlink" title="字符串表"></a>字符串表</h3><p>ELF 文件中用到了很多字符串，比如段名、变量名等。一种常见的做法是，把字符串集中起来存放到一个表，然后使用字符串在表中的<code>偏移</code>来引用字符串。<br>引用字符串只须给出一个数字下标即可，不用考虑字符串长度的问题。<strong>字符串表</strong>用来保存普通的字符串，比如符号的名字；<strong>段表字符串表</strong>用来保存段表中用到的字符串，最常见的就是段名（sh_name）。</p>
+<blockquote>
+<p>只要分析 ELF 文件头，就可以得到段表和段表字符串表的位置，从而解析整个 ELF 文件。</p>
+</blockquote>
+<h2 id="链接的接口——符号"><a href="#链接的接口——符号" class="headerlink" title="链接的接口——符号"></a>链接的接口——符号</h2><p>在链接中，目标文件之间相互拼合实际上是目标文件之间对地址的引用，即对函数和变量的地址的引用。<br>比如：目标文件 B 要用到目标文件 A 中的函数“foo”，那么我们就称目标文件 A <code>定义</code>（Define）了函数“foo”，称目标文件 B <code>引用</code>（Reference）了目标文件 A 中的函数“foo”。<br>函数和变量统称为<strong>符号</strong>（Symbol），函数名或变量名就是<strong>符号名</strong>（Symbol Name）。<br>链接过程中很关键的一部分就是符号的管理，每一个目标文件都会有一个相应的<strong>符号表</strong>（Symbol Table），每个定义的符号有一个相应的值，叫做<strong>符号值</strong>（Symbol Value）。对于变量和函数来说，符号值就是它们的地址。</p>
+<ul>
+<li>定义在本目标文件的<code>全局符号</code>，可以被其他目标文件引用。</li>
+<li>在本目标文件中引用的全局符号，却没有定义在本目标文件，这一般叫做<code>外部符号</code>，也就是我们前面所讲的符号引用。</li>
+</ul>
+<p>链接过程<strong>只关心全局符号</strong>的相互“粘合”，局部符号、段名、行号等都是次要的，它们对于其他目标文件来说是“不可见”的，在链接过程中也是无关紧要的。使用<code>nm</code>命令可以查看符号表。</p>
+<h3 id="ELF-符号表结构"><a href="#ELF-符号表结构" class="headerlink" title="ELF 符号表结构"></a>ELF 符号表结构</h3><p>符号表的结构很简单，它是一个 Elf32_Sym 结构的数组，定义如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    Elf32_Word st_name;</span><br><span class="line">    Elf32_Addr st_value;</span><br><span class="line">    Elf32_Word st_size;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> st_info;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> st_other;</span><br><span class="line">    Elf32_Half st_shndx;</span><br><span class="line">&#125; Elf32_Sym;</span><br></pre></td></tr></table></figure>
+
+<h4 id="符号类型和绑定信息（st-info）"><a href="#符号类型和绑定信息（st-info）" class="headerlink" title="符号类型和绑定信息（st_info）"></a>符号类型和绑定信息（st_info）</h4><p>该成员低 4 位表示符号的类型（Symbol Type），高 28 位表示符号绑定信息（Symbol Binding）。</p>
+<h4 id="符号所在段（st-shndx）"><a href="#符号所在段（st-shndx）" class="headerlink" title="符号所在段（st_shndx）"></a>符号所在段（st_shndx）</h4><p>如果符号定义在本目标文件中，那么这个成员表示符号所在的段在段表中的下标。</p>
+<h4 id="符号值（st-value）"><a href="#符号值（st-value）" class="headerlink" title="符号值（st_value）"></a>符号值（st_value）</h4><p><code>readelf -s</code>的输出格式更为清晰，与上面描述的 Elf32_Sym 的各个成员几乎一一对应。</p>
+<h3 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h3><p>当我们使用 ld 作为链接器来链接生产可执行文件时，它会为我们定义很多特殊的符号，这些符号并没有在你的程序中定义，但是你可以直接声明并且引用它，我们称之为<strong>特殊符号</strong>。它们跟 ld 的链接脚本有关。</p>
+<h3 id="符号修饰与函数签名"><a href="#符号修饰与函数签名" class="headerlink" title="符号修饰与函数签名"></a>符号修饰与函数签名</h3><p>像 C++ 这样后来设计的语言，增加了<strong>名称空间</strong>（Namespace）的方法解决多模块的符号冲突问题。</p>
+<h4 id="C-符号修饰"><a href="#C-符号修饰" class="headerlink" title="C++ 符号修饰"></a>C++ 符号修饰</h4><p>强大而又复杂的 C++ 拥有类、继承、虚机制、重载、名称空间等这些特性，它们使得符号管理更为复杂。<br>为了支持 C++ 这些复杂的特性，人们发明了<strong>符号修饰</strong>（Name Decoration）或<strong>符号改编</strong>（Name Mangling）的机制。<br><code>函数签名</code>（Function Signature）包含了一个函数的信息，包括函数名、它的参数类型、它所在的类和名称空间及其他信息。函数的名字只是函数签名的一部分。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/3-7.jpeg" alt><br>每个函数签名对应一个修饰后名称（Decorated Name），C++ 的源代码编译后的目标文件中所使用的符号名是相应的函数和变量的修饰后名称。参照 <strong>GNU C++</strong> 的名称修饰标准，binutils 里面提供了一个叫<code>c++filt</code>的工具。<br>C++ 中的全局变量和静态变量也同样具有签名和名称修饰机制。变量的类型并没有被加入到修饰后名称中。<strong>Visual C++</strong> 的名称修饰规则并没有对外公开，Microsoft 提供了一个 UnDecorateSymbolName() 的 API，可以将修饰后名称转换成函数签名。</p>
+<h3 id="extern-“C”"><a href="#extern-“C”" class="headerlink" title="extern “C”"></a>extern “C”</h3><p>C++ 为了与 C 兼容，在符号的管理上，有一个用来声明或定义一个 C 的符号的 <code>extern &quot;C&quot;</code> 关键字。<br>为了兼容 C 语言和 C++ 语言定义两套头文件，未免过于麻烦。我们可以使用条件宏来判断当前编译单元是不是 C++ 代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">memset</span> <span class="params">(<span class="keyword">void</span> *, <span class="keyword">int</span>, <span class="keyword">size_t</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>如果当前编译单元是 C++ 代码，那么 memset 会在 extern “C” 里面被声明；如果是 C 代码，就直接声明。</p>
+<h3 id="弱符号与强符号"><a href="#弱符号与强符号" class="headerlink" title="弱符号与强符号"></a>弱符号与强符号</h3><blockquote>
+<p>强符号和弱符号都是针对<strong>定义</strong>来说的，不是针对符号的引用。</p>
+</blockquote>
+<p>编译器默认函数和初始化了的全局变量为<code>强符号</code>（Strong Symbol），未初始化的全局变量为<code>弱符号</code>（Weak Symbol）。我们可以通过 GCC 的“__attribute__((weak))”来定义任何一个强符号为弱符号。<br>一些规则：</p>
+<ul>
+<li>不允许强符号被多次定义（即不同的目标文件中不能有同名的强符号）；如果有多个强符号定义，则链接器报符号重复定义错误。</li>
+<li>如果一个符号在某个目标文件中是强符号，在其他文件中都是弱符号，那么选择强符号。</li>
+<li>如果一个符号在所有目标文件中都是弱符号，那么选择其中占用空间最大的一个。</li>
+</ul>
+<h4 id="弱引用和强引用"><a href="#弱引用和强引用" class="headerlink" title="弱引用和强引用"></a>弱引用和强引用</h4><p>链接器处理强引用（Strong Reference）和弱引用（Weak Reference）的过程几乎一样，只是对于未定义的弱引用，链接器不认为它是一个错误。可以通过使用“__attribute__((weakref))”这个扩展关键字来声明对一个外部函数的引用为弱引用。<br>库中定义的弱符号可以被用户定义的强符号所覆盖，从而使得程序可以<strong>使用自定义版本的库函数</strong>。程序可以对某些扩展功能模块的引用定义为弱引用，当我们将扩展模块与程序链接在一起时，功能模块就可以正常使用；如果我们去掉了某些功能模块，那么程序也可以正常链接，只是缺少了相应的功能，这使得程序的<strong>功能更加容易裁剪和组合</strong>。</p>
+<h2 id="调试信息"><a href="#调试信息" class="headerlink" title="调试信息"></a>调试信息</h2><p>设置断点、单步调试的前提是编译器必须提前将<strong>源代码与目标代码之间的关系</strong>等，比如目标代码中的地址对应源代码中的哪一行、函数和变量的类型、结构体的定义、字符串保存到目标文件里面。<br>在 GCC 编译时加上“-g”参数，编译器就会在产生的目标文件里面加上调试信息。我们通过<code>readelf</code>等工具可以看到，目标文件多了很多“debug”相关的段。<br>现在的 ELF 文件采用一个叫 <strong>DWARF</strong>（Debug With Arbitrary Record Formats）的标准的调试信息格式。在 Linux 下，我们可以使用 <code>strip</code> 命令来去掉 ELF 文件中的调试信息。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DevPrepares/" rel="tag"># DevPrepares</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/14/编译和链接/" rel="next" title="编译和链接">
+                <i class="fa fa-chevron-left"></i> 编译和链接
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/07/初识-Docker-与容器/" rel="prev" title="初识 Docker 与容器">
+                初识 Docker 与容器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="snlndod">
+          <p class="site-author-name" itemprop="name">snlndod</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">201</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/snlndod" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/snlndod" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目标文件的格式"><span class="nav-number">1.</span> <span class="nav-text">目标文件的格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标文件是什么样的"><span class="nav-number">2.</span> <span class="nav-text">目标文件是什么样的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据和指令分段的好处"><span class="nav-number">2.1.</span> <span class="nav-text">数据和指令分段的好处</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#挖掘-SimpleSection-o"><span class="nav-number">3.</span> <span class="nav-text">挖掘 SimpleSection.o</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码段"><span class="nav-number">3.1.</span> <span class="nav-text">代码段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据段和只读数据段"><span class="nav-number">3.2.</span> <span class="nav-text">数据段和只读数据段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BSS-段"><span class="nav-number">3.3.</span> <span class="nav-text">BSS 段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他段"><span class="nav-number">3.4.</span> <span class="nav-text">其他段</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ELF-文件结构描述"><span class="nav-number">4.</span> <span class="nav-text">ELF 文件结构描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件头"><span class="nav-number">4.1.</span> <span class="nav-text">文件头</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ELF-魔数"><span class="nav-number">4.1.1.</span> <span class="nav-text">ELF 魔数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件类型"><span class="nav-number">4.1.2.</span> <span class="nav-text">文件类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#机器类型"><span class="nav-number">4.1.3.</span> <span class="nav-text">机器类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#段表"><span class="nav-number">4.2.</span> <span class="nav-text">段表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#段的类型（sh-type）"><span class="nav-number">4.2.1.</span> <span class="nav-text">段的类型（sh_type）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#段的标志位（sh-flags）"><span class="nav-number">4.2.2.</span> <span class="nav-text">段的标志位（sh_flags）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#段的链接信息（sh-link、sh-info）"><span class="nav-number">4.2.3.</span> <span class="nav-text">段的链接信息（sh_link、sh_info）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重定位表"><span class="nav-number">4.3.</span> <span class="nav-text">重定位表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串表"><span class="nav-number">4.4.</span> <span class="nav-text">字符串表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链接的接口——符号"><span class="nav-number">5.</span> <span class="nav-text">链接的接口——符号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ELF-符号表结构"><span class="nav-number">5.1.</span> <span class="nav-text">ELF 符号表结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#符号类型和绑定信息（st-info）"><span class="nav-number">5.1.1.</span> <span class="nav-text">符号类型和绑定信息（st_info）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#符号所在段（st-shndx）"><span class="nav-number">5.1.2.</span> <span class="nav-text">符号所在段（st_shndx）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#符号值（st-value）"><span class="nav-number">5.1.3.</span> <span class="nav-text">符号值（st_value）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊符号"><span class="nav-number">5.2.</span> <span class="nav-text">特殊符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#符号修饰与函数签名"><span class="nav-number">5.3.</span> <span class="nav-text">符号修饰与函数签名</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#C-符号修饰"><span class="nav-number">5.3.1.</span> <span class="nav-text">C++ 符号修饰</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#extern-“C”"><span class="nav-number">5.4.</span> <span class="nav-text">extern “C”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#弱符号与强符号"><span class="nav-number">5.5.</span> <span class="nav-text">弱符号与强符号</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#弱引用和强引用"><span class="nav-number">5.5.1.</span> <span class="nav-text">弱引用和强引用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试信息"><span class="nav-number">6.</span> <span class="nav-text">调试信息</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">snlndod</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,930 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="DevPrepares,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="从 Hello World 说起很多问题看似很简单，但实际上我们并没有一个非常清晰的思路；或者在我们脑海里有着模糊的印象，但真正到某些细节的时候可能又模糊不清了。从基本的编译、静态链接到操作系统如何装载程序、动态链接及运行库和标准库的实现，甚至一些操作系统的机制，力争深入浅出地将这些问题层层剥开，最终使得这些程序运行背后的机制形成一个非常清晰而流畅的脉络。 万变不离其宗将计算机的范围限定在：采用兼">
+<meta name="keywords" content="DevPrepares">
+<meta property="og:type" content="article">
+<meta property="og:title" content="温故而知新">
+<meta property="og:url" content="http://yoursite.com/2018/11/11/温故而知新/index.html">
+<meta property="og:site_name" content="DevPrepares">
+<meta property="og:description" content="从 Hello World 说起很多问题看似很简单，但实际上我们并没有一个非常清晰的思路；或者在我们脑海里有着模糊的印象，但真正到某些细节的时候可能又模糊不清了。从基本的编译、静态链接到操作系统如何装载程序、动态链接及运行库和标准库的实现，甚至一些操作系统的机制，力争深入浅出地将这些问题层层剥开，最终使得这些程序运行背后的机制形成一个非常清晰而流畅的脉络。 万变不离其宗将计算机的范围限定在：采用兼">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-1.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-2.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-3.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-4.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-5.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-6.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-7.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-8.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-9.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-10.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-11.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-12.jpeg">
+<meta property="og:updated_time" content="2021-03-20T11:50:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="温故而知新">
+<meta name="twitter:description" content="从 Hello World 说起很多问题看似很简单，但实际上我们并没有一个非常清晰的思路；或者在我们脑海里有着模糊的印象，但真正到某些细节的时候可能又模糊不清了。从基本的编译、静态链接到操作系统如何装载程序、动态链接及运行库和标准库的实现，甚至一些操作系统的机制，力争深入浅出地将这些问题层层剥开，最终使得这些程序运行背后的机制形成一个非常清晰而流畅的脉络。 万变不离其宗将计算机的范围限定在：采用兼">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-1.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/11/温故而知新/">
+
+
+
+
+
+  <title> 温故而知新 | DevPrepares </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DevPrepares</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/11/温故而知新/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                温故而知新
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-11T01:32:57+08:00">
+                2018-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="从-Hello-World-说起"><a href="#从-Hello-World-说起" class="headerlink" title="从 Hello World 说起"></a>从 Hello World 说起</h2><p>很多问题看似很简单，但实际上我们并没有一个非常清晰的思路；或者在我们脑海里有着模糊的印象，但真正到某些细节的时候可能又模糊不清了。<br>从基本的编译、静态链接到操作系统如何装载程序、动态链接及运行库和标准库的实现，甚至一些操作系统的机制，力争深入浅出地将这些问题层层剥开，最终使得这些程序运行背后的机制形成一个<strong>非常清晰而流畅的脉络</strong>。</p>
+<h2 id="万变不离其宗"><a href="#万变不离其宗" class="headerlink" title="万变不离其宗"></a>万变不离其宗</h2><p>将计算机的范围限定在：采用兼容 x86 指令集的 32 位 CPU 的个人计算机。</p>
+<ul>
+<li>系统程序开发者：多如牛毛的硬件设备中，三个部件最为关键：CPU、内存和 I/O 控制芯片。</li>
+<li>普通应用程序开发者：关心 CPU，其他的硬件细节基本不用关心。</li>
+<li>高级平台开发者：连 CPU 都不需要关心，平台（Java、.NET 等）提供了一个通用的抽象的计算机。</li>
+</ul>
+<a id="more"></a>
+<p>早期的计算机没有很复杂的图形功能，CPU 的核心频率不高，跟内存的频率一样，直接连接在同一个<code>总线（Bus）</code>上。为了能够让 CPU 能够和 I/O 设备进行通信，每个设备都会有一个相应的 I/O 控制器。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-1.jpeg" alt><br>为了协调 CPU、内存和高速的图像设备，专门设计了一个高速的<strong>北桥芯片</strong>（Northbridge），以便它们之间能够高速地交换数据。为了避免设计的复杂，又设计了专门处理低速设备的<strong>南桥芯片</strong>（Southbridge）。系统总线上采用的是 PCI 结构，低速设备上采用的是 ISA 总线。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-2.jpeg" alt></p>
+<h3 id="SMP-与多核"><a href="#SMP-与多核" class="headerlink" title="SMP 与多核"></a>SMP 与多核</h3><p>CPU 的频率被 4GHz 的“天花板”所限制，人们开始想办法从另外一个角度来提高 CPU 的速度，就是增加 CPU 的数量。最常见的一种形式就是<strong>对称多处理器</strong>（SMP，Symmertical Multi-Processing），理想情况下，速度的提高与 CPU 的数量成正比。实际上并非如此，因为程序并不能分解成若干个完全不相干的子问题，当然很多时候多处理器是非常有用的，比如：在大型数据库、网络服务器上，同时处理大量的相互独立的请求。<br>“被打包”的处理器之间共享比较昂贵的缓存部件，只保留多个核心，这就是<strong>多核处理器</strong>（Multi-core Processor）的基本想法。</p>
+<h2 id="站得高，望得远"><a href="#站得高，望得远" class="headerlink" title="站得高，望得远"></a>站得高，望得远</h2><blockquote>
+<p>计算机科学领域的任何问题都可以通过增加一个间接的中间层来解决。</p>
+</blockquote>
+<p>用于管理计算机本身的软件称为<code>系统软件</code>。</p>
+<ul>
+<li>平台性的：操作系统内核、驱动程序、运行库和数以千计的系统工具。</li>
+<li>用于程序开发的：编译器、汇编器、链接器等开发工具和开发库。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-3.jpeg" alt><br>每个层次之间都须要相互通信，通信的协议称为<code>接口（Interface）</code>，接口的下面那层是接口的提供者，由它定义接口；接口的上面那层是接口的使用者，它使用该接口来实现所需要的功能。<br>开发工具与应用程序是属于同一层次的，都使用<strong>应用程序编程接口</strong>（Application Programming Interface），运行库使用操作系统提供的<strong>系统调用接口</strong>（System call Interface），系统调用接口实现中往往以<strong>软件中断</strong>（Software Interrupt）的方式提供。硬件的接口被叫做<strong>硬件规格</strong>（Hardware Specification），决定了驱动程序如何操作硬件，如何与硬件进行通信。</p>
+<h2 id="操作系统做什么"><a href="#操作系统做什么" class="headerlink" title="操作系统做什么"></a>操作系统做什么</h2><ul>
+<li>提供抽象的接口。</li>
+<li>管理硬件资源：CPU、存储器（内存和磁盘）和 I/O 设备。</li>
+</ul>
+<h3 id="不要让-CPU-打盹"><a href="#不要让-CPU-打盹" class="headerlink" title="不要让 CPU 打盹"></a>不要让 CPU 打盹</h3><p>当某个程序暂时无须使用 CPU 时，监控程序就把另外的正在等待 CPU 资源的程序启动，使得 CPU 能够充分地利用起来。这种被称为<strong>多道程序</strong>（Multiprogramming）的方法看似很原始，但是它当时的确大大提高了 CPU 的利用率。<br>每个程序运行一段时间以后都主动让出 CPU 给其他程序，使得一段时间内每个程序都有机会运行一小段时间。这种程序协作模式叫做<strong>分时系统</strong>（Time-Sharing System），完整的操作系统雏形已经逐渐形成了。<br><strong>多任务系统</strong>（Multi-tasking），操作系统接管了所有的硬件资源，并且本身运行在一个受硬件保护的级别，所有的应用程序都以<code>进程（Process）</code>的方式运行在比操作系统权限更低的级别，进程之间的地址空间相互隔离。CPU 的分配方式采用<code>抢占式（Preemptive）</code>，在多个进程间快速地切换，造成了很多进程都在同时运行的假象。</p>
+<h3 id="设备驱动"><a href="#设备驱动" class="headerlink" title="设备驱动"></a>设备驱动</h3><p>繁琐的硬件细节全都交给了操作系统，具体地讲是操作系统中的<strong>硬件驱动程序</strong>（Device Driver）来完成，驱动程序往往跟操作系统内核一起运行在特权级。<br>现代的硬盘普遍使用一种叫做 LBA（Logical Block Address）的方式，当我们给出一个逻辑的扇区号时，硬盘的电子设备会将其转换成实际的盘面、磁道等位置。</p>
+<h2 id="内存不够怎么办"><a href="#内存不够怎么办" class="headerlink" title="内存不够怎么办"></a>内存不够怎么办</h2><p>进程的总体目标是希望每个进程从逻辑上来看都可以独占计算机的资源，那么很明显的一个问题是：<strong>如何将计算机上有限的物理内存分配给多个程序使用</strong>。</p>
+<ul>
+<li>地址空间不隔离：很容易改写其他程序的内存数据。</li>
+<li>内存使用效率低：有大量的数据在换入换出，导致效率十分低下。</li>
+<li>程序运行的地址不确定：程序每次需要装入运行时，空闲区域的位置是不确定的。</li>
+</ul>
+<p>解决这几个问题的思路：增加中间层。我们把程序给出的地址看作是一种<strong>虚拟地址</strong>（Virtual Address），然后通过某些映射的方法，将这个虚拟地址转换成实际的物理地址。</p>
+<h3 id="关于隔离"><a href="#关于隔离" class="headerlink" title="关于隔离"></a>关于隔离</h3><p>地址空间分两种：</p>
+<ul>
+<li>虚拟地址空间（Virtual Address Space）</li>
+<li>物理地址空间（Physical Address Space）</li>
+</ul>
+<p>每个进程都有自己独立的虚拟空间，只能访问自己的地址空间，这样就有效地做到了进程的隔离。</p>
+<h3 id="分段（Segmentation）"><a href="#分段（Segmentation）" class="headerlink" title="分段（Segmentation）"></a>分段（Segmentation）</h3><p>分段的方法还是没有解决我们的第二个问题，即内存使用效率的问题。这种方法还是显得粗糙，粒度比较大。</p>
+<h3 id="分页（Paging）"><a href="#分页（Paging）" class="headerlink" title="分页（Paging）"></a>分页（Paging）</h3><p>分页的基本方法是把地址空间人为地等分成固定大小的页，由操作系统选择决定页的大小。<br>在这里，我们把虚拟空间的页就叫<strong>虚拟页</strong>（VP，Virtual Page），把物理内存中的页叫做<strong>物理页</strong>（PP，Physical Page），把磁盘中的页叫做<strong>磁盘页</strong>（DP，Disk Page）。虚拟空间的页被映射到同一个物理页，这样就可以实现内存共享。<br>虚拟存储的实现需要依靠硬件的支持，采用一个叫 <strong>MMU</strong>（Memory Management Unit）的部件来进行页映射。一般 MMU 都集成在 CPU 内部，不会以独立的部件存在。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-4.jpeg" alt></p>
+<h2 id="众人拾柴火焰高"><a href="#众人拾柴火焰高" class="headerlink" title="众人拾柴火焰高"></a>众人拾柴火焰高</h2><h3 id="线程基础"><a href="#线程基础" class="headerlink" title="线程基础"></a>线程基础</h3><p>线程的概念、线程的调度、线程安全、用户线程与内核线程之间的映射关系。</p>
+<h4 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h4><p><code>线程（Thread）</code>有时候被称为<strong>轻量级进程</strong>（Lightweight Process，LWP），是程序执行流的最小单元。<br>一个标准的线程由线程 ID、当前指令指针（PC）、寄存器集合和堆栈组成。对于多进程应用，多线程在数据共享方面效率要高很多。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-5.jpeg" alt></p>
+<h4 id="线程的访问权限"><a href="#线程的访问权限" class="headerlink" title="线程的访问权限"></a>线程的访问权限</h4><p>线程也拥有自己的私有存储空间。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-6.jpeg" alt></p>
+<h4 id="线程调度与优先级"><a href="#线程调度与优先级" class="headerlink" title="线程调度与优先级"></a>线程调度与优先级</h4><p>当线程数量 &lt;= 处理器数量时，线程的并发是真正的并发。在单处理器对应多线程的情况下，并发是一种模拟出来的状态。<br>如果在时间片用尽之前进程就开始等待某事件，那么它将进入等待状态。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-7.jpeg" alt><br>现在主流的调度方式不尽相同，但都带有<strong>优先级调度</strong>（Priority Schedule）和<strong>轮转法</strong>（Round Robin）的痕迹。<br>IO 密集型线程（IO Bound Thread）总是比 CPU 密集型线程容易得到优先级的提升。<br>为了避免<strong>饿死</strong>（Starvation）现象，调度系统常常会逐步提升那些等待了过长时间的得不到执行的线程的优先级。<br>线程的优先级改变一般有三种方式：</p>
+<ul>
+<li>用户指定优先级。</li>
+<li>根据进入等待状态的频繁程度提升或降低优先级。</li>
+<li>长时间得不到执行而被提升优先级。</li>
+</ul>
+<h4 id="可抢占线程和不可抢占线程"><a href="#可抢占线程和不可抢占线程" class="headerlink" title="可抢占线程和不可抢占线程"></a>可抢占线程和不可抢占线程</h4><p>不可<strong>抢占</strong>（Preemption）线程的线程调度的时机是确定的，只会发生在线程主动放弃执行或线程等待某事件的时候。</p>
+<h4 id="Linux-的多线程"><a href="#Linux-的多线程" class="headerlink" title="Linux 的多线程"></a>Linux 的多线程</h4><p>Linux 将所有的执行实体（进程、线程）都称为<strong>任务</strong>（Task）。实际意义上，共享了同一个内存空间的多个任务构成了一个进程，这些任务也就成了这个进程里的线程。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-8.jpeg" alt><br>fork 和 exec 通常用于产生新任务，而如果要产生新线程，则可以使用 clone。</p>
+<h3 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h3><p>多线程程序在并发时，数据的一致性变得非常重要。</p>
+<h4 id="竞争与原子操作"><a href="#竞争与原子操作" class="headerlink" title="竞争与原子操作"></a>竞争与原子操作</h4><p>把单指令的操作称为<strong>原子的</strong>（Atomic），单条指令的执行是不会被打断的。要保证一个复杂的数据结构更改的原子性，原子操作指令就力不从心了，需要更加通用的手段：<code>锁（Lock）</code>。</p>
+<h4 id="同步与锁"><a href="#同步与锁" class="headerlink" title="同步与锁"></a>同步与锁</h4><p>所谓<strong>同步</strong>（Synchronization），即指在一个线程访问数据未结束的时候，其他线程不得对同一个数据进行访问。<br>同步的最常见方法是使用锁，每一个线程在访问数据或资源之前首先试图<strong>获取</strong>（Acquire）锁，并在访问结束之后<strong>释放</strong>（Release）锁。<br><strong>二元信号量</strong>（Binary Semaphore）是最简单的一种锁，它只有两种状态：占用与非占用。<br>多元信号量简称<strong>信号量</strong>（Semaphore），一个初始值为 N 的信号量允许 N 个线程并发访问。<br>信号量在整个系统可以被任意线程获取并释放，而<strong>互斥量</strong>（Mutex）则要求哪个线程获取了互斥量，哪个线程就要负责释放这个锁。<br><strong>临界区</strong>（Critical Section）是比互斥量更加严格的同步手段。互斥量和信号量在系统的任何进程里都是可见的，而临界区的作用范围仅限于本进程，其他的进程无法获取该锁。<br><strong>读写锁</strong>（Read-Write Lock）致力于一种更加特定的场合的同步，信号量、互斥量或临界区对于读取频繁，而仅仅偶尔写入的情况，会显得非常低效。读写锁有两种获取方式：共享的（Shared）或独占的（Exclusive）。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-9.jpeg" alt><br><strong>条件变量</strong>（Condition Variable）可以让许多线程一起等待某个事件的发生，当事件发生时（条件变量被唤醒），所有的线程可以一起恢复执行。<br>线程可以有两种操作：</p>
+<ul>
+<li>等待条件变量</li>
+<li>唤醒条件变量</li>
+</ul>
+<h4 id="可重入（Reentrant）与线程安全"><a href="#可重入（Reentrant）与线程安全" class="headerlink" title="可重入（Reentrant）与线程安全"></a>可重入（Reentrant）与线程安全</h4><blockquote>
+<p>可重入是并发安全的强力保障，一个可重入的函数可以在多线程环境下放心使用。</p>
+</blockquote>
+<p>一个函数被重入，表示这个函数没有执行完成，由于外部因素或内部调用，又一次进入该函数执行。分为两种情况：</p>
+<ul>
+<li>多个线程同时执行这个函数。</li>
+<li>函数自身（可能是经过多层调用之后）调用自身。</li>
+</ul>
+<h4 id="过度优化"><a href="#过度优化" class="headerlink" title="过度优化"></a>过度优化</h4><p>即使合理地使用了锁，也不一定能保证线程安全，源于落后的编译器技术已经无法满足日益增长的并发需求。很多看似无错的代码在优化和并发面前又产生了麻烦。<br><code>volatile 关键字</code>试图阻止过度优化，可以做到两件事：</p>
+<ul>
+<li>阻止编译器为了提高速度将一个变量缓存到寄存器内而不写回。</li>
+<li>阻止编译器调整操作 volatile 变量的指令顺序。</li>
+</ul>
+<p>即使 volatile 能够阻止编译器调整顺序，也无法阻止 CPU 动态调度换序。<br>要保证线程安全，阻止 CPU 换序是必需的，通常调用 CPU 提供的 <code>barrier 指令</code>。一条 barrier 指令会阻止 CPU 将该指令之前的指令交换到 barrier 之后，反之亦然。</p>
+<h3 id="三种线程模型"><a href="#三种线程模型" class="headerlink" title="三种线程模型"></a>三种线程模型</h3><p>线程的并发执行是由多处理器或操作系统调度来实现的，但实际情况要更为复杂一些，内核线程和我们之前讨论的一样。然而，用户实际使用的是存在于用户态的用户线程，用户态线程并不一定在操作系统内核里对应同等数量的内核线程。</p>
+<h4 id="一对一模型"><a href="#一对一模型" class="headerlink" title="一对一模型"></a>一对一模型</h4><p>一个用户使用的线程就唯一对应一个内核使用的线程（反之不一定）。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-10.jpeg" alt><br>线程之间的并发是真正的并发，一对一线程缺点有两个：</p>
+<ul>
+<li>由于许多操作系统限制了内核线程的数量，因此一对一线程会让用户的线程数量受到限制。</li>
+<li>许多操作系统内核线程调度时，上下文切换的开销较大，导致用户线程的执行效率下降。</li>
+</ul>
+<h4 id="多对一模型"><a href="#多对一模型" class="headerlink" title="多对一模型"></a>多对一模型</h4><p>多对一模型的好处是高效的上下文切换和几乎无限制的线程数量。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-11.jpeg" alt><br>多对一模型一大问题是，如果其中一个用户线程阻塞，那么所有的线程都将无法执行，因为此时内核里的线程也随之阻塞了。<br>另外，在多处理器系统上，处理器的增多对多对一模型的线程性能也不会有明显的帮助。</p>
+<h4 id="多对多模型"><a href="#多对多模型" class="headerlink" title="多对多模型"></a>多对多模型</h4><p>多对多模型结合了多对一模型和一对一模型的特点。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/1-12.jpeg" alt></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DevPrepares/" rel="tag"># DevPrepares</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/10/SLAM：现在与未来/" rel="next" title="SLAM：现在与未来">
+                <i class="fa fa-chevron-left"></i> SLAM：现在与未来
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/14/编译和链接/" rel="prev" title="编译和链接">
+                编译和链接 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="snlndod">
+          <p class="site-author-name" itemprop="name">snlndod</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">201</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/snlndod" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/snlndod" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从-Hello-World-说起"><span class="nav-number">1.</span> <span class="nav-text">从 Hello World 说起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#万变不离其宗"><span class="nav-number">2.</span> <span class="nav-text">万变不离其宗</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SMP-与多核"><span class="nav-number">2.1.</span> <span class="nav-text">SMP 与多核</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#站得高，望得远"><span class="nav-number">3.</span> <span class="nav-text">站得高，望得远</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统做什么"><span class="nav-number">4.</span> <span class="nav-text">操作系统做什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不要让-CPU-打盹"><span class="nav-number">4.1.</span> <span class="nav-text">不要让 CPU 打盹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设备驱动"><span class="nav-number">4.2.</span> <span class="nav-text">设备驱动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存不够怎么办"><span class="nav-number">5.</span> <span class="nav-text">内存不够怎么办</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于隔离"><span class="nav-number">5.1.</span> <span class="nav-text">关于隔离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分段（Segmentation）"><span class="nav-number">5.2.</span> <span class="nav-text">分段（Segmentation）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页（Paging）"><span class="nav-number">5.3.</span> <span class="nav-text">分页（Paging）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#众人拾柴火焰高"><span class="nav-number">6.</span> <span class="nav-text">众人拾柴火焰高</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线程基础"><span class="nav-number">6.1.</span> <span class="nav-text">线程基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是线程"><span class="nav-number">6.1.1.</span> <span class="nav-text">什么是线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程的访问权限"><span class="nav-number">6.1.2.</span> <span class="nav-text">线程的访问权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程调度与优先级"><span class="nav-number">6.1.3.</span> <span class="nav-text">线程调度与优先级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可抢占线程和不可抢占线程"><span class="nav-number">6.1.4.</span> <span class="nav-text">可抢占线程和不可抢占线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux-的多线程"><span class="nav-number">6.1.5.</span> <span class="nav-text">Linux 的多线程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程安全"><span class="nav-number">6.2.</span> <span class="nav-text">线程安全</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#竞争与原子操作"><span class="nav-number">6.2.1.</span> <span class="nav-text">竞争与原子操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同步与锁"><span class="nav-number">6.2.2.</span> <span class="nav-text">同步与锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可重入（Reentrant）与线程安全"><span class="nav-number">6.2.3.</span> <span class="nav-text">可重入（Reentrant）与线程安全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过度优化"><span class="nav-number">6.2.4.</span> <span class="nav-text">过度优化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种线程模型"><span class="nav-number">6.3.</span> <span class="nav-text">三种线程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一对一模型"><span class="nav-number">6.3.1.</span> <span class="nav-text">一对一模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多对一模型"><span class="nav-number">6.3.2.</span> <span class="nav-text">多对一模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多对多模型"><span class="nav-number">6.3.3.</span> <span class="nav-text">多对多模型</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">snlndod</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

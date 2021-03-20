@@ -1,0 +1,1066 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="CLRS,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="我们学习算法的方法是用 Java 编程语言编写的程序来实现算法，这样做是出于以下原因：  程序是对算法精确、优雅和完全的描述； 可以通过运行程序来学习算法的各种性质； 可以在应用程序中直接使用这些算法；   缺点：使用特定的编程语言，会使分离算法的思想和实现细节变得困难。  我们把描述和实现算法所用到的语言特性、软件库和操作系统特性总称为基础编程模型。 Java 程序的基本结构一段 Java 程序">
+<meta name="keywords" content="CLRS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础编程模型">
+<meta property="og:url" content="http://yoursite.com/2019/08/20/基础编程模型/index.html">
+<meta property="og:site_name" content="DevPrepares">
+<meta property="og:description" content="我们学习算法的方法是用 Java 编程语言编写的程序来实现算法，这样做是出于以下原因：  程序是对算法精确、优雅和完全的描述； 可以通过运行程序来学习算法的各种性质； 可以在应用程序中直接使用这些算法；   缺点：使用特定的编程语言，会使分离算法的思想和实现细节变得困难。  我们把描述和实现算法所用到的语言特性、软件库和操作系统特性总称为基础编程模型。 Java 程序的基本结构一段 Java 程序">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/01.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/02.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/03.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/04.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/05.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/06.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/07.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/08.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/09.jpg">
+<meta property="og:updated_time" content="2021-03-20T11:50:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基础编程模型">
+<meta name="twitter:description" content="我们学习算法的方法是用 Java 编程语言编写的程序来实现算法，这样做是出于以下原因：  程序是对算法精确、优雅和完全的描述； 可以通过运行程序来学习算法的各种性质； 可以在应用程序中直接使用这些算法；   缺点：使用特定的编程语言，会使分离算法的思想和实现细节变得困难。  我们把描述和实现算法所用到的语言特性、软件库和操作系统特性总称为基础编程模型。 Java 程序的基本结构一段 Java 程序">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/01.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/20/基础编程模型/">
+
+
+
+
+
+  <title> 基础编程模型 | DevPrepares </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DevPrepares</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/20/基础编程模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                基础编程模型
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-20T22:18:57+08:00">
+                2019-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我们学习算法的方法是用 Java 编程语言编写的<code>程序</code>来实现算法，这样做是出于以下原因：</p>
+<ul>
+<li>程序是对算法<strong>精确、优雅和完全</strong>的描述；</li>
+<li>可以通过运行程序来学习算法的各种性质；</li>
+<li>可以在应用程序中直接使用这些算法；</li>
+</ul>
+<blockquote>
+<p>缺点：使用特定的编程语言，会使分离算法的思想和实现细节变得困难。</p>
+</blockquote>
+<p>我们把描述和实现算法所用到的<strong>语言特性、软件库和操作系统特性</strong>总称为基础编程模型。</p>
+<h2 id="Java-程序的基本结构"><a href="#Java-程序的基本结构" class="headerlink" title="Java 程序的基本结构"></a>Java 程序的基本结构</h2><p>一段 Java 程序（<code>类</code>）或者是一个静态方法（<code>函数</code>）库，或者定义一个<code>数据类型</code>，会用到下面七种语法，它们是 Java 语言的基础，也是大多数现代语言所共有的：</p>
+<ul>
+<li>原始数据类型：在计算机程序中精确地定义<strong>整数、浮点数和布尔值</strong>等；</li>
+<li>语句：声明、赋值、条件、循环、调用和返回；</li>
+<li>数组：多个同种数据类型的值的集合；</li>
+<li>静态方法：封装并重用代码，使我们可以用独立的模块开发程序；</li>
+<li>字符串：一连串的字符，Java 内置了对它们的一些操作；</li>
+<li>标准输入／输出：程序与外界联系的桥梁；</li>
+<li>数据抽象：使我们可以<strong>定义非原始数据类型</strong>，进而支持面向对象编程；</li>
+</ul>
+<p>要执行一个 Java 程序，首先需要用 javac 命令编译它（*.class），然后再用 java 命令运行它。</p>
+<a id="more"></a>
+<h2 id="原始数据类型与表达式"><a href="#原始数据类型与表达式" class="headerlink" title="原始数据类型与表达式"></a>原始数据类型与表达式</h2><p>首先考虑以下四种 Java 语言最基本的原始数据类型：</p>
+<ul>
+<li>整型，及其算术运算符（<code>int</code>）；</li>
+<li>双精度实数类型，及其算术运算符（<code>double</code>）；</li>
+<li>布尔型，它的值 {true, false} 及其逻辑操作（<code>boolean</code>）；</li>
+<li>字符型，它的值是你能够输入的英文字母数字字符和符号（<code>char</code>）；</li>
+</ul>
+<p>指明这些类型的值和对这些类型的操作：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/01.jpg" alt></p>
+<blockquote>
+<p>注意：+、-、*、／ 都是被重载过的——根据上下文，同样的运算符对不同类型会执行不同的操作。</p>
+</blockquote>
+<h3 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h3><p>Java 语言规范约定了如下的运算符<strong>优先级</strong>：* 和 ／（以及 %）的优先级高于 + 和 -；在逻辑运算中，! 拥有最高优先级，之后是 &amp;&amp;，接下来是 ||。</p>
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><p>如果不会损失信息，数值会被<strong>自动提升</strong>为高级的数据类型。应该小心并尽量少使用类型转换，最好是在表达式中只使用同一类型的字面量和变量。</p>
+<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><p>==、!=、&lt;、&lt;=、&gt; 和 &gt;= 被称为<strong>混合类型运算符</strong>，因为它们的结果是布尔型，而不是参与比较的数据类型。</p>
+<h3 id="其他原始类型"><a href="#其他原始类型" class="headerlink" title="其他原始类型"></a>其他原始类型</h3><p>Java 的 int 型能够<strong>表示 2^32 个不同的值</strong>，用一个字长 32 位的机器字即可表示；与此相似，double 型的标准规定为 64 位。<br>为了提供更大的灵活性，Java 还提供了其他五种原始数据类型：</p>
+<ul>
+<li>64 位整数，及其算术运算符（<code>long</code>）；</li>
+<li>16 位整数，及其算术运算符（<code>short</code>）；</li>
+<li>16 位字符，及其算术运算符（<code>char</code>）；</li>
+<li>8 位整数，及其算术运算符（<code>byte</code>）；</li>
+<li>32 位单精度实数，及其算术运算符（<code>float</code>）；</li>
+</ul>
+<h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><p>Java 程序是由<code>语句</code>组成的，语句通常会被组织成代码段，即花括号中的一系列语句：</p>
+<ul>
+<li>声明语句：创建某种类型的变量并用标识符为其命名；</li>
+<li>赋值语句：将由表达式产生的某种类型的数值赋予一个变量；</li>
+<li>条件语句：能够<strong>简单地</strong>改变执行流程——根据指定的条件执行两个代码段之一；</li>
+<li>循环语句：更<strong>彻底地</strong>改变执行流程——只要条件为真就不断地反复执行代码中的语句；</li>
+<li>调用和返回语句：和静态方法有关，是改变执行流程和代码组织的另一种方式；</li>
+</ul>
+<h3 id="声明语句"><a href="#声明语句" class="headerlink" title="声明语句"></a>声明语句</h3><p><code>声明</code>语句将一个变量名和一个类型在编译时关联起来。Java 是一种<code>强类型</code>的语言，因为 Java 编译器会检查类型的一致性。</p>
+<h3 id="赋值语句"><a href="#赋值语句" class="headerlink" title="赋值语句"></a>赋值语句</h3><p><code>赋值</code>语句将某个数据类型的值和一个变量关联起来。</p>
+<h3 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h3><p>大多数运算都需要用不同的操作来处理不同的输入。在 Java 中<strong>表达这种差异</strong>的一种方法是 if 语句：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (&lt;<span class="keyword">boolean</span> expression&gt;)</span><br><span class="line">&#123;</span><br><span class="line">    &lt;block statements&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这种描述方式是一种叫做<code>模版</code>的形式记法，&lt;&gt; 中的是我们已经定义过的语法。</p>
+</blockquote>
+<h3 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h3><p>许多运算都需要重复：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (&lt;<span class="keyword">boolean</span> expression&gt;)</span><br><span class="line">&#123;</span><br><span class="line">    &lt;block statements&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只要布尔表达式的值为真，就<strong>继续执行</strong>代码段。</p>
+<h3 id="break-和-continue-语句"><a href="#break-和-continue-语句" class="headerlink" title="break 和 continue 语句"></a>break 和 continue 语句</h3><p>Java 支持<strong>在 while 循环中</strong>使用另外两条语句：</p>
+<ul>
+<li>break 语句，立即从循环中退出；</li>
+<li>continue 语句，立即开始下一轮循环；</li>
+</ul>
+<h2 id="简便记法"><a href="#简便记法" class="headerlink" title="简便记法"></a>简便记法</h2><p>程序有很多种写法，我们追求清晰、优雅和高效的代码。</p>
+<h3 id="声明并初始化"><a href="#声明并初始化" class="headerlink" title="声明并初始化"></a>声明并初始化</h3><p>可以将声明语句和赋值语句结合起来。最好在接近首次使用变量的地方声明它并将其初始化（为了<strong>限制作用域</strong>）。</p>
+<h3 id="隐式赋值"><a href="#隐式赋值" class="headerlink" title="隐式赋值"></a>隐式赋值</h3><p>当希望一个变量的值<strong>相对于其当前值</strong>变化时，可以使用一些简便的写法：</p>
+<ul>
+<li>递增／递减运算符，++i 等价于 i=i+1；</li>
+<li>其他复合运算符，i/=2 等价于 i=i/2；</li>
+</ul>
+<h3 id="单语句代码段"><a href="#单语句代码段" class="headerlink" title="单语句代码段"></a>单语句代码段</h3><p>即使条件或循环语句的代码段只有一条语句，代码段的花括号也<strong>不要省略</strong>。</p>
+<h3 id="for-语句"><a href="#for-语句" class="headerlink" title="for 语句"></a>for 语句</h3><p>很多<strong>循环的模式</strong>都是这样的：初始化一个索引变量，然后使用 while 循环并将包含索引变量的表达式作为循环的条件，while 循环的最后一条语句会将索引变量加 1。<br>使用 for 语句可以<strong>更紧凑地</strong>表达这种循环：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (&lt;initialize&gt;; &lt;<span class="keyword">boolean</span> expression&gt;; &lt;increment&gt;)</span><br><span class="line">&#123;</span><br><span class="line">    &lt;block statements&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段代码一般等价于：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;initialize&gt;;</span><br><span class="line"><span class="keyword">while</span> (&lt;<span class="keyword">boolean</span> expression&gt;) </span><br><span class="line">&#123;</span><br><span class="line">    &lt;block statements&gt;</span><br><span class="line">    &lt;increment&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p><code>数组</code>能够顺序存储<strong>相同类型</strong>的多个数据。除了存储数据，我们也希望能够访问数据。访问数组中的某个元素的方法是将其编号然后<code>索引</code>。</p>
+<h3 id="创建并初始化数组"><a href="#创建并初始化数组" class="headerlink" title="创建并初始化数组"></a>创建并初始化数组</h3><p>在 Java 程序中创建一个数组需要三步：</p>
+<ul>
+<li><strong>声明</strong>数组的名字和类型；</li>
+<li><strong>创建</strong>数组，需要指定数组的长度（元素的个数）；</li>
+<li><strong>初始化</strong>数组元素；</li>
+</ul>
+<p>完整模式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span>[] a;</span><br><span class="line">a = <span class="keyword">new</span> <span class="keyword">double</span>[N];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;N; ++i)</span><br><span class="line">&#123;</span><br><span class="line">    a[i] = <span class="number">0.0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第二条语句中的关键字 <code>new</code> 使 Java 创建了这个数组。我们需要在<strong>运行时</strong>明确地创建数组的原因是编译器在编译时无法知道应该为数组预留多少空间（对于原始类型则可以）。</p>
+<blockquote>
+<p>使用数组时，一定要依次声明、创建并初始化数组。</p>
+</blockquote>
+<h3 id="简化写法"><a href="#简化写法" class="headerlink" title="简化写法"></a>简化写法</h3><p>常常会利用 Java 对数组<strong>默认的初始化</strong>来将三个步骤合为一条语句：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span>[] a = <span class="keyword">new</span> <span class="keyword">double</span>[N];</span><br></pre></td></tr></table></figure>
+
+<p>等号的左侧声明了数组，等号的右侧创建了数组。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] a = &#123;<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">8</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>第三种方式用花括号将一列由逗号分隔的值，在<strong>编译时</strong>将数组初始化。</p>
+<h3 id="使用数组"><a href="#使用数组" class="headerlink" title="使用数组"></a>使用数组</h3><p>在声明并创建数组之后，在代码的任何地方都能通过数组名之后的方括号中的索引来访问其中的元素。数组一经创建，它的大小就是<strong>固定的</strong>。</p>
+<h3 id="起别名"><a href="#起别名" class="headerlink" title="起别名"></a>起别名</h3><p>数组名表示的是整个数组——如果我们将一个数组变量赋予另一个变量，那么两个变量将会<strong>指向同一个数组</strong>。例如以下这段代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">a[i] = <span class="number">1234</span>;</span><br><span class="line"><span class="keyword">int</span>[] b = a;</span><br><span class="line">b[i] = <span class="number">5678</span>; <span class="comment">// a[i] 的值也会变成 5678</span></span><br></pre></td></tr></table></figure>
+
+<p>这种情况叫做<code>起别名</code>。如果想将数组复制一份，那么应该声明、创建并初始化一个新的数组，然后将原数组中的元素值挨个复制到新数组。</p>
+<h3 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h3><p>在 Java 中<code>二维数组</code>就是一维数组的数组。二维数组可以是参差不齐的（元素数组的<strong>长度可以不一致</strong>）。<br>默认的初始化对二维数组更有用，因为可以节约更多的代码。</p>
+<h2 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h2><p>所有 Java 程序要么是<code>数据类型</code>的定义，要么是一个<code>静态方法库</code>。修饰符 static 将这类方法和<code>实例方法</code>区别开来。</p>
+<h3 id="静态方法-1"><a href="#静态方法-1" class="headerlink" title="静态方法"></a>静态方法</h3><p><code>方法</code>封装了由一系列语句所描述的运算。需要参数并根据参数计算出某种数据类型的<code>返回值</code>或者产生某种<code>副作用</code>。<br>每个静态方法都是由<code>签名</code>和<code>函数体</code>组成的。</p>
+<h3 id="调用静态方法"><a href="#调用静态方法" class="headerlink" title="调用静态方法"></a>调用静态方法</h3><p>调用静态方法的方法是写出方法名并在后面的括号中列出参数值，用逗号分隔。<br>仅由一个方法调用和一个分号组成的语句，一般用于<strong>产生副作用</strong>。</p>
+<blockquote>
+<p>返回语句将结束静态方法并将控制权交还给调用者。</p>
+</blockquote>
+<h3 id="方法的性质"><a href="#方法的性质" class="headerlink" title="方法的性质"></a>方法的性质</h3><ul>
+<li>方法的参数按值传递：在方法中参数变量的<strong>使用方法和局部变量相同</strong>，唯一不同的是参数变量的初始值是由调用方提供的。方法处理的是参数的值，<strong>而非参数本身</strong>；</li>
+<li>方法名可以被重载：常见用法是为函数定义两个版本，其中一个需要参数而另一个则为该参数<strong>提供默认值</strong>；</li>
+<li>方法只能返回一个值，但可以包含多个返回语句：Java 方法只能返回一个值，它的类型是方法签名中<strong>声明的类型</strong>；</li>
+<li>方法可以产生副作用：我们称 void 类型的静态方法会产生副作用，接受输入、产生输出、修改数组或者改变系统状态；</li>
+</ul>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>我们会经常使用递归，因为递归代码比相应的非递归代码更加<strong>简洁优雅、易懂</strong>。<br>编写递归代码时，最重要的有以下三点：</p>
+<ul>
+<li>递归总有一个<strong>最简单的情况</strong>——方法的第一条语句总是一个包含 return 的条件语句；</li>
+<li>递归调用总是去尝试解决一个<strong>规模更小</strong>的子问题，这样递归才能收敛到最简单的情况；</li>
+<li>递归调用的父问题和尝试解决的子问题之间不应该有<strong>交集</strong>；</li>
+</ul>
+<h3 id="基础编程模型"><a href="#基础编程模型" class="headerlink" title="基础编程模型"></a>基础编程模型</h3><p>静态方法库是定义在一个 Java 类中的一组静态方法。类的声明是 public class 加上类名，存放类的文件的文件名和类名相同，扩展名是 <code>.java</code>。</p>
+<blockquote>
+<p>Java 开发的基本模式是：编写一个静态方法库来完成一个任务。</p>
+</blockquote>
+<h3 id="模块化编程"><a href="#模块化编程" class="headerlink" title="模块化编程"></a>模块化编程</h3><p>通过静态方法库实现了模块化编程。我们可以构造许多个静态方法库（<code>模块</code>），一个库的静态方法也能够调用另一库中定义的静态方法，这样能够带来许多好处：</p>
+<ul>
+<li>程序整体的代码量很大时，每次处理的模块大小仍然适中；</li>
+<li>可以共享和重用代码而无需重新实现；</li>
+<li>很容易用改进的实现替换老的实现；</li>
+<li>可以为解决编程问题建立合适的抽象模型；</li>
+<li><strong>缩小调试范围</strong>；</li>
+</ul>
+<h3 id="单元编程"><a href="#单元编程" class="headerlink" title="单元编程"></a>单元编程</h3><p>Java 编程的最佳实践之一就是每个静态方法库中<strong>都包含一个 main() 函数</strong>来测试库中的所有方法。<br>每个模块的 main() 方法至少应该调用模块的其他代码并在某种程度上保证它的正确性。</p>
+<h3 id="外部库"><a href="#外部库" class="headerlink" title="外部库"></a>外部库</h3><p>重用每种库代码的方式都稍有不同，它们大多都是静态方法库：</p>
+<ul>
+<li><strong>系统标准库 java.lang.*</strong>：例如 Math 库，实现了常用的数学函数；</li>
+<li>导入的系统库：例如 java.util.Arrays；</li>
+</ul>
+<p>要调用另一库中的方法（存放在相同或指定的目录中，或是一个系统标准库，或是在类定义前用 import 语句导入的库），我们需要<strong>在方法前指定库的名称</strong>。</p>
+<blockquote>
+<p>我们自己及他人使用模块化方式编写的方法库，能够极大地扩展我们的编程模型。</p>
+</blockquote>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>模块化编程的一个重要组成部分就是记录库方法的用法并供其他人参考的<code>文档</code>。我们会使用<code>应用程序编程接口</code>（API）的方式列出每个库方法名称、签名和简短的描述。</p>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p>用 java.lang 中 Math 库常用的静态方法说明 API 的文档格式：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/02.jpg" alt></p>
+<h3 id="Java-库"><a href="#Java-库" class="headerlink" title="Java 库"></a>Java 库</h3><p>Arrays 库不在 java.lang 中，因此我们需要用 import 语句导入后才能使用它。<br>为了避免混淆，我们一般会<strong>使用自己的实现</strong>，但对于你已经掌握的算法使用高度优化的库实现当然也没有任何问题。</p>
+<h3 id="我们的标准库"><a href="#我们的标准库" class="headerlink" title="我们的标准库"></a>我们的标准库</h3><p>为了介绍 Java 编程、为了科学计算以及算法的开发、学习和应用，我们也开发了若干库来提供一些实用的功能。这些库大多<strong>用于处理输入输出</strong>。<br>第一个库扩展了 Math.random() 方法，以根据不同的概率密度函数得到随机值；第二个库则支持各种统计计算：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/03.jpg" alt><br>设计良好的方法库：</p>
+<ul>
+<li>这些方法所实现的抽象层有助于我们<strong>将精力集中在实现和测试算法</strong>，而非生成随机数或是统计计算；</li>
+<li>方法库会经过大量测试，<strong>覆盖极端和罕见的情况</strong>，是我们可以信任的。这样的实现需要大量的代码；</li>
+</ul>
+<h3 id="自己编写的库"><a href="#自己编写的库" class="headerlink" title="自己编写的库"></a>自己编写的库</h3><p>将自己编写的每一个程序都当作一个日后可以重用的库：</p>
+<ul>
+<li><strong>编写用例</strong>，在实现中将计算过程分解成可控的部分；</li>
+<li>明确静态方法库和与之对应的 API；</li>
+<li>实现 API 和一个能够对方法进行独立测试的 main() 函数；</li>
+</ul>
+<p>API 的目的是<strong>将调用和实现分离</strong>：除了 API 给出的信息，调用者不需要知道实现的其他细节，而实现也不应考虑特殊的应用场景。<br>相应地，程序员也可以将 API 看作调用和实现之间的一份契约，它详细说明了每个方法的作用。<strong>实现的目标就是能够遵守这份契约</strong>。</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>一个 String 类型的字面量包括一对双引号和其中的字符（char）。String 类型是 Java 的一个数据类型，但并<strong>不是原始数据类型</strong>。</p>
+<h3 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h3><p>Java 内置了一个串联 String 类型字符串的运算符：“+”。</p>
+<h3 id="类型转换-1"><a href="#类型转换-1" class="headerlink" title="类型转换"></a>类型转换</h3><p>字符串的两个主要用途：</p>
+<ul>
+<li>将用户从键盘输入的内容转换成相应数据类型的值；</li>
+<li>将各种数据类型的值转化成能够在屏幕上显示的内容；</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/04.jpg" alt></p>
+<h3 id="自动转换"><a href="#自动转换" class="headerlink" title="自动转换"></a>自动转换</h3><p>我们<strong>很少明确使用 toString() 方法</strong>，因为 Java 在连接字符串的时候会自动将任意数据类型的值转换为字符串：<br>如果“+”的一个参数是字符串，那么 Java 会自动将其他参数都转换为字符串。</p>
+<h3 id="命令行参数"><a href="#命令行参数" class="headerlink" title="命令行参数"></a>命令行参数</h3><p>在 Java 中字符串的一个重要的用途就是<strong>使程序能够接收到从命令行传递来的信息</strong>。<br>当你输入命令 java 和一个库名以及一系列字符串之后，Java 系统会调用库的 main() 方法并<strong>将那一系列字符串变成一个数组</strong>作为参数传递给它。</p>
+<blockquote>
+<p><strong>字符串的用法</strong>是现代程序中的重要部分。</p>
+</blockquote>
+<h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><p>我们的标准输入、输出和绘图库的作用是建立一个 Java 程序<strong>和外界交流的简易模型</strong>。默认情况下，命令行参数、标准输入和标准输出是和应用程序绑定的，而应用程序是<strong>由能够接受命令输入的操作系统或是开发环境所支持</strong>。<br>我们笼统地用<code>终端</code>来指代这个应用程序提供的供输入和显示的窗口。</p>
+<h3 id="命令和参数"><a href="#命令和参数" class="headerlink" title="命令和参数"></a>命令和参数</h3><p>Java 类都会包含一个静态方法 main()，它有一个 <strong>String 数组类型的参数 args[]</strong>。这个数组的内容就是我们输入的命令行参数，操作系统会将它传递给 Java。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/05.jpg" alt></p>
+<h3 id="标准输出"><a href="#标准输出" class="headerlink" title="标准输出"></a>标准输出</h3><p>一般来说，系统会将标准输出打印到终端窗口：</p>
+<ul>
+<li>print() 方法会将它的参数放到标准输出中；</li>
+<li>pirntln() 方法会<strong>附加一个换行符</strong>；</li>
+<li>pirntf() 方法能够格式化输出；</li>
+</ul>
+<h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><p>printf() 方法接受两个参数。第一个参数是一个<code>格式字符串</code>，描述了第二个参数应该如何在输出中被转换为一个字符串。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/06.jpg" alt></p>
+<h3 id="标准输入"><a href="#标准输入" class="headerlink" title="标准输入"></a>标准输入</h3><p>StdIn 库从标准输入流中获取数据，这些数据可能为空也可能是一系列由空白字符分隔的值（<strong>空格、制表符、换行符等</strong>）。默认状态下，系统会将标准输出定向到终端窗口——你输入的内容就是输入流（<strong>由 &lt;ctrl+d&gt; 结束</strong>）。<br>只要程序读取了一个值，它就不能回退并再次读取它。这个特点产生了一些限制，但它<strong>反映了一些输入设备的物理特性</strong>并简化了对这些设备的抽象。</p>
+<h3 id="重定向与管道"><a href="#重定向与管道" class="headerlink" title="重定向与管道"></a>重定向与管道</h3><p>标准输入输出使我们能够利用许多操作系统都支持的<strong>命令行的扩展功能</strong>。<br>向启动程序的命令中加入一个简单的提示符，就可以将它的标准输出<code>重定向</code>至一个文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java RandomSep 1000 100.0 200.0 &gt; data.txt</span><br></pre></td></tr></table></figure>
+
+<p>我们可以重定向标准输入以使 StdIn 从文件而不是终端应用程序中读取数据：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java Average &lt; data.txt</span><br></pre></td></tr></table></figure>
+
+<p>将这些结合起来，将一个程序的输出重定向为另一个程序的输入叫做<code>管道</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java RandomSep 1000 100.0 200.0 | java Average</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>突破了我们能够处理的输入输出流的长度限制</strong>。我们的程序不再需要担心细节，因为它们只会和标准输入和标准输出的抽象打交道。</p>
+</blockquote>
+<h3 id="基于文件的输入输出"><a href="#基于文件的输入输出" class="headerlink" title="基于文件的输入输出"></a>基于文件的输入输出</h3><p>In 和 Out 两个库也实现了一些数据类型和它们的实例方法，这使我们能够<strong>将多个文件作为输入输出流</strong>并将网页作为输入流（name 参数可以是文件或网页）：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/07.jpg" alt></p>
+<h3 id="标准绘图库（基本方法）"><a href="#标准绘图库（基本方法）" class="headerlink" title="标准绘图库（基本方法）"></a>标准绘图库（基本方法）</h3><p>我们要介绍一个产生图像输出的抽象层。这个库的使用非常简单并且允许我们利用可视化的方式<strong>处理比文字丰富得多的信息</strong>：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/08.jpg" alt></p>
+<h3 id="标准绘图库（控制方法）"><a href="#标准绘图库（控制方法）" class="headerlink" title="标准绘图库（控制方法）"></a>标准绘图库（控制方法）</h3><p>标准绘图库中还包含了一些方法来改变画布的大小和比例、直线的颜色和宽度、文本字体、绘图时间等：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/09.jpg" alt><br>绘图库<strong>支持动画</strong>，我们会在数据分析和算法的可视化中使用 StdDraw。</p>
+<h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><p>展示学习新算法的基本方法。</p>
+<h3 id="二分查找-1"><a href="#二分查找-1" class="headerlink" title="二分查找"></a>二分查找</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BinarySearch</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">rank</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span>[] a)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 数组必须是有序的</span></span><br><span class="line">        <span class="keyword">int</span> lo = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> hi = a.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (lo &lt;= hi)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 被查找的键要么不存在，要么必然存在于a[lo..hi]之中</span></span><br><span class="line">            <span class="keyword">int</span> mid = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (key &lt; a[mid])</span><br><span class="line">            &#123;</span><br><span class="line">                hi = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (key &gt; a[mid])</span><br><span class="line">            &#123;</span><br><span class="line">                lo = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] whitelist = In.readInts(args[<span class="number">0</span>]);</span><br><span class="line">        Arrays.sort(whitelist);</span><br><span class="line">        <span class="keyword">while</span> (StdIn.isEmpty() == <span class="keyword">false</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 读取键值，如果不存在于白名单中则将其打印</span></span><br><span class="line">            <span class="keyword">int</span> key = StdIn.readInt();</span><br><span class="line">            <span class="keyword">if</span> (rank(key, whitelist) &lt; <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                StdOut.println(key);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段程序接受一个白名单文件作为参数，并会过滤掉标准输入中的所有存在于白名单中的条目，<strong>仅将不在白名单上的整数打印到标准输出中</strong>。</p>
+<h3 id="开发用例"><a href="#开发用例" class="headerlink" title="开发用例"></a>开发用例</h3><p>对于每个算法的实现，我们都会开发一个用例 main() 函数，并<strong>提供一个示例输入文件</strong>来辅助学习该算法并检测它的性能。</p>
+<h3 id="白名单过滤"><a href="#白名单过滤" class="headerlink" title="白名单过滤"></a>白名单过滤</h3><p>如果可能，我们的测试用例都会通过<strong>模拟实际情况</strong>来展示当前算法的必要性。这里该过程被称为<code>白名单过滤</code>。</p>
+<h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><p>一个程序只是可用往往是不够的。没有如二分查找或者归并排序这样的高效算法，解决大规模的白名单问题是不可能的。<strong>良好的性能常常是极为重要的</strong>。</p>
+<blockquote>
+<p>基础编程模型的目标是：确保你能够在计算机上运行类似于 BinarySearch 的代码，使用它处理我们的测试数据并<strong>为适应各种情况修改它</strong>，以完全理解它的可应用性。</p>
+</blockquote>
+<h2 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h2><p>现代编程技术已经更进一步，前进的这一步被称为<code>数据抽象</code>，有时也被称为<code>面向对象编程</code>。简单地说，数据抽象的主要思想是鼓励程序定义自己的数据类型，而<strong>不仅仅是那些操作预定义的数据类型的静态方法</strong>。<br>“拥抱”数据抽象的原因主要有三：</p>
+<ul>
+<li>它允许我们通过模块化编程复用代码；</li>
+<li>它使我们可以轻易构造出多种所谓的<code>链式数据结构</code>，它们比数组更灵活，在许多情况下都是高效算法的基础；</li>
+<li>借助它我们可以准确地定义所面对的算法问题；</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CLRS/" rel="tag"># CLRS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/18/Meetings/" rel="next" title="Meetings">
+                <i class="fa fa-chevron-left"></i> Meetings
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/24/Web-服务与应用/" rel="prev" title="Web 服务与应用">
+                Web 服务与应用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="snlndod">
+          <p class="site-author-name" itemprop="name">snlndod</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">201</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/snlndod" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/snlndod" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-程序的基本结构"><span class="nav-number">1.</span> <span class="nav-text">Java 程序的基本结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原始数据类型与表达式"><span class="nav-number">2.</span> <span class="nav-text">原始数据类型与表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#表达式"><span class="nav-number">2.1.</span> <span class="nav-text">表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转换"><span class="nav-number">2.2.</span> <span class="nav-text">类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较"><span class="nav-number">2.3.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他原始类型"><span class="nav-number">2.4.</span> <span class="nav-text">其他原始类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语句"><span class="nav-number">3.</span> <span class="nav-text">语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#声明语句"><span class="nav-number">3.1.</span> <span class="nav-text">声明语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#赋值语句"><span class="nav-number">3.2.</span> <span class="nav-text">赋值语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件语句"><span class="nav-number">3.3.</span> <span class="nav-text">条件语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环语句"><span class="nav-number">3.4.</span> <span class="nav-text">循环语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#break-和-continue-语句"><span class="nav-number">3.5.</span> <span class="nav-text">break 和 continue 语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简便记法"><span class="nav-number">4.</span> <span class="nav-text">简便记法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#声明并初始化"><span class="nav-number">4.1.</span> <span class="nav-text">声明并初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐式赋值"><span class="nav-number">4.2.</span> <span class="nav-text">隐式赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单语句代码段"><span class="nav-number">4.3.</span> <span class="nav-text">单语句代码段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-语句"><span class="nav-number">4.4.</span> <span class="nav-text">for 语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">5.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建并初始化数组"><span class="nav-number">5.1.</span> <span class="nav-text">创建并初始化数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简化写法"><span class="nav-number">5.2.</span> <span class="nav-text">简化写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用数组"><span class="nav-number">5.3.</span> <span class="nav-text">使用数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#起别名"><span class="nav-number">5.4.</span> <span class="nav-text">起别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维数组"><span class="nav-number">5.5.</span> <span class="nav-text">二维数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态方法"><span class="nav-number">6.</span> <span class="nav-text">静态方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#静态方法-1"><span class="nav-number">6.1.</span> <span class="nav-text">静态方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用静态方法"><span class="nav-number">6.2.</span> <span class="nav-text">调用静态方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法的性质"><span class="nav-number">6.3.</span> <span class="nav-text">方法的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归"><span class="nav-number">6.4.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础编程模型"><span class="nav-number">6.5.</span> <span class="nav-text">基础编程模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块化编程"><span class="nav-number">6.6.</span> <span class="nav-text">模块化编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单元编程"><span class="nav-number">6.7.</span> <span class="nav-text">单元编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外部库"><span class="nav-number">6.8.</span> <span class="nav-text">外部库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API"><span class="nav-number">7.</span> <span class="nav-text">API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#举例"><span class="nav-number">7.1.</span> <span class="nav-text">举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-库"><span class="nav-number">7.2.</span> <span class="nav-text">Java 库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我们的标准库"><span class="nav-number">7.3.</span> <span class="nav-text">我们的标准库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自己编写的库"><span class="nav-number">7.4.</span> <span class="nav-text">自己编写的库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">8.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串拼接"><span class="nav-number">8.1.</span> <span class="nav-text">字符串拼接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转换-1"><span class="nav-number">8.2.</span> <span class="nav-text">类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动转换"><span class="nav-number">8.3.</span> <span class="nav-text">自动转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行参数"><span class="nav-number">8.4.</span> <span class="nav-text">命令行参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出"><span class="nav-number">9.</span> <span class="nav-text">输入输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令和参数"><span class="nav-number">9.1.</span> <span class="nav-text">命令和参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标准输出"><span class="nav-number">9.2.</span> <span class="nav-text">标准输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#格式化输出"><span class="nav-number">9.3.</span> <span class="nav-text">格式化输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标准输入"><span class="nav-number">9.4.</span> <span class="nav-text">标准输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重定向与管道"><span class="nav-number">9.5.</span> <span class="nav-text">重定向与管道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于文件的输入输出"><span class="nav-number">9.6.</span> <span class="nav-text">基于文件的输入输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标准绘图库（基本方法）"><span class="nav-number">9.7.</span> <span class="nav-text">标准绘图库（基本方法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标准绘图库（控制方法）"><span class="nav-number">9.8.</span> <span class="nav-text">标准绘图库（控制方法）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二分查找"><span class="nav-number">10.</span> <span class="nav-text">二分查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二分查找-1"><span class="nav-number">10.1.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发用例"><span class="nav-number">10.2.</span> <span class="nav-text">开发用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#白名单过滤"><span class="nav-number">10.3.</span> <span class="nav-text">白名单过滤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能"><span class="nav-number">10.4.</span> <span class="nav-text">性能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#展望"><span class="nav-number">11.</span> <span class="nav-text">展望</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">snlndod</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

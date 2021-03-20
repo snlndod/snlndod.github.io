@@ -1,0 +1,1023 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Kubernetes,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="Kubernetes 是 Google 团队发起并维护的开源容器集群管理系统，底层基于 Docker、rkt 等容器技术，提供强大的应用管理和资源调度能力。 简介Kubernetes 是 Google 公司于 2014 年开源的容器集群管理项目。该项目基于 Go 语言实现，遵守 Apache v2 许可，试图为基于容器的应用部署和生产管理打造一套强大并且易用的操作平台。目前被云原生计算基金会（Cl">
+<meta name="keywords" content="Kubernetes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kubernetes - 生产级容器集群平台">
+<meta property="og:url" content="http://yoursite.com/2019/09/04/Kubernetes-生产级容器集群平台/index.html">
+<meta property="og:site_name" content="DevPrepares">
+<meta property="og:description" content="Kubernetes 是 Google 团队发起并维护的开源容器集群管理系统，底层基于 Docker、rkt 等容器技术，提供强大的应用管理和资源调度能力。 简介Kubernetes 是 Google 公司于 2014 年开源的容器集群管理项目。该项目基于 Go 语言实现，遵守 Apache v2 许可，试图为基于容器的应用部署和生产管理打造一套强大并且易用的操作平台。目前被云原生计算基金会（Cl">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/01.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/02.png">
+<meta property="og:updated_time" content="2021-03-20T11:50:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kubernetes - 生产级容器集群平台">
+<meta name="twitter:description" content="Kubernetes 是 Google 团队发起并维护的开源容器集群管理系统，底层基于 Docker、rkt 等容器技术，提供强大的应用管理和资源调度能力。 简介Kubernetes 是 Google 公司于 2014 年开源的容器集群管理项目。该项目基于 Go 语言实现，遵守 Apache v2 许可，试图为基于容器的应用部署和生产管理打造一套强大并且易用的操作平台。目前被云原生计算基金会（Cl">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/04/Kubernetes-生产级容器集群平台/">
+
+
+
+
+
+  <title> Kubernetes - 生产级容器集群平台 | DevPrepares </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DevPrepares</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/04/Kubernetes-生产级容器集群平台/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Kubernetes - 生产级容器集群平台
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-04T22:33:23+08:00">
+                2019-09-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Kubernetes 是 Google 团队发起并维护的开源容器集群管理系统，底层<strong>基于 Docker、rkt 等容器技术</strong>，提供强大的应用管理和资源调度能力。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Kubernetes 是 Google 公司于 2014 年开源的容器集群管理项目。该项目<strong>基于 Go 语言实现</strong>，遵守 Apache v2 许可，试图为基于容器的应用部署和生产管理打造一套强大并且易用的操作平台。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/01.png" alt><br>目前被云原生计算基金会（Cloud Native Computing Foundation，CNCF）管理，以开源项目形式持续演化。<br>Kubernetes 拥有鲜明的技术优势：</p>
+<ul>
+<li>优秀的 API 设计，以及简洁高效的架构设计；</li>
+<li>基于微服务模式的多层资源抽象模型，兼顾灵活性与可操作性；</li>
+<li><strong>可拓展性好</strong>，模块化容易替换，伸缩能力极佳；</li>
+<li>自动化程度高，真正实现<code>所得即所用</code>；</li>
+<li>部署支持多种环境，包括虚拟机、裸机部署，还很好支持常见云平台；</li>
+<li>支持丰富的运维和配置工具，方便用户对集群进行性能测试、问题检查和状态监控；</li>
+<li>自带控制台、客户端命令等工具。</li>
+</ul>
+<a id="more"></a>
+<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><p>要想深入理解 Kubernetes 的特性和工作机制，首先要掌握 Kubernetes 模型中的<strong>核心概念</strong>。这些核心概念反映了 Kubernetes 设计过程中，对应用容器集群的认知模型。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/02.png" alt><br>Kubernetes 中每种对象都拥有一个对应的<strong>声明式 API</strong>。对象包括<strong>三大属性</strong>：元数据（metadata）、规范（spec）和状态（status）。<br>每个对象可以使用一个外部的 <strong>JSON 或 YAML 模板文件</strong>来定义，通过参数传递给命令或 API。<br>基础的操作对象，主要是指<strong>资源抽象对象</strong>，包括：</p>
+<ul>
+<li>容器组（Pod）：Kubernetes 中<strong>最小的资源单位</strong>。由位于同一节点上的若干容器组成，彼此<strong>共享网络命名空间和存储卷</strong>。Pod 是短暂的，随时可变的，通常<strong>不带有状态</strong>；除了应用容器外，还包括一个初始的 <code>Pause 容器</code>，完成网络和存储空间的初始化；</li>
+<li>服务（Service）：对外提供某个特定功能的一组 Pod 和所关联的访问配置。Kubernetes 通过服务提供<strong>唯一固定的访问地址</strong>，不随后面的 Pod 改变而变化；</li>
+<li>存储卷（Volume）：提供数据的<strong>持久化存储</strong>，并支持更高级的生命周期管理和参数指定功能，支持多种本地和云存储类型；</li>
+<li>命名空间（Namespace）：Kubernetes <strong>通过命名空间来实现虚拟化</strong>，将同一组物理资源虚拟为不同的抽象集群，避免不同租户的资源发生命名冲突。</li>
+</ul>
+<p>为了方便操作这些基础对象，Kubernetes 还引入了高级抽象概念——<strong>控制器（Controller）</strong>。这些控制器面向特定场景提供了自动管理 Pod 功能：</p>
+<ul>
+<li>副本集（ReplicaSet）：使用它可以让集群中始终维持某个 Pod 的指定副本数的健康实例。副本集中的 <strong>Pod 相互并无差异，可以彼此替换</strong>；</li>
+<li>部署（Deployments）：比副本集更高级的抽象，可以<strong>管理 Pod 或副本集</strong>，并且支持升级操作；</li>
+<li>状态集（StatefulSets）：管理带有状态的应用，可以<strong>为 Pod 分配独一无二的身份</strong>，确保在重新调配等操作时也不会相互替换；</li>
+<li>Daemon 集（DaemonSet）：<strong>确保节点上肯定运行某个 Pod</strong>，一般用来采集日志（logstash）、监控节点（collectd）或提供存储（glusterd）使用；</li>
+<li>任务（Job）：适用于<strong>短期处理场景</strong>；</li>
+<li>横向 Pod 扩展器（Horizontal Pod Autoscaler，HPA）：根据 Pod 的使用率自动调整一个部署里面 Pod 的个数，<strong>保障服务可用性</strong>；</li>
+<li>入口控制器（Ingress Controller）：定义外部<strong>访问集群中资源的一组规则</strong>，用来提供七层代理和负载均衡服务。</li>
+</ul>
+<p>此外，还有一些管理资源相关的<strong>辅助概念</strong>：</p>
+<ul>
+<li>标签（Label）：键值对，用来对资源进行分类和筛选；</li>
+<li>选择器（Selector）：正则表达式，可通过标签来筛选出一组资源；</li>
+<li>注解（Annotation）：键值对，用来添加对资源对象的详细说明，可供其他工具处理；</li>
+<li>秘密数据（Secret）：存放敏感数据；</li>
+<li>名字（Name）：用户提供给资源的别名；</li>
+<li>服务账号（Service Accounts）：操作资源的用户账号。</li>
+<li>持久化存储（Persistent Volumes）：确保数据不会丢失；</li>
+<li>安全上下文（Security Context）：应用到容器上的系统安全配置；</li>
+<li>资源限额（Resource Quotas）：用来限制某个命名空间下对资源的使用；</li>
+</ul>
+<h2 id="资源抽象对象"><a href="#资源抽象对象" class="headerlink" title="资源抽象对象"></a>资源抽象对象</h2><p>Kubernetes 对集群中的资源进行了不同级别的抽象，每个资源都是一个 REST 对象，通过 API 进行操作，通过 JSON 或 YAML 格式的<code>模版文件</code>进行定义。</p>
+<blockquote>
+<p>在使用 k8s 的过程中，要注意积累这些模版文件。</p>
+</blockquote>
+<h3 id="容器组"><a href="#容器组" class="headerlink" title="容器组"></a>容器组</h3><p>Kubernetes 并不直接操作容器，最小的管理单位是容器组（Pod）。同一个容器组中，各个容器<strong>共享命名空间、cgroups 限制和存储卷</strong>。<br>可以简单地将一个 Pod 当作是一个抽象的虚拟机，里面运行若干个不同的进程，<strong>每个进程实际上就是一个容器</strong>。<br>实现上，<strong>先创建一个 pause 容器</strong>，创建相关命名空间，然后创建 Pod 中的其他应用容器，并共享 pause 容器的命名空间。<br>组成容器组的若干容器往往是存在共同的应用目的，彼此关联十分紧密。经典应用场景包括：</p>
+<ul>
+<li>内容管理，文件和数据加载，缓存管理等；</li>
+<li>日志处理，状态快照等；</li>
+<li>监控代理，消息发布等；</li>
+<li>代理机制，网桥、网卡等；</li>
+<li>控制器、管理器、配置以及更新等。</li>
+</ul>
+<p>容器组既保持了容器<strong>轻量解耦的特性</strong>，又提供了调度操作的便利性，在实践中提供了比单个容器更为灵活和更有意义的抽象。Pod 生命周期的<code>五种状态值</code>：</p>
+<ul>
+<li>待定（Pending）：已经被系统接受，但容器镜像还未就绪；</li>
+<li>运行（Running）：分配到节点，所有容器都被创建，至少一个容器在运行中；</li>
+<li>成功（Succeeded）：所有容器都正常退出，不需要重启，任务完成；</li>
+<li>失败（Failed）：所有容器都退出，至少一个容器是非正常退出；</li>
+<li>未知（Unknown）：未知状态，例如所在节点无法汇报状态。</li>
+</ul>
+<h3 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h3><p>Service 的提出，主要是解决 Pod 地址可变的问题，分配不随 Pod 位置变化而改变的虚拟访问地址，<strong>符合微服务的理念</strong>，跟负载均衡器实现的功能很相似。<br>组成一个服务的 Pod 可能是属于不同复制控制器的，但服务自身是不知道复制控制器的存在的。<br>每个节点上都会运行一个 <code>kube-proxy 进程</code>，负责将到某个 Service 的访问，代理或者均衡到具体的 Pod 上去；同时，会为每一个服务创建环境变量。<br>Service 支持进行不同类型的健康检查（通过容器 spec 中的 LivenessProbe 或 ReadinessProbe 字段定义）：</p>
+<ul>
+<li>通过 HTTP 获取资源是否成功；</li>
+<li>在容器中执行指定命令，返回值是否为 0；</li>
+<li>打开给定 Socket 端口是否成功。</li>
+</ul>
+<h3 id="存储卷"><a href="#存储卷" class="headerlink" title="存储卷"></a>存储卷</h3><p>Volume <strong>跟 Pod 有一致的生命周期</strong>，Pod 生存过程中，数据卷跟着存在；Pod 退出，则数据卷跟着退出。<br>比较常见的数据卷类型包括：emptyDir、hostPath、gcePersistentDisk、awsElasticBlockStore、nfs、gitRepo、secret 等。<br>持久化的存储以<code>插件</code>的形式提供为 PersistentVolume 资源，用户通过请求某个类型的 PersistentVolumeClaim 资源，来从匹配的持久化存储卷上，获取绑定的存储。</p>
+<h2 id="控制器抽象对象"><a href="#控制器抽象对象" class="headerlink" title="控制器抽象对象"></a>控制器抽象对象</h2><p>控制器抽象对象是对所操控对象的进一步抽象，附加了各种资源的<strong>管理功能</strong>，包括副本集、部署、状态集、Daemon 集、任务等。</p>
+<h3 id="副本集和部署"><a href="#副本集和部署" class="headerlink" title="副本集和部署"></a>副本集和部署</h3><p>ReplicaSet 和 Deployment 都适合<strong>长期运行</strong>的应用类型。即使 Pod 份数是 1，也要使用<code>复制控制器</code>来创建，而不是直接创建 Pod。</p>
+<blockquote>
+<p>Pod 资源是可能随时发生故障的，并不需要保证 Pod 的运行，而是在发生失败后<strong>重新生成</strong>。</p>
+</blockquote>
+<p>可以将副本集类比为进程的监管者（supervisor）的角色，只不过它不光能保持 Pod 的持续运行，还能保持集群中给定类型 Pod，同时<strong>运行的个数为指定值</strong>。<br><code>部署</code>代表用户对集群中应用的一次更新操作。</p>
+<h3 id="状态集"><a href="#状态集" class="headerlink" title="状态集"></a>状态集</h3><p><code>无状态的应用</code>，关心的主要是副本的个数，而不关心名称、位置等；与此对应，某些应用需要关心 Pod 的状态，挂载独立的存储。<br>StatefulSet 正是针对这种需求而设计的，提供比副本集和部署<strong>更稳定可靠的运行支持</strong>。</p>
+<h3 id="Daemon-集"><a href="#Daemon-集" class="headerlink" title="Daemon 集"></a>Daemon 集</h3><p>DaemonSet 适合于<strong>长期运行在后台</strong>的伺服类型应用，例如对节点的日志采集或状态监控等后台支持服务。</p>
+<h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><p>Job 代表<strong>批处理类型</strong>的应用，任务中应用完成某一类处理即可退出，有头有尾。</p>
+<h3 id="横向-Pod-扩展器"><a href="#横向-Pod-扩展器" class="headerlink" title="横向 Pod 扩展器"></a>横向 Pod 扩展器</h3><p>Horizontal Pod Autoscaler（HPA）解决应用波动的情况，根据 Pod 的使用率，自动调整部署里面 Pod 的个数，保障服务在不同压力情况下，<strong>保证平滑的输出效果</strong>。</p>
+<blockquote>
+<p>控制管理器会定期检查性能指标，在满足条件时触发横向伸缩。</p>
+</blockquote>
+<h2 id="其他抽象对象"><a href="#其他抽象对象" class="headerlink" title="其他抽象对象"></a>其他抽象对象</h2><h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><p>Label 是一组键值对，用来标记所绑定的对象（典型的就是 Pod）的识别属性，进而可以<code>分类</code>。<br>Label 键支持通过“/”来添加前缀，可以用来标注资源的组织名称等，标签所定义的属性是<strong>不唯一的</strong>，这意味着不同资源可能带有相同的标签键值对。</p>
+<h3 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h3><p>Annotation 跟标签很相似，也是键值对。不同的是，注解并不是为了分类资源对象，而是为了给对象<strong>增加丰富的描述信息</strong>。</p>
+<blockquote>
+<p>信息是任意的，数据量可以很大。包括结构化、非结构化数据。</p>
+</blockquote>
+<h3 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h3><p>Selector 可以通过指定标签键值对，来<strong>过滤出一组特定的资源对象</strong>。支持的语法包括基于等式（Equality-based）的，和基于集合（Set-based）的。</p>
+<h3 id="秘密数据"><a href="#秘密数据" class="headerlink" title="秘密数据"></a>秘密数据</h3><p>Secret 资源用来保存一些<strong>敏感的数据</strong>，这些数据往往不希望别的用户看到，但是在启动某个资源（例如 Pod）的时候需要提供。</p>
+<blockquote>
+<p>通常，秘密数据不要超过 1MB。在整个过程中，只有秘密数据的所有人和<strong>最终运行的容器</strong>，能获取原始敏感数据。</p>
+</blockquote>
+<h3 id="UID-和名字"><a href="#UID-和名字" class="headerlink" title="UID 和名字"></a>UID 和名字</h3><p>UID 是<strong>全局唯一的</strong>，并且不能复用；名字仅仅要求，在同一个命名空间内是唯一的，并且当某个资源移除后，其名字可以被新的资源复用。</p>
+<h3 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h3><p>Namespace 用来隔离不同用户的资源，类似租户或项目的概念，相同命名空间中的对象，具有<strong>相同的访问控制策略</strong>。<br>用户在创建资源的时候，可以通过 –namespace=<some_namespace> 来指定所属的命名空间，k8s 集群启动后，会保留两个特殊的命名空间：</some_namespace></p>
+<ul>
+<li>default：资源未指定命名空间情况下，默认属于该空间；</li>
+<li>kube-system：由 Kubernetes 系统自身创建的资源。</li>
+</ul>
+<h3 id="污点和容忍"><a href="#污点和容忍" class="headerlink" title="污点和容忍"></a>污点和容忍</h3><p>Taint 和 Toleration 用于<strong>辅助管理 Pod 到工作节点的调度过程</strong>。<br>可以为一个工作节点注明若干污点，只有对这些污点容忍的 Pod，才可以被调度到这些具有污点的节点上。</p>
+<h2 id="重要组件"><a href="#重要组件" class="headerlink" title="重要组件"></a>重要组件</h2><p>从头设计一套容器集群管理平台，需要考虑如下几个方面的需求：</p>
+<ul>
+<li>要采用<strong>分布式架构</strong>，保证良好的可扩展性；</li>
+<li><strong>控制平面要实现逻辑上的集中，数据平面要实现物理上的分布</strong>；</li>
+<li>得有一套资源调度系统，负责所有的资源调度工作，要<strong>容易插拔</strong>；</li>
+<li><strong>对资源对象要进行抽象</strong>，所有资源要能实现高可用性。</li>
+</ul>
+<p>从架构上看，Kubernetes 集群采用了典型的<code>主从架构</code>：一个集群主要由<strong>管理节点（Master）</strong>和<strong>工作节点（Node）</strong>组件构成。Master 节点负责控制，Node 节点负责干活，各自又通过若干组件来实现：</p>
+<ul>
+<li>etcd：作为数据库，存放所有集群状态和配置相关的数据；</li>
+<li>kube-apiserver：Kubernetes 系统的对外接口，提供 RESTful API 供客户端和其他组件调用，支持水平扩展；</li>
+<li>kube-scheduler：负责对资源进行调度，具体负责分配某个请求的 Pod 到某个节点上；</li>
+<li>controller-manager：对不同资源的管理器，维护集群的状态，包括故障检测、自动扩展、滚动更新等；</li>
+<li>kube-ui：可选，自带的一套用来查看集群状态的 Web 界面；</li>
+<li>kube-dns：可选，记录启动的 Pod 和服务地址。</li>
+</ul>
+<p>这些组件可以任意部署在相同或不同机器上，只要可以通过标准的 HTTP 接口，<strong>相互访问到即可</strong>。<br>Node 节点是实际工作的计算实例，可以是<strong>虚拟机或物理机器</strong>，Node 上至少包括：</p>
+<ul>
+<li>容器引擎：本地的容器依赖，目前支持 Docker 和 rkt；</li>
+<li>kubelet：<strong>跟 Master 节点通信</strong>，节点上最主要的工作代理，汇报节点状态并实现容器组的生命周期管理；</li>
+<li>kube-proxy：<strong>负责网络相关功能</strong>，代理对抽象应用地址的访问，负责匹配正确的服务发现、负载均衡转发规则；</li>
+<li>辅助组件：可选，Supervisord 用来保持 kubelet 和 docker 进程运行，Fluentd 用来转发日志等。</li>
+</ul>
+<p>Node 节点有几个重要属性：</p>
+<ul>
+<li><p><strong>地址信息（Address）</strong>：</p>
+<ul>
+<li>主机名（HostName）：节点所在的系统的主机别名，一般不会用到；</li>
+<li>外部地址（ExternalIP）：集群外部客户端可以通过该地址访问到节点；</li>
+<li>内部地址（InternalIP）：集群内可访问的地址，外部往往无法通过该地址访问节点。</li>
+</ul>
+</li>
+<li><p><strong>状态（Condition）</strong>：</p>
+<ul>
+<li>磁盘不足（OutOfDisk）；</li>
+<li>就绪（Ready）；</li>
+<li>空余内存过低（MemoryPressure）；</li>
+<li>空余磁盘过低（DiskPressure）。</li>
+</ul>
+</li>
+<li><p><strong>资源容量（Capacity）</strong>：</p>
+<ul>
+<li>CPU；</li>
+<li>内存；</li>
+<li>最多存放的 Pod 个数。</li>
+</ul>
+</li>
+<li><p><strong>节点信息（Info）</strong>：</p>
+<ul>
+<li>操作系统内核信息；</li>
+<li>Kubernetes 版本信息；</li>
+<li>Docker 引擎版本信息。</li>
+</ul>
+</li>
+</ul>
+<h2 id="网络设计"><a href="#网络设计" class="headerlink" title="网络设计"></a>网络设计</h2><p>网络是集群十分关键的功能，k8s 在设计上考虑了对网络的需求和模型设计，但<strong>自身并没有重新实现</strong>，而是可以另外嵌入现有的网络管理方案。</p>
+<blockquote>
+<p>Kubernetes 通过<code>插件化</code>的形式，采用 Container Networking Interface（CNI）规范，所有支持 k8s 的网络插件都要遵循该规范。</p>
+</blockquote>
+<h3 id="场景分析"><a href="#场景分析" class="headerlink" title="场景分析"></a>场景分析</h3><p>对于 k8s 集群来说，典型的要考虑如下四种通信场景：</p>
+<ul>
+<li>Pod 内（容器之间）：因为容器共享了网络命名空间，可以通过 <code>lo</code> 直接通信，无须额外支持；</li>
+<li>Pod 之间：<ul>
+<li>同一节点：通过本地网桥通信即可；</li>
+<li>不同节点：在各自绑定的网桥之间通信。</li>
+</ul>
+</li>
+<li>Pod 和服务之间：因为服务是虚拟的 IP，<strong>需要在节点上配置代理机制</strong>（例如基于 iptables）来映射到后端的 Pod；</li>
+<li>外部访问服务：要从外部访问服务，<strong>必须经过负载均衡器</strong>，通过外部可用的地址映射到内部的服务上。</li>
+</ul>
+<p>k8s 在网络方面的设计理念，包括如下几点：</p>
+<ul>
+<li>所有容器之间不使用 <code>NAT</code> 就可以互相通信；</li>
+<li>所有节点跟容器之间不使用 NAT 就可以互相通信；</li>
+<li>容器自己看到的地址，和其他人访问自己使用的地址是一样的。</li>
+</ul>
+<p>这个设计理念与云平台里面的<strong>虚拟机网络</strong>十分类似，意味着基于虚拟机云的项目可以方便地迁移到 Kubernetes 平台上。</p>
+<blockquote>
+<p>现代云计算领域常见的网络实现方式：直接路由和 Overlay 网络。</p>
+</blockquote>
+<h3 id="直接路由"><a href="#直接路由" class="headerlink" title="直接路由"></a>直接路由</h3><p>这种实现的<strong>最大优势是简洁</strong>，可以直接服用底层的物理设备。目前，GCE 和 Azure 都支持这种模式。</p>
+<h3 id="Overlay-路由"><a href="#Overlay-路由" class="headerlink" title="Overlay 路由"></a>Overlay 路由</h3><p>Overlay 网络相对要复杂一些，<strong>支持底层更灵活的转发</strong>。目前包括 Flannel、Open vSwitch、Weave、Calico 等一系列方案都能实现用 Overlay 网络来联通不同节点上的 Pod。</p>
+<blockquote>
+<p>虽然 Kubernetes 自身并没有提出 Paas 或者 DevOps 的理念，但它提供的资源抽象接口和生命周期管理概念，让用户可以<strong>很方便地进行二次开发</strong>，打造生产级别的应用系统。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Kubernetes/" rel="tag"># Kubernetes</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/29/数据抽象/" rel="next" title="数据抽象">
+                <i class="fa fa-chevron-left"></i> 数据抽象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/21/Presentations-and-Conferences/" rel="prev" title="Presentations and Conferences">
+                Presentations and Conferences <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="snlndod">
+          <p class="site-author-name" itemprop="name">snlndod</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">201</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/snlndod" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/snlndod" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心概念"><span class="nav-number">2.</span> <span class="nav-text">核心概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源抽象对象"><span class="nav-number">3.</span> <span class="nav-text">资源抽象对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#容器组"><span class="nav-number">3.1.</span> <span class="nav-text">容器组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务"><span class="nav-number">3.2.</span> <span class="nav-text">服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储卷"><span class="nav-number">3.3.</span> <span class="nav-text">存储卷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制器抽象对象"><span class="nav-number">4.</span> <span class="nav-text">控制器抽象对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#副本集和部署"><span class="nav-number">4.1.</span> <span class="nav-text">副本集和部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态集"><span class="nav-number">4.2.</span> <span class="nav-text">状态集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Daemon-集"><span class="nav-number">4.3.</span> <span class="nav-text">Daemon 集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-number">4.4.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#横向-Pod-扩展器"><span class="nav-number">4.5.</span> <span class="nav-text">横向 Pod 扩展器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他抽象对象"><span class="nav-number">5.</span> <span class="nav-text">其他抽象对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标签"><span class="nav-number">5.1.</span> <span class="nav-text">标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注解"><span class="nav-number">5.2.</span> <span class="nav-text">注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择器"><span class="nav-number">5.3.</span> <span class="nav-text">选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#秘密数据"><span class="nav-number">5.4.</span> <span class="nav-text">秘密数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UID-和名字"><span class="nav-number">5.5.</span> <span class="nav-text">UID 和名字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命名空间"><span class="nav-number">5.6.</span> <span class="nav-text">命名空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#污点和容忍"><span class="nav-number">5.7.</span> <span class="nav-text">污点和容忍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要组件"><span class="nav-number">6.</span> <span class="nav-text">重要组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络设计"><span class="nav-number">7.</span> <span class="nav-text">网络设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#场景分析"><span class="nav-number">7.1.</span> <span class="nav-text">场景分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接路由"><span class="nav-number">7.2.</span> <span class="nav-text">直接路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Overlay-路由"><span class="nav-number">7.3.</span> <span class="nav-text">Overlay 路由</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">snlndod</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,947 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="SystemDesign,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="What is Pastebin?Pastebin like services enable users to store plain text or images over the network (typically the Internet) and generate unique URLs to access the uploaded data. Such services are als">
+<meta name="keywords" content="SystemDesign">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Designing Pastebin">
+<meta property="og:url" content="http://yoursite.com/2021/02/12/Designing-Pastebin/index.html">
+<meta property="og:site_name" content="DevPrepares">
+<meta property="og:description" content="What is Pastebin?Pastebin like services enable users to store plain text or images over the network (typically the Internet) and generate unique URLs to access the uploaded data. Such services are als">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/25.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/26.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/27.png">
+<meta property="og:updated_time" content="2021-03-20T11:50:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Designing Pastebin">
+<meta name="twitter:description" content="What is Pastebin?Pastebin like services enable users to store plain text or images over the network (typically the Internet) and generate unique URLs to access the uploaded data. Such services are als">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/25.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/02/12/Designing-Pastebin/">
+
+
+
+
+
+  <title> Designing Pastebin | DevPrepares </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DevPrepares</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/12/Designing-Pastebin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Designing Pastebin
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-12T22:24:47+08:00">
+                2021-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="What-is-Pastebin"><a href="#What-is-Pastebin" class="headerlink" title="What is Pastebin?"></a>What is Pastebin?</h2><p>Pastebin like services enable users to store plain text or images over the network (typically the Internet) and generate unique URLs to access the uploaded data. Such services are also used to share data over the network quickly, as users would just need to pass the URL to let other users see it.</p>
+<p>If you haven’t used <a href="https://pastebin.com/" target="_blank" rel="noopener">pastebin.com</a> before, please try creating a new “Paste” there and spend some time going through the different options their service offers. This will help you a lot in understanding this chapter.</p>
+<h2 id="Requirements-and-Goals-of-the-System"><a href="#Requirements-and-Goals-of-the-System" class="headerlink" title="Requirements and Goals of the System"></a>Requirements and Goals of the System</h2><p>Our Pastebin service should meet the following requirements:<br><strong>Functional Requirements</strong>:</p>
+<ol>
+<li>Users should be able to upload or “paste” their data and get a unique URL to access it;</li>
+<li>Users will only be able to upload text;</li>
+<li>Data and links will expire after a specific time span automatically; users should also be able to specify expiration time;</li>
+<li>Users should optionally be able to pick a custom alias for their paste;</li>
+</ol>
+<p><strong>Non-Functional Requirements</strong>:</p>
+<ol>
+<li>The system should be highly reliable, any data uploaded should not be lost;</li>
+<li>The system should be highly available. This is required because if our service is down, users will not be able to access their pastes;</li>
+<li>Users should be able to access their pastes in real-time with minimum latency;</li>
+<li>Paste links should not be guessable (not predictable);</li>
+</ol>
+<p><strong>Extended Requirements</strong>:</p>
+<ol>
+<li>Analytics, e.g., how many times a paste was accessed?</li>
+<li>Our service should also be accessible through REST APIs by other services;</li>
+</ol>
+<a id="more"></a>
+<h2 id="Some-Design-Considerations"><a href="#Some-Design-Considerations" class="headerlink" title="Some Design Considerations"></a>Some Design Considerations</h2><p>Pastebin shares some requirements with URL Shortening Service, but there are some additional design considerations we should keep in mind.</p>
+<p><strong>What should be the limit on the amount of text user can paste at a time</strong>? We can limit users not to paste bigger than 10MB to stop the abuse of the service.</p>
+<p><strong>Should we impose size limits on custom URLs</strong>? Since our service supports custom URLs, users can pick any URL that they like, but providing a custom URL is not mandatory. However, it is reasonable (and often desirable) to impose a size limit on custom URLs, so that we have a consistent URL database.</p>
+<h2 id="Capacity-Estimation-and-Constraints"><a href="#Capacity-Estimation-and-Constraints" class="headerlink" title="Capacity Estimation and Constraints"></a>Capacity Estimation and Constraints</h2><p><strong>Traffic estimates</strong>: Pastebin services are not expected to have traffic similar to Twitter or Facebook, let’s assume here that we get one million new pastes added to our system every day. This leaves us with five million reads per day.<br>New pastes per second:</p>
+<blockquote>
+<p>1M / (24 hours * 3600 seconds) ≈ 12 pastes/sec</p>
+</blockquote>
+<p>Paste reads per second:</p>
+<blockquote>
+<p>5M / (24 hours * 3600 seconds) ≈ 58 reads/sec</p>
+</blockquote>
+<p><strong>Storage estimates</strong>: Users can upload maximum 10MB of data; commonly Pastebin like services are used to share source code, configs, or logs. Such texts are not huge, so let’s assume that each paste on average contains 10KB.<br>At this rate, we will be storing 10GB of data per day:</p>
+<blockquote>
+<p>1M * 10KB = 10 GB/day</p>
+</blockquote>
+<p>If we want to store this data for ten years we would need the total storage capacity of 36TB.<br>With 1M pastes every day we will have 3.6 billion pastes in 10 years. We need to generate and store keys to uniquely identify these pastes. If we use base64 encoding ([A-Z, a-z, 0-9, ., -]) we would need six letters strings:</p>
+<blockquote>
+<p>64^6 ≈ 68.7 billion unique strings</p>
+</blockquote>
+<p>If it takes one byte to store one character, total size required to store 3.6B keys would be:</p>
+<blockquote>
+<p>3.6B * 6 = 21.6 GB</p>
+</blockquote>
+<p>21.6GB is negligible compared to 36TB. To keep some margin, we will assume a 70% capacity model (meaning we don’t want to use more than 70% of our total storage capacity at any point), which raises our storage needs to 51.4TB.</p>
+<p><strong>Bandwidth estimates</strong>: For write requests, we expect 12 new pastes per second, resulting in 120KB of ingress per second:</p>
+<blockquote>
+<p>12 * 10KB = 120 KB/s</p>
+</blockquote>
+<p>As for the read request, we expect 58 requests per second. Therefore, total data egress (sent to users) will be 0.58 MB/s:</p>
+<blockquote>
+<p>58 * 10KB = 0.58 MB/s</p>
+</blockquote>
+<p>Although total ingress and egress are not big, we should keep these numbers in mind while designing our service.</p>
+<p><strong>Memory estimates</strong>: We can cache some of the hot pastes that are frequently accessed. Following the 80-20 rule, meaning 20% of hot pastes generate 80% of traffic, we would like to cache these 20% pastes.<br>Since we have 5M read requests per day, to cache 20% of these requests, we would need:</p>
+<blockquote>
+<p>0.2 * 5M * 10KB = 10 GB</p>
+</blockquote>
+<h2 id="System-APIs"><a href="#System-APIs" class="headerlink" title="System APIs"></a>System APIs</h2><p>We can have SOAP or REST APIs to expose the functionality of our service. Following could be the definitions of the APIs to create/retrieve/delete pastes:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addPaste(api_dev_key, paste_data, custom_url=None user_name=None, paste_name=None, expire_date=None)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li>api_dev_key: The API developer key of a registered account. This will be used to, among other things, throttle users based on their allocated quota;</li>
+<li>paste_data: Textual data of the paste;</li>
+<li>custom_url: Optional custom URL;</li>
+<li>user_name: Optional user name to be used to generate URL;</li>
+<li>paste_name: Optional name of the paste;</li>
+<li>expire_date: Optional expiration date for the paste;</li>
+</ul>
+<p><strong>Returns</strong>: A successful insertion returns the URL through which the paste can be accessed, otherwise, it will return an error code.</p>
+<p>Similarly, we can have Retrieve and Delete Paste APIs:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getPaste(api_dev_key, api_paste_key)</span><br></pre></td></tr></table></figure>
+
+<p>Where “api_paste_key” is a string representing the Paste Key of the paste to be retrieved. This API will return the textual data of the paste.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deletePaste(api_dev_key, api_paste_key)</span><br></pre></td></tr></table></figure>
+
+<p>A successful deletion returns “true”, otherwise returns “false”.</p>
+<h2 id="Database-Design"><a href="#Database-Design" class="headerlink" title="Database Design"></a>Database Design</h2><p>A few observations about the nature of the data we are storing:</p>
+<ol>
+<li>We need to store billions of records;</li>
+<li>Each metadata object we are storing would be small (less than 1KB);</li>
+<li>Each paste object we are storing can be of medium size (it can be a few MB);</li>
+<li>There are no relationships between records, except if we want to store which user created what paste;</li>
+<li>Our service is read-heavy;</li>
+</ol>
+<p><strong>Database Schema</strong>: We would need two tables, one for storing information about the pastes and the other for users’ data:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/25.png" alt></p>
+<p>Here, “URLHash” is the URL equivalent of the TinyURL, and “ContentKey” is a reference to an external object storing the contents of the paste; we’ll discuss the external storage of the paste contents later in the chapter.</p>
+<h2 id="High-Level-Design"><a href="#High-Level-Design" class="headerlink" title="High-Level Design"></a>High-Level Design</h2><p>At a high level, we need an application layer that will serve all the read and write requests. Application layer will talk to a storage layer to store and retrieve data. We can segregate our storage layer with one database storing metadata related to each paste, users, etc., while the other storing the paste contents in some object storage (like Amazon S3). This division of data will also allow us to scale them individually:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/26.png" alt></p>
+<h2 id="Component-Design"><a href="#Component-Design" class="headerlink" title="Component Design"></a>Component Design</h2><h3 id="Application-layer"><a href="#Application-layer" class="headerlink" title="Application layer"></a>Application layer</h3><p>Our application layer will process all incoming and outgoing requests. The application servers will be talking to the backend data store components to serve the requests.</p>
+<p><strong>How to handle a write-request</strong>? Upon receiving a write-request, our application server will generate a six-letter random string, which would serve as the key of the paste (if the user has not provided a custom key). The application server will then store the contents of the paste and the generated key in the database. After the successful insertion, the server can return the key to the user. One possible problem here could be that the insertion fails because of a duplicate key. Since we are generating a random key, there is a possibility that the newly generated key could match an existing one. In that case, we should regenerate a new key and try again. We should keep retrying until we don’t see failure due to the duplicate key. We should return an error to the user if the custom key they have provided is already present in our database.</p>
+<p>Another solution for the above problem could be to run a standalone <strong>Key Generation Service (KGS)</strong> that generates random six letters strings beforehand and stores them in a database (let’s call it key-DB). Whenever we want to store a new paste, we will just take one of the already generated keys and use it. This approach will make things quite simple and fast since we will not be worrying about duplications or collisions. KGS will make sure all the keys inserted in key-DB are unique. KGS can use two tables to store keys, one for keys that are not used yet and one for all the used keys. As soon as KGS gives some keys to an application server, it can move these to the used keys table. KGS can always keep some keys in memory so that whenever a server needs them, it can quickly provide them. As soon as KGS loads some keys in memory, it can move them to the used keys table, this way we can make sure each server gets unique keys. If KGS dies before using all the keys loaded in memory, we will be wasting those keys. We can ignore these keys given that we have a huge number of them.</p>
+<p><strong>Isn’t KGS a single point of failure</strong>? Yes, it is. To solve this, we can have a standby replica of KGS and whenever the primary server dies it can take over to generate and provide keys.</p>
+<p><strong>Can each app server cache some keys from key-DB</strong>? Yes, this can surely speed things up. Although in this case, if the application server dies before consuming all the keys, we will end up losing those keys. This could be acceptable since we have 68.7B unique six letters keys, which are a lot more than we require.</p>
+<p><strong>How does it handle a paste read request</strong>? Upon receiving a read paste request, the application service layer contacts the datastore. The datastore searches for the key, and if it is found, it returns the paste’s contents. Otherwise, an error code is returned.</p>
+<h3 id="Datastore-layer"><a href="#Datastore-layer" class="headerlink" title="Datastore layer"></a>Datastore layer</h3><p>We can divide our datastore layer into two:</p>
+<ol>
+<li>Metadata database: We can use a relational database like MySQL or a Distributed Key-Value store like Dynamo or Cassandra;</li>
+<li>Object storage: We can store our contents in an Object Storage like Amazon S3. Whenever we feel like hitting our full capacity on content storage, we can easily increase it by adding more servers;</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/27.png" alt></p>
+<h2 id="Purging-or-DB-Cleanup"><a href="#Purging-or-DB-Cleanup" class="headerlink" title="Purging or DB Cleanup"></a>Purging or DB Cleanup</h2><p>Please see <a href="https://snlndod.github.io/2021/02/08/Designing-a-URL-Shortening-Service-Like-TinyURL/" target="_blank" rel="noopener">Designing a URL Shortening Service Like TinyURL</a>.</p>
+<h2 id="Data-Partitioning-and-Replication"><a href="#Data-Partitioning-and-Replication" class="headerlink" title="Data Partitioning and Replication"></a>Data Partitioning and Replication</h2><p>Please see <a href="https://snlndod.github.io/2021/02/08/Designing-a-URL-Shortening-Service-Like-TinyURL/" target="_blank" rel="noopener">Designing a URL Shortening Service Like TinyURL</a>.</p>
+<h2 id="Cache-and-Load-Balancer"><a href="#Cache-and-Load-Balancer" class="headerlink" title="Cache and Load Balancer"></a>Cache and Load Balancer</h2><p>Please see <a href="https://snlndod.github.io/2021/02/08/Designing-a-URL-Shortening-Service-Like-TinyURL/" target="_blank" rel="noopener">Designing a URL Shortening Service Like TinyURL</a>.</p>
+<h2 id="Security-and-Permissions"><a href="#Security-and-Permissions" class="headerlink" title="Security and Permissions"></a>Security and Permissions</h2><p>Please see <a href="https://snlndod.github.io/2021/02/08/Designing-a-URL-Shortening-Service-Like-TinyURL/" target="_blank" rel="noopener">Designing a URL Shortening Service Like TinyURL</a>.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SystemDesign/" rel="tag"># SystemDesign</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/02/08/Designing-a-URL-Shortening-Service-Like-TinyURL/" rel="next" title="Designing a URL Shortening Service Like TinyURL">
+                <i class="fa fa-chevron-left"></i> Designing a URL Shortening Service Like TinyURL
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/02/13/Designing-Instagram/" rel="prev" title="Designing Instagram">
+                Designing Instagram <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="snlndod">
+          <p class="site-author-name" itemprop="name">snlndod</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">201</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/snlndod" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/snlndod" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-Pastebin"><span class="nav-number">1.</span> <span class="nav-text">What is Pastebin?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Requirements-and-Goals-of-the-System"><span class="nav-number">2.</span> <span class="nav-text">Requirements and Goals of the System</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Some-Design-Considerations"><span class="nav-number">3.</span> <span class="nav-text">Some Design Considerations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Capacity-Estimation-and-Constraints"><span class="nav-number">4.</span> <span class="nav-text">Capacity Estimation and Constraints</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#System-APIs"><span class="nav-number">5.</span> <span class="nav-text">System APIs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Database-Design"><span class="nav-number">6.</span> <span class="nav-text">Database Design</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#High-Level-Design"><span class="nav-number">7.</span> <span class="nav-text">High-Level Design</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Component-Design"><span class="nav-number">8.</span> <span class="nav-text">Component Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-layer"><span class="nav-number">8.1.</span> <span class="nav-text">Application layer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Datastore-layer"><span class="nav-number">8.2.</span> <span class="nav-text">Datastore layer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Purging-or-DB-Cleanup"><span class="nav-number">9.</span> <span class="nav-text">Purging or DB Cleanup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Partitioning-and-Replication"><span class="nav-number">10.</span> <span class="nav-text">Data Partitioning and Replication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cache-and-Load-Balancer"><span class="nav-number">11.</span> <span class="nav-text">Cache and Load Balancer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Security-and-Permissions"><span class="nav-number">12.</span> <span class="nav-text">Security and Permissions</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">snlndod</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
