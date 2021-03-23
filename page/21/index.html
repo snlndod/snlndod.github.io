@@ -280,6 +280,515 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/08/Composite-Design-Pattern/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/12/08/Composite-Design-Pattern/" itemprop="url">
+                  Composite Design Pattern
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-08T23:17:46+08:00">
+                2020-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="组合模式的原理与实现"><a href="#组合模式的原理与实现" class="headerlink" title="组合模式的原理与实现"></a>组合模式的原理与实现</h2><p><code>组合模式</code>（Composite Design Pattern）是这样定义的：</p>
+<blockquote>
+<p>Compose objects into tree structure to represent part-whole hierarchies. Composite lets client treat individual objects and compositions of objects uniformly.</p>
+</blockquote>
+<p>翻译成中文就是：<strong>将一组对象组织（Compose）成树形结构，以表示一种“部分-整体”的层次结构</strong>。组合让客户端可以统一单个对象和组合对象的处理逻辑。</p>
+<p>假设我们有这样一个需求：设计一个类来表示文件系统中的目录，能方便地实现下面这些功能：</p>
+<ul>
+<li>动态地添加、删除某个目录下的子目录或文件；</li>
+<li>统计指定目录下的文件个数；</li>
+<li>统计指定目录下的文件总大小；</li>
+</ul>
+<p>我们把文件和目录统一用 FileSystemNode 类来表示，并且通过 isFile 属性来区分。我这里给出了这个类的骨架代码，如下所示：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/12/08/Composite-Design-Pattern/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/07/Facade-Design-Pattern/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/12/07/Facade-Design-Pattern/" itemprop="url">
+                  Facade Design Pattern
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-07T22:53:33+08:00">
+                2020-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="门面模式的原理与实现"><a href="#门面模式的原理与实现" class="headerlink" title="门面模式的原理与实现"></a>门面模式的原理与实现</h2><p><code>门面模式</code>（Facade Design Pattern）是这样定义的：</p>
+<blockquote>
+<p>Provide a unified interface to a set of interfaces in a subsystem. Facade Pattern defines a higher-level interface that makes the subsystem easier to use.</p>
+</blockquote>
+<p>翻译成中文就是：门面模式为子系统提供一组统一的接口，<strong>定义一组高层接口让子系统更易用</strong>。除此之外，我还要强调一下，门面模式定义中的“子系统（subsystem）”也可以有多种理解方式。它<strong>既可以是一个完整的系统，也可以是更细粒度的类或者模块</strong>。</p>
+<h2 id="门面模式的应用场景举例"><a href="#门面模式的应用场景举例" class="headerlink" title="门面模式的应用场景举例"></a>门面模式的应用场景举例</h2><p>实际上，它除了解决易用性问题之外，还能解决其他很多方面的问题。</p>
+<h3 id="解决易用性问题"><a href="#解决易用性问题" class="headerlink" title="解决易用性问题"></a>解决易用性问题</h3><p>门面模式可以用来<strong>封装系统的底层实现，隐藏系统的复杂性</strong>，提供一组更加简单易用、更高层的接口。比如，Linux <code>系统调用函数</code>就可以看作一种“门面”。它是 Linux 操作系统暴露给开发者的一组“特殊”的编程接口，它封装了底层更基础的 Linux 内核调用。再比如，Linux 的 <code>Shell 命令</code>，实际上也可以看作一种门面模式的应用。它继续封装系统调用，提供更加友好、简单的命令，让我们可以直接通过执行命令来跟操作系统交互。</p>
+<p>我们知道，类、模块、系统之间的“通信”，一般都是通过接口调用来完成的。接口设计的好坏，直接影响到类、模块、系统是否好用。所以，我们要多花点心思在接口设计上。我经常说，<strong>完成接口设计，就相当于完成了一半的开发任务</strong>。只要接口设计得好，那代码就差不到哪里去。</p>
+<p>接口粒度设计得太大，太小都不好。太大会导致接口不可复用，太小会导致接口不易用。在实际的开发中，<strong>接口的可复用性和易用性需要微妙的权衡</strong>。针对这个问题，我的一个基本的处理原则是，尽量保持接口的可复用性，但针对特殊情况，允许提供冗余的门面接口，来提供更易用的接口。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/12/07/Facade-Design-Pattern/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/05/Adapter-Design-Pattern/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/12/05/Adapter-Design-Pattern/" itemprop="url">
+                  Adapter Design Pattern
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-05T21:30:34+08:00">
+                2020-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="适配器模式的原理与实现"><a href="#适配器模式的原理与实现" class="headerlink" title="适配器模式的原理与实现"></a>适配器模式的原理与实现</h2><p><code>适配器模式</code>（Adapter Design Pattern）是用来做适配的，它将不兼容的接口转换为可兼容的接口，<strong>让原本由于接口不兼容而不能一起工作的类可以一起工作</strong>。对于这个模式，有一个经常被拿来解释它的例子，就是 USB 转接头充当适配器，把两种不兼容的接口，通过转接变得可以一起工作。</p>
+<p>适配器模式有两种实现方式：类适配器和对象适配器。其中，<strong>类适配器使用继承关系来实现，对象适配器使用组合关系来实现</strong>。具体的代码实现如下所示。其中，ITarget 表示要转化成的接口定义。Adaptee 是一组不兼容 ITarget 接口定义的接口，Adaptor 将 Adaptee 转化成一组符合 ITarget 接口定义的接口：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/12/05/Adapter-Design-Pattern/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/05/Decorator-Design-Pattern/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/12/05/Decorator-Design-Pattern/" itemprop="url">
+                  Decorator Design Pattern
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-05T19:25:33+08:00">
+                2020-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Java-IO-类的“奇怪”用法"><a href="#Java-IO-类的“奇怪”用法" class="headerlink" title="Java IO 类的“奇怪”用法"></a>Java IO 类的“奇怪”用法</h2><p>Java IO 类库非常庞大和复杂，有几十个类，负责 IO 数据的读取和写入。如果对 Java IO 类做一下分类，我们可以从下面两个维度将它划分为四类：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/13.png" alt></p>
+<p>针对不同的读取和写入场景，Java IO 又在这四个父类基础之上，扩展出了很多子类。具体如下所示：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/12/05/Decorator-Design-Pattern/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/05/Bridge-Design-Pattern/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -401,501 +910,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/02/Proxy-Design-Pattern/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2020/12/02/Proxy-Design-Pattern/" itemprop="url">
-                  Proxy Design Pattern
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-02T00:56:30+08:00">
-                2020-12-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="代理模式的原理解析"><a href="#代理模式的原理解析" class="headerlink" title="代理模式的原理解析"></a>代理模式的原理解析</h2><p><code>代理模式</code>（Proxy Design Pattern）的原理和代码实现都不难掌握。它在不改变原始类（或叫被代理类）代码的情况下，通过<strong>引入代理类来给原始类附加功能</strong>。</p>
-<p>我们开发了一个性能计数器 – MetricsCollector 类，在业务系统中，我们采用如下方式来使用这个 MetricsCollector 类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">//...省略其他属性和方法...</span></span><br><span class="line">    <span class="keyword">private</span> MetricsCollector metricsCollector; <span class="comment">// 依赖注入</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserVo <span class="title">login</span><span class="params">(String telephone, String password)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> startTimestamp = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//...省略 login 逻辑...</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> endTimeStamp = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">long</span> responseTime = endTimeStamp - startTimestamp;</span><br><span class="line">        RequestInfo requestInfo = <span class="keyword">new</span> RequestInfo(<span class="string">"login"</span>, responseTime, startTimestamp);</span><br><span class="line">        metricsCollector.recordRequest(requestInfo);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//...返回 UserVo 数据...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserVo <span class="title">register</span><span class="params">(String telephone, String password)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> startTimestamp = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//...省略 register 逻辑...</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> endTimeStamp = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">long</span> responseTime = endTimeStamp - startTimestamp;</span><br><span class="line">        RequestInfo requestInfo = <span class="keyword">new</span> RequestInfo(<span class="string">"register"</span>, responseTime, startTimestamp);</span><br><span class="line">        metricsCollector.recordRequest(requestInfo);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//...返回 UserVo 数据...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/12/02/Proxy-Design-Pattern/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/29/Prototype-Design-Pattern/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2020/11/29/Prototype-Design-Pattern/" itemprop="url">
-                  Prototype Design Pattern
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-29T18:52:39+08:00">
-                2020-11-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="原型模式的原理与应用"><a href="#原型模式的原理与应用" class="headerlink" title="原型模式的原理与应用"></a>原型模式的原理与应用</h2><p>如果<strong>对象的创建成本比较大，而同一个类的不同对象之间差别不大</strong>（大部分字段都相同），在这种情况下，我们可以利用对已有对象（原型）进行复制（或者叫拷贝）的方式来创建新对象，以达到节省创建时间的目的。这种基于原型来创建对象的方式就叫作<code>原型设计模式</code>（Prototype Design Pattern），简称原型模式。</p>
-<p>实际上，<strong>创建对象包含的申请内存、给成员变量赋值这一过程</strong>，本身并不会花费太多时间，或者说对于大部分业务系统来说，这点时间完全是可以忽略的。应用一个复杂的模式，只得到一点点的性能提升，这就是所谓的过度设计，得不偿失。但是，如果<strong>对象中的数据需要经过复杂的计算才能得到</strong>（比如排序、计算哈希值），或者需要从 RPC、网络、数据库、文件系统等非常慢速的 IO 中读取，这种情况下，我们就可以利用原型模式，从其他已有对象中直接拷贝得到，而不用每次在创建新对象的时候，都重复执行这些耗时的操作。</p>
-<p>假设数据库中存储了大约 10 万条“搜索关键词”信息，每条信息包含关键词、关键词被搜索的次数、信息最近被更新的时间等。系统 A 在启动的时候会加载这份数据到内存中，用于处理某些其他的业务需求。为了方便快速地查找某个关键词对应的信息，我们<strong>给关键词建立一个散列表索引</strong>。如果你熟悉的是 Java 语言，可以直接使用语言中提供的 HashMap 容器来实现。其中，HashMap 的 key 为搜索关键词，value 为关键词详细信息（比如搜索次数）。我们只需要将数据从数据库中读取出来，放入 HashMap 就可以了。</p>
-<p>不过，我们还有另外一个系统 B，专门用来分析搜索日志，定期（比如间隔 10 分钟）批量地更新数据库中的数据，并且标记为新的数据版本。比如，在下面的示例图中，我们对 v2 版本的数据进行更新，得到 v3 版本的数据。这里我们假设只有更新和新添关键词，没有删除关键词的行为：</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/11/29/Prototype-Design-Pattern/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/29/Builder-Design-Pattern/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2020/11/29/Builder-Design-Pattern/" itemprop="url">
-                  Builder Design Pattern
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-29T00:07:47+08:00">
-                2020-11-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="为什么需要建造者模式？"><a href="#为什么需要建造者模式？" class="headerlink" title="为什么需要建造者模式？"></a>为什么需要建造者模式？</h2><p>假设有这样一道设计面试题：我们需要定义一个资源池配置类 ResourcePoolConfig。这里的资源池，你可以简单理解为<strong>线程池、连接池、对象池等</strong>。在这个资源池配置类中，有以下几个成员变量，也就是可配置项。现在，请你编写代码实现这个 ResourcePoolConfig 类：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/03.png" alt></p>
-<p>只要你稍微有点开发经验，那实现这样一个类对你来说并不是件难事。因为 maxTotal、maxIdle、minIdle 不是必填变量，所以在创建 ResourcePoolConfig 对象的时候，我们<strong>通过往构造函数中，给这几个参数传递 null 值，来表示使用默认值</strong>：</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/11/29/Builder-Design-Pattern/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/22/Factory-Design-Pattern/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2020/11/22/Factory-Design-Pattern/" itemprop="url">
-                  Factory Design Pattern
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-22T16:32:49+08:00">
-                2020-11-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="简单工厂（Simple-Factory）"><a href="#简单工厂（Simple-Factory）" class="headerlink" title="简单工厂（Simple Factory）"></a>简单工厂（Simple Factory）</h2><p>在下面这段代码中，我们根据配置文件的后缀（json、xml…），选择不同的解析器（JsonRuleConfigParser、XmlRuleConfigParser…），将存储在文件中的配置解析成内存对象 RuleConfig：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RuleConfigSource</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> RuleConfig <span class="title">load</span><span class="params">(String ruleConfigFilePath)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        String ruleConfigFileExtension = getFileExtension(ruleConfigFilePath);</span><br><span class="line">        IRuleConfigParser parser = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"json"</span>.equalsIgnoreCase(ruleConfigFileExtension)) </span><br><span class="line">        &#123;</span><br><span class="line">            parser = <span class="keyword">new</span> JsonRuleConfigParser();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"xml"</span>.equalsIgnoreCase(ruleConfigFileExtension)) </span><br><span class="line">        &#123;</span><br><span class="line">            parser = <span class="keyword">new</span> XmlRuleConfigParser();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"yaml"</span>.equalsIgnoreCase(ruleConfigFileExtension)) </span><br><span class="line">        &#123;</span><br><span class="line">            parser = <span class="keyword">new</span> YamlRuleConfigParser();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"properties"</span>.equalsIgnoreCase(ruleConfigFileExtension)) </span><br><span class="line">        &#123;</span><br><span class="line">            parser = <span class="keyword">new</span> PropertiesRuleConfigParser();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> InvalidRuleConfigException(<span class="string">"Rule config file format is not supported: "</span> + ruleConfigFilePath);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        String configText = <span class="string">""</span>;</span><br><span class="line">        <span class="comment">// 从 ruleConfigFilePath 文件中读取配置文本到 configText 中</span></span><br><span class="line">        RuleConfig ruleConfig = parser.parse(configText);</span><br><span class="line">        <span class="keyword">return</span> ruleConfig;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">getFileExtension</span><span class="params">(String filePath)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//...解析文件名获取扩展名，比如 rule.json，返回 json</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"json"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/11/22/Factory-Design-Pattern/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -943,7 +957,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">201</span>
+                <span class="site-state-item-count">205</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

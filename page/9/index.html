@@ -280,6 +280,493 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/31/Subsets/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2021/01/31/Subsets/" itemprop="url">
+                  Subsets
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-31T20:35:10+08:00">
+                2021-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>A huge number of coding interview problems involve dealing with <code>Permutations</code> and <code>Combinations</code> of a given set of elements. This pattern describes an efficient Breadth-First Search (BFS) approach to handle all these problems.</p>
+<h2 id="Snippet"><a href="#Snippet" class="headerlink" title="Snippet"></a>Snippet</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Iteration</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subsetsWithDup</span><span class="params">(self, nums: List[int])</span> -&gt; List[List[int]]:</span></span><br><span class="line">    subsets = [[]]</span><br><span class="line">    nums.sort()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">        start = <span class="number">0</span></span><br><span class="line">        <span class="comment"># handle duplicates</span></span><br><span class="line">        <span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> nums[i] == nums[i<span class="number">-1</span>]:</span><br><span class="line">            start = end + <span class="number">1</span></span><br><span class="line">        end = len(subsets) - <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(start, end + <span class="number">1</span>):</span><br><span class="line">            subsets.append(subsets[j] + [nums[i]])</span><br><span class="line">    <span class="keyword">return</span> subsets</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Recursion</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">    self.map = dict()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">numTrees</span><span class="params">(self, n: int)</span> -&gt; int:</span></span><br><span class="line">    <span class="keyword">if</span> n &lt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> n <span class="keyword">in</span> self.map:</span><br><span class="line">        <span class="keyword">return</span> self.map[n]</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n + <span class="number">1</span>):</span><br><span class="line">        cnt_l = self.numTrees(i - <span class="number">1</span>)</span><br><span class="line">        cnt_r = self.numTrees(n - i)</span><br><span class="line">        count += cnt_l * cnt_r</span><br><span class="line">    <span class="comment"># memorization</span></span><br><span class="line">    self.map[n] = count</span><br><span class="line">    <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
+
+<h2 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h2><p><a href="https://leetcode.com/problems/subsets/" target="_blank" rel="noopener">Subsets</a><br><a href="https://leetcode.com/problems/subsets-ii/" target="_blank" rel="noopener">Subsets II</a><br><a href="https://leetcode.com/problems/permutations/" target="_blank" rel="noopener">Permutations</a><br><a href="https://leetcode.com/problems/letter-case-permutation/" target="_blank" rel="noopener">Letter Case Permutation</a><br><a href="https://leetcode.com/problems/generate-parentheses/" target="_blank" rel="noopener">Generate Parentheses</a><br><a href="https://leetcode.com/problems/different-ways-to-add-parentheses/" target="_blank" rel="noopener">Different Ways to Add Parentheses</a><br><a href="https://leetcode.com/problems/unique-binary-search-trees-ii/" target="_blank" rel="noopener">Unique Binary Search Trees II</a><br><a href="https://leetcode.com/problems/unique-binary-search-trees/" target="_blank" rel="noopener">Unique Binary Search Trees</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/30/Two-Heaps/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2021/01/30/Two-Heaps/" itemprop="url">
+                  Two Heaps
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-30T17:46:46+08:00">
+                2021-01-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>In many problems, where we are given a set of elements such that we can divide them into two parts. To solve the problem, we are interested in knowing the smallest element in one part and the biggest element in the other part. This pattern is an efficient approach to solve such problems.</p>
+<p>This pattern uses two Heaps to solve these problems; A <code>Min Heap</code> to find the smallest element and a <code>Max Heap</code> to find the biggest element.</p>
+<h2 id="Snippet"><a href="#Snippet" class="headerlink" title="Snippet"></a>Snippet</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> heapq <span class="keyword">import</span> heappush, heappop</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">    self.max_heap = []</span><br><span class="line">    self.min_heap = []</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">addNum</span><span class="params">(self, num: int)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> self.max_heap <span class="keyword">or</span> num &lt;= -self.max_heap[<span class="number">0</span>]:</span><br><span class="line">        heappush(self.max_heap, -num)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        heappush(self.min_heap, num)</span><br><span class="line">    <span class="comment"># balance</span></span><br><span class="line">    <span class="keyword">if</span> len(self.max_heap) &gt; len(self.min_heap) + <span class="number">1</span>:</span><br><span class="line">        heappush(self.min_heap, -heappop(self.max_heap))</span><br><span class="line">    <span class="keyword">elif</span> len(self.max_heap) &lt; len(self.min_heap):</span><br><span class="line">        heappush(self.max_heap, -heappop(self.min_heap))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findMedian</span><span class="params">(self)</span> -&gt; float:</span></span><br><span class="line">    <span class="keyword">if</span> len(self.max_heap) == len(self.min_heap):</span><br><span class="line">        <span class="keyword">return</span> -self.max_heap[<span class="number">0</span>] / <span class="number">2.0</span> + self.min_heap[<span class="number">0</span>] / <span class="number">2.0</span></span><br><span class="line">    <span class="keyword">return</span> -self.max_heap[<span class="number">0</span>] / <span class="number">1.0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h2><p><a href="https://leetcode.com/problems/find-median-from-data-stream/" target="_blank" rel="noopener">Find Median from Data Stream</a><br><a href="https://leetcode.com/problems/sliding-window-median/" target="_blank" rel="noopener">Sliding Window Median</a><br><a href="https://leetcode.com/problems/ipo/" target="_blank" rel="noopener">IPO</a><br><a href="https://leetcode.com/problems/find-right-interval/" target="_blank" rel="noopener">Find Right Interval</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/30/Tree-Depth-First-Search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2021/01/30/Tree-Depth-First-Search/" itemprop="url">
+                  Tree Depth-First Search
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-30T17:34:51+08:00">
+                2021-01-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>This pattern is based on the Depth-First Search (DFS) technique to traverse a tree.</p>
+<p>We will be using recursion (or we can also use a stack for the iterative approach) to keep track of all the previous (parent) nodes while traversing. This also means that the space complexity of the algorithm will be O(H), where “H” is the maximum height of the tree.</p>
+<h2 id="Snippet"><a href="#Snippet" class="headerlink" title="Snippet"></a>Snippet</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">One Direction</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">    self.paths = []</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">obtain_path</span><span class="params">(self, root, targetSum, curr_path)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    curr_path.append(root.val)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root.left <span class="keyword">and</span> <span class="keyword">not</span> root.right <span class="keyword">and</span> root.val == targetSum:</span><br><span class="line">        self.paths.append(curr_path[:])</span><br><span class="line">    targetSum -= root.val</span><br><span class="line">    <span class="comment"># DFS</span></span><br><span class="line">    self.obtain_path(root.left, targetSum, curr_path)</span><br><span class="line">    self.obtain_path(root.right, targetSum, curr_path)</span><br><span class="line">    <span class="comment"># backtracking</span></span><br><span class="line">    curr_path.pop()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pathSum</span><span class="params">(self, root: TreeNode, targetSum: int)</span> -&gt; List[List[int]]:</span></span><br><span class="line">    self.obtain_path(root, targetSum, [])</span><br><span class="line">    <span class="keyword">return</span> self.paths</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Both Directions</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">    self.max_sum = -sys.maxsize</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc_max</span><span class="params">(self, root)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="comment"># DFS</span></span><br><span class="line">    l_max = max(<span class="number">0</span>, self.calc_max(root.left))</span><br><span class="line">    r_max = max(<span class="number">0</span>, self.calc_max(root.right))</span><br><span class="line">    curr_sum = l_max + r_max + root.val</span><br><span class="line">    self.max_sum = max(self.max_sum, curr_sum)</span><br><span class="line">    <span class="keyword">return</span> max(l_max, r_max) + root.val</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maxPathSum</span><span class="params">(self, root: TreeNode)</span> -&gt; int:</span></span><br><span class="line">    self.calc_max(root)</span><br><span class="line">    <span class="keyword">return</span> self.max_sum</span><br></pre></td></tr></table></figure>
+
+<h2 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h2><p><a href="https://leetcode.com/problems/path-sum/" target="_blank" rel="noopener">Path Sum</a><br><a href="https://leetcode.com/problems/path-sum-ii/" target="_blank" rel="noopener">Path Sum II</a><br><a href="https://leetcode.com/problems/binary-tree-paths/" target="_blank" rel="noopener">Binary Tree Paths</a><br><a href="https://leetcode.com/problems/sum-root-to-leaf-numbers/" target="_blank" rel="noopener">Sum Root to Leaf Numbers</a><br><a href="https://leetcode.com/problems/path-sum-iii/" target="_blank" rel="noopener">Path Sum III</a><br><a href="https://leetcode.com/problems/diameter-of-binary-tree/" target="_blank" rel="noopener">Diameter of Binary Tree</a><br><a href="https://leetcode.com/problems/binary-tree-maximum-path-sum/" target="_blank" rel="noopener">Binary Tree Maximum Path Sum</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/30/Tree-Breadth-First-Search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2021/01/30/Tree-Breadth-First-Search/" itemprop="url">
+                  Tree Breadth-First Search
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-30T17:22:57+08:00">
+                2021-01-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>This pattern is based on the Breadth-First Search (BFS) technique to traverse a tree.</p>
+<p>Any problem involving the traversal of a tree in a level-by-level order can be efficiently solved using this approach. We will use a <code>Queue</code> to keep track of all the nodes of a level before we jump onto the next level. This also means that the space complexity of the algorithm will be O(W), where “W” is the maximum number of nodes on any level.</p>
+<h2 id="Snippet"><a href="#Snippet" class="headerlink" title="Snippet"></a>Snippet</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">averageOfLevels</span><span class="params">(self, root: TreeNode)</span> -&gt; List[float]:</span></span><br><span class="line">    result = []</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    queue = deque([root])</span><br><span class="line">    <span class="keyword">while</span> queue:</span><br><span class="line">        curr_sum, curr_len = <span class="number">0.0</span>, len(queue)</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> range(curr_len):</span><br><span class="line">            node = queue.popleft()</span><br><span class="line">            curr_sum += node.val</span><br><span class="line">            <span class="keyword">if</span> node.left:</span><br><span class="line">                queue.append(node.left)</span><br><span class="line">            <span class="keyword">if</span> node.right:</span><br><span class="line">                queue.append(node.right)</span><br><span class="line">        result.append(curr_sum / curr_len)</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+
+<h2 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h2><p><a href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank" rel="noopener">Binary Tree Level Order Traversal</a><br><a href="https://leetcode.com/problems/binary-tree-level-order-traversal-ii/" target="_blank" rel="noopener">Binary Tree Level Order Traversal II</a><br><a href="https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/" target="_blank" rel="noopener">Binary Tree Zigzag Level Order Traversal</a><br><a href="https://leetcode.com/problems/average-of-levels-in-binary-tree/" target="_blank" rel="noopener">Average of Levels in Binary Tree</a><br><a href="https://leetcode.com/problems/minimum-depth-of-binary-tree/" target="_blank" rel="noopener">Minimum Depth of Binary Tree</a><br><a href="https://leetcode.com/problems/maximum-depth-of-binary-tree/" target="_blank" rel="noopener">Maximum Depth of Binary Tree</a><br><a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/" target="_blank" rel="noopener">Populating Next Right Pointers in Each Node II</a><br><a href="https://leetcode.com/problems/binary-tree-right-side-view/" target="_blank" rel="noopener">Binary Tree Right Side View</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/30/In-Place-Reversal-of-a-LinkedList/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -393,507 +880,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/30/Cyclic-Sort/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2021/01/30/Cyclic-Sort/" itemprop="url">
-                  Cyclic Sort
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-30T16:55:01+08:00">
-                2021-01-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>This pattern describes an interesting approach to deal with problems involving arrays containing numbers in a given range. For example, take the following problem:</p>
-<blockquote>
-<p>You are given an unsorted array containing numbers taken from the range “1” to “n”. The array can have duplicates, which means that some numbers will be missing. Find all the missing numbers.</p>
-</blockquote>
-<p>To efficiently solve this problem, we can use the fact that the input array contains numbers in the range of “1” to “n”. For example, to efficiently sort the array, we can try placing each number in its correct place, i.e., placing “1” at index “0”, placing “2” at index “1”, and so on. Once we are done with the sorting, we can iterate the array to find all indices that are missing the correct numbers. These will be our required numbers.</p>
-<h2 id="Snippet"><a href="#Snippet" class="headerlink" title="Snippet"></a>Snippet</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">firstMissingPositive</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></span><br><span class="line">    max_value = len(nums) + <span class="number">1</span></span><br><span class="line">    <span class="comment"># remove useless items</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">        <span class="keyword">if</span> nums[i] &lt; <span class="number">1</span> <span class="keyword">or</span> nums[i] &gt; len(nums):</span><br><span class="line">            nums[i] = <span class="number">0</span></span><br><span class="line">    nums.append(<span class="number">0</span>)</span><br><span class="line">    <span class="comment"># record frequency</span></span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> nums[:<span class="number">-1</span>]:</span><br><span class="line">        nums[num % max_value] += max_value</span><br><span class="line">    <span class="comment"># obtain missing</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, max_value):</span><br><span class="line">        <span class="keyword">if</span> nums[i] // max_value == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> i</span><br><span class="line">    <span class="keyword">return</span> max_value</span><br></pre></td></tr></table></figure>
-
-<h2 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h2><p><a href="https://leetcode.com/problems/missing-number/" target="_blank" rel="noopener">Missing Number</a><br><a href="https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/" target="_blank" rel="noopener">Find All Numbers Disappeared in an Array</a><br><a href="https://leetcode.com/problems/find-the-duplicate-number/" target="_blank" rel="noopener">Find the Duplicate Number</a><br><a href="https://leetcode.com/problems/find-all-duplicates-in-an-array/" target="_blank" rel="noopener">Find All Duplicates in an Array</a><br><a href="https://leetcode.com/problems/set-mismatch/" target="_blank" rel="noopener">Set Mismatch</a><br><a href="https://leetcode.com/problems/first-missing-positive/" target="_blank" rel="noopener">First Missing Positive</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/30/Merge-Intervals/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2021/01/30/Merge-Intervals/" itemprop="url">
-                  Merge Intervals
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-30T16:38:37+08:00">
-                2021-01-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>This pattern describes an efficient technique to deal with overlapping intervals. In a lot of problems involving intervals, we either need to find overlapping intervals or merge intervals if they overlap.</p>
-<p>Given two intervals (“a” and “b”), there will be six different ways the two intervals can relate to each other:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CodingInterview/educative/03.png" alt></p>
-<p>Understanding the above six cases will help us in solving all intervals related problems.</p>
-<h2 id="Snippet"><a href="#Snippet" class="headerlink" title="Snippet"></a>Snippet</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert</span><span class="params">(self, intervals: List[List[int]], newInterval: List[int])</span> -&gt; List[List[int]]:</span></span><br><span class="line">    merged, i = [], <span class="number">0</span></span><br><span class="line">    <span class="comment"># merge the left part</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; len(intervals) <span class="keyword">and</span> intervals[i][<span class="number">1</span>] &lt; newInterval[<span class="number">0</span>]:</span><br><span class="line">        merged.append(intervals[i])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="comment"># merge the middle part</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; len(intervals) <span class="keyword">and</span> intervals[i][<span class="number">0</span>] &lt;= newInterval[<span class="number">1</span>]:</span><br><span class="line">        newInterval[<span class="number">0</span>] = min(newInterval[<span class="number">0</span>], intervals[i][<span class="number">0</span>])</span><br><span class="line">        newInterval[<span class="number">1</span>] = max(newInterval[<span class="number">1</span>], intervals[i][<span class="number">1</span>])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    merged.append(newInterval)</span><br><span class="line">    <span class="comment"># merge the right part</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; len(intervals):</span><br><span class="line">        merged.append(intervals[i])</span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> merged</span><br></pre></td></tr></table></figure>
-
-<h2 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h2><p><a href="https://leetcode.com/problems/merge-intervals/" target="_blank" rel="noopener">Merge Intervals</a><br><a href="https://leetcode.com/problems/insert-interval/" target="_blank" rel="noopener">Insert Interval</a><br><a href="https://leetcode.com/problems/interval-list-intersections/" target="_blank" rel="noopener">Interval List Intersections</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/30/Fast-Slow-Pointers/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2021/01/30/Fast-Slow-Pointers/" itemprop="url">
-                  Fast & Slow Pointers
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-30T16:11:29+08:00">
-                2021-01-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>The Fast &amp; Slow pointer approach, also known as the <code>Tortoise &amp; Hare Algorithm</code>, is a pointer algorithm that uses two pointers which move through the array (or sequence/LinkedList) at different speeds. This approach is quite useful when dealing with cyclic LinkedLists or arrays.</p>
-<p>By moving at different speeds (say, in a cyclic LinkedList), the algorithm proves that the two pointers are bound to meet. The fast pointer should catch the slow pointer once both the pointers are in a cyclic loop.</p>
-<h2 id="Snippet"><a href="#Snippet" class="headerlink" title="Snippet"></a>Snippet</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isPalindrome</span><span class="params">(self, head: ListNode)</span> -&gt; bool:</span></span><br><span class="line">    l = r = head</span><br><span class="line">    <span class="comment"># obtain the pointer of middle</span></span><br><span class="line">    <span class="keyword">while</span> r <span class="keyword">and</span> r.next:</span><br><span class="line">        l = l.next</span><br><span class="line">        r = r.next.next</span><br><span class="line">    stack = []</span><br><span class="line">    <span class="comment"># push the second half to stack</span></span><br><span class="line">    <span class="keyword">while</span> l:</span><br><span class="line">        stack.append(l.val)</span><br><span class="line">        l = l.next</span><br><span class="line">    curr = head</span><br><span class="line">    <span class="comment"># compare with the first half</span></span><br><span class="line">    <span class="keyword">while</span> stack:</span><br><span class="line">        <span class="keyword">if</span> stack.pop() != curr.val:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        curr = curr.next</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h2><p><a href="https://leetcode.com/problems/linked-list-cycle/" target="_blank" rel="noopener">Linked List Cycle</a><br><a href="https://leetcode.com/problems/linked-list-cycle-ii/" target="_blank" rel="noopener">Linked List Cycle II</a><br><a href="https://leetcode.com/problems/happy-number/" target="_blank" rel="noopener">Happy Number</a><br><a href="https://leetcode.com/problems/middle-of-the-linked-list/" target="_blank" rel="noopener">Middle of the Linked List</a><br><a href="https://leetcode.com/problems/palindrome-linked-list/" target="_blank" rel="noopener">Palindrome Linked List</a><br><a href="https://leetcode.com/problems/reorder-list/" target="_blank" rel="noopener">Reorder List</a><br><a href="https://leetcode.com/problems/circular-array-loop/" target="_blank" rel="noopener">Circular Array Loop</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/30/Two-Pointers/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2021/01/30/Two-Pointers/" itemprop="url">
-                  Two Pointers
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-30T15:49:52+08:00">
-                2021-01-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>In problems where we deal with sorted arrays (or LinkedLists) and need to find a set of elements that fulfill certain constraints, the Two Pointers approach becomes quite useful. The set of elements could be a pair, a triplet or even a subarray. For example, take a look at the following problem:</p>
-<blockquote>
-<p>Given an array of sorted numbers and a target sum, find a pair in the array whose sum is equal to the given target.</p>
-</blockquote>
-<p>To solve this problem, we can consider each element one by one (pointed out by the first pointer) and iterate through the remaining elements (pointed out by the second pointer) to find a pair with the given sum. The time complexity of this algorithm will be O(N^2) where “N” is the number of elements in the input array.</p>
-<p>Given that the input array is sorted, an efficient way would be to start with one pointer in the beginning and another pointer at the end. At every step, we will see if the numbers pointed by the two pointers add up to the target sum. If they do not, we will do one of two things:</p>
-<ol>
-<li>If the sum of the two numbers pointed by the two pointers is greater than the target sum, this means that we need a pair with a smaller sum. So, to try more pairs, we can decrement the end-pointer;</li>
-<li>If the sum of the two numbers pointed by the two pointers is smaller than the target sum, this means that we need a pair with a larger sum. So, to try more pairs, we can increment the start-pointer;</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/01/30/Two-Pointers/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -941,7 +927,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">201</span>
+                <span class="site-state-item-count">205</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

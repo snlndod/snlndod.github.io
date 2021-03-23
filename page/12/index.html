@@ -280,6 +280,512 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/25/搜索/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2021/01/25/搜索/" itemprop="url">
+                  搜索
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-25T23:31:24+08:00">
+                2021-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="如何用-A-搜索算法实现游戏中的寻路功能"><a href="#如何用-A-搜索算法实现游戏中的寻路功能" class="headerlink" title="如何用 A* 搜索算法实现游戏中的寻路功能"></a>如何用 A* 搜索算法实现游戏中的寻路功能</h2><p>魔兽世界、仙剑奇侠传这类 MMRPG 游戏，有一个非常重要的功能，那就是人物角色自动寻路。当人物处于游戏地图中的某个位置的时候，我们用鼠标点击另外一个相对较远的位置，人物就会自动地绕过障碍物走过去。玩过这么多游戏，不知你是否思考过，这个功能是怎么实现的呢？</p>
+<h2 id="算法解析"><a href="#算法解析" class="headerlink" title="算法解析"></a>算法解析</h2><p>实际上，这是一个非常典型的搜索问题。人物的起点就是他当下所在的位置，终点就是鼠标点击的位置。我们需要在地图中，找一条从起点到终点的路径。这条路径要绕过地图中所有障碍物，并且看起来要是一种非常聪明的走法。<strong>所谓“聪明”，笼统地解释就是，走的路不能太绕</strong>。理论上讲，最短路径显然是最聪明的走法，是这个问题的最优解。<strong>如果图非常大，那 Dijkstra 最短路径算法的执行耗时会很多</strong>。在真实的软件开发中，我们面对的是超级大的地图和海量的寻路请求，算法的执行效率太低，这显然是无法接受的。</p>
+<p>实际上，像出行路线规划、游戏寻路，这些真实软件开发中的问题，一般情况下，我们都不需要非得求最优解（也就是最短路径）。在权衡路线规划质量和执行效率的情况下，我们只需要寻求一个次优解就足够了。这个快速的路径规划算法，就是我们今天要学习的 <code>A* 算法</code>。实际上，A* 算法是对 Dijkstra 算法的优化和改造。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/01/25/搜索/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/23/B-树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2021/01/23/B-树/" itemprop="url">
+                  B+ 树
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-23T16:37:16+08:00">
+                2021-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="MySQL-数据库索引是如何实现的"><a href="#MySQL-数据库索引是如何实现的" class="headerlink" title="MySQL 数据库索引是如何实现的"></a>MySQL 数据库索引是如何实现的</h2><p>作为一个软件开发工程师，你对数据库肯定再熟悉不过了。作为主流的数据存储系统，它在我们的业务开发中，有着举足轻重的地位。在工作中，<strong>为了加速数据库中数据的查找速度，我们常用的处理思路是，对表中数据创建索引</strong>。那你是否思考过，数据库索引是如何实现的呢？底层使用的是什么数据结构和算法呢？</p>
+<h2 id="算法解析"><a href="#算法解析" class="headerlink" title="算法解析"></a>算法解析</h2><p>思考的过程比结论更重要。所以，今天的讲解，我会尽量还原这个解决方案的思考过程，让你知其然，并且知其所以然。</p>
+<h3 id="解决问题的前提是定义清楚问题"><a href="#解决问题的前提是定义清楚问题" class="headerlink" title="解决问题的前提是定义清楚问题"></a>解决问题的前提是定义清楚问题</h3><p>除了对问题进行详细的调研，还有一个办法，那就是，<strong>通过对一些模糊的需求进行假设，来限定要解决的问题的范围</strong>。如果你对数据库的操作非常了解，针对我们现在这个问题，你就能把索引的需求定义得非常清楚。但是，对于大部分软件工程师来说，我们可能只了解一小部分常用的 SQL 语句，所以，这里我们假设要解决的问题，只包含这样两个常用的需求：</p>
+<ul>
+<li>根据某个值查找数据，比如 SELECT * FROM user WHERE id=1234；</li>
+<li>根据区间值来查找某些数据，比如 SELECT * FROM user WHERE id&gt;1234 and id&lt;2345；</li>
+</ul>
+<p>除了这些功能性需求之外，这种问题往往还会涉及一些非功能性需求，我们着重考虑性能方面的需求。性能方面的需求，我们<strong>主要考察时间和空间两方面，也就是执行效率和存储空间</strong>。在执行效率方面，我们希望通过索引，查询数据的效率尽可能地高；在存储空间方面，我们希望索引不要消耗太多的内存空间。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/01/23/B-树/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/23/向量空间/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2021/01/23/向量空间/" itemprop="url">
+                  向量空间
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-23T16:05:27+08:00">
+                2021-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="如何实现一个简单的音乐推荐系统"><a href="#如何实现一个简单的音乐推荐系统" class="headerlink" title="如何实现一个简单的音乐推荐系统"></a>如何实现一个简单的音乐推荐系统</h2><p>很多人都喜爱听歌，以前我们用 MP3 听歌，现在直接通过音乐 App 在线就能听歌。而且，各种音乐 App 的功能越来越强大，不仅可以自己选歌听，还可以根据你听歌的口味偏好，给你推荐可能会喜爱的音乐，而且有时候，推荐的音乐还非常适合你的口味，甚至会惊艳到你！如此智能的一个功能，你知道它是怎么实现的吗？</p>
+<h2 id="算法解析"><a href="#算法解析" class="headerlink" title="算法解析"></a>算法解析</h2><p>实际上，要解决这个问题，并不需要特别高深的理论。解决思路的核心思想非常简单、直白，用两句话就能总结出来：</p>
+<ul>
+<li>找到跟你口味偏好相似的用户，把他们爱听的歌曲推荐给你；</li>
+<li>找出跟你喜爱的歌曲特征相似的歌曲，把这些歌曲推荐给你；</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/01/23/向量空间/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/21/概率统计/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2021/01/21/概率统计/" itemprop="url">
+                  概率统计
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-21T22:38:36+08:00">
+                2021-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="如何利用朴素贝叶斯过滤垃圾短信"><a href="#如何利用朴素贝叶斯过滤垃圾短信" class="headerlink" title="如何利用朴素贝叶斯过滤垃圾短信"></a>如何利用朴素贝叶斯过滤垃圾短信</h2><p>垃圾短信和骚扰电话，我想每个人都收到过吧？买房、贷款、投资理财、开发票，各种垃圾短信和骚扰电话，不胜其扰。如果你是一名手机应用开发工程师，让你实现一个简单的垃圾短信过滤功能以及骚扰电话拦截功能，该用什么样的数据结构和算法实现呢？</p>
+<h2 id="算法解析"><a href="#算法解析" class="headerlink" title="算法解析"></a>算法解析</h2><p>实际上，解决这个问题并不会涉及很高深的算法。今天，我就带你一块看下，如何利用简单的数据结构和算法，解决这种看似非常复杂的问题。</p>
+<h3 id="基于黑名单的过滤器"><a href="#基于黑名单的过滤器" class="headerlink" title="基于黑名单的过滤器"></a>基于黑名单的过滤器</h3><p>我们可以<strong>维护一个骚扰电话号码和垃圾短信发送号码的黑名单</strong>。如果黑名单中的电话号码不多的话，我们可以使用散列表、二叉树等动态数据结构来存储，对内存的消耗并不会很大。如果我们把每个号码看作一个字符串，并且假设平均长度是 16 个字节，那存储 50 万个电话号码，大约需要 10MB 的内存空间。即便是对于手机这样的内存有限的设备来说，这点内存的消耗也是可以接受的。</p>
+<p>但是，如果黑名单中的电话号码很多呢？比如有 500 万个。这个时候，如果再用散列表存储，就需要大约 100MB 的存储空间。为了实现一个拦截功能，耗费用户如此多的手机内存，这显然有点儿不合理。如果我们<strong>要存储 500 万个手机号码，我们把位图大小设置为 10 倍数据大小</strong>，也就是 5000 万，那也只需要使用 5000 万个二进制位（5000 万 bits），换算成字节，也就是不到 7MB 的存储空间。比起散列表的解决方案，内存的消耗减少了很多。</p>
+<p>我们<strong>还可以把黑名单存储在服务器端上，把过滤和拦截的核心工作，交给服务器端来做</strong>。手机端只负责将要检查的号码发送给服务器端，服务器端通过查黑名单，判断这个号码是否应该被拦截，并将结果返回给手机端。用这个解决思路完全不需要占用手机内存。不过，有利就有弊。我们知道，网络通信是比较慢的，所以，网络延迟就会导致处理速度降低。而且，这个方案还有个硬性要求，那就是只有在联网的情况下，才能正常工作。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/01/21/概率统计/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/20/位图/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -396,500 +902,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/19/最短路径/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2021/01/19/最短路径/" itemprop="url">
-                  最短路径
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-19T21:49:44+08:00">
-                2021-01-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="地图软件是如何计算出最优出行路径的"><a href="#地图软件是如何计算出最优出行路径的" class="headerlink" title="地图软件是如何计算出最优出行路径的"></a>地图软件是如何计算出最优出行路径的</h2><p>像 Google 地图、百度地图、高德地图这样的地图软件，我想你应该经常使用吧？如果想从家开车到公司，你只需要输入起始、结束地址，地图就会给你规划一条最优出行路线。<strong>这里的最优，有很多种定义</strong>，比如最短路线、最少用时路线、最少红绿灯路线等等。作为一名软件开发工程师，你是否思考过，地图软件的最优路线是如何计算出来的吗？底层依赖了什么算法呢？</p>
-<h2 id="算法解析"><a href="#算法解析" class="headerlink" title="算法解析"></a>算法解析</h2><p>解决软件开发中的实际问题，最重要的一点就是<code>建模</code>，也就是<strong>将复杂的场景抽象成具体的数据结构</strong>。我们把每个岔路口看作一个顶点，岔路口与岔路口之间的路看作一条边，路的长度就是边的权重。如果路是单行道，我们就在两个顶点之间画一条有向边；如果路是双行道，我们就在两个顶点之间画两条方向不同的边。这样，整个地图就被抽象成一个有向有权图。于是，我们要求解的问题就转化为，在一个有向有权图中，求两个顶点间的最短路径：</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/01/19/最短路径/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/19/拓扑排序/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2021/01/19/拓扑排序/" itemprop="url">
-                  拓扑排序
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-19T00:03:31+08:00">
-                2021-01-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="如何确定代码源文件的编译依赖关系"><a href="#如何确定代码源文件的编译依赖关系" class="headerlink" title="如何确定代码源文件的编译依赖关系"></a>如何确定代码源文件的编译依赖关系</h2><p>我们知道，一个完整的项目往往会包含很多代码源文件。编译器在编译整个项目的时候，需要按照依赖关系，依次编译每个源文件。比如，A.cpp 依赖 B.cpp，那在编译的时候，编译器需要先编译 B.cpp，才能编译 A.cpp。编译器通过分析源文件或者程序员事先写好的编译配置文件（比如 Makefile 文件），来获取这种局部的依赖关系。那编译器又该<strong>如何通过源文件两两之间的局部依赖关系，确定一个全局的编译顺序呢</strong>：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/247.png" alt></p>
-<h2 id="算法解析"><a href="#算法解析" class="headerlink" title="算法解析"></a>算法解析</h2><p>我们在穿衣服的时候都有一定的顺序，我们可以把这种顺序想成，衣服与衣服之间有一定的依赖关系。比如说，你必须先穿袜子才能穿鞋，先穿内裤才能穿秋裤。假设我们现在有八件衣服要穿，它们之间的两两依赖关系我们已经很清楚了，那如何安排一个穿衣序列，能够满足所有的两两之间的依赖关系？这就是个<code>拓扑排序</code>（Topological Sorting）问题。从这个例子中，你应该能想到，<strong>在很多时候，拓扑排序的序列并不是唯一的</strong>：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/248.png" alt></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/01/19/拓扑排序/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/17/动态规划/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2021/01/17/动态规划/" itemprop="url">
-                  动态规划
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-17T16:14:01+08:00">
-                2021-01-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="动态规划学习路线"><a href="#动态规划学习路线" class="headerlink" title="动态规划学习路线"></a>动态规划学习路线</h2><p><code>动态规划</code>（Dynamic Programming）比较适合用来求解最优问题，比如求最大值、最小值等等。它可以非常显著地降低时间复杂度，提高代码的执行效率。不过，它也是出了名的难学。它的主要学习难点跟递归类似，那就是，<strong>求解问题的过程不太符合人类常规的思维方式</strong>。对于新手来说，要想入门确实不容易。不过，等你掌握了之后，你会发现，实际上并没有想象中那么难。</p>
-<h2 id="0-1-背包问题"><a href="#0-1-背包问题" class="headerlink" title="0-1 背包问题"></a>0-1 背包问题</h2><p>对于一组不同重量、不可分割的物品，我们需要选择一些装入背包，在满足背包最大重量限制的前提下，背包中物品总重量的最大值是多少呢。关于这个问题，回溯的解决方法就是穷举搜索所有可能的装法，然后找出满足条件的最大值。不过，<strong>回溯算法的复杂度比较高，是指数级别的</strong>。那有没有什么规律，可以有效降低时间复杂度呢：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 回溯算法实现。注意：我把输入的变量都定义成了成员变量</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> maxW = Integer.MIN_VALUE;   <span class="comment">// 结果放到 maxW 中</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span>[] weight = &#123;<span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">3</span>&#125;; <span class="comment">// 物品重量</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> n = <span class="number">5</span>; <span class="comment">// 物品个数</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> w = <span class="number">9</span>; <span class="comment">// 背包承受的最大重量</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> cw)</span> </span>&#123; </span><br><span class="line">    <span class="comment">// 调用 f(0, 0)</span></span><br><span class="line">    <span class="keyword">if</span> (cw == w || i == n) &#123; </span><br><span class="line">        <span class="comment">// cw==w 表示装满了，i==n 表示物品都考察完了</span></span><br><span class="line">        <span class="keyword">if</span> (cw &gt; maxW) &#123;</span><br><span class="line">            maxW = cw;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    f(i+<span class="number">1</span>, cw); <span class="comment">// 选择不装第 i 个物品</span></span><br><span class="line">    <span class="keyword">if</span> (cw + weight[i] &lt;= w) &#123;</span><br><span class="line">        f(i+<span class="number">1</span>, cw + weight[i]); <span class="comment">// 选择装第 i 个物品</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/01/17/动态规划/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/16/回溯算法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2021/01/16/回溯算法/" itemprop="url">
-                  回溯算法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-16T13:12:37+08:00">
-                2021-01-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="如何理解“回溯算法”？"><a href="#如何理解“回溯算法”？" class="headerlink" title="如何理解“回溯算法”？"></a>如何理解“回溯算法”？</h2><p>笼统地讲，<code>回溯算法</code>（Backtracking Algorithm）很多时候都应用在“搜索”这类问题上。不过这里说的搜索，并不是狭义的指我们前面讲过的图的搜索算法，而是<strong>在一组可能的解中，搜索满足期望的解</strong>。回溯的处理思想，有点类似枚举搜索。我们枚举所有的解，找到满足期望的解。为了有规律地枚举所有可能的解，避免遗漏和重复，我们<strong>把问题求解的过程分为多个阶段</strong>。每个阶段，我们都会面对一个岔路口，我们先随意选一条路走，当发现这条路走不通的时候（不符合期望的解），就回退到上一个岔路口，另选一种走法继续走。</p>
-<p>我们有一个 8x8 的棋盘，希望往里放 8 个棋子（皇后），每个棋子所在的行、列、对角线都不能有另一个棋子。你可以看我画的图，第一幅图是满足条件的一种方法，第二幅图是不满足条件的。八皇后问题就是期望找到所有满足这种要求的放棋子方式：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/232.png" alt></p>
-<p>我们<strong>把这个问题划分成 8 个阶段</strong>，依次将 8 个棋子放到第一行, 第二行, 第三行, …, 第八行。在放置的过程中，我们不停地检查当前放法，是否满足要求。如果满足，则跳到下一行继续放置棋子；如果不满足，那就再换一种放法，继续尝试。<strong>回溯算法非常适合用递归代码实现</strong>：</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/01/16/回溯算法/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -937,7 +949,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">201</span>
+                <span class="site-state-item-count">205</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

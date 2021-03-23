@@ -280,6 +280,522 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/01/Basic-In-Memory-Database-Concepts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/07/01/Basic-In-Memory-Database-Concepts/" itemprop="url">
+                  Basic In-Memory Database Concepts
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-01T23:50:05+08:00">
+                2019-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><code>In-memory database technology</code> is a core feature of the SAP HANA database, which enables new applications that were not possible before.</p>
+<h2 id="Impact-of-Modern-Hardware-on-Database-System-Architecture"><a href="#Impact-of-Modern-Hardware-on-Database-System-Architecture" class="headerlink" title="Impact of Modern Hardware on Database System Architecture"></a>Impact of Modern Hardware on Database System Architecture</h2><p>In the past database management systems were designed for optimizing performance on hardware with limited main memory and with slow disk I/O as the main bottleneck. The focus was on <strong>optimizing disk access</strong>, for example by minimizing the number of disk pages to be read into main memory when processing a query.<br>Today’s computer architectures have changed. With <code>multi-core processors</code>, parallel processing is possible with fast communication between processor cores. Very large main memory configurations are now commercially available and affordable.<br>With all relevant data in memory, disk access is no longer a limiting factor for performance. With the increasing number of cores, CPUs are able to process more and more data per time interval. That means the performance bottleneck is now <strong>between the CPU cache and main memory</strong>.<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/2-1.jpg" alt><br>A <code>high performance data management system</code> for modern hardware must have the following characteristics:</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/01/Basic-In-Memory-Database-Concepts/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/30/SAP-HANA-Overview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/06/30/SAP-HANA-Overview/" itemprop="url">
+                  SAP HANA Overview
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-30T23:00:43+08:00">
+                2019-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>SAP HANA is a <strong>data management platform</strong> that is deploy as an appliance or in the cloud.<br>And its core is the <code>SAP HANA database</code>, an innovative in-memory database management system which makes full use of the capabilities of current hardware to increase application performance, to reduce cost of ownership and to enable new scenarios and applications that were not possible before.<br>The SAP HANA database is a hybrid database management system that combines several paradigms in one system. It includes a full <strong>relational database management system</strong> where individual tables can be stored column-based or row-based in memory, and column-based on disk.<br>It supports SQL, transactional isolation and recovery (ACID properties) and high availability. These capabilities are extended with the following features:</p>
+<ul>
+<li><strong>Text analysis and search</strong> capabilities that support a state-of-the-art search experience. This includes full text search with advanced features such as free style search, linguistic search and fault-tolerant fuzzy search.</li>
+<li>Native support for <strong>geo-spatial</strong> data and operations.</li>
+<li>Support for <strong>series data</strong>.</li>
+<li>Built-in support for <strong>planning</strong> applications.</li>
+<li>SAP HANA provides capabilities for the efficient storage and processing of <strong>graph-like</strong> data structures with a flexible data schema.</li>
+<li>A <strong>task framework</strong> for executing potentially long running tasks. Task can started asynchronously and can be monitored on the level of application-defined steps.</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/30/SAP-HANA-Overview/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/23/端口映射与容器互联/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/06/23/端口映射与容器互联/" itemprop="url">
+                  端口映射与容器互联
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T22:23:38+08:00">
+                2019-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在实践中，经常会碰到多个服务组件容器共同协作的情况，这往往需要多个容器之间，能够互相访问到对方的服务。<br>Docker 除了通过网络访问外，还提供了两个很方便的功能，来满足服务访问的基本需求：</p>
+<ul>
+<li>允许映射容器内应用的服务端口到宿主机。</li>
+<li>互联机制实现多个容器间，通过容器名来快速访问。</li>
+</ul>
+<h2 id="端口映射实现容器访问"><a href="#端口映射实现容器访问" class="headerlink" title="端口映射实现容器访问"></a>端口映射实现容器访问</h2><h3 id="从外部访问容器应用"><a href="#从外部访问容器应用" class="headerlink" title="从外部访问容器应用"></a>从外部访问容器应用</h3><p>当容器中运行一些网络应用，要让外部访问这些应用时，可以通过 <strong>-P</strong> 或 <strong>-p</strong> 参数来指定端口映射。<br>当使用 -P 参数时，Docker 会随机映射一个端口到内部容器开放的网络端口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -P training/webapp python app.py</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>当使用 -p 参数时，可以指定要映射的端口，并且在一个指定端口上，只可以绑定一个容器。</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/23/端口映射与容器互联/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/22/Docker-数据管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/06/22/Docker-数据管理/" itemprop="url">
+                  Docker 数据管理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-22T18:03:26+08:00">
+                2019-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在生产环境中使用 Docker，往往需要对数据进行<code>持久化</code>，或者需要在多个容器之间进行<code>数据共享</code>，这必然涉及容器的数据管理操作。<br>容器中管理数据主要有两种方式：</p>
+<ul>
+<li>数据卷（Data Volumes）：宿主机目录直接映射进容器。</li>
+<li>数据卷容器（Data Volumes Containers）：使用特定容器维护数据卷。</li>
+</ul>
+<p>通过这些机制，即使容器在运行中出现故障，用户也不必担心数据发生丢失，只需要快速的重新创建容器即可。</p>
+<h2 id="数据卷"><a href="#数据卷" class="headerlink" title="数据卷"></a>数据卷</h2><p><strong>数据卷</strong>是一个可供容器使用的特殊目录，类似于 Linux 中的 <code>mount</code> 行为。</p>
+<blockquote>
+<p>对数据卷的更新不会影响镜像，解耦开应用和数据。</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/06/22/Docker-数据管理/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/16/访问-Docker-仓库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -395,522 +911,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/16/操作-Docker-容器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/06/16/操作-Docker-容器/" itemprop="url">
-                  操作 Docker 容器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-16T17:18:38+08:00">
-                2019-06-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>容器</strong>是 Docker 的另一个核心概念，容器是镜像的一个运行实例。镜像是静态的只读文件，容器中的应用进程处于运行状态。</p>
-<h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><p>对容器的操作就像<code>直接操作应用</code>一样简单和快速。</p>
-<h3 id="新建容器"><a href="#新建容器" class="headerlink" title="新建容器"></a>新建容器</h3><p>可以使用 <strong>docker create</strong> 命令新建一个容器，新建的容器处于停止状态，可以使用 docker start 命令来启动他。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker create -it ubuntu:latest</span><br></pre></td></tr></table></figure>
-
-<p>容器是整个 Docker 技术栈的核心，支持的选项十分复杂。主要包括如下几大类：</p>
-<ul>
-<li>与容器运行模式相关</li>
-<li>与容器环境配置相关</li>
-<li>与容器资源限制和安全保护相关</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/06/16/操作-Docker-容器/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/09/使用-Docker-镜像/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/06/09/使用-Docker-镜像/" itemprop="url">
-                  使用 Docker 镜像
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-09T13:09:58+08:00">
-                2019-06-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>镜像</strong>是 Docker 三大核心概念中最重要的。</p>
-<h2 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h2><p>可以使用 <strong>docker pull 命令</strong>直接从 Docker Hub 镜像源来下载镜像，描述一个镜像需要包括“名称+标签”信息（NAME[:TAG]）。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>如果不显式指定 TAG，则默认会选择 latest 标签。从稳定性上考虑，不要在生产环境中忽略镜像的标签信息或使用默认的 lastest 标记的镜像。</p>
-</blockquote>
-<p>镜像文件一般由若干层（layer）组成，当不同的镜像包括相同的层时，本地仅存储了层的一份内容，减少了存储空间。<br>如果从非官方的仓库下载镜像，则需要在仓库名称前指定完整的仓库地址：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull hub.c.163.com/public/ubuntu:18.04</span><br></pre></td></tr></table></figure>
-
-<p>下载镜像到本地后，即可随时使用该镜像了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it ubuntu:18.04 /bin/bash</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/06/09/使用-Docker-镜像/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/08/核心概念与安装配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/06/08/核心概念与安装配置/" itemprop="url">
-                  核心概念与安装配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-08T21:39:19+08:00">
-                2019-06-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>镜像</strong>（image）、<strong>容器</strong>（container）、<strong>仓库</strong>（repository），只有理解了这三个核心概念，才能顺利的理解 Docker 容器的整个生命周期。</p>
-<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><h3 id="Docker-镜像"><a href="#Docker-镜像" class="headerlink" title="Docker 镜像"></a>Docker 镜像</h3><p>Docker 镜像类似于虚拟机镜像，可以将他理解为一个只读的模版。<br>通过<code>版本管理</code>和<code>增量的文件系统</code>，Docker 提供了一套十分简单的机制来创建和更新现有的镜像，用户甚至可以从网上下载一个已经做好的应用镜像，并直接使用。</p>
-<h3 id="Docker-容器"><a href="#Docker-容器" class="headerlink" title="Docker 容器"></a>Docker 容器</h3><p>Docker 容器类似于一个轻量级的沙箱，Docker 利用容器来运行和隔离应用。</p>
-<blockquote>
-<p>镜像自身是只读的。容器从镜像启动的时候，会在镜像的最上层创建一个可写层。</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/06/08/核心概念与安装配置/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/07/初识-Docker-与容器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/06/07/初识-Docker-与容器/" itemprop="url">
-                  初识 Docker 与容器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-07T22:10:07+08:00">
-                2019-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>从 20 世纪 60 年代 IBM 推出的大型主机虚拟化，到后来以 Xen、KVM 为代表的虚拟机虚拟化，再到现在以 Docker 为代表的容器技术。</p>
-<h2 id="什么是-Docker"><a href="#什么是-Docker" class="headerlink" title="什么是 Docker"></a>什么是 Docker</h2><h3 id="Docker-开源项目背景"><a href="#Docker-开源项目背景" class="headerlink" title="Docker 开源项目背景"></a>Docker 开源项目背景</h3><p>Docker 是基于 <code>Go 语言</code>实现的开源容器项目。<br>通过对应用的封装（Packaging）、分发（Distribution）、部署（Deployment）、运行（Runtime）生命周期进行管理，达到应用组件级别的<strong>一次封装，到处运行</strong>。</p>
-<h3 id="Linux-容器技术（Linux-Containers，LXC）"><a href="#Linux-容器技术（Linux-Containers，LXC）" class="headerlink" title="Linux 容器技术（Linux Containers，LXC）"></a>Linux 容器技术（Linux Containers，LXC）</h3><p>最早的容器技术可以追溯到 1982 年 Unix 系列操作系统上的 chroot 工具。<br>容器技术有效的将由单个操作系统管理的资源划分到<strong>孤立的组</strong>中，以更好的在孤立的组之间平衡有冲突的资源使用需求。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/06/07/初识-Docker-与容器/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -958,7 +958,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">201</span>
+                <span class="site-state-item-count">205</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

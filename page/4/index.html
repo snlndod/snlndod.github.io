@@ -280,6 +280,527 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/24/Designing-Twitter-Search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2021/02/24/Designing-Twitter-Search/" itemprop="url">
+                  Designing Twitter Search
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-24T22:37:32+08:00">
+                2021-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="What-is-Twitter-Search"><a href="#What-is-Twitter-Search" class="headerlink" title="What is Twitter Search?"></a>What is Twitter Search?</h2><p>Twitter users can update their status whenever they like. Each status (called tweet) consists of plain text and our goal is to design a system that allows searching over all the user tweets.</p>
+<h2 id="Requirements-and-Goals-of-the-System"><a href="#Requirements-and-Goals-of-the-System" class="headerlink" title="Requirements and Goals of the System"></a>Requirements and Goals of the System</h2><p>We need to design a system that can efficiently store and query tweets:</p>
+<ul>
+<li>Let’s assume Twitter has 1.5 billion total users with 800 million daily active users;</li>
+<li>On average Twitter gets 400 million tweets every day;</li>
+<li>The average size of a tweet is 300 bytes;</li>
+<li>Let’s assume there will be 500M searches every day;</li>
+<li>The search query will consist of multiple words combined with AND/OR;</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/02/24/Designing-Twitter-Search/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/20/Designing-an-API-Rate-Limiter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2021/02/20/Designing-an-API-Rate-Limiter/" itemprop="url">
+                  Designing an API Rate Limiter
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-20T18:52:28+08:00">
+                2021-02-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="What-is-a-Rate-Limiter"><a href="#What-is-a-Rate-Limiter" class="headerlink" title="What is a Rate Limiter?"></a>What is a Rate Limiter?</h2><p>Imagine we have a service which is receiving a huge number of requests, but it can only serve a limited number of requests per second. To handle this problem we would need some kind of throttling or rate limiting mechanism that would allow only a certain number of requests so our service can respond to all of them. A rate limiter, at a high level, limits the number of events an entity (user, device, IP, etc.) can perform in a particular time window. For example:</p>
+<ul>
+<li>A user can send only one message per second;</li>
+<li>A user is allowed only three failed credit card transactions per day;</li>
+<li>A single IP can only create twenty accounts per day;</li>
+</ul>
+<p>In general, a rate limiter caps how many requests a sender can issue in a specific time window. It then blocks requests once the cap is reached.</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/02/20/Designing-an-API-Rate-Limiter/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/18/Designing-Typeahead-Suggestion/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2021/02/18/Designing-Typeahead-Suggestion/" itemprop="url">
+                  Designing Typeahead Suggestion
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-18T17:33:31+08:00">
+                2021-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="What-is-Typeahead-Suggestion"><a href="#What-is-Typeahead-Suggestion" class="headerlink" title="What is Typeahead Suggestion?"></a>What is Typeahead Suggestion?</h2><p>Typeahead suggestions enable users to search for known and frequently searched terms. As the user types into the search box, it tries to predict the query based on the characters the user has entered and gives a list of suggestions to complete the query. Typeahead suggestions help the user to articulate their search queries better. It’s not about speeding up the search process but rather about guiding the users and lending them a helping hand in constructing their search query.</p>
+<h2 id="Requirements-and-Goals-of-the-System"><a href="#Requirements-and-Goals-of-the-System" class="headerlink" title="Requirements and Goals of the System"></a>Requirements and Goals of the System</h2><ul>
+<li><strong>Functional Requirements</strong>: As the user types in their query, our service should suggest top 10 terms starting with whatever the user has typed;</li>
+<li><strong>Non-Function Requirements</strong>: The suggestions should appear in real-time. The user should be able to see the suggestions within 200ms;</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/02/18/Designing-Typeahead-Suggestion/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/18/Designing-Youtube-or-Netflix/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2021/02/18/Designing-Youtube-or-Netflix/" itemprop="url">
+                  Designing Youtube or Netflix
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-18T14:00:29+08:00">
+                2021-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Why-Youtube"><a href="#Why-Youtube" class="headerlink" title="Why Youtube?"></a>Why Youtube?</h2><p>Youtube is one of the most popular video sharing websites in the world. Users of the service can upload, view, share, rate, and report videos as well as add comments on videos.</p>
+<h2 id="Requirements-and-Goals-of-the-System"><a href="#Requirements-and-Goals-of-the-System" class="headerlink" title="Requirements and Goals of the System"></a>Requirements and Goals of the System</h2><p>For the sake of this exercise, we plan to design a simpler version of Youtube with following requirements:<br><strong>Functional Requirements</strong>:</p>
+<ol>
+<li>Users should be able to upload videos;</li>
+<li>Users should be able to share and view videos;</li>
+<li>Users should be able to perform searches based on video titles;</li>
+<li>Our services should be able to record stats of videos, e.g., likes/dislikes, total number of views, etc;</li>
+<li>Users should be able to add and view comments on videos;</li>
+</ol>
+<p><strong>Non-Functional Requirements</strong>:</p>
+<ol>
+<li>The system should be highly reliable, any video uploaded should not be lost;</li>
+<li>The system should be highly available. Consistency can take a hit (in the interest of availability); if a user doesn’t see a video for a while, it should be fine;</li>
+<li>Users should have a real-time experience while watching videos and should not feel any lag;</li>
+</ol>
+<p><strong>Not in Scope</strong>: Video recommendations, most popular videos, channels, subscriptions, watch later, favorites, etc.</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/02/18/Designing-Youtube-or-Netflix/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/17/Designing-Twitter/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -417,553 +938,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/14/Designing-Facebook-Messenger/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2021/02/14/Designing-Facebook-Messenger/" itemprop="url">
-                  Designing Facebook Messenger
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-14T23:23:35+08:00">
-                2021-02-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="What-is-Facebook-Messenger"><a href="#What-is-Facebook-Messenger" class="headerlink" title="What is Facebook Messenger?"></a>What is Facebook Messenger?</h2><p>Facebook Messenger is a software application which provides text-based instant messaging services to its users. Messenger users can chat with their Facebook friends both from cell-phones and Facebook’s website.</p>
-<h2 id="Requirements-and-Goals-of-the-System"><a href="#Requirements-and-Goals-of-the-System" class="headerlink" title="Requirements and Goals of the System"></a>Requirements and Goals of the System</h2><p>Our Messenger should meet the following requirements:<br><strong>Functional Requirements</strong>:</p>
-<ol>
-<li>Messenger should support one-on-one conversations between users;</li>
-<li>Messenger should keep track of the online/offline statuses of its users;</li>
-<li>Messenger should support the persistent storage of chat history;</li>
-</ol>
-<p><strong>Non-Functional Requirements</strong>:</p>
-<ol>
-<li>Users should have real-time chat experience with minimum latency;</li>
-<li>Our system should be highly consistent; users should be able to see the same chat history on all their devices;</li>
-<li>Messenger’s high availability is desirable; we can tolerate lower availability in the interest of consistency;</li>
-</ol>
-<p><strong>Extended Requirements</strong>:</p>
-<ol>
-<li>Group Chats: Messenger should support multiple people talking to each other in a group;</li>
-<li>Push notifications: Messenger should be able to notify users of new messages when they are offline;</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/02/14/Designing-Facebook-Messenger/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/14/Designing-Dropbox/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2021/02/14/Designing-Dropbox/" itemprop="url">
-                  Designing Dropbox
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-14T12:02:07+08:00">
-                2021-02-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Why-Cloud-Storage"><a href="#Why-Cloud-Storage" class="headerlink" title="Why Cloud Storage?"></a>Why Cloud Storage?</h2><p>Cloud file storage services have become very popular recently as they simplify the storage and exchange of digital resources among multiple devices. The shift from using single personal computers to using multiple devices with different platforms and operating systems such as smartphones and tablets each with portable access from various geographical locations at any time, is believed to be accountable for the huge popularity of cloud storage services. Following are some of the top benefits of such services:</p>
-<ul>
-<li><strong>Availability</strong>: The motto of cloud storage services is to have data availability anywhere, anytime. Users can access their files/photos from any device whenever and wherever they like;</li>
-<li><strong>Reliability and Durability</strong>: Another benefit of cloud storage is that it offers 100% reliability and durability of data. Cloud storage ensures that users will never lose their data by keeping multiple copies of the data stored on different geographically located servers;</li>
-<li><strong>Scalability</strong>: Users will never have to worry about getting out of storage space. With cloud storage you have unlimited storage as long as you are ready to pay for it;</li>
-</ul>
-<p>If you haven’t used <a href="https://www.dropbox.com/?_hp=b&landing=dbv2" target="_blank" rel="noopener">dropbox.com</a> before, we would highly recommend creating an account there and uploading/editing a file and also going through the different options their service offers. This will help you a lot in understanding this chapter.</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/02/14/Designing-Dropbox/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/13/Designing-Instagram/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2021/02/13/Designing-Instagram/" itemprop="url">
-                  Designing Instagram
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-13T13:04:32+08:00">
-                2021-02-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="What-is-Instagram"><a href="#What-is-Instagram" class="headerlink" title="What is Instagram?"></a>What is Instagram?</h2><p>Instagram is a social networking service that enables its users to upload and share their photos and videos with other users. Instagram users can choose to share information either publicly or privately. Anything shared publicly can be seen by any other user, whereas privately shared content can only be accessed by the specified set of people. Instagram also enables its users to share through many other social networking platforms, such as Facebook, Twitter, Flickr, and Tumblr.</p>
-<p>We plan to design a simpler version of Instagram for this design problem, where a user can share photos and follow other users. The “News Feed” for each user will consist of top photos of all the people the user follows.</p>
-<h2 id="Requirements-and-Goals-of-the-System"><a href="#Requirements-and-Goals-of-the-System" class="headerlink" title="Requirements and Goals of the System"></a>Requirements and Goals of the System</h2><p>We’ll focus on the following set of requirements while designing Instagram:<br><strong>Functional Requirements</strong>:</p>
-<ol>
-<li>Users should be able to upload/download/view photos;</li>
-<li>Users can perform searches based on photo/video titles;</li>
-<li>Users can follow other users;</li>
-<li>The system should generate and display a user’s News Feed consisting of top photos from all the people the user follows;</li>
-</ol>
-<p><strong>Non-Functional Requirements</strong>:</p>
-<ol>
-<li>Our service needs to be highly available;</li>
-<li>The acceptable latency of the system is 200ms for News Feed generation;</li>
-<li>Consistency can take a hit (in the interest of availability) if a user doesn’t see a photo for a while; it should be fine;</li>
-<li>The system should be highly reliable; any uploaded photo or video should never be lost;</li>
-</ol>
-<p><strong>Not in Scope</strong>: Adding tags to photos, searching photos on tags, commenting on photos, tagging users to photos, who to follow, etc.</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/02/13/Designing-Instagram/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/12/Designing-Pastebin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2021/02/12/Designing-Pastebin/" itemprop="url">
-                  Designing Pastebin
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-12T22:24:47+08:00">
-                2021-02-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="What-is-Pastebin"><a href="#What-is-Pastebin" class="headerlink" title="What is Pastebin?"></a>What is Pastebin?</h2><p>Pastebin like services enable users to store plain text or images over the network (typically the Internet) and generate unique URLs to access the uploaded data. Such services are also used to share data over the network quickly, as users would just need to pass the URL to let other users see it.</p>
-<p>If you haven’t used <a href="https://pastebin.com/" target="_blank" rel="noopener">pastebin.com</a> before, please try creating a new “Paste” there and spend some time going through the different options their service offers. This will help you a lot in understanding this chapter.</p>
-<h2 id="Requirements-and-Goals-of-the-System"><a href="#Requirements-and-Goals-of-the-System" class="headerlink" title="Requirements and Goals of the System"></a>Requirements and Goals of the System</h2><p>Our Pastebin service should meet the following requirements:<br><strong>Functional Requirements</strong>:</p>
-<ol>
-<li>Users should be able to upload or “paste” their data and get a unique URL to access it;</li>
-<li>Users will only be able to upload text;</li>
-<li>Data and links will expire after a specific time span automatically; users should also be able to specify expiration time;</li>
-<li>Users should optionally be able to pick a custom alias for their paste;</li>
-</ol>
-<p><strong>Non-Functional Requirements</strong>:</p>
-<ol>
-<li>The system should be highly reliable, any data uploaded should not be lost;</li>
-<li>The system should be highly available. This is required because if our service is down, users will not be able to access their pastes;</li>
-<li>Users should be able to access their pastes in real-time with minimum latency;</li>
-<li>Paste links should not be guessable (not predictable);</li>
-</ol>
-<p><strong>Extended Requirements</strong>:</p>
-<ol>
-<li>Analytics, e.g., how many times a paste was accessed?</li>
-<li>Our service should also be accessible through REST APIs by other services;</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/02/12/Designing-Pastebin/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1011,7 +985,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">201</span>
+                <span class="site-state-item-count">205</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
