@@ -280,6 +280,257 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/24/Java-JDK/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2021/03/24/Java-JDK/" itemprop="url">
+                  Java JDK
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-24T15:45:41+08:00">
+                2021-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="工厂模式在-Calendar-类中的应用"><a href="#工厂模式在-Calendar-类中的应用" class="headerlink" title="工厂模式在 Calendar 类中的应用"></a>工厂模式在 Calendar 类中的应用</h2><p>Calendar 类提供了大量跟日期相关的功能代码，同时，又提供了一个 getInstance() 工厂方法，用来根据不同的 TimeZone 和 Locale 创建不同的 Calendar 子类对象。也就是说，功能代码和工厂方法代码耦合在了一个类中。所以，即便我们去查看它的源码，如果不细心的话，也很难发现它用到了工厂模式。同时，因为它不单单是一个工厂类，所以，它并没有以 Factory 作为后缀来命名。从代码中，我们可以看出，getInstance() 方法可以根据不同 TimeZone 和 Locale，创建不同的 Calendar 子类对象，比如 BuddhistCalendar、JapaneseImperialCalendar、GregorianCalendar，这些<strong>细节完全封装在工厂方法中，使用者只需要传递当前的时区和地址</strong>，就能够获得一个 Calendar 类对象来使用，而获得的对象具体是哪个 Calendar 子类的对象，使用者在使用的时候并不关心：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Calendar</span> <span class="keyword">implements</span> <span class="title">Serializable</span>, <span class="title">Cloneable</span>, <span class="title">Comparable</span>&lt;<span class="title">Calendar</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Calendar <span class="title">getInstance</span><span class="params">(TimeZone zone, Locale aLocale)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> createCalendar(zone, aLocale);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Calendar <span class="title">createCalendar</span><span class="params">(TimeZone zone,Locale aLocale)</span> </span>&#123;</span><br><span class="line">        CalendarProvider provider = LocaleProviderAdapter.getAdapter(CalendarProvider<span class="class">.<span class="keyword">class</span>, <span class="title">aLocale</span>).<span class="title">getCalendarProvider</span>()</span>;</span><br><span class="line">        <span class="keyword">if</span> (provider != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> provider.getInstance(zone, aLocale);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IllegalArgumentException iae) &#123;</span><br><span class="line">                <span class="comment">// fall back to the default instantiation</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Calendar cal = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (aLocale.hasExtensions()) &#123;</span><br><span class="line">            String caltype = aLocale.getUnicodeLocaleType(<span class="string">"ca"</span>);</span><br><span class="line">            <span class="keyword">if</span> (caltype != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">switch</span> (caltype) &#123;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">"buddhist"</span>:</span><br><span class="line">                        cal = <span class="keyword">new</span> BuddhistCalendar(zone, aLocale);</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">"japanese"</span>:</span><br><span class="line">                        cal = <span class="keyword">new</span> JapaneseImperialCalendar(zone, aLocale);</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    <span class="keyword">case</span> <span class="string">"gregory"</span>:</span><br><span class="line">                        cal = <span class="keyword">new</span> GregorianCalendar(zone, aLocale);</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (cal == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (aLocale.getLanguage() == <span class="string">"th"</span> &amp;&amp; aLocale.getCountry() == <span class="string">"TH"</span>) &#123;</span><br><span class="line">                cal = <span class="keyword">new</span> BuddhistCalendar(zone, aLocale);</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (aLocale.getVariant() == <span class="string">"JP"</span> &amp;&amp; aLocale.getLanguage() == <span class="string">"ja"</span> &amp;&amp; aLocale.getCountry() == <span class="string">"JP"</span>) &#123;</span><br><span class="line">                cal = <span class="keyword">new</span> JapaneseImperialCalendar(zone, aLocale);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cal = <span class="keyword">new</span> GregorianCalendar(zone, aLocale);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cal;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="建造者模式在-Calendar-类中的应用"><a href="#建造者模式在-Calendar-类中的应用" class="headerlink" title="建造者模式在 Calendar 类中的应用"></a>建造者模式在 Calendar 类中的应用</h2><p>我们知道，建造者模式有两种实现方法，一种是单独定义一个 Builder 类，另一种是<strong>将 Builder 实现为原始类的内部类</strong>。Calendar 就采用了第二种实现思路：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Calendar</span> <span class="keyword">implements</span> <span class="title">Serializable</span>, <span class="title">Cloneable</span>, <span class="title">Comparable</span>&lt;<span class="title">Calendar</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NFIELDS = FIELD_COUNT + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> WEEK_YEAR = FIELD_COUNT;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">long</span> instant;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span>[] fields;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> nextStamp;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> maxFieldIndex;</span><br><span class="line">        <span class="keyword">private</span> String type;</span><br><span class="line">        <span class="keyword">private</span> TimeZone zone;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">boolean</span> lenient = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">private</span> Locale locale;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> firstDayOfWeek, minimalDaysInFirstWeek;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Builder</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">setInstant</span><span class="params">(<span class="keyword">long</span> instant)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (fields != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">this</span>.instant = instant;</span><br><span class="line">            nextStamp = COMPUTED;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 省略 n 多 set() 方法</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Calendar <span class="title">build</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (locale == <span class="keyword">null</span>) &#123;</span><br><span class="line">                locale = Locale.getDefault();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (zone == <span class="keyword">null</span>) &#123;</span><br><span class="line">                zone = TimeZone.getDefault();</span><br><span class="line">            &#125;</span><br><span class="line">            Calendar cal;</span><br><span class="line">            <span class="keyword">if</span> (type == <span class="keyword">null</span>) &#123;</span><br><span class="line">                type = locale.getUnicodeLocaleType(<span class="string">"ca"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (type == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (locale.getCountry() == <span class="string">"TH"</span> &amp;&amp; locale.getLanguage() == <span class="string">"th"</span>) &#123;</span><br><span class="line">                    type = <span class="string">"buddhist"</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    type = <span class="string">"gregory"</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">switch</span> (type) &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">"gregory"</span>:</span><br><span class="line">                cal = <span class="keyword">new</span> GregorianCalendar(zone, locale, <span class="keyword">true</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">"iso8601"</span>:</span><br><span class="line">                GregorianCalendar gcal = <span class="keyword">new</span> GregorianCalendar(zone, locale, <span class="keyword">true</span>);</span><br><span class="line">                <span class="comment">// make gcal a proleptic Gregorian</span></span><br><span class="line">                gcal.setGregorianChange(<span class="keyword">new</span> Date(Long.MIN_VALUE));</span><br><span class="line">                <span class="comment">// and week definition to be compatible with ISO 8601</span></span><br><span class="line">                setWeekDefinition(MONDAY, <span class="number">4</span>);</span><br><span class="line">                cal = gcal;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">"buddhist"</span>:</span><br><span class="line">                cal = <span class="keyword">new</span> BuddhistCalendar(zone, locale);</span><br><span class="line">                cal.clear();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">"japanese"</span>:</span><br><span class="line">                cal = <span class="keyword">new</span> JapaneseImperialCalendar(zone, locale, <span class="keyword">true</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"unknown calendar type: "</span> + type);</span><br><span class="line">            &#125;</span><br><span class="line">            cal.setLenient(lenient);</span><br><span class="line">            <span class="keyword">if</span> (firstDayOfWeek != <span class="number">0</span>) &#123;</span><br><span class="line">                cal.setFirstDayOfWeek(firstDayOfWeek);</span><br><span class="line">                cal.setMinimalDaysInFirstWeek(minimalDaysInFirstWeek);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (isInstantSet()) &#123;</span><br><span class="line">                cal.setTimeInMillis(instant);</span><br><span class="line">                cal.complete();</span><br><span class="line">                <span class="keyword">return</span> cal;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (fields != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">boolean</span> weekDate = isSet(WEEK_YEAR) &amp;&amp; fields[WEEK_YEAR] &gt; fields[YEAR];</span><br><span class="line">                <span class="keyword">if</span> (weekDate &amp;&amp; !cal.isWeekDateSupported()) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"week date is unsupported by "</span> + type);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> stamp = MINIMUM_USER_STAMP; stamp &lt; nextStamp; stamp++) &#123;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt;= maxFieldIndex; index++) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (fields[index] == stamp) &#123;</span><br><span class="line">                            cal.set(index, fields[NFIELDS + index]);</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (weekDate) &#123;</span><br><span class="line">                    <span class="keyword">int</span> weekOfYear = isSet(WEEK_OF_YEAR) ? fields[NFIELDS + WEEK_OF_YEAR] : <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">int</span> dayOfWeek = isSet(DAY_OF_WEEK) ? fields[NFIELDS + DAY_OF_WEEK] : cal.getFirstDayOfWeek();</span><br><span class="line">                    cal.setWeekDate(fields[NFIELDS + WEEK_YEAR], weekOfYear, dayOfWeek);</span><br><span class="line">                &#125;</span><br><span class="line">                cal.complete();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> cal;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>工厂模式是用来创建不同但是相关类型的对象（继承同一父类或者接口的一组子类），由给定的参数来决定创建哪种类型的对象。建造者模式用来创建一种类型的复杂对象，<strong>通过设置不同的可选参数，定制化地创建不同的对象</strong>。网上有一个经典的例子很好地解释了两者的区别:</p>
+<blockquote>
+<p>顾客走进一家餐馆点餐，我们利用工厂模式，根据用户不同的选择，来制作不同的食物，比如披萨、汉堡、沙拉。对于披萨来说，用户又有各种配料可以定制，比如奶酪、西红柿、起司，我们通过建造者模式根据用户选择的不同配料来制作不同的披萨。</p>
+</blockquote>
+<p>粗看 Calendar 的 Builder 类的 build() 方法，你可能会觉得它有点像工厂模式。你的感觉没错，前面一半代码确实跟 getInstance() 工厂方法类似，根据不同的 type 创建了不同的 Calendar 子类。实际上，后面一半代码才属于标准的建造者模式，根据 setXXX() 方法设置的参数，来定制化刚刚创建的 Calendar 子类对象。</p>
+<h2 id="装饰器模式在-Collections-类中的应用"><a href="#装饰器模式在-Collections-类中的应用" class="headerlink" title="装饰器模式在 Collections 类中的应用"></a>装饰器模式在 Collections 类中的应用</h2><h2 id="适配器模式在-Collections-类中的应用"><a href="#适配器模式在-Collections-类中的应用" class="headerlink" title="适配器模式在 Collections 类中的应用"></a>适配器模式在 Collections 类中的应用</h2><p>## </p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/24/短网址系统背后的数据结构和算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2021/03/24/短网址系统背后的数据结构和算法/" itemprop="url">
+                  短网址系统背后的数据结构和算法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-24T13:50:36+08:00">
+                2021-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="短网址服务整体介绍"><a href="#短网址服务整体介绍" class="headerlink" title="短网址服务整体介绍"></a>短网址服务整体介绍</h2><p>刚刚我们讲了，短网址服务的一个核心功能，就是把原始的长网址转化成短网址。除了这个功能之外，短网址服务还有另外一个必不可少的功能。那就是，<strong>当用户点击短网址的时候，短网址服务会将浏览器重定向为原始网址</strong>：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/geek/17.png" alt></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/03/24/短网址系统背后的数据结构和算法/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/23/微服务接口鉴权限流背后的数据结构和算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -356,14 +607,16 @@
 
       
         
-          
-            <p>大应用拆分成微服务之后，服务之间的调用关系变得更复杂，平台的整体复杂熵升高，出错的概率、Debug 问题的难度都高了好几个数量级。所以，为了解决这些问题，服务治理便成了微服务的一个技术重点。所谓服务治理，简单点讲，就是管理微服务，保证平台整体正常、平稳地运行。服务治理涉及的内容比较多，比如<strong>鉴权、限流、降级、熔断、监控告警</strong>等等。这些服务治理功能的实现，底层依赖大量的数据结构和算法。</p>
+          <p>大应用拆分成微服务之后，服务之间的调用关系变得更复杂，平台的整体复杂熵升高，出错的概率、Debug 问题的难度都高了好几个数量级。所以，为了解决这些问题，服务治理便成了微服务的一个技术重点。所谓服务治理，简单点讲，就是管理微服务，保证平台整体正常、平稳地运行。服务治理涉及的内容比较多，比如<strong>鉴权、限流、降级、熔断、监控告警</strong>等等。这些服务治理功能的实现，底层依赖大量的数据结构和算法。</p>
 <h2 id="鉴权背景介绍"><a href="#鉴权背景介绍" class="headerlink" title="鉴权背景介绍"></a>鉴权背景介绍</h2><p>假设我们有一个微服务叫用户服务（User Service）。它提供很多用户相关的接口，比如获取用户信息、注册、登录等，给公司内部的其他应用使用。但是，并不是公司内部所有应用，都可以访问这个用户服务，<strong>也并不是每个有访问权限的应用，都可以访问用户服务的所有接口</strong>：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/geek/09.png" alt></p>
 <p>要实现接口鉴权功能，我们需要<strong>事先将应用对接口的访问权限规则设置好</strong>。当某个应用访问其中一个接口的时候，我们就可以拿应用的请求 URL，在规则中进行匹配。如果匹配成功，就说明允许访问；如果没有可以匹配的规则，那就说明这个应用没有这个接口的访问权限，我们就拒绝服务。</p>
-<h2 id="如何实现快速鉴权？"><a href="#如何实现快速鉴权？" class="headerlink" title="如何实现快速鉴权？"></a>如何实现快速鉴权？</h2><p>接口的格式有很多，有类似 Dubbo 这样的 RPC 接口，也有类似 Spring Cloud 这样的 HTTP 接口，不同接口的鉴权实现方式是类似的。实际上，不同的规则和匹配模式，对应的数据结构和匹配算法也是不一样的。</p>
-<h3 id="如何实现精确匹配规则？"><a href="#如何实现精确匹配规则？" class="headerlink" title="如何实现精确匹配规则？"></a>如何实现精确匹配规则？</h3><p>我们先来看最简单的一种匹配模式。只有当请求 URL 跟规则中配置的某个接口精确匹配时，这个请求才会被接受、处理:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/geek/10.png" alt></p>
-<h3 id="如何实现前缀匹配规则？"><a href="#如何实现前缀匹配规则？" class="headerlink" title="如何实现前缀匹配规则？"></a>如何实现前缀匹配规则？</h3><h3 id="如何实现模糊匹配规则？"><a href="#如何实现模糊匹配规则？" class="headerlink" title="如何实现模糊匹配规则？"></a>如何实现模糊匹配规则？</h3><h2 id="限流背景介绍"><a href="#限流背景介绍" class="headerlink" title="限流背景介绍"></a>限流背景介绍</h2><h2 id="如何实现精准限流？"><a href="#如何实现精准限流？" class="headerlink" title="如何实现精准限流？"></a>如何实现精准限流？</h2>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/03/23/微服务接口鉴权限流背后的数据结构和算法/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -524,7 +777,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/23/搜索引擎背后的经典数据结构和算法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/23/搜索引擎背后的数据结构和算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="snlndod">
@@ -546,8 +799,8 @@
             
               
                 
-                <a class="post-title-link" href="/2021/03/23/搜索引擎背后的经典数据结构和算法/" itemprop="url">
-                  搜索引擎背后的经典数据结构和算法
+                <a class="post-title-link" href="/2021/03/23/搜索引擎背后的数据结构和算法/" itemprop="url">
+                  搜索引擎背后的数据结构和算法
                 </a>
               
             
@@ -612,253 +865,7 @@
 <h3 id="待爬取网页链接文件：links-bin"><a href="#待爬取网页链接文件：links-bin" class="headerlink" title="待爬取网页链接文件：links.bin"></a>待爬取网页链接文件：links.bin</h3><p>我们可以把整个页面看作一个大的字符串，然后利用字符串匹配算法，在这个大字符串中，搜索这样一个网页标签，然后顺序读取之间的字符串 – 这其实就是网页链接。在广度优先搜索爬取页面的过程中，爬虫会不停地解析页面链接，将其放到队列中。于是，队列中的链接就会越来越多，可能会多到内存放不下。所以，我们用一个存储在磁盘中的文件（links.bin）来作为广度优先搜索中的队列。爬虫从 links.bin 文件中，取出链接去爬取对应的页面。等爬取到网页之后，将解析出来的链接，直接存储到 links.bin 文件中。这样用文件来存储网页链接的方式，还有其他好处。比如，<strong>支持断点续爬</strong>。也就是说，当机器断电之后，网页链接不会丢失；当机器重启之后，还可以从之前爬取到的位置继续爬取。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/03/23/搜索引擎背后的经典数据结构和算法/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/23/Redis-常用数据类型对应的数据结构/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2021/03/23/Redis-常用数据类型对应的数据结构/" itemprop="url">
-                  Redis 常用数据类型对应的数据结构
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-23T12:38:26+08:00">
-                2021-03-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Redis-数据库介绍"><a href="#Redis-数据库介绍" class="headerlink" title="Redis 数据库介绍"></a>Redis 数据库介绍</h2><p>Redis 是一种键值（Key-Value）数据库。相对于关系型数据库（比如 MySQL），Redis 也被叫作<strong>非关系型数据库</strong>。像 MySQL 这样的关系型数据库，表的结构比较复杂，会包含很多字段，可以通过 SQL 语句，来实现非常复杂的查询需求。而 Redis 中只包含“键”和“值”两部分，只能通过“键”来查询“值”。正是因为这样简单的存储结构，也让 Redis 的读写效率非常高；除此之外，Redis 主要是作为内存数据库来使用，也就是说，数据是存储在内存中的。尽管它经常被用作内存数据库，但是，它也支持将数据存储在硬盘中。Redis 中，键的数据类型是字符串，但是<strong>为了丰富数据存储的方式，方便开发者使用，值的数据类型有很多</strong>，常用的数据类型有这样几种，它们分别是字符串、列表、字典、集合、有序集合。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/03/23/Redis-常用数据类型对应的数据结构/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/01/Decision-Making/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2021/03/01/Decision-Making/" itemprop="url">
-                  Decision Making
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-01T15:12:37+08:00">
-                2021-03-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Statement"><a href="#Statement" class="headerlink" title="Statement"></a>Statement</h2><p>Given a set of values find an answer with an option to choose or ignore the current value.</p>
-<h2 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h2><p>If you decide to choose the current value use the previous result where the value was ignored; vice versa, if you decide to ignore the current value use previous result where value was used:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// i: indexing a set of values</span></span><br><span class="line"><span class="comment">// j: options to ignore j values</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= k; ++j) &#123;</span><br><span class="line">        dp[i][j] = max(&#123;dp[i][j], dp[i<span class="number">-1</span>][j] + arr[i], dp[i<span class="number">-1</span>][j<span class="number">-1</span>]&#125;);</span><br><span class="line">        dp[i][j<span class="number">-1</span>] = max(&#123;dp[i][j<span class="number">-1</span>], dp[i<span class="number">-1</span>][j<span class="number">-1</span>] + arr[i], arr[i]&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/03/01/Decision-Making/#more" rel="contents">
+            <a class="btn" href="/2021/03/23/搜索引擎背后的数据结构和算法/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -896,7 +903,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -939,7 +946,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">205</span>
+                <span class="site-state-item-count">207</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

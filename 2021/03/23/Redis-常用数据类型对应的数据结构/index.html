@@ -97,7 +97,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/geek/00.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/geek/01.png">
-<meta property="og:updated_time" content="2021-03-23T17:48:53.000Z">
+<meta property="og:updated_time" content="2021-03-25T17:33:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis 常用数据类型对应的数据结构">
 <meta name="twitter:description" content="Redis 数据库介绍Redis 是一种键值（Key-Value）数据库。相对于关系型数据库（比如 MySQL），Redis 也被叫作非关系型数据库。像 MySQL 这样的关系型数据库，表的结构比较复杂，会包含很多字段，可以通过 SQL 语句，来实现非常复杂的查询需求。而 Redis 中只包含“键”和“值”两部分，只能通过“键”来查询“值”。正是因为这样简单的存储结构，也让 Redis 的读写效率">
@@ -376,7 +376,7 @@
 <li>字典中保存的键和值的大小都要小于 64 字节；</li>
 <li>字典中键值对的个数要小于 512 个；</li>
 </ul>
-<p>当不能同时满足上面两个条件的时候，Redis 就使用散列表来实现字典类型。Redis 使用 <code>MurmurHash2</code> 这种运行速度快、随机性好的哈希算法作为哈希函数。对于哈希冲突问题，Redis 使用链表法来解决。除此之外，Redis 还支持散列表的动态扩容、缩容。当数据动态增加之后，散列表的装载因子会不停地变大。为了避免散列表性能的下降，当装载因子大于 1 的时候，Redis 会触发扩容，将散列表扩大为原来大小的 2 倍左右；当数据动态减少之后，为了节省内存，当装载因子小于 0.1 的时候，Redis 就会触发缩容，缩小为字典中数据个数的大约 2 倍大小。</p>
+<p>当不能同时满足上面两个条件的时候，Redis 就使用散列表来实现字典类型。Redis 使用 <code>MurmurHash</code> 这种运行速度快、随机性好的哈希算法作为哈希函数。对于哈希冲突问题，Redis 使用链表法来解决。除此之外，Redis 还支持散列表的动态扩容、缩容。当数据动态增加之后，散列表的装载因子会不停地变大。为了避免散列表性能的下降，当装载因子大于 1 的时候，Redis 会触发扩容，将散列表扩大为原来大小的 2 倍左右；当数据动态减少之后，为了节省内存，当装载因子小于 0.1 的时候，Redis 就会触发缩容，缩小为字典中数据个数的大约 2 倍大小。</p>
 <p>扩容缩容要做大量的数据搬移和哈希值的重新计算，所以比较耗时。针对这个问题，Redis <strong>使用渐进式扩容缩容策略，将数据的搬移分批进行</strong>，避免了大量数据一次性搬移导致的服务停顿。</p>
 <h2 id="集合（Set）"><a href="#集合（Set）" class="headerlink" title="集合（Set）"></a>集合（Set）</h2><p>集合这种数据类型用来存储一组不重复的数据。这种数据类型也有两种实现方法，一种是基于<code>有序数组</code>，另一种是基于散列表。当要存储的数据，同时满足下面这样两个条件的时候，Redis 就采用有序数组，来实现集合这种数据类型：</p>
 <ul>
@@ -441,8 +441,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/03/23/搜索引擎背后的经典数据结构和算法/" rel="prev" title="搜索引擎背后的经典数据结构和算法">
-                搜索引擎背后的经典数据结构和算法 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/03/23/搜索引擎背后的数据结构和算法/" rel="prev" title="搜索引擎背后的数据结构和算法">
+                搜索引擎背后的数据结构和算法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -513,7 +513,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">205</span>
+                <span class="site-state-item-count">207</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

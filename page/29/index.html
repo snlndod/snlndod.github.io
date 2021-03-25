@@ -280,6 +280,269 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/17/异步与通讯/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/01/17/异步与通讯/" itemprop="url">
+                  异步与通讯
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-17T00:50:01+08:00">
+                2020-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="异步（Asynchronism）"><a href="#异步（Asynchronism）" class="headerlink" title="异步（Asynchronism）"></a>异步（Asynchronism）</h2><p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/08/00.jpg" alt></p>
+<p>异步工作流有助于减少那些原本顺序执行的请求时间。它们可以通过<strong>提前进行一些耗时的工作</strong>来帮助减少请求时间，比如定期汇总数据。</p>
+<h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><p>消息队列接收、保留和传递消息。如果<strong>按顺序执行操作太慢</strong>的话，你可以使用有以下工作流的消息队列：</p>
+<ul>
+<li>应用程序将作业发布到队列，然后通知用户作业状态；</li>
+<li>一个 worker 从队列中取出该作业，对其进行处理，然后显示该作业完成；</li>
+</ul>
+<p>不去阻塞用户操作，作业在后台处理。在此期间，客户端可能会进行一些处理使得<strong>任务看上去像是已经完成了</strong>。例如，如果要发送一条推文，推文可能会马上出现在你的时间线上，但是可能需要一些时间才能将你的推文推送到你的所有关注者那里去。</p>
+<p><code>Redis</code> 是一个令人满意的简单的消息代理，但是消息有可能会丢失。</p>
+<p><code>RabbitMQ</code> 很受欢迎但是要求你适应 AMQP 协议，并且管理你自己的节点。</p>
+<p><code>Amazon SQS</code> 是被托管的，但可能具有高延迟，并且消息可能会被传送两次。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/01/17/异步与通讯/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/15/数据库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/01/15/数据库/" itemprop="url">
+                  数据库
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-15T00:10:29+08:00">
+                2020-01-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="关系型数据库管理系统（RDBMS）"><a href="#关系型数据库管理系统（RDBMS）" class="headerlink" title="关系型数据库管理系统（RDBMS）"></a>关系型数据库管理系统（RDBMS）</h2><p>像 SQL 这样的关系型数据库，是一系列以<code>表</code>的形式组织的<strong>数据项集合</strong>。</p>
+<p><code>ACID</code> 用来描述关系型数据库事务的特性：</p>
+<ul>
+<li>原子性（<strong>A</strong>tomicity）：每个事务内部所有操作要么全部完成，要么全部不完成；</li>
+<li>一致性（<strong>C</strong>onsistency）：任何事务都使数据库从一个有效的状态转换到另一个有效状态；</li>
+<li>隔离性（<strong>I</strong>solation）：并发执行事务的结果与顺序执行事务的结果相同；</li>
+<li>持久性（<strong>D</strong>urability）：事务提交后，对系统的影响是永久的。</li>
+</ul>
+<p>关系型数据库的扩展，包括许多技术：<code>主-从复制</code>、<code>主-主复制</code>、<code>联邦</code>、<code>分片</code>、<code>非规范化</code>和 <code>SQL 调优</code>。</p>
+<h3 id="主-从复制"><a href="#主-从复制" class="headerlink" title="主-从复制"></a>主-从复制</h3><p>主库同时负责读取和写入操作，并复制写入到一个或多个从库中，<strong>从库只负责读操作</strong>。树状形式的从库再将写入复制到更多的从库中去。如果<strong>主库离线，系统可以以只读模式运行</strong>，直到某个从库被提升为主库或有新的主库出现：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/00.jpg" alt></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/01/15/数据库/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/28/反向代理与应用层/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -671,358 +934,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/高层次的权衡/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/12/21/高层次的权衡/" itemprop="url">
-                  高层次的权衡
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-21T00:35:19+08:00">
-                2019-12-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>Keep in mind that everything is a trade-off.</p>
-</blockquote>
-<p>Next, we’ll look at high-level trade-offs:</p>
-<ul>
-<li>Performance vs. Scalability;</li>
-<li>Latency vs. Throughput;</li>
-<li>Consistency vs. Availability;</li>
-</ul>
-<h2 id="性能与可扩展性"><a href="#性能与可扩展性" class="headerlink" title="性能与可扩展性"></a>性能与可扩展性</h2><p>如果<strong>服务性能的增长与资源的增加是成比例的</strong>，服务就是可扩展的。通常，提高性能意味着服务于更多的工作单元，另一方面，当数据集增长时，同样也可以处理更大的工作单位。</p>
-<p>另一个角度来看待性能与可扩展性:</p>
-<ul>
-<li>如果你的系统有性能问题，对于单个用户来说是缓慢的；</li>
-<li>如果你的系统有可扩展性问题，单个用户较快但在高负载下会变慢；</li>
-</ul>
-<h2 id="延迟与吞吐量"><a href="#延迟与吞吐量" class="headerlink" title="延迟与吞吐量"></a>延迟与吞吐量</h2><p>延迟是执行操作或运算结果所花费的时间。吞吐量是单位时间内（执行）此类操作或运算的数量。通常，你应该<strong>以可接受级延迟下最大化吞吐量为目标</strong>。</p>
-<h2 id="一致性与可用性"><a href="#一致性与可用性" class="headerlink" title="一致性与可用性"></a>一致性与可用性</h2><h3 id="CAP-理论"><a href="#CAP-理论" class="headerlink" title="CAP 理论"></a>CAP 理论</h3><p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/02/00.png" alt></p>
-<p>在一个分布式计算系统中，只能同时满足下列的两点:</p>
-<ul>
-<li>一致性：每次访问都能获得最新数据但可能会收到错误响应；</li>
-<li>可用性：每次访问都能收到非错响应，但不保证获取到最新数据；</li>
-<li>分区容错性：在任意分区网络故障的情况下系统仍能继续运行；</li>
-</ul>
-<blockquote>
-<p>网络并不可靠，所以你应要支持分区容错性，并需要在软件一致性和可用性间做出取舍。</p>
-</blockquote>
-<h4 id="CP：一致性和分区容错性"><a href="#CP：一致性和分区容错性" class="headerlink" title="CP：一致性和分区容错性"></a>CP：一致性和分区容错性</h4><p>等待分区节点的响应可能会导致延时错误。如果你的<strong>业务需求需要原子读写</strong>，CP 是一个不错的选择。</p>
-<h4 id="AP：可用性和分区容错性"><a href="#AP：可用性和分区容错性" class="headerlink" title="AP：可用性和分区容错性"></a>AP：可用性和分区容错性</h4><p>响应节点上可用数据的最近版本可能并不是最新的。当分区解析完后，写入（操作）可能需要一些时间来传播。如果<strong>业务需求允许最终一致性，或当有外部故障时要求系统继续运行</strong>，AP 是一个不错的选择。</p>
-<h3 id="一致性模式"><a href="#一致性模式" class="headerlink" title="一致性模式"></a>一致性模式</h3><p>有同一份数据的多份副本，我们面临着怎样同步它们的选择，以便让客户端有一致的显示数据。回想 CAP 理论中的一致性定义 – 每次访问都能获得最新数据但可能会收到错误响应。</p>
-<h4 id="弱一致性"><a href="#弱一致性" class="headerlink" title="弱一致性"></a>弱一致性</h4><p>在写入之后，访问可能看到，也可能看不到（写入数据）。<strong>尽力优化它，让其能访问最新数据</strong>。这种方式可以在 Memcached 等系统中看到。弱一致性在 VoIP，视频聊天和实时多人游戏等真实用例中表现不错。例如：如果你在通话中丢失信号几秒钟时间，当重新连接时，你是听不到这几秒钟所说的话的。</p>
-<h4 id="强一致性"><a href="#强一致性" class="headerlink" title="强一致性"></a>强一致性</h4><p>在写入后，<strong>访问立即可见，数据被同步复制</strong>。文件系统和 RDBMS 使用的是此种方式。强一致性在需要记录的系统中运作良好。</p>
-<h4 id="最终一致性"><a href="#最终一致性" class="headerlink" title="最终一致性"></a>最终一致性</h4><p>在写入后，<strong>访问最终能看到写入数据，数据被异步复制</strong>。DNS 和 Email 等系统使用的是此种方式。最终一致性在 HA 系统中效果不错。</p>
-<h3 id="可用性模式"><a href="#可用性模式" class="headerlink" title="可用性模式"></a>可用性模式</h3><p>有两种支持高可用性的模式：<code>failover</code> 和 <code>replication</code>。</p>
-<h4 id="故障转移"><a href="#故障转移" class="headerlink" title="故障转移"></a>故障转移</h4><ol>
-<li>Active-Passive<br>关于工作到备用的故障转移流程是：<strong>工作服务器发送周期信号给待机中的备用服务器</strong>。如果周期信号中断，备用服务器切换成工作服务器的 IP 地址并恢复服务。宕机时间取决于备用服务器处于“热”待机状态，还是需要从“冷”待机状态进行启动。<strong>只有工作服务器处理流量</strong>。工作到备用的故障转移也被称为<code>主从切换</code>；</li>
-<li>Active-Active<br>在双工作切换中，<strong>双方都在管控流量，在它们之间分散负载</strong>。如果是外网服务器，DNS 将需要对两方都了解；如果是内网服务器，应用程序逻辑将需要对两方都了解。双工作切换也可以称为<code>主主切换</code>；</li>
-</ol>
-<p>故障转移的缺陷：</p>
-<ul>
-<li>故障转移需要添加额外硬件并增加复杂性；</li>
-<li>如果新写入数据在能被复制到备用系统之前，工作系统出现了故障，则有可能会丢失数据；</li>
-</ul>
-<h4 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h4><p>主从复制和主主复制</p>
-<h4 id="How-many-9s-are-enough"><a href="#How-many-9s-are-enough" class="headerlink" title="How many 9s are enough?"></a>How many 9s are enough?</h4><p>Availability is often quantified by uptime (or downtime) as a percentage of time the service is available. Availability is generally measured in <code>number of 9s</code> – a service with 99.99% availability is described as having four 9s.</p>
-<p><strong>99.9% availability – three 9s:</strong></p>
-<table>
-<thead>
-<tr>
-<th align="left">Duration</th>
-<th align="left">Acceptable downtime</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">Downtime per year</td>
-<td align="left">8h 45min 57s</td>
-</tr>
-<tr>
-<td align="left">Downtime per month</td>
-<td align="left">43m 49.7s</td>
-</tr>
-<tr>
-<td align="left">Downtime per week</td>
-<td align="left">10m 4.8s</td>
-</tr>
-<tr>
-<td align="left">Downtime per day</td>
-<td align="left">1m 26.4s</td>
-</tr>
-</tbody></table>
-<p><strong>99.99% availability – four 9s:</strong></p>
-<table>
-<thead>
-<tr>
-<th align="left">Duration</th>
-<th align="left">Acceptable downtime</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">Downtime per year</td>
-<td align="left">52min 35.7s</td>
-</tr>
-<tr>
-<td align="left">Downtime per month</td>
-<td align="left">4m 23s</td>
-</tr>
-<tr>
-<td align="left">Downtime per week</td>
-<td align="left">1m 5s</td>
-</tr>
-<tr>
-<td align="left">Downtime per day</td>
-<td align="left">8.6s</td>
-</tr>
-</tbody></table>
-<h4 id="In-sequence-vs-In-parallel"><a href="#In-sequence-vs-In-parallel" class="headerlink" title="In sequence vs. In parallel"></a>In sequence vs. In parallel</h4><p>If a service consists of multiple components prone to failure, the service’s overall availability depends on <strong>whether the components are in sequence or in parallel</strong>:</p>
-<ul>
-<li>In sequence<br>Overall availability <strong>decreases</strong> when two components with availability &lt; 100% are in sequence:<br>If both Foo and Bar each has 99.9% availability, their total availability in sequence would be 99.8%.<blockquote>
-<p>Availability(Total) = Availability(Foo) * Availability(Bar)</p>
-</blockquote>
-</li>
-<li>In parallel<br>Overall availability <strong>increases</strong> when two components with availability &lt; 100% are in parallel:<br>If both Foo and Bar each has 99.9% availability, their total availability in parallel would be 99.9999%.<blockquote>
-<p>Availability(Total) = 1 - (1 - Availability(Foo)) * (1 - Availability(Bar))</p>
-</blockquote>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/18/Scalability-for-Dummies/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/12/18/Scalability-for-Dummies/" itemprop="url">
-                  Scalability for Dummies
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-18T22:54:52+08:00">
-                2019-12-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/01/00.jpg" alt><br>Just recently I was asked what it would take to <strong>make a web service massively scalable</strong>. My answer was lengthy and maybe it is also for other people interesting. So I share it with you here in my blog and split it into parts to make it easier to read. New parts are released on a regular basis. Have fun and your comments are always welcomed!</p>
-<h2 id="Clones"><a href="#Clones" class="headerlink" title="Clones"></a>Clones</h2><p>Public servers of a scalable web service are hidden <strong>behind a load balancer</strong>. This load balancer <strong>evenly distributes</strong> load (requests from your users) onto your group/cluster of application servers. That means that if, for example, user Steve interacts with your service, he may be served at his first request by server 2, then with his second request by server 9 and then maybe again by server 2 on his third request. </p>
-<p>Steve should always get the same results of his request back, independent what server he “landed on”. That leads to the first golden rule for scalability: every server contains exactly the same codebase and <strong>does not store any user-related data</strong>, like sessions or profile pictures, on local disc or memory. </p>
-<p>Sessions need to be stored in a centralized data store which is accessible to all your application servers. It can be an <code>external database</code> or an <code>external persistent cache</code>, like Redis. An external persistent cache will have better performance than an external database. By external I mean that the data store does not reside on the application servers. Instead, it is somewhere in or <strong>near the data center</strong> of your application servers.</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/12/18/Scalability-for-Dummies/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/28/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><span class="page-number current">29</span><a class="page-number" href="/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/30/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/28/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><span class="page-number current">29</span><a class="page-number" href="/page/30/">30</a><span class="space">&hellip;</span><a class="page-number" href="/page/42/">42</a><a class="extend next" rel="next" href="/page/30/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1065,7 +981,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">205</span>
+                <span class="site-state-item-count">207</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
