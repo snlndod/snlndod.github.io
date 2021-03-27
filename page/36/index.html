@@ -280,6 +280,380 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/14/编译和链接/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/11/14/编译和链接/" itemprop="url">
+                  编译和链接
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-14T17:51:47+08:00">
+                2018-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>集成开发环境（IDE）一般都将编译和链接的过程一步完成，将这种编译和链接合并到一起的过程称为<code>构建（Build）</code>。<br>我们看到的是这些问题的现象，但是却很难看清本质，所有这些问题的本质就是软件运行背后的机理及支撑软件运行的各种平台和工具。</p>
+<h2 id="被隐藏了的过程"><a href="#被隐藏了的过程" class="headerlink" title="被隐藏了的过程"></a>被隐藏了的过程</h2><p>分解为 4 个步骤，分别是：<strong>预处理</strong>（Preprocessing）、<strong>编译</strong>（Compilation）、<strong>汇编</strong>（Assembly）和<strong>链接</strong>（Linking）。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/2-1.jpeg" alt></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/14/编译和链接/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/11/温故而知新/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/11/11/温故而知新/" itemprop="url">
+                  温故而知新
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-11T01:32:57+08:00">
+                2018-11-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="从-Hello-World-说起"><a href="#从-Hello-World-说起" class="headerlink" title="从 Hello World 说起"></a>从 Hello World 说起</h2><p>很多问题看似很简单，但实际上我们并没有一个非常清晰的思路；或者在我们脑海里有着模糊的印象，但真正到某些细节的时候可能又模糊不清了。<br>从基本的编译、静态链接到操作系统如何装载程序、动态链接及运行库和标准库的实现，甚至一些操作系统的机制，力争深入浅出地将这些问题层层剥开，最终使得这些程序运行背后的机制形成一个<strong>非常清晰而流畅的脉络</strong>。</p>
+<h2 id="万变不离其宗"><a href="#万变不离其宗" class="headerlink" title="万变不离其宗"></a>万变不离其宗</h2><p>将计算机的范围限定在：采用兼容 x86 指令集的 32 位 CPU 的个人计算机。</p>
+<ul>
+<li>系统程序开发者：多如牛毛的硬件设备中，三个部件最为关键：CPU、内存和 I/O 控制芯片。</li>
+<li>普通应用程序开发者：关心 CPU，其他的硬件细节基本不用关心。</li>
+<li>高级平台开发者：连 CPU 都不需要关心，平台（Java、.NET 等）提供了一个通用的抽象的计算机。</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/11/温故而知新/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/10/SLAM：现在与未来/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/07/10/SLAM：现在与未来/" itemprop="url">
+                  SLAM：现在与未来
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-10T01:30:35+08:00">
+                2018-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>除了经典 V-SLAM 框架之外，也积累了许多优秀的开源 SLAM 方案，大部分实现都比较复杂，不适合作为初学者的上手材料。</p>
+<h2 id="当前的开源方案"><a href="#当前的开源方案" class="headerlink" title="当前的开源方案"></a>当前的开源方案</h2><p>在 SLAM 研究领域，能见到开源方案是很不容易的。论文中，往往介绍理论只占 20% 的内容，其他 80% 都写在代码中。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SLAM/14_1.jpeg" alt></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/10/SLAM：现在与未来/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/09/ROS-入门/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -524,389 +898,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/08/数据库原理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/01/08/数据库原理/" itemprop="url">
-                  数据库原理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-08T22:52:46+08:00">
-                2018-01-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="SQL-语言的功能"><a href="#SQL-语言的功能" class="headerlink" title="SQL 语言的功能"></a>SQL 语言的功能</h2><p>SQL 是结构化查询语言（Structured Query Language）的缩写，其功能包括<strong>四个部分：</strong></p>
-<ul>
-<li>数据查询，数据库中最常见的操作，通过 select 语句可以得到所需的信息；</li>
-<li>数据操纵，<code>DML</code>（Data Manipulation Language）主要包括插入数据、修改数据、删除数据；</li>
-<li>数据定义，<code>DDL</code>（Data Definition Language）实现数据定义功能，可对数据库用户、基本表、视图、索引进行定义与撤销；</li>
-<li>数据控制，<code>DCL</code>（Data Control Language）用于对数据库进行统一的控制管理，保证数据在多用户共享的情况下能够安全。</li>
-</ul>
-<p>基本的 SQL 语句：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/5_1.jpg" alt></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/08/数据库原理/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/06/《面试宝典》读书笔记-4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/01/06/《面试宝典》读书笔记-4/" itemprop="url">
-                  《面试宝典》读书笔记-4
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-06T22:18:16+08:00">
-                2018-01-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>容器、多线程、Java 数据库操作</p>
-</blockquote>
-<h2 id="Java-Collections-框架"><a href="#Java-Collections-框架" class="headerlink" title="Java Collections 框架"></a>Java Collections 框架</h2><p>包含了大量集合接口以及这些接口的实现类和操作它们的算法。<br><code>Collection</code> 是整个集合框架的基础，它里面储存一组对象，表示不同类型的 Collections，它的作用只是维护一组对象的基本接口而已。<br>Set、List、Map 都继承自 Collection 接口：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/4_1.jpg" alt></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/06/《面试宝典》读书笔记-4/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/31/Python-语言精要-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/12/31/Python-语言精要-3/" itemprop="url">
-                  Python 语言精要-3
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-31T23:24:52+08:00">
-                2017-12-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="列表、集合以及字典的推导式"><a href="#列表、集合以及字典的推导式" class="headerlink" title="列表、集合以及字典的推导式"></a>列表、集合以及字典的推导式</h2><p><strong>列表推导式</strong>是最受欢迎的 Python 的语言特性之一，只需一条简洁的表达式，即可对一组元素进行过滤，并对得到的元素进行转换变形。基本形式：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[expr <span class="keyword">for</span> value <span class="keyword">in</span> collection <span class="keyword">if</span> condition]</span><br></pre></td></tr></table></figure>
-
-<p>这相当于下面这段 for 循环：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">result = []</span><br><span class="line"><span class="keyword">for</span> val <span class="keyword">in</span> collection:</span><br><span class="line">    <span class="keyword">if</span> condition:</span><br><span class="line">        result.append(expr)</span><br></pre></td></tr></table></figure>
-
-<p>过滤条件可以省略。滤除长度小于等于 2 的字符串，并将剩下的字符串转换成大写字母形式：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">strings = [<span class="string">'a'</span>, <span class="string">'as'</span>, <span class="string">'bat'</span>, <span class="string">'car'</span>, <span class="string">'dove'</span>, <span class="string">'python'</span>]</span><br><span class="line">[x.upper() <span class="keyword">for</span> x <span class="keyword">in</span> strings <span class="keyword">if</span> len(x) &gt; <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="string">'BAT'</span>, <span class="string">'CAR'</span>, <span class="string">'DOVE'</span>, <span class="string">'PYTHON'</span>]</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/31/Python-语言精要-3/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -954,7 +945,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">207</span>
+                <span class="site-state-item-count">210</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

@@ -280,6 +280,378 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/02/Proxy-Design-Pattern/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/12/02/Proxy-Design-Pattern/" itemprop="url">
+                  Proxy Design Pattern
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-02T00:56:30+08:00">
+                2020-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="代理模式的原理解析"><a href="#代理模式的原理解析" class="headerlink" title="代理模式的原理解析"></a>代理模式的原理解析</h2><p><code>代理模式</code>（Proxy Design Pattern）的原理和代码实现都不难掌握。它在不改变原始类（或叫被代理类）代码的情况下，通过<strong>引入代理类来给原始类附加功能</strong>。</p>
+<p>我们开发了一个性能计数器 – MetricsCollector 类，在业务系统中，我们采用如下方式来使用这个 MetricsCollector 类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">//...省略其他属性和方法...</span></span><br><span class="line">    <span class="keyword">private</span> MetricsCollector metricsCollector; <span class="comment">// 依赖注入</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserVo <span class="title">login</span><span class="params">(String telephone, String password)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> startTimestamp = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//...省略 login 逻辑...</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> endTimeStamp = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">long</span> responseTime = endTimeStamp - startTimestamp;</span><br><span class="line">        RequestInfo requestInfo = <span class="keyword">new</span> RequestInfo(<span class="string">"login"</span>, responseTime, startTimestamp);</span><br><span class="line">        metricsCollector.recordRequest(requestInfo);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//...返回 UserVo 数据...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserVo <span class="title">register</span><span class="params">(String telephone, String password)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> startTimestamp = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//...省略 register 逻辑...</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> endTimeStamp = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">long</span> responseTime = endTimeStamp - startTimestamp;</span><br><span class="line">        RequestInfo requestInfo = <span class="keyword">new</span> RequestInfo(<span class="string">"register"</span>, responseTime, startTimestamp);</span><br><span class="line">        metricsCollector.recordRequest(requestInfo);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//...返回 UserVo 数据...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/12/02/Proxy-Design-Pattern/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/29/Prototype-Design-Pattern/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/11/29/Prototype-Design-Pattern/" itemprop="url">
+                  Prototype Design Pattern
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-29T18:52:39+08:00">
+                2020-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="原型模式的原理与应用"><a href="#原型模式的原理与应用" class="headerlink" title="原型模式的原理与应用"></a>原型模式的原理与应用</h2><p>如果<strong>对象的创建成本比较大，而同一个类的不同对象之间差别不大</strong>（大部分字段都相同），在这种情况下，我们可以利用对已有对象（原型）进行复制（或者叫拷贝）的方式来创建新对象，以达到节省创建时间的目的。这种基于原型来创建对象的方式就叫作<code>原型设计模式</code>（Prototype Design Pattern），简称原型模式。</p>
+<p>实际上，<strong>创建对象包含的申请内存、给成员变量赋值这一过程</strong>，本身并不会花费太多时间，或者说对于大部分业务系统来说，这点时间完全是可以忽略的。应用一个复杂的模式，只得到一点点的性能提升，这就是所谓的过度设计，得不偿失。但是，如果<strong>对象中的数据需要经过复杂的计算才能得到</strong>（比如排序、计算哈希值），或者需要从 RPC、网络、数据库、文件系统等非常慢速的 IO 中读取，这种情况下，我们就可以利用原型模式，从其他已有对象中直接拷贝得到，而不用每次在创建新对象的时候，都重复执行这些耗时的操作。</p>
+<p>假设数据库中存储了大约 10 万条“搜索关键词”信息，每条信息包含关键词、关键词被搜索的次数、信息最近被更新的时间等。系统 A 在启动的时候会加载这份数据到内存中，用于处理某些其他的业务需求。为了方便快速地查找某个关键词对应的信息，我们<strong>给关键词建立一个散列表索引</strong>。如果你熟悉的是 Java 语言，可以直接使用语言中提供的 HashMap 容器来实现。其中，HashMap 的 key 为搜索关键词，value 为关键词详细信息（比如搜索次数）。我们只需要将数据从数据库中读取出来，放入 HashMap 就可以了。</p>
+<p>不过，我们还有另外一个系统 B，专门用来分析搜索日志，定期（比如间隔 10 分钟）批量地更新数据库中的数据，并且标记为新的数据版本。比如，在下面的示例图中，我们对 v2 版本的数据进行更新，得到 v3 版本的数据。这里我们假设只有更新和新添关键词，没有删除关键词的行为：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/11/29/Prototype-Design-Pattern/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/29/Builder-Design-Pattern/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/11/29/Builder-Design-Pattern/" itemprop="url">
+                  Builder Design Pattern
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-29T00:07:47+08:00">
+                2020-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="为什么需要建造者模式？"><a href="#为什么需要建造者模式？" class="headerlink" title="为什么需要建造者模式？"></a>为什么需要建造者模式？</h2><p>假设有这样一道设计面试题：我们需要定义一个资源池配置类 ResourcePoolConfig。这里的资源池，你可以简单理解为<strong>线程池、连接池、对象池等</strong>。在这个资源池配置类中，有以下几个成员变量，也就是可配置项。现在，请你编写代码实现这个 ResourcePoolConfig 类：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/03.png" alt></p>
+<p>只要你稍微有点开发经验，那实现这样一个类对你来说并不是件难事。因为 maxTotal、maxIdle、minIdle 不是必填变量，所以在创建 ResourcePoolConfig 对象的时候，我们<strong>通过往构造函数中，给这几个参数传递 null 值，来表示使用默认值</strong>：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/11/29/Builder-Design-Pattern/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/22/Factory-Design-Pattern/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -518,380 +890,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/17/编程技巧/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2020/11/17/编程技巧/" itemprop="url">
-                  编程技巧
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-17T22:34:06+08:00">
-                2020-11-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="把代码分割成更小的单元块"><a href="#把代码分割成更小的单元块" class="headerlink" title="把代码分割成更小的单元块"></a>把代码分割成更小的单元块</h2><p>大部分人阅读代码的习惯都是，<strong>先看整体再看细节</strong>。所以，我们要有模块化和抽象思维，善于将大块的复杂逻辑提炼成类或者函数，屏蔽掉细节，让阅读代码的人不至于迷失在细节中，这样能极大地提高代码的可读性。不过，<strong>只有代码逻辑比较复杂的时候，我们其实才建议提炼类或者函数</strong>。毕竟如果提炼出的函数只包含两三行代码，在阅读代码的时候，还得跳过去看一下，这样反倒增加了阅读成本。</p>
-<p>这里我举一个例子来进一步解释一下。重构前，在 invest() 函数中，最开始的那段关于时间处理的代码，是不是很难看懂？重构之后，我们将这部分逻辑抽象成一个函数，并且命名为 isLastDayOfMonth，从名字就能清晰地了解它的功能，判断今天是不是当月的最后一天。这里，我们就是通过将复杂的逻辑代码提炼成函数，<strong>大大提高了代码的可读性</strong>。代码具体如下所示：</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/11/17/编程技巧/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/17/代码风格/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2020/11/17/代码风格/" itemprop="url">
-                  代码风格
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-17T21:52:36+08:00">
-                2020-11-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="类、函数多大才合适？"><a href="#类、函数多大才合适？" class="headerlink" title="类、函数多大才合适？"></a>类、函数多大才合适？</h2><p>总体上来讲，<strong>类或函数的代码行数不能太多，但也不能太少</strong>。类或函数的代码行数太多，一个类上千行，一个函数几百行，逻辑过于繁杂，阅读代码的时候，很容易就会看了后面忘了前面。相反，类或函数的代码行数太少，在代码总量相同的情况下，被分割成的类和函数就会相应增多，调用关系就会变得更复杂，阅读某个代码逻辑的时候，需要频繁地在 n 多类或者 n 多函数之间跳来跳去，阅读体验也不好。</p>
-<p>对于函数代码行数的最大限制，网上有一种说法，那就是<strong>不要超过一个显示屏的垂直高度</strong>。比如，在我的电脑上，如果要让一个函数的代码完整地显示在 IDE 中，那最大代码行数不能超过 50。这个说法我觉得挺有道理的。因为超过一屏之后，在阅读代码的时候，为了串联前后的代码逻辑，就可能需要频繁地上下滚动屏幕，阅读体验不好不说，还容易出错。</p>
-<p>对于类的代码行数的最大限制，这个就更难给出一个确切的值了。有一个间接的判断标准 – 当一个类的代码读起来让你感觉头大了，实现某个功能时不知道该用哪个函数了，想用哪个函数翻半天都找不到了，只用到一个小功能要引入整个类（<strong>类中包含很多无关此功能实现的函数</strong>）的时候，这就说明类的行数过多了。</p>
-<h2 id="一行代码多长最合适？"><a href="#一行代码多长最合适？" class="headerlink" title="一行代码多长最合适？"></a>一行代码多长最合适？</h2><p>不同的编程语言、不同的规范、不同的项目团队，对此的限制可能都不相同。不管这个限制是多少，总体上来讲我们要遵循的一个原则是：<strong>一行代码最长不能超过 IDE 显示的宽度</strong>。需要滚动鼠标才能查看一行的全部代码，显然不利于代码的阅读。当然，这个限制也不能太小，太小会导致很多稍长点的语句被折成两行，也会影响到代码的整洁，不利于阅读。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/11/17/代码风格/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/17/命名与注释/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2020/11/17/命名与注释/" itemprop="url">
-                  命名与注释
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-17T20:33:40+08:00">
-                2020-11-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h2><p>大到项目名、模块名、包名、对外暴露的接口，小到类名、函数名、变量名、参数名，只要是做开发，我们就逃不过“起名字”这一关。命名的好坏，对于代码的可读性来说非常重要，甚至可以说是起决定性作用的。除此之外，<strong>命名能力也体现了一个程序员的基本编程素养</strong>。这也是我把“命名”放到第一个来讲解的原因。</p>
-<p>实际上，命名这件事说难也不难，关键还是看你重不重视，愿不愿意花时间。对于影响范围比较大的命名，比如包名、接口、类名，我们一定<strong>要反复斟酌、推敲</strong>。实在想不到好名字的时候，可以去 GitHub 上用相关的关键词联想搜索一下，看看类似的代码是怎么命名的。</p>
-<h3 id="命名多长最合适？"><a href="#命名多长最合适？" class="headerlink" title="命名多长最合适？"></a>命名多长最合适？</h3><p>尽管长的命名可以包含更多的信息，更能准确直观地表达意图，但是，如果函数、变量的命名很长，那由它们组成的语句就会很长。在代码列长度有限制的情况下，就会<strong>经常出现一条语句被分割成两行的情况</strong>，这其实会影响代码可读性。</p>
-<p>实际上，<strong>在足够表达其含义的情况下，命名当然是越短越好</strong>。但是，大部分情况下，短的命名都没有长的命名更能达意。所以，很多书籍或者文章都不推荐在命名时使用缩写。对于一些默认的、大家都比较熟知的词，我比较推荐用缩写。这样一方面能让命名短一些，另一方面又不影响阅读理解，比如，sec 表示 second、str 表示 string、num 表示 number、doc 表示 document。除此之外，对于作用域比较小的变量，我们可以使用相对短的命名，比如一些函数内的临时变量。相反，<strong>对于类名这种作用域比较大的，我更推荐用长的命名方式</strong>。</p>
-<p>总之，命名的一个原则就是以能准确达意为目标。不过，对于代码的编写者来说，自己对代码的逻辑很清楚，总感觉用什么样的命名都可以达意，实际上，对于不熟悉你代码的同事来讲，可能就不这么认为了。所以，命名的时候，我们一定<strong>要学会换位思考</strong>，假设自己不熟悉这块代码，从代码阅读者的角度去考量命名是否足够直观。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/11/17/命名与注释/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -939,7 +937,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">207</span>
+                <span class="site-state-item-count">210</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

@@ -280,6 +280,396 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/22/面试题-7：重建二叉树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/22/面试题-7：重建二叉树/" itemprop="url">
+                  面试题 7：重建二叉树
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-22T21:47:22+08:00">
+                2017-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如，输入前序遍历序列 {1, 2, 4, 7, 3, 5, 6, 8} 和中序遍历序列 {4, 7, 2, 1, 5, 3, 8, 6}，则重建二叉树并输出它的头节点。二叉树节点的定义如下：</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BinaryTreeNode</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> m_nValue;</span><br><span class="line">    BinaryTreeNode *m_pLeft;</span><br><span class="line">    BinaryTreeNode *m_pRight;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>由于树的操作会涉及大量的指针，因此与树有关的面试题都不太容易。</li>
+<li>3 种遍历都有<strong>递归</strong>和<strong>循环</strong>两种不同的实现方法，递归实现都比循环实现要简洁很多。</li>
+<li>我们可以平均在 O(logn) 的时间内，根据数值在二叉搜索树中找到一个节点。</li>
+<li>需要快速找到最大值或最小值的问题都可以用堆来解决。</li>
+<li><strong>红黑树：</strong>把树中的节点定义为红、黑两种颜色，并通过规则确保从根节点到叶节点的最长路径的长度<strong>不超过</strong>最短路径的<strong>两倍</strong>。STL 中，set、multiset、map、mutimap 等数据结构都是基于红黑树实现的。</li>
+<li>考查应聘者分析复杂问题的能力。把构建二叉树的大问题分解成构建左、右子树的两个小问题。确定左、右子树节点的数量，用递归的方法去完成。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/22/面试题-7：重建二叉树/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </li></ul></div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/20/面试题-6：从尾到头打印链表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/20/面试题-6：从尾到头打印链表/" itemprop="url">
+                  面试题 6：从尾到头打印链表
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-20T20:15:24+08:00">
+                2017-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>输入一个链表的头节点，从尾到头反过来打印出每个节点的值。链表节点定义如下：</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> m_mKey;</span><br><span class="line">    ListNode *m_pNext;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>内存分配不是在创建链表时一次性完成的，由于没有闲置的内存，链表的空间效率比数组高。</li>
+<li>如果我们打算修改输入的数据，最好先问面试官是不是允许修改。</li>
+<li>典型的<strong>后进先出</strong>，可以用栈实现这种顺序。递归本质上就是一个栈结构，但有可能导致函数调用栈溢出，显然用<strong>栈基于循环</strong>实现的代码的鲁棒性要好一些。</li>
+<li>考查对循环、递归、栈 3 个相互关联的概念的理解。</li>
+</ul>
+<p><a href="https://gist.githubusercontent.com/snlndod/39107507d9eb6a1736ee4e8cb98ef35f/raw/3aa2ee894f7880b74a5986bab68f47873f148d9d/06_PrintListInReversedOrder.cpp" target="_blank" rel="noopener">Source Code</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/19/面试题-5：替换空格/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/11/19/面试题-5：替换空格/" itemprop="url">
+                  面试题 5：替换空格
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-19T21:41:33+08:00">
+                2017-11-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>请实现一个函数，把字符串中的每个空格替换成“20%”。例如，输入“We are happy.”，则输出“We%20are%20happy.”。</p>
+</blockquote>
+<ul>
+<li>URL参数中含有特殊字符，如空格、”#”等。会导致服务器端无法获得正确的参数值，<strong>转换规则：</strong>”%”后面跟上 ASCII 码的两位十六进制的表示。</li>
+<li>从前往后复制每个字符则需要重复移动数字多次（O(n^2)），从后往前复制，这样就能减少移动的次数，从而提高效率（O(n)）。能清晰地分析出两种不同方法的时间效率各是多少。</li>
+<li>画一两个示意图解释自己的思路（<strong>两个指针</strong>），既能帮助我们厘清思路，也能使我们和面试官的交流变得更加高效。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/19/面试题-5：替换空格/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </li></ul></div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/18/面试题-3.2：不修改数组找出重复的数字/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -528,390 +918,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/18/面试题-4：二维数组中的查找/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/18/面试题-4：二维数组中的查找/" itemprop="url">
-                  面试题 4：二维数组中的查找
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-18T22:53:54+08:00">
-                2017-05-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
-</blockquote>
-<ul>
-<li>通过分析简单具体的例子，试图寻找普遍的规律。</li>
-<li>在二维数组的中间选取一个数字，转变成从数组的一个角上选取数字。</li>
-<li>如果该数字大于要查找的数字，则剔除这个数字所在列；如果该数字小于要查找的数字，则剔除这个数字所在的行。</li>
-<li>也可以选取左下角的数字。</li>
-<li>注意特殊输入测试（空指针）。</li>
-<li>根据行号和列号计算出相对于数组首地址的偏移量。</li>
-</ul>
-<p><a href="https://gist.githubusercontent.com/snlndod/83dfc36a20f58eba1aea9dbc8da71bce/raw/81e306769a73284820e71f060207b028a90b14ca/04_FindInPartiallySortedMatrix.cpp" target="_blank" rel="noopener">Source Code</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/07/AOAPC-读书笔记-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/07/AOAPC-读书笔记-3/" itemprop="url">
-                  AOAPC 读书笔记-3
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-07T15:17:54+08:00">
-                2017-05-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>C++ 与 STL 入门</p>
-</blockquote>
-<h2 id="从C-到-C"><a href="#从C-到-C" class="headerlink" title="从C 到 C++"></a>从C 到 C++</h2><p>与其把 C++ 学得一知半解，还不如先把 C 语言的基础打好；<br>C++ 的精华与糟粕并存。</p>
-<h3 id="C-版框架"><a href="#C-版框架" class="headerlink" title="C++ 版框架"></a>C++ 版框架</h3><p><strong>使用 C 头文件：</strong>在 C 头文件前加一个小写的 c 字母，然后去掉 .h 后缀；<br>C++ 流最大的缺点就是运行太慢；<br>如果两个函数的参数类型完全相同，则是<code>不能重载</code>的，解决方案是：分别把函数写在各自的<strong>命名空间</strong>里；<br>使用了 using namespace std 语句，可以用 cin 代替 std::cin，cout 代替 std::cout；<br>使用 const <strong>声明常数</strong>，而不是用 #define；<br>仍然可以用 int 来表示真假，但是用 bool 可以让程序更清晰。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/07/AOAPC-读书笔记-3/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/06/《面试宝典》读书笔记-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/06/《面试宝典》读书笔记-3/" itemprop="url">
-                  《面试宝典》读书笔记-3
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-06T15:44:30+08:00">
-                2017-05-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>异常处理、输入输出流、Java 平台与内存管理</p>
-</blockquote>
-<h2 id="finally-块不一定会被执行"><a href="#finally-块不一定会被执行" class="headerlink" title="finally 块不一定会被执行"></a>finally 块不一定会被执行</h2><ul>
-<li>当程序在进入<code>try 块</code>之前就出现异常，会直接结束，不会执行 finally 块中的代码；</li>
-<li>当程序在 try 块中强制退出时，也不会去执行 finally 块中的代码。</li>
-</ul>
-<h2 id="异常处理的原理"><a href="#异常处理的原理" class="headerlink" title="异常处理的原理"></a>异常处理的原理</h2><p>异常处理的目的：为了提高程序的安全性与鲁棒性。<br>JVM 将出现的错误表示为一个异常并抛出，这个异常可以在 <code>catch 块</code>中进行捕获，然后进行处理。<br>Java 中把异常当作对象来处理，并定义了一个基类（java.lang.Throwable）作为所有异常的父类。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/06/《面试宝典》读书笔记-3/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -959,7 +965,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">207</span>
+                <span class="site-state-item-count">210</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

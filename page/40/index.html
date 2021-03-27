@@ -280,6 +280,390 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/18/面试题-4：二维数组中的查找/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/18/面试题-4：二维数组中的查找/" itemprop="url">
+                  面试题 4：二维数组中的查找
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-18T22:53:54+08:00">
+                2017-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+</blockquote>
+<ul>
+<li>通过分析简单具体的例子，试图寻找普遍的规律。</li>
+<li>在二维数组的中间选取一个数字，转变成从数组的一个角上选取数字。</li>
+<li>如果该数字大于要查找的数字，则剔除这个数字所在列；如果该数字小于要查找的数字，则剔除这个数字所在的行。</li>
+<li>也可以选取左下角的数字。</li>
+<li>注意特殊输入测试（空指针）。</li>
+<li>根据行号和列号计算出相对于数组首地址的偏移量。</li>
+</ul>
+<p><a href="https://gist.githubusercontent.com/snlndod/83dfc36a20f58eba1aea9dbc8da71bce/raw/81e306769a73284820e71f060207b028a90b14ca/04_FindInPartiallySortedMatrix.cpp" target="_blank" rel="noopener">Source Code</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/07/AOAPC-读书笔记-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/07/AOAPC-读书笔记-3/" itemprop="url">
+                  AOAPC 读书笔记-3
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-07T15:17:54+08:00">
+                2017-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>C++ 与 STL 入门</p>
+</blockquote>
+<h2 id="从C-到-C"><a href="#从C-到-C" class="headerlink" title="从C 到 C++"></a>从C 到 C++</h2><p>与其把 C++ 学得一知半解，还不如先把 C 语言的基础打好；<br>C++ 的精华与糟粕并存。</p>
+<h3 id="C-版框架"><a href="#C-版框架" class="headerlink" title="C++ 版框架"></a>C++ 版框架</h3><p><strong>使用 C 头文件：</strong>在 C 头文件前加一个小写的 c 字母，然后去掉 .h 后缀；<br>C++ 流最大的缺点就是运行太慢；<br>如果两个函数的参数类型完全相同，则是<code>不能重载</code>的，解决方案是：分别把函数写在各自的<strong>命名空间</strong>里；<br>使用了 using namespace std 语句，可以用 cin 代替 std::cin，cout 代替 std::cout；<br>使用 const <strong>声明常数</strong>，而不是用 #define；<br>仍然可以用 int 来表示真假，但是用 bool 可以让程序更清晰。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/07/AOAPC-读书笔记-3/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/06/《面试宝典》读书笔记-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/06/《面试宝典》读书笔记-3/" itemprop="url">
+                  《面试宝典》读书笔记-3
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-06T15:44:30+08:00">
+                2017-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>异常处理、输入输出流、Java 平台与内存管理</p>
+</blockquote>
+<h2 id="finally-块不一定会被执行"><a href="#finally-块不一定会被执行" class="headerlink" title="finally 块不一定会被执行"></a>finally 块不一定会被执行</h2><ul>
+<li>当程序在进入<code>try 块</code>之前就出现异常，会直接结束，不会执行 finally 块中的代码；</li>
+<li>当程序在 try 块中强制退出时，也不会去执行 finally 块中的代码。</li>
+</ul>
+<h2 id="异常处理的原理"><a href="#异常处理的原理" class="headerlink" title="异常处理的原理"></a>异常处理的原理</h2><p>异常处理的目的：为了提高程序的安全性与鲁棒性。<br>JVM 将出现的错误表示为一个异常并抛出，这个异常可以在 <code>catch 块</code>中进行捕获，然后进行处理。<br>Java 中把异常当作对象来处理，并定义了一个基类（java.lang.Throwable）作为所有异常的父类。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/06/《面试宝典》读书笔记-3/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/04/《面试宝典》读书笔记-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -530,388 +914,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/30/《面试宝典》读书笔记-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/30/《面试宝典》读书笔记-1/" itemprop="url">
-                  《面试宝典》读书笔记-1
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-30T22:46:01+08:00">
-                2017-04-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>基本概念、面向对象技术</p>
-</blockquote>
-<h2 id="Java-语言的优点"><a href="#Java-语言的优点" class="headerlink" title="Java 语言的优点"></a>Java 语言的优点</h2><h3 id="纯面向对象语言"><a href="#纯面向对象语言" class="headerlink" title="纯面向对象语言"></a>纯面向对象语言</h3><p>能够直接反应现实生活中的对象。</p>
-<h3 id="平台无关性"><a href="#平台无关性" class="headerlink" title="平台无关性"></a>平台无关性</h3><p>由于 Java 为解释型语言，编译器会把 Java 代码变成<code>中间代码</code>，然后在 JVM 上解释执行。<br>中间代码与平台无关，可以很好地跨平台执行，具有很好的可移植性。</p>
-<h3 id="提供了很多内置的类库"><a href="#提供了很多内置的类库" class="headerlink" title="提供了很多内置的类库"></a>提供了很多内置的类库</h3><p>简化了开发人员的程序设计工作，同时缩短了项目开发的时间。<br>对多线程的支持、对网络通讯的支持、垃圾回收器。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/30/《面试宝典》读书笔记-1/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/27/Python-语言精要-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/27/Python-语言精要-1/" itemprop="url">
-                  Python 语言精要-1
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-27T16:14:38+08:00">
-                2017-04-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>常常得先把那些乱七八糟的数据，处理成漂亮点的结构化形式。</p>
-</blockquote>
-<h2 id="Python-解释器"><a href="#Python-解释器" class="headerlink" title="Python 解释器"></a>Python 解释器</h2><p>一次执行一条语句。<br>“&gt;&gt;&gt;”是提示符，可以在那里输入表达式。</p>
-<h2 id="语言语义"><a href="#语言语义" class="headerlink" title="语言语义"></a>语言语义</h2><p>重视可读性、简洁性、明确性，可执行的伪代码。</p>
-<h3 id="缩进，而不是大括号"><a href="#缩进，而不是大括号" class="headerlink" title="缩进，而不是大括号"></a>缩进，而不是大括号</h3><p>通过空白符（4 个空格）来组织代码。<br><strong>冒号</strong>表示一段缩进代码块的开始，其后必须缩进相同的量，直到代码块结束为止：</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/27/Python-语言精要-1/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/25/决策树/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/25/决策树/" itemprop="url">
-                  决策树
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-25T19:54:57+08:00">
-                2017-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><p>决策过程中提出的每个判定问题都是对某个属性的<strong>测试</strong><br>考虑范围在上一次决策结果的限定范围之内</p>
-<ul>
-<li>叶结点对应于决策结果</li>
-<li>其他每个结点对应于一个属性测试</li>
-<li>根结点包含样本全集</li>
-</ul>
-<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>决策树学习的目的是为了，产生一棵处理未见示例能力强的决策树。<br>遵循简单且直观的分而治之（divide-and-comquer）策略。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/04/25/决策树/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -959,7 +961,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">207</span>
+                <span class="site-state-item-count">210</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

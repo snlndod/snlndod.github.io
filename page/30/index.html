@@ -280,6 +280,406 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/28/反向代理与应用层/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/12/28/反向代理与应用层/" itemprop="url">
+                  反向代理与应用层
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-28T10:59:30+08:00">
+                2019-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><p><code>Reverse Proxy</code> 是一种可以<strong>集中调用内部服务，并提供统一公共接口</strong>的 Web 服务器。来自客户端的请求先被反向代理服务器转发到可响应请求的服务器，然后再把服务器的响应结果返回给客户端。</p>
+<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/05/00.jpg" alt></p>
+<p>带来的好处包括：</p>
+<ul>
+<li><strong>增加安全性</strong>：隐藏后端服务器的信息，屏蔽黑名单中的 IP，限制每个客户端的连接数；</li>
+<li><strong>提高可扩展性和灵活性</strong>：客户端只能看到反向代理服务器的 IP，这使你可以增减服务器或修改它们的配置；</li>
+<li>SSL 终结：<strong>解密传入的请求并加密服务器响应</strong>，这样的话后端服务器就不必再执行这些潜在高消耗运算了（不需要再每台服务器上安装 <code>X.509</code>）；</li>
+<li><strong>压缩</strong>：压缩服务器响应；</li>
+<li><strong>缓存</strong>：直接返回命中的缓存结果；</li>
+<li><strong>静态内容</strong>：直接提供静态内容（HTML/CSS/JS、图片、视频等）。</li>
+</ul>
+<h3 id="反向代理与负载均衡"><a href="#反向代理与负载均衡" class="headerlink" title="反向代理与负载均衡"></a>反向代理与负载均衡</h3><ul>
+<li>当你有多个服务器时，部署负载均衡器非常有用。通常，负载均衡器将流量路由给一组<strong>功能相同</strong>的服务器上；</li>
+<li><strong>即使只有一台 Web 服务器或应用服务器</strong>时，反向代理也同样有用；</li>
+<li>Nginx 和 HAProxy 等解决方案，可以<strong>同时支持</strong>七层反向代理和负载均衡。</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/12/28/反向代理与应用层/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/25/负载均衡器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/12/25/负载均衡器/" itemprop="url">
+                  负载均衡器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-25T17:56:19+08:00">
+                2019-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><code>Load Balancer</code> 将传入的请求分发到应用服务器和数据库等计算资源。无论哪种情况，负载均衡器将来自计算资源的响应，返回给恰当的客户端。负载均衡器的效用在于:</p>
+<ul>
+<li>防止请求进入不好的服务器</li>
+<li>防止资源过载</li>
+<li><strong>帮助消除单一的故障点</strong></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/04/00.jpg" alt></p>
+<p>负载均衡器可以通过硬件（昂贵）或 HAProxy 等软件来实现。 增加的好处包括：</p>
+<ul>
+<li>SSL 终结：<strong>解密传入的请求并加密服务器响应</strong>，这样的话后端服务器就不必再执行这些潜在高消耗运算了（不需要再每台服务器上安装 <code>X.509</code>）；</li>
+<li>Session 留存：当 <strong>Web 应用程序不追踪 session</strong> 时，发出 <code>cookie</code> 并将特定客户端的请求，路由到同一实例。</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/12/25/负载均衡器/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/域名系统与内容分发网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevPrepares">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2019/12/21/域名系统与内容分发网络/" itemprop="url">
+                  域名系统与内容分发网络
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-21T00:49:11+08:00">
+                2019-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="域名系统"><a href="#域名系统" class="headerlink" title="域名系统"></a>域名系统</h2><p><strong>D</strong>omain <strong>N</strong>ame <strong>S</strong>ystem（DNS）将 <a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a> 等域名转换成 IP 地址：</p>
+<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/03/00.jpg" alt></p>
+<p>域名系统是分层次的，一些 DNS 服务器位于顶层。当查询（域名）IP 时，路由或 ISP 提供连接 DNS 服务器的信息。<strong>较底层的 DNS 服务器缓存映射</strong>，它可能会因为 DNS 传播延时而失效。DNS 结果可以缓存在浏览器或操作系统中一段时间，时间长短取决于 <code>TTL</code>（Time To Live）：</p>
+<ul>
+<li>NS 记录（域名服务）：指定解析域名或子域名的 DNS 服务器；</li>
+<li>MX 记录（邮件交换）：指定接收信息的邮件服务器；</li>
+<li>A 记录（地址）：指定域名对应的 IP 地址记录；</li>
+<li>CNAME（规范）：一个域名映射到另一个域名，或映射到一个 A 记录。</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/12/21/域名系统与内容分发网络/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/高层次的权衡/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -618,396 +1018,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/18/Scalability/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/12/18/Scalability/" itemprop="url">
-                  Scalability
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-18T08:54:26+08:00">
-                2019-12-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p><a href="https://www.youtube.com/watch?v=-W9F__D3oY4" target="_blank" rel="noopener">CS75 Lecture 9: Scalability</a></p>
-</blockquote>
-<h2 id="Vertical-Scaling"><a href="#Vertical-Scaling" class="headerlink" title="Vertical Scaling"></a>Vertical Scaling</h2><p>Get more RAM, processors, disks for one machine, but you will exhaust the financial resources/state.<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/00/00.jpg" alt></p>
-<h2 id="Horizontal-Scaling"><a href="#Horizontal-Scaling" class="headerlink" title="Horizontal Scaling"></a>Horizontal Scaling</h2><p>Plural number of machines, use multiple servers to build the topology.<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/00/01.jpg" alt></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/12/18/Scalability/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/05/Telephoning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/12/05/Telephoning/" itemprop="url">
-                  Telephoning
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-05T00:48:12+08:00">
-                2019-12-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Cold-calling"><a href="#Cold-calling" class="headerlink" title="Cold calling"></a>Cold calling</h2><blockquote>
-<p>Do you have a moment to speak to me?</p>
-</blockquote>
-<h3 id="USEFUL-TIPS"><a href="#USEFUL-TIPS" class="headerlink" title="USEFUL TIPS"></a>USEFUL TIPS</h3><p>When cold calling (approaching <strong>prospective clients or customers</strong> for the first time), keep the following points in mind:</p>
-<ul>
-<li><strong>Be clear and concise</strong> about who you are and the purpose of the call;</li>
-<li><strong>Use questions</strong> to help and guide the person you are calling;</li>
-<li><strong>Always use titles</strong> (such as Dr., Mr., and Ms.) and never first names;</li>
-<li><strong>Don’t be offended by hostile behavior.</strong> It’s not personal;</li>
-</ul>
-<h3 id="Track-24"><a href="#Track-24" class="headerlink" title="Track 24"></a>Track 24</h3><p>Macey C: This is Macey Chance from Turner &amp; Young Consultants. Am I speaking to Mr. Given?<br>Speaker 1: No.</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/12/05/Telephoning/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/10/Interviews/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="DevPrepares">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/11/10/Interviews/" itemprop="url">
-                  Interviews
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-10T18:04:10+08:00">
-                2019-11-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="The-successful-job-interviewer"><a href="#The-successful-job-interviewer" class="headerlink" title="The successful job interviewer"></a>The successful job interviewer</h2><blockquote>
-<p>What makes you suitable for this job, do you think?</p>
-</blockquote>
-<h3 id="USEFUL-TIPS"><a href="#USEFUL-TIPS" class="headerlink" title="USEFUL TIPS"></a>USEFUL TIPS</h3><p>When interviewing for a job, there are <code>4 main areas</code> to ask about:</p>
-<ul>
-<li>work history;</li>
-<li>personality;</li>
-<li>suitability for the company and the specific job;</li>
-<li>goals and ambitions;</li>
-</ul>
-<p>Note that it is not appropriate to ask the candidate questions about <strong>race, age, marital status, or sexual preferences</strong>. These questions are potentially discriminatory.</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/11/10/Interviews/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1055,7 +1065,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">207</span>
+                <span class="site-state-item-count">210</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
