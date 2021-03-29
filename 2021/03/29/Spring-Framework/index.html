@@ -98,7 +98,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/geek/23.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/geek/24.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/geek/25.png">
-<meta property="og:updated_time" content="2021-03-29T16:48:45.000Z">
+<meta property="og:updated_time" content="2021-03-29T16:55:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Framework">
 <meta name="twitter:description" content="Spring 框架简单介绍我们常说的 Spring 框架，是指 Spring Framework 基础框架。Spring Framework 是整个 Spring 生态（也被称作 Spring 全家桶）的基石。除了 Spring Framework，Spring 全家桶中还有更多基于 Spring Framework 开发出来的、整合更多功能的框架，比如 Spring Boot、Spring Cl">
@@ -361,6 +361,8 @@
       
         <h2 id="Spring-框架简单介绍"><a href="#Spring-框架简单介绍" class="headerlink" title="Spring 框架简单介绍"></a>Spring 框架简单介绍</h2><p>我们常说的 Spring 框架，是指 Spring Framework 基础框架。<strong>Spring Framework 是整个 Spring 生态（也被称作 Spring 全家桶）的基石</strong>。除了 Spring Framework，Spring 全家桶中还有更多基于 Spring Framework 开发出来的、整合更多功能的框架，比如 Spring Boot、Spring Cloud。在 Spring 全家桶中，Spring Framework 是最基础、最底层的一部分。它提供了最基础、最核心的 IoC 和 AOP 功能。当然，它包含的功能还不仅如此，还有其他比如事务管理（Transactions）、MVC 框架（Spring MVC）等很多功能：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/geek/23.png" alt></p>
 <p>在 Spring Framework 中，Spring MVC 出镜率很高，经常被单独拎出来使用。它是支持 Web 开发的 MVC 框架，提供了 URL 路由、Session 管理、模板引擎等跟 Web 开发相关的一系列功能；<code>Spring Boot</code> 是基于 Spring Framework 开发的，它<strong>更加专注于微服务开发</strong>。之所以名字里带有“Boot”一词，跟它的设计初衷有关，Spring Boot 的设计初衷是快速启动一个项目，利用它可以快速地实现一个项目的开发、部署和运行。Spring Boot 支持的所有功能都是围绕着这个初衷设计的，比如：集成很多第三方开发包、简化配置（比如，规约优于配置）、集成内嵌 Web 容器（比如，Tomcat、Jetty）等；单个的微服务开发，使用 Spring Boot 就足够了，但是，如果要构建整个微服务集群，就需要用到 <code>Spring Cloud</code> 了。Spring Cloud 主要<strong>负责微服务集群的服务治理</strong>工作，包含很多独立的功能组件，比如 Spring Cloud Sleuth 调用链追踪、Spring Cloud Config 配置中心等。</p>
+<a id="more"></a>
+
 <h2 id="从-Spring-看框架的作用"><a href="#从-Spring-看框架的作用" class="headerlink" title="从 Spring 看框架的作用"></a>从 Spring 看框架的作用</h2><p>利用框架的好处有：<strong>解耦业务和非业务开发，让程序员聚焦在业务开发上</strong>；隐藏复杂实现细节、降低开发难度、减少代码 Bug；实现代码复用、节省开发时间；规范化标准化项目开发、降低学习和维护成本等等。相比单纯的 CRUD 业务代码开发，非业务代码开发要更难一些。所以，将一些非业务的通用代码开发为框架，在项目中复用，除了节省开发时间之外，也降低了项目开发的难度。除此之外，框架经过多个项目的多次验证，比起每个项目都重新开发，代码的 Bug 会相对少一些。而且，不同的项目使用相同的框架，对于研发人员来说，从一个项目切换到另一个项目的学习成本，也会降低很多。</p>
 <p>通过在项目中引入 Spring MVC 开发框架，开发一个 Web 应用，我们<strong>只需要创建 Controller、Service、Repository 三层类</strong>，在其中填写相应的业务代码，然后做些简单的配置，告知框架 Controller、Service、Repository 类之间的调用关系，剩下的非业务相关的工作，比如，对象的创建、组装、管理，请求的解析、封装，URL 与 Controller 之间的映射，都由框架来完成。不仅如此，如果我们直接引入功能更强大的 Spring Boot，那<strong>将应用部署到 Web 容器的工作都省掉了</strong>。Spring Boot 内嵌了 Tomcat、Jetty 等 Web 容器。在编写完代码之后，我们用一条命令就能完成项目的部署、运行。</p>
 <h2 id="Spring-框架蕴含的设计思想"><a href="#Spring-框架蕴含的设计思想" class="headerlink" title="Spring 框架蕴含的设计思想"></a>Spring 框架蕴含的设计思想</h2><p>我们剖析一下 Spring 框架背后的一些经典设计思想（或开发技巧）。这些设计思想并非 Spring 独有，都比较通用，能借鉴应用在很多通用功能模块的设计开发中。</p>
