@@ -357,7 +357,6 @@
       
         
           <h2 id="Spring-框架简单介绍"><a href="#Spring-框架简单介绍" class="headerlink" title="Spring 框架简单介绍"></a>Spring 框架简单介绍</h2><p>我们常说的 Spring 框架，是指 Spring Framework 基础框架。<strong>Spring Framework 是整个 Spring 生态（也被称作 Spring 全家桶）的基石</strong>。除了 Spring Framework，Spring 全家桶中还有更多基于 Spring Framework 开发出来的、整合更多功能的框架，比如 Spring Boot、Spring Cloud。在 Spring 全家桶中，Spring Framework 是最基础、最底层的一部分。它提供了最基础、最核心的 IoC 和 AOP 功能。当然，它包含的功能还不仅如此，还有其他比如事务管理（Transactions）、MVC 框架（Spring MVC）等很多功能：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/geek/23.png" alt></p>
-<p>在 Spring Framework 中，Spring MVC 出镜率很高，经常被单独拎出来使用。它是支持 Web 开发的 MVC 框架，提供了 URL 路由、Session 管理、模板引擎等跟 Web 开发相关的一系列功能；<code>Spring Boot</code> 是基于 Spring Framework 开发的，它<strong>更加专注于微服务开发</strong>。之所以名字里带有“Boot”一词，跟它的设计初衷有关，Spring Boot 的设计初衷是快速启动一个项目，利用它可以快速地实现一个项目的开发、部署和运行。Spring Boot 支持的所有功能都是围绕着这个初衷设计的，比如：集成很多第三方开发包、简化配置（比如，规约优于配置）、集成内嵌 Web 容器（比如，Tomcat、Jetty）等；单个的微服务开发，使用 Spring Boot 就足够了，但是，如果要构建整个微服务集群，就需要用到 <code>Spring Cloud</code> 了。Spring Cloud 主要<strong>负责微服务集群的服务治理</strong>工作，包含很多独立的功能组件，比如 Spring Cloud Sleuth 调用链追踪、Spring Cloud Config 配置中心等。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2021/03/29/Spring-Framework/#more" rel="contents">
@@ -603,8 +602,6 @@
         
           <h2 id="封装与抽象"><a href="#封装与抽象" class="headerlink" title="封装与抽象"></a>封装与抽象</h2><p>在 Unix、Linux 系统中，有一句经典的话：“Everything is a file”，翻译成中文就是：“一切皆文件”。这句话的意思就是，在 Unix、Linux 系统中，很多东西都被抽象成<code>文件</code>这样一个概念，比如 Socket、驱动、硬盘、系统信息等。它们使用文件系统的路径作为统一的命名空间（namespace），使用统一的 read、write 标准函数来访问。比如，我们要查看 CPU 的信息，在 Linux 系统中，我们只需要使用编辑器像打开其他文件一样，打开 /proc/cpuinfo，就能查看到相应的信息。除此之外，我们还可以通过查看 /proc/uptime 文件，了解系统运行了多久，查看 /proc/version 了解系统的内核版本等。</p>
 <p>封装了不同类型设备的访问细节，抽象为统一的文件访问方式，更高层的代码就能基于统一的访问方式，来访问底层不同类型的设备。这样做的好处是，隔离底层设备访问的复杂性，统一的访问方式能够简化上层代码的编写，并且代码更容易复用。除此之外，<strong>抽象和封装还能有效控制代码复杂性的蔓延，将复杂性封装在局部代码中</strong>，隔离实现的易变性，提供简单、统一的访问接口让其他模块来使用。其他模块基于抽象的接口而非具体的实现编程，代码会更加稳定。</p>
-<h2 id="分层与模块化"><a href="#分层与模块化" class="headerlink" title="分层与模块化"></a>分层与模块化</h2><p>对于像 Unix 这样的复杂系统，没有人能掌控所有的细节。之所以我们能开发出如此复杂的系统，并且能维护得了，最主要的原因就是将系统划分成各个独立的模块，比如<strong>进程调度、进程通信、内存管理、虚拟文件系统、网络接口等模块</strong>。不同的模块之间通过接口来进行通信，模块之间耦合很小，每个小的团队聚焦于一个独立的高内聚模块来开发，最终像搭积木一样，将各个模块组装起来，构建成一个超级复杂的系统。除此之外，Unix、Linux 等大型系统之所以能做到几百、上千人有条不紊地协作开发，也归功于模块化做得好。不同的团队负责不同的模块开发，这样即便在不了解全部细节的情况下，管理者也能协调各个模块，让整个系统有效运转。</p>
-<p>计算机领域的任何问题都可以通过增加一个间接的中间层来解决，这本身就体现了分层的重要性。比如，Unix 系统也是基于分层开发的，它可以大致上分为三层，分别是<strong>内核、系统调用、应用层</strong>。每一层都对上层封装实现细节，暴露抽象的接口来调用。而且，任意一层都可以被重新实现，不会影响到其他层的代码。面对复杂系统的开发，我们要善于应用分层技术，<strong>把容易复用、跟具体业务关系不大的代码，尽量下沉到下层，把容易变动、跟具体业务强相关的代码，尽量上移到上层</strong>。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2021/03/25/Unix/#more" rel="contents">
