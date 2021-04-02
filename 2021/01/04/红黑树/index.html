@@ -112,7 +112,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/128.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/129.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/130.png">
-<meta property="og:updated_time" content="2021-03-29T16:48:45.000Z">
+<meta property="og:updated_time" content="2021-04-02T19:48:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="红黑树">
 <meta name="twitter:description" content="什么是“平衡二叉查找树”？平衡二叉树的严格定义是这样的：二叉树中任意一个节点的左右子树的高度相差不能大于 1。从这个定义来看，上一节我们讲的完全二叉树、满二叉树其实都是平衡二叉树，但是非完全二叉树也有可能是平衡二叉树： 平衡二叉查找树不仅满足上面平衡二叉树的定义，还满足二叉查找树的特点。最先被发明的平衡二叉查找树是 AVL 树，它严格符合我刚讲到的平衡二叉查找树的定义，即任何节点的左右子树高度相差">
@@ -392,7 +392,7 @@
 <p>从上面我画的红黑树的例子和定义看，在红黑树中，红色节点不能相邻，也就是说，有一个红色节点就要至少有一个黑色节点，将它跟其他红色节点隔开。红黑树中包含最多黑色节点的路径不会超过 log2n，所以加入红色节点之后，最长路径不会超过 2log2n，也就是说，<strong>红黑树的高度近似 2*log2n</strong>。红黑树的高度只比高度平衡的 AVL 树的高度（log2n）仅仅大了一倍，在性能上，下降得并不多。这样推导出来的结果不够精确，实际上红黑树的性能更好。</p>
 <h2 id="为什么在工程中都喜欢用红黑树"><a href="#为什么在工程中都喜欢用红黑树" class="headerlink" title="为什么在工程中都喜欢用红黑树"></a>为什么在工程中都喜欢用红黑树</h2><p>我们前面提到 Treap、Splay Tree，绝大部分情况下，它们操作的效率都很高，但是也<strong>无法避免极端情况下时间复杂度的退化</strong>。尽管这种情况出现的概率不大，但是对于单次操作时间非常敏感的场景来说，它们并不适用。AVL 树是一种高度平衡的二叉树，所以查找的效率非常高，但是，有利就有弊，<strong>AVL 树为了维持这种高度的平衡，就要付出更多的代价</strong>。每次插入、删除都要做调整，就比较复杂、耗时。所以，对于有频繁的插入、删除操作的数据集合，使用 AVL 树的代价就有点高了。</p>
 <p>红黑树只是做到了近似平衡，并不是严格的平衡，所以在维护平衡的成本上，要比 AVL 树要低。所以，<strong>红黑树的插入、删除、查找各种操作性能都比较稳定</strong>。对于工程应用来说，要面对各种异常情况，为了支撑这种工业级的应用，我们更倾向于这种性能稳定的平衡二叉查找树。</p>
-<h2 id="实现红黑树的基本思想"><a href="#实现红黑树的基本思想" class="headerlink" title="实现红黑树的基本思想"></a>实现红黑树的基本思想</h2><p>红黑树的平衡过程跟魔方复原非常神似，大致过程就是：<strong>遇到什么样的节点排布，我们就对应怎么去调整</strong>。只要按照这些固定的调整规则来操作，就能将一个非平衡的红黑树调整成平衡的。我先介绍两个非常重要的操作，<code>左旋</code>（rotate left）、<code>右旋</code>（rotate right）。左旋全称其实是叫<strong>围绕某个节点的左旋</strong>，那右旋的全称就叫围绕某个节点的右旋。我们下面的平衡调整中，会一直用到这两个操作，所以我这里画了个示意图，帮助你彻底理解这两个操作。图中的 a, b, r 表示子树，可以为空：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/117.png" alt></p>
+<h2 id="实现红黑树的基本思想"><a href="#实现红黑树的基本思想" class="headerlink" title="实现红黑树的基本思想"></a>实现红黑树的基本思想</h2><p>红黑树的平衡过程跟魔方复原非常神似，大致过程就是：<strong>遇到什么样的节点排布，我们就对应怎么去调整</strong>。只要按照这些固定的调整规则来操作，就能将一个非平衡的红黑树调整成平衡的。我先介绍两个非常重要的操作，<code>左旋</code>（Rotate Left）、<code>右旋</code>（Rotate Right）。左旋全称其实是叫<strong>围绕某个节点的左旋</strong>，那右旋的全称就叫<strong>围绕某个节点的右旋</strong>。我们下面的平衡调整中，会一直用到这两个操作，所以我这里画了个示意图，帮助你彻底理解这两个操作。图中的 a, b, r 表示子树，可以为空：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/117.png" alt></p>
 <h2 id="插入操作的平衡调整"><a href="#插入操作的平衡调整" class="headerlink" title="插入操作的平衡调整"></a>插入操作的平衡调整</h2><p>红黑树规定，<strong>插入的节点必须是红色的</strong>。而且，<strong>二叉查找树中新插入的节点都是放在叶子节点上</strong>。所以，关于插入操作的平衡调整，有这样两种特殊情况：</p>
 <ul>
 <li>如果插入节点的父节点是黑色的，那我们什么都不用做，它仍然满足红黑树的定义；</li>
@@ -600,7 +600,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">210</span>
+                <span class="site-state-item-count">214</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
