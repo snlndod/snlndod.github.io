@@ -664,7 +664,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/目标文件里有什么/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/10/SLAM：现在与未来/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="snlndod">
@@ -686,8 +686,8 @@
             
               
                 
-                <a class="post-title-link" href="/2018/11/16/目标文件里有什么/" itemprop="url">
-                  目标文件里有什么
+                <a class="post-title-link" href="/2018/07/10/SLAM：现在与未来/" itemprop="url">
+                  SLAM：现在与未来
                 </a>
               
             
@@ -703,8 +703,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T23:07:26+08:00">
-                2018-11-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-10T01:30:35+08:00">
+                2018-07-10
               </time>
             
 
@@ -740,10 +740,11 @@
 
       
         
-          <h2 id="目标文件的格式"><a href="#目标文件的格式" class="headerlink" title="目标文件的格式"></a>目标文件的格式</h2><p>目标文件就是源代码编译后但未进行链接的那些<strong>中间文件</strong>（Windows 的 .obj 和 Linux 的 .o），它跟可执行文件的内容和结构很相似，所以一般跟可执行文件采用同一种格式存储。<br>PC 平台流行的<strong>可执行文件格式</strong>主要是 Windows 下的 PE（Portable Executable）和 Linux 下的 ELF（Executable Linkable Format），它们都是 COFF（Common file format）格式的变种。<br><strong>动态链接库</strong>（DLL，Dynamic Linking Library）（Windows 的 .dll 和 Linux 的 .so）及<strong>静态链接库</strong>（Static Linking Library）（Windows 的 .lib 和 Linux 的 .a）文件也按照可执行文件格式存储。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/3-1.jpeg" alt></p>
+          <p>除了经典 V-SLAM 框架之外，也积累了许多优秀的开源 SLAM 方案，大部分实现都比较复杂，不适合作为初学者的上手材料。</p>
+<h2 id="当前的开源方案"><a href="#当前的开源方案" class="headerlink" title="当前的开源方案"></a>当前的开源方案</h2><p>在 SLAM 研究领域，能见到开源方案是很不容易的。论文中，往往介绍理论只占 20% 的内容，其他 80% 都写在代码中。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SLAM/14_1.jpeg" alt></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/11/16/目标文件里有什么/#more" rel="contents">
+            <a class="btn" href="/2018/07/10/SLAM：现在与未来/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -786,7 +787,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/14/编译和链接/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/09/ROS-入门/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="snlndod">
@@ -808,8 +809,8 @@
             
               
                 
-                <a class="post-title-link" href="/2018/11/14/编译和链接/" itemprop="url">
-                  编译和链接
+                <a class="post-title-link" href="/2018/07/09/ROS-入门/" itemprop="url">
+                  ROS 入门
                 </a>
               
             
@@ -825,8 +826,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-14T17:51:47+08:00">
-                2018-11-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-09T16:08:46+08:00">
+                2018-07-09
               </time>
             
 
@@ -862,11 +863,11 @@
 
       
         
-          <p>集成开发环境（IDE）一般都将编译和链接的过程一步完成，将这种编译和链接合并到一起的过程称为<code>构建（Build）</code>。<br>我们看到的是这些问题的现象，但是却很难看清本质，所有这些问题的本质就是软件运行背后的机理及支撑软件运行的各种平台和工具。</p>
-<h2 id="被隐藏了的过程"><a href="#被隐藏了的过程" class="headerlink" title="被隐藏了的过程"></a>被隐藏了的过程</h2><p>分解为 4 个步骤，分别是：<strong>预处理</strong>（Preprocessing）、<strong>编译</strong>（Compilation）、<strong>汇编</strong>（Assembly）和<strong>链接</strong>（Linking）。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/DevPrepares/2-1.jpeg" alt></p>
+          <h2 id="ROS-是什么"><a href="#ROS-是什么" class="headerlink" title="ROS 是什么"></a>ROS 是什么</h2><p>ROS 并不是一个真正意义上的操作系统，而更像是基于操作系统之上的一个<code>软件包</code>。<br>支持面向对象的编程语言 C++，以及脚本语言 Python。</p>
+<h2 id="ROS-的特点"><a href="#ROS-的特点" class="headerlink" title="ROS 的特点"></a>ROS 的特点</h2><p>屏蔽底层硬件及其接口的不一致性，实现<code>软件复用</code>。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/11/14/编译和链接/#more" rel="contents">
+            <a class="btn" href="/2018/07/09/ROS-入门/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -947,7 +948,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">214</span>
+                <span class="site-state-item-count">211</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -958,7 +959,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
