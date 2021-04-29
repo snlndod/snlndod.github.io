@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="StatementGiven two strings s1 and s2, return some result. ApproachMost of the problems on this pattern requires a solution that can be accepted in O(n^2) complexity: 123456789for (int i = 1; i &amp;lt;= n">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-04-11T16:40:03.000Z">
+<meta property="og:updated_time" content="2021-04-29T16:48:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dynamic Programming on Strings">
 <meta name="twitter:description" content="StatementGiven two strings s1 and s2, return some result. ApproachMost of the problems on this pattern requires a solution that can be accepted in O(n^2) complexity: 123456789for (int i = 1; i &amp;lt;= n">
@@ -355,11 +355,11 @@
       
 
       
-        <h2 id="Statement"><a href="#Statement" class="headerlink" title="Statement"></a>Statement</h2><p>Given two strings <code>s1</code> and <code>s2</code>, return some result.</p>
+        <h2 id="Statement"><a href="#Statement" class="headerlink" title="Statement"></a>Statement</h2><p>Given two strings <em>s1</em> and <em>s2</em>, return some result.</p>
 <h2 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h2><p>Most of the problems on this pattern requires a solution that can be accepted in O(n^2) complexity:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; ++j) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s1[i<span class="number">-1</span>] == s2[j<span class="number">-1</span>]) &#123;</span><br><span class="line">            dp[i][j] = <span class="comment">/* code */</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            dp[i][j] = <span class="comment">/* code */</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>If you are given one string <code>s</code> the approach may little vary:</p>
+<p>If you are given one string <em>s</em> the approach may little vary:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">1</span>; l &lt; n; ++l) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - l + <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> j = i + l - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (s[i] == s[j]) &#123;</span><br><span class="line">            dp[i][j] = <span class="comment">/* code */</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            dp[i][j] = <span class="comment">/* code */</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
