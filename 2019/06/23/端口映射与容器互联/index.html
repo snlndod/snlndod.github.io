@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="在实践中，经常会碰到多个服务组件容器共同协作的情况，这往往需要多个容器之间，能够互相访问到对方的服务。Docker 除了通过网络访问外，还提供了两个很方便的功能，来满足服务访问的基本需求：  允许映射容器内应用的服务端口到宿主机。 互联机制实现多个容器间，通过容器名来快速访问。  端口映射实现容器访问从外部访问容器应用当容器中运行一些网络应用，要让外部访问这些应用时，可以通过 -P 或 -p 参数">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-04-11T16:40:03.000Z">
+<meta property="og:updated_time" content="2021-05-05T14:17:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="端口映射与容器互联">
 <meta name="twitter:description" content="在实践中，经常会碰到多个服务组件容器共同协作的情况，这往往需要多个容器之间，能够互相访问到对方的服务。Docker 除了通过网络访问外，还提供了两个很方便的功能，来满足服务访问的基本需求：  允许映射容器内应用的服务端口到宿主机。 互联机制实现多个容器间，通过容器名来快速访问。  端口映射实现容器访问从外部访问容器应用当容器中运行一些网络应用，要让外部访问这些应用时，可以通过 -P 或 -p 参数">
@@ -361,26 +361,26 @@
 <li>互联机制实现多个容器间，通过容器名来快速访问。</li>
 </ul>
 <h2 id="端口映射实现容器访问"><a href="#端口映射实现容器访问" class="headerlink" title="端口映射实现容器访问"></a>端口映射实现容器访问</h2><h3 id="从外部访问容器应用"><a href="#从外部访问容器应用" class="headerlink" title="从外部访问容器应用"></a>从外部访问容器应用</h3><p>当容器中运行一些网络应用，要让外部访问这些应用时，可以通过 <strong>-P</strong> 或 <strong>-p</strong> 参数来指定端口映射。<br>当使用 -P 参数时，Docker 会随机映射一个端口到内部容器开放的网络端口：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -P training/webapp python app.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">run</span><span class="bash"> -d -P training/webapp python app.py</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>当使用 -p 参数时，可以指定要映射的端口，并且在一个指定端口上，只可以绑定一个容器。</p>
 </blockquote>
 <a id="more"></a>
 <h3 id="映射所有接口地址"><a href="#映射所有接口地址" class="headerlink" title="映射所有接口地址"></a>映射所有接口地址</h3><p>使用 <code>HostPort:ContainerPort</code> 格式，将宿主机的 5000 端口映射到容器的 5000 端口，可以执行如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 5000:5000 training/webapp python app.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">run</span><span class="bash"> -d -p 5000:5000 training/webapp python app.py</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>默认会绑定宿主机所有接口上的所有地址。</p>
 </blockquote>
 <h3 id="映射到指定地址的指定端口"><a href="#映射到指定地址的指定端口" class="headerlink" title="映射到指定地址的指定端口"></a>映射到指定地址的指定端口</h3><p>使用 <code>IP:HostPort:ContainerPort</code> 格式，指定映射的特定地址：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 127.0.0.1:5000:5000 training/webapp python app.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$</span> <span class="string">docker</span> <span class="string">run</span> <span class="string">-d</span> <span class="string">-p</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:5000:5000</span> <span class="string">training/webapp</span> <span class="string">python</span> <span class="string">app.py</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="映射到指定地址的任意端口"><a href="#映射到指定地址的任意端口" class="headerlink" title="映射到指定地址的任意端口"></a>映射到指定地址的任意端口</h3><p>使用 <code>IP::ContainerPort</code> 绑定 localhost 的任意端口到容器的 5000 端口，宿主机会<strong>自动分配</strong>一个端口：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 127.0.0.1::5000 training/webapp python app.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$</span> <span class="string">docker</span> <span class="string">run</span> <span class="string">-d</span> <span class="string">-p</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">::5000</span> <span class="string">training/webapp</span> <span class="string">python</span> <span class="string">app.py</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="查看映射端口配置"><a href="#查看映射端口配置" class="headerlink" title="查看映射端口配置"></a>查看映射端口配置</h3><p>使用 <strong>docker port</strong> 来查看当前映射的端口配置，也可以查看到绑定的地址：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker port relaxed_pike 5000</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker<span class="built_in"> port </span>relaxed_pike 5000</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>容器有自己的内部网络和 IP 地址，使用 docker inspect 可以获取容器的具体信息。</p>
@@ -392,14 +392,14 @@
 <li>当要连接其他容器的时候（即便重启），也可以使用容器名而不用改变，比如连接 web 容器到 db 容器。</li>
 </ul>
 <p>使用 <code>--name</code> 参数可以为容器自定义命名：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -P --name web training/webapp python app.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">run</span> -d -P <span class="comment">--name web training/webapp python app.py</span></span><br></pre></td></tr></table></figure>
 
 <p>在执行 docker run 的时候，如果添加 --rm 参数，则容器在终止后会立刻删除。注意：<strong>--rm 和 -d 参数不能同时使用</strong>。</p>
 <h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3><p>使用 <code>--link</code> 参数可以让容器之间安全的交互。<br>先创建一个新的数据库容器：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d --name db training/postgres</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">run</span> -d <span class="comment">--name db training/postgres</span></span><br></pre></td></tr></table></figure>
 
 <p>然后创建一个新的 web 容器，并将他连接到 db 容器：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -P --name web --link db:db training/webapp python app.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">run</span> -<span class="keyword">d</span> -P --name web --link <span class="keyword">db</span>:<span class="keyword">db</span> training/webapp python <span class="keyword">app</span>.py</span><br></pre></td></tr></table></figure>
 
 <p>此时，db 容器和 web 容器建立互联关系。<br>--link 参数的格式为 <code>--link name:alias</code>，其中 name 是要连接的容器的名称，alias 是别名。<br>Docker 相当于在两个互联的容器之间创建了一个虚机通道，而且不用映射他们的端口到宿主机上，<strong>避免了暴露数据库服务端口到外部网络上</strong>。<br>Docker 通过两种方式为容器公开连接信息：</p>
 <ul>
@@ -407,13 +407,13 @@
 <li><code>/etc/hosts</code> 文件</li>
 </ul>
 <p>使用 <strong>env 命令</strong>来查看 web 容器的环境变量：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --rm --link db:db training/webapp env</span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">run</span> --<span class="keyword">rm</span> --link <span class="keyword">db</span>:<span class="keyword">db</span> training/webapp env</span><br></pre></td></tr></table></figure>
 
 <p> 查看父容器 web 的 hosts 文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm --link db:db training/webapp /bin/bash</span><br><span class="line">$ cat /etc/hosts</span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">run</span> -it --<span class="keyword">rm</span> --link <span class="keyword">db</span>:<span class="keyword">db</span> training/webapp /bin/bash</span><br><span class="line">$ <span class="keyword">cat</span> /etc/hosts</span><br></pre></td></tr></table></figure>
 
 <p>可以在 web 容器中安装 <strong>ping 命令</strong>，来测试跟 db 容器的连通：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install -yqq inetutils-ping</span><br><span class="line">$ ping db</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ apt-<span class="builtin-name">get</span> install -yqq inetutils-ping</span><br><span class="line">$<span class="built_in"> ping </span>db</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>用户可以连接多个子容器到父容器，比如可以连接多个 web 到同一个 db 容器上。</p>

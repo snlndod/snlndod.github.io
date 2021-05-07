@@ -492,7 +492,7 @@
 <li>互联机制实现多个容器间，通过容器名来快速访问。</li>
 </ul>
 <h2 id="端口映射实现容器访问"><a href="#端口映射实现容器访问" class="headerlink" title="端口映射实现容器访问"></a>端口映射实现容器访问</h2><h3 id="从外部访问容器应用"><a href="#从外部访问容器应用" class="headerlink" title="从外部访问容器应用"></a>从外部访问容器应用</h3><p>当容器中运行一些网络应用，要让外部访问这些应用时，可以通过 <strong>-P</strong> 或 <strong>-p</strong> 参数来指定端口映射。<br>当使用 -P 参数时，Docker 会随机映射一个端口到内部容器开放的网络端口：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -P training/webapp python app.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">run</span><span class="bash"> -d -P training/webapp python app.py</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>当使用 -p 参数时，可以指定要映射的端口，并且在一个指定端口上，只可以绑定一个容器。</p>
@@ -876,7 +876,7 @@
           <p><strong>容器</strong>是 Docker 的另一个核心概念，容器是镜像的一个运行实例。镜像是静态的只读文件，容器中的应用进程处于运行状态。</p>
 <h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><p>对容器的操作就像<code>直接操作应用</code>一样简单和快速。</p>
 <h3 id="新建容器"><a href="#新建容器" class="headerlink" title="新建容器"></a>新建容器</h3><p>可以使用 <strong>docker create</strong> 命令新建一个容器，新建的容器处于停止状态，可以使用 docker start 命令来启动他。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker create -it ubuntu:latest</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">create</span> -<span class="keyword">it</span> ubuntu:latest</span><br></pre></td></tr></table></figure>
 
 <p>容器是整个 Docker 技术栈的核心，支持的选项十分复杂。主要包括如下几大类：</p>
 <ul>

@@ -100,7 +100,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/03.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/04.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/05.jpg">
-<meta property="og:updated_time" content="2021-04-11T16:40:03.000Z">
+<meta property="og:updated_time" content="2021-05-05T14:17:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mesos - 优秀的集群资源调度平台">
 <meta name="twitter:description" content="Mesos 项目是源自 UC Berkeley 的对集群资源进行抽象和管理的开源项目，类似于操作系统内核，使用它可以很容易地实现分布式应用的自动化调度。同时，Mesos 自身也很好地结合和支持了 Docker 等相关容器技术，基于 Mesos 已有的大量应用框架，可以是实现用户应用的快速上线。 简介Mesos 可以将整个数据中心的资源（包括 CPU、内存、存储、网络等）进行抽象和调度，使得多个应用">
@@ -398,7 +398,7 @@
 <li><strong>/etc/mesos-slave</strong>：建议在从节点上，创建 ip 文件，在其中写入跟主节点通信的地址。</li>
 </ul>
 <p>修改配置之后，启动服务即可生效：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service mesos-master/slave start</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo<span class="built_in"> service </span>mesos-master/slave start</span><br></pre></td></tr></table></figure>
 
 <h4 id="Marathon"><a href="#Marathon" class="headerlink" title="Marathon"></a>Marathon</h4><p>Marathon 作为 Mesos 的一个应用框架，配置要更为简单，<strong>必需的配置项有 --master 和 --zk</strong>。<br>手动创建配置目录，并添加配置项，让 Marathon 能连接到已创建的 Mesos 集群中。</p>
 <h3 id="访问-Mesos-图形界面"><a href="#访问-Mesos-图形界面" class="headerlink" title="访问 Mesos 图形界面"></a>访问 Mesos 图形界面</h3><p>Mesos 自带了 Web 图形界面，可以方便用户查看集群状态。<br>用户在 Mesos 主节点服务和从节点服务都启动后，可以通过浏览器访问主节点 <code>5050</code> 端口，看到如下界面：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/01.jpg" alt></p>
@@ -447,7 +447,7 @@
 <li>--zk=VALUE：指定 ZooKeeper 的服务地址，支持多个地址，之间用逗号隔离。</li>
 </ul>
 <h3 id="slave-专属配置项"><a href="#slave-专属配置项" class="headerlink" title="slave 专属配置项"></a>slave 专属配置项</h3><p><strong>slave 节点支持的配置项是最多的</strong>，因为它所完成的事情也最复杂。这些配置项既包括跟主节点打交道的一些参数，也包括对本地资源的配置，包括隔离机制、本地任务的资源限制等。<br>必备项就一个：--master=VALUE，master 所在地址，或对应 ZooKeeper 服务地址，或文件路径，可以是列表。<br>为了避免主机分配的临时端口，跟我们指定的临时端口范围冲突，需要在主机节点上进行配置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">"57345 61000"</span> &gt; /proc/sys/net/ipv4/ip_local_port_range</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>echo <span class="string">"57345 61000"</span> &gt; <span class="regexp">/proc/sys</span><span class="regexp">/net/ipv</span>4/ip_local_port_range</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p><strong>非临时端口是 Mesos 分配给框架</strong>，绑定到任务使用的，端口号往往有明确的意义；<strong>临时端口是系统分配的</strong>，往往不太关心具体端口号。</p>

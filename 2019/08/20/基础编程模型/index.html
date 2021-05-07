@@ -104,7 +104,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/07.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/08.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/09.jpg">
-<meta property="og:updated_time" content="2021-04-11T16:40:03.000Z">
+<meta property="og:updated_time" content="2021-05-05T14:17:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基础编程模型">
 <meta name="twitter:description" content="我们学习算法的方法是用 Java 编程语言编写的程序来实现算法，这样做是出于以下原因：  程序是对算法精确、优雅和完全的描述； 可以通过运行程序来学习算法的各种性质； 可以在应用程序中直接使用这些算法；   缺点：使用特定的编程语言，会使分离算法的思想和实现细节变得困难。  我们把描述和实现算法所用到的语言特性、软件库和操作系统特性总称为基础编程模型。 Java 程序的基本结构一段 Java 程序">
@@ -554,13 +554,13 @@
 <h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a>格式化输出</h3><p>printf() 方法接受两个参数。第一个参数是一个<code>格式字符串</code>，描述了第二个参数应该如何在输出中被转换为一个字符串。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/01/06.jpg" alt></p>
 <h3 id="标准输入"><a href="#标准输入" class="headerlink" title="标准输入"></a>标准输入</h3><p>StdIn 库从标准输入流中获取数据，这些数据可能为空也可能是一系列由空白字符分隔的值（<strong>空格、制表符、换行符等</strong>）。默认状态下，系统会将标准输出定向到终端窗口——你输入的内容就是输入流（<strong>由 &lt;ctrl+d&gt; 结束</strong>）。<br>只要程序读取了一个值，它就不能回退并再次读取它。这个特点产生了一些限制，但它<strong>反映了一些输入设备的物理特性</strong>并简化了对这些设备的抽象。</p>
 <h3 id="重定向与管道"><a href="#重定向与管道" class="headerlink" title="重定向与管道"></a>重定向与管道</h3><p>标准输入输出使我们能够利用许多操作系统都支持的<strong>命令行的扩展功能</strong>。<br>向启动程序的命令中加入一个简单的提示符，就可以将它的标准输出<code>重定向</code>至一个文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java RandomSep 1000 100.0 200.0 &gt; data.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java RandomSep <span class="number">1000</span> <span class="number">100.0</span> <span class="number">200.0</span> &gt; data.txt</span><br></pre></td></tr></table></figure>
 
 <p>我们可以重定向标准输入以使 StdIn 从文件而不是终端应用程序中读取数据：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java Average &lt; data.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java <span class="type">Average</span> &lt; <span class="class"><span class="keyword">data</span>.txt</span></span><br></pre></td></tr></table></figure>
 
 <p>将这些结合起来，将一个程序的输出重定向为另一个程序的输入叫做<code>管道</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java RandomSep 1000 100.0 200.0 | java Average</span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java RandomSep <span class="number">1000</span> <span class="number">100.0</span> <span class="number">200.0</span> | java Average</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p><strong>突破了我们能够处理的输入输出流的长度限制</strong>。我们的程序不再需要担心细节，因为它们只会和标准输入和标准输出的抽象打交道。</p>

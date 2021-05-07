@@ -96,7 +96,7 @@
 <meta property="og:description" content="仓库（Repository）是集中维护容器镜像的地方，为 Docker 镜像文件的分发和管理提供了便捷的途径，又分为公共仓库和私有仓库。注册服务器（Registry）是存放仓库的具体服务器，一个注册服务器可以有多个仓库，而每个仓库下面可以有多个镜像。仓库可以被认为是一个具体的项目或目录，例如对于仓库地址 private-docker.com/ubuntu 来说，private-docker.com">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Docker/5-1.jpeg">
-<meta property="og:updated_time" content="2021-04-11T16:40:03.000Z">
+<meta property="og:updated_time" content="2021-05-05T14:17:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="访问 Docker 仓库">
 <meta name="twitter:description" content="仓库（Repository）是集中维护容器镜像的地方，为 Docker 镜像文件的分发和管理提供了便捷的途径，又分为公共仓库和私有仓库。注册服务器（Registry）是存放仓库的具体服务器，一个注册服务器可以有多个仓库，而每个仓库下面可以有多个镜像。仓库可以被认为是一个具体的项目或目录，例如对于仓库地址 private-docker.com/ubuntu 来说，private-docker.com">
@@ -370,13 +370,13 @@
 <h2 id="第三方镜像市场"><a href="#第三方镜像市场" class="headerlink" title="第三方镜像市场"></a>第三方镜像市场</h2><p>国内不少云服务商都提供了 Docker 镜像市场，包括腾讯云、网易云、阿里云等。</p>
 <h3 id="查看镜像"><a href="#查看镜像" class="headerlink" title="查看镜像"></a>查看镜像</h3><p>访问 <code>https://hub.tenxcloud.com</code>，即可看到已存在的仓库和存储的镜像。</p>
 <h3 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h3><p>要在镜像名称前添加注册服务器的具体地址，格式为：<code>index.tenxcloud.com/&lt;namespace&gt;/&lt;repository&gt;:&lt;tag&gt;</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull index.tenxcloud.com/docker_library/node:latest</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull index.tenxcloud.com/docker_library/<span class="keyword">node</span><span class="title">:latest</span></span><br></pre></td></tr></table></figure>
 
 <p>下载后，可以更新镜像的标签，与官方标签保持一致，方便使用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker tag index.tenxcloud.com/docker_library/node:latest node:latest</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">tag</span> <span class="title">index</span>.tenxcloud.com/docker_library/<span class="keyword">node</span><span class="title">:latest</span> <span class="keyword">node</span><span class="title">:latest</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="搭建本地私有仓库"><a href="#搭建本地私有仓库" class="headerlink" title="搭建本地私有仓库"></a>搭建本地私有仓库</h2><h3 id="使用-registry-镜像创建私有仓库"><a href="#使用-registry-镜像创建私有仓库" class="headerlink" title="使用 registry 镜像创建私有仓库"></a>使用 registry 镜像创建私有仓库</h3><p>可以通过官方提供的 registry 镜像，来简单搭建一套本地私有仓库环境：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 5000:5000 registry:2</span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">run</span><span class="bash"> -d -p 5000:5000 registry:2</span></span><br></pre></td></tr></table></figure>
 
 <p>默认情况下，仓库会被创建在容器的 <code>/var/lib/registry</code> 目录下。</p>
 <blockquote>
@@ -386,7 +386,7 @@
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">DOCKER_OPTS</span>=<span class="string">"--insecure-registry 10.0.2.2:5000"</span></span><br></pre></td></tr></table></figure>
 
 <p>之后再重启 Docker 服务：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service docker restart</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo<span class="built_in"> service </span>docker restart</span><br></pre></td></tr></table></figure>
 
 <p>如果要使用安全证书，用户也可以从较知名的 CA 服务商（如 verisign）申请公开的 SSL/TLS 证书，或者使用 OpenSSL 等软件来自行生成。</p>
 

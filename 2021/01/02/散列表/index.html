@@ -107,7 +107,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/92.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/93.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/94.png">
-<meta property="og:updated_time" content="2021-04-11T16:40:03.000Z">
+<meta property="og:updated_time" content="2021-05-05T14:17:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="散列表">
 <meta name="twitter:description" content="散列思想散列表的英文叫“Hash Table”，我们平时也叫它“哈希表”或者“Hash 表”。散列表用的是数组支持按照下标随机访问数据的特性，所以散列表其实就是数组的一种扩展，由数组演化而来。可以说，如果没有数组，就没有散列表。 假设校长说，参赛编号不能设置得这么简单，要加上年级、班级这些更详细的信息，所以我们把编号的规则稍微修改了一下，用 6 位数字来表示。比如 051167，其中，前两位 05">
@@ -393,7 +393,7 @@
 <p>对于开放寻址冲突解决方法，除了线性探测方法之外，还有另外两种比较经典的探测方法，<code>二次探测</code>（Quadratic Probing）和<code>双重散列</code>（Double Hashing）。所谓二次探测，跟线性探测很像，线性探测每次探测的步长是 1，那它探测的下标序列就是 hash(key)+0, hash(key)+1, hash(key)+2, …；而二次探测探测的步长就变成了原来的“二次方”，也就是说，它探测的下标序列就是 hash(key)+0, hash(key)+1^2, hash(key)+2^2, …；</p>
 <p>所谓双重散列，意思就是不仅要使用一个散列函数。我们使用一组散列函数 hash1(key), hash2(key), hash3(key), …；我们先用第一个散列函数，如果计算得到的存储位置已经被占用，再用第二个散列函数，依次类推，直到找到空闲的存储位置。</p>
 <p>不管采用哪种探测方法，当散列表中空闲位置不多的时候，散列冲突的概率就会大大提高。为了尽可能保证散列表的操作效率，一般情况下，我们会尽可能保证散列表中有一定比例的空闲槽位。我们用<code>装载因子</code>（Load Factor）来表示空位的多少。装载因子的计算公式是：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">散列表的装载因子 = 填入表中的元素个数 / 散列表的长度</span><br></pre></td></tr></table></figure>
+<figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">散列表的装载因子 </span>=<span class="string"> 填入表中的元素个数 / 散列表的长度</span></span><br></pre></td></tr></table></figure>
 
 <p>装载因子越大，说明空闲位置越少，冲突越多，散列表的性能会下降。</p>
 <h3 id="链表法"><a href="#链表法" class="headerlink" title="链表法"></a>链表法</h3><p><strong>链表法是一种更加常用的散列冲突解决办法</strong>，相比开放寻址法，它要简单很多。我们来看这个图，在散列表中，每个“桶（Bucket）”或者“槽（Slot）”会对应一条链表，所有散列值相同的元素我们都放到相同槽位对应的链表中：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/87.png" alt></p>

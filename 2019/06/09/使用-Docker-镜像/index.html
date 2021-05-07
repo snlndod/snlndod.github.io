@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="镜像是 Docker 三大核心概念中最重要的。 获取镜像可以使用 docker pull 命令直接从 Docker Hub 镜像源来下载镜像，描述一个镜像需要包括“名称+标签”信息（NAME[:TAG]）。 1$ docker pull ubuntu:18.04   如果不显式指定 TAG，则默认会选择 latest 标签。从稳定性上考虑，不要在生产环境中忽略镜像的标签信息或使用默认的 laste">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-04-11T16:40:03.000Z">
+<meta property="og:updated_time" content="2021-05-05T14:17:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 Docker 镜像">
 <meta name="twitter:description" content="镜像是 Docker 三大核心概念中最重要的。 获取镜像可以使用 docker pull 命令直接从 Docker Hub 镜像源来下载镜像，描述一个镜像需要包括“名称+标签”信息（NAME[:TAG]）。 1$ docker pull ubuntu:18.04   如果不显式指定 TAG，则默认会选择 latest 标签。从稳定性上考虑，不要在生产环境中忽略镜像的标签信息或使用默认的 laste">
@@ -357,29 +357,29 @@
       
         <p><strong>镜像</strong>是 Docker 三大核心概念中最重要的。</p>
 <h2 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h2><p>可以使用 <strong>docker pull 命令</strong>直接从 Docker Hub 镜像源来下载镜像，描述一个镜像需要包括“名称+标签”信息（NAME[:TAG]）。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>docker pull <span class="symbol">ubuntu:</span><span class="number">18.04</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>如果不显式指定 TAG，则默认会选择 latest 标签。从稳定性上考虑，不要在生产环境中忽略镜像的标签信息或使用默认的 lastest 标记的镜像。</p>
 </blockquote>
 <p>镜像文件一般由若干层（layer）组成，当不同的镜像包括相同的层时，本地仅存储了层的一份内容，减少了存储空间。<br>如果从非官方的仓库下载镜像，则需要在仓库名称前指定完整的仓库地址：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull hub.c.163.com/public/ubuntu:18.04</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull hub.c<span class="number">.163</span>.com<span class="regexp">/public/</span><span class="string">ubuntu:</span><span class="number">18.04</span></span><br></pre></td></tr></table></figure>
 
 <p>下载镜像到本地后，即可随时使用该镜像了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it ubuntu:18.04 /bin/bash</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">run</span> -<span class="keyword">it</span> ubuntu:<span class="number">18.04</span> /bin/bash</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
 <h2 id="查看镜像信息"><a href="#查看镜像信息" class="headerlink" title="查看镜像信息"></a>查看镜像信息</h2><h3 id="docker-images"><a href="#docker-images" class="headerlink" title="docker images"></a>docker images</h3><p><strong>docker images 命令</strong>可以列出本地主机上已有镜像的基本信息，可以使用该 ID 的前若干个字符组成的<code>可区分串</code>来替代完整的 ID。<br>镜像大小信息只是表示了该镜像的<strong>逻辑体积</strong>大小，实际上由于相同的镜像层本地只会存储一份，物理上占用的存储空间会小于各镜像逻辑体积之和。</p>
 <h3 id="docker-tag"><a href="#docker-tag" class="headerlink" title="docker tag"></a>docker tag</h3><p>为了方便在后续工作中使用特定镜像，还可以使用 <strong>docker tag 命令</strong>来为本地镜像任意添加新的标签。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker tag ubuntu:latest myubuntu:latest</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">tag</span> <span class="title">ubuntu</span>:latest myubuntu:latest</span><br></pre></td></tr></table></figure>
 
 <p>ID 完全一致，添加的标签实际上起到了<code>类似链接</code>的作用。</p>
 <h3 id="docker-inspect"><a href="#docker-inspect" class="headerlink" title="docker inspect"></a>docker inspect</h3><p>使用 <strong>docker inspect 命令</strong>可以获取该镜像的详细信息，只要其中一项内容时，可以使用 -f 来指定：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker inspect -f &#123;&#123;<span class="string">".Architecture"</span>&#125;&#125; ubuntu:18.04</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> docker inspect <span class="operator">-f</span> &#123;&#123;<span class="string">".Architecture"</span>&#125;&#125; ubuntu:<span class="number">18.04</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="docker-history"><a href="#docker-history" class="headerlink" title="docker history"></a>docker history</h3><p>可以使用 <strong>docker history 命令</strong>列出各层的创建信息。</p>
 <h2 id="搜寻镜像"><a href="#搜寻镜像" class="headerlink" title="搜寻镜像"></a>搜寻镜像</h2><p>使用 <strong>docker search 命令</strong>可以搜索 Docker Hub 官方仓库中的镜像。<br>搜索所有收藏数超过 4 的、关键词包括 tensorflow 的镜像（默认的输出结果将按照星级评价进行排序）：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker search --filter=stars=4 tensorflow</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker search <span class="attribute">--filter</span>=stars=4 tensorflow</span><br></pre></td></tr></table></figure>
 
 <h2 id="删除和清理镜像"><a href="#删除和清理镜像" class="headerlink" title="删除和清理镜像"></a>删除和清理镜像</h2><h3 id="使用标签删除镜像"><a href="#使用标签删除镜像" class="headerlink" title="使用标签删除镜像"></a>使用标签删除镜像</h3><p>使用 <strong>docker rmi 命令</strong>可以删除镜像。</p>
 <blockquote>
@@ -391,25 +391,25 @@
 </blockquote>
 <p>当有该镜像创建的容器存在时，镜像文件默认是无法被删除的。正确的做法是，先删除依赖该镜像的所有容器，再来删除镜像。</p>
 <h3 id="清理镜像"><a href="#清理镜像" class="headerlink" title="清理镜像"></a>清理镜像</h3><p>使用 Docker 一段时间后，系统中可能会遗留一些临时的镜像文件，以及一些没有被使用的镜像，可以通过 <strong>docker image prune 命令</strong>来进行清理：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker image prune -f</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> docker image prune <span class="operator">-f</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="创建镜像"><a href="#创建镜像" class="headerlink" title="创建镜像"></a>创建镜像</h2><h3 id="基于已有容器创建"><a href="#基于已有容器创建" class="headerlink" title="基于已有容器创建"></a>基于已有容器创建</h3><p>使用 <strong>docker commit 命令</strong>，主要选项包括：-m：提交消息；-a：作者信息。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker commit -m <span class="string">"add a new file"</span> -a <span class="string">"hyang"</span> a925cb40b3f0 <span class="built_in">test</span>:0.1</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker commit -m <span class="string">"add a new file"</span> -a <span class="string">"hyang"</span> a925cb40b3f0 <span class="built_in">test</span>:0.1</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="基于本地模版导入"><a href="#基于本地模版导入" class="headerlink" title="基于本地模版导入"></a>基于本地模版导入</h3><p>可以使用 <strong>docker import 命令</strong>，直接从一个操作系统模版文件导入一个镜像：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat ubuntu-18.04-x86_64-minimal.tar.gz | docker import - ubuntu:18.04</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>cat ubuntu<span class="number">-18.04</span>-x86_64-minimal.tar.gz | docker <span class="keyword">import</span> - <span class="symbol">ubuntu:</span><span class="number">18.04</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="基于-Dockerfile-创建"><a href="#基于-Dockerfile-创建" class="headerlink" title="基于 Dockerfile 创建"></a>基于 Dockerfile 创建</h3><p>基于 Dockerfile 创建是最常见的方式。Dockerfile 是一个文本文件，利用给定的指令，描述基于某个父镜像创建新镜像的过程。<br>创建的过程可以使用 <strong>docker build 命令</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker build -t python:3</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">build </span>-t python:<span class="number">3</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="存出和载入镜像"><a href="#存出和载入镜像" class="headerlink" title="存出和载入镜像"></a>存出和载入镜像</h2><h3 id="存出镜像"><a href="#存出镜像" class="headerlink" title="存出镜像"></a>存出镜像</h3><p>可以使用 <strong>docker save 命令</strong>，导出镜像到指定的文件中：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker save -o ubuntu_18.04.tar ubuntu:18.04</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>docker save -o ubuntu_18.04.tar <span class="symbol">ubuntu:</span><span class="number">18.04</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="载入镜像"><a href="#载入镜像" class="headerlink" title="载入镜像"></a>载入镜像</h3><p>可以使用 <strong>docker load 命令</strong>，从指定文件中读入镜像内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker load -i ubuntu_18.04.tar</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>docker load -i ubuntu_18.04.tar</span><br></pre></td></tr></table></figure>
 
 <h2 id="上传镜像"><a href="#上传镜像" class="headerlink" title="上传镜像"></a>上传镜像</h2><p>使用 <strong>docker push 命令</strong>默认上传到 Docker Hub 官方仓库（需要登录）。<br>可以先添加新的标签，然后再上传镜像：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker tag <span class="built_in">test</span>:latest hyang/<span class="built_in">test</span>:latest</span><br><span class="line">$ docker push hyang/<span class="built_in">test</span>:latest</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker tag <span class="built_in">test</span>:latest hyang/<span class="built_in">test</span>:latest</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker push hyang/<span class="built_in">test</span>:latest</span></span><br></pre></td></tr></table></figure>
 
 <p>登陆信息会记录到本地 <code>~/.docker</code> 目录下。</p>
 

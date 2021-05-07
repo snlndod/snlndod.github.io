@@ -116,7 +116,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SLAM/3_18.jpeg">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SLAM/3_19.jpeg">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SLAM/3_21.jpeg">
-<meta property="og:updated_time" content="2021-04-11T16:40:03.000Z">
+<meta property="og:updated_time" content="2021-05-05T14:17:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="三维空间刚体运动">
 <meta name="twitter:description" content="旋转矩阵点和向量，坐标系 坐标的具体取值，一是和向量本身有关，二是和坐标系的选取有关。  刚体：不光有位置，还有自身的姿态。不要把向量与它的坐标两个概念混淆，只有当我们指定这个三维空间中的某个坐标系时，才可以谈论该向量在此坐标系下的坐标；如果我们确定了一个坐标系，也就是一个线性空间的基(e1, e2, e3)，那么就可以谈论向量 a 在这组基下的坐标了：  内积：a · b = a T b = |">
@@ -396,7 +396,7 @@
 <p>本节讲解如何使用 Eigen 来表示矩阵、向量。</p>
 </blockquote>
 <p>Eigen 是一个 C++ 开源线性代数库，它提供了快速的<strong>有关矩阵</strong>的线性代数运算，还包括<strong>解方程</strong>等功能。许多上层的软件库也使用 Eigen 进行矩阵运算，包括 g2o、Sophus 等。<br>可以输入以下命令，查找 Eigen 头文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo updatedb</span><br><span class="line">$ locate eigen3</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>sudo updatedb</span><br><span class="line"><span class="variable">$ </span>locate eigen3</span><br></pre></td></tr></table></figure>
 
 <p>不需要使用 <code>target_link_libraries</code> 将程序链接到库上，Eigen 是一个纯用<strong>头文件</strong>搭建起来的库，没有 *.so 或 *.a 那样的二进制<strong>库文件</strong>。除了使用 <code>include_directories</code> 指定头文件目录，我们还可以使用 <code>find_package</code> 命令去搜索库。</p>
 <h3 id="几处重要说明"><a href="#几处重要说明" class="headerlink" title="几处重要说明"></a>几处重要说明</h3><ul>

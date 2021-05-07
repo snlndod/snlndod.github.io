@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="容器是 Docker 的另一个核心概念，容器是镜像的一个运行实例。镜像是静态的只读文件，容器中的应用进程处于运行状态。 创建容器对容器的操作就像直接操作应用一样简单和快速。 新建容器可以使用 docker create 命令新建一个容器，新建的容器处于停止状态，可以使用 docker start 命令来启动他。 1$ docker create -it ubuntu:latest  容器是整个 D">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-04-11T16:40:03.000Z">
+<meta property="og:updated_time" content="2021-05-05T14:17:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作 Docker 容器">
 <meta name="twitter:description" content="容器是 Docker 的另一个核心概念，容器是镜像的一个运行实例。镜像是静态的只读文件，容器中的应用进程处于运行状态。 创建容器对容器的操作就像直接操作应用一样简单和快速。 新建容器可以使用 docker create 命令新建一个容器，新建的容器处于停止状态，可以使用 docker start 命令来启动他。 1$ docker create -it ubuntu:latest  容器是整个 D">
@@ -358,7 +358,7 @@
         <p><strong>容器</strong>是 Docker 的另一个核心概念，容器是镜像的一个运行实例。镜像是静态的只读文件，容器中的应用进程处于运行状态。</p>
 <h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><p>对容器的操作就像<code>直接操作应用</code>一样简单和快速。</p>
 <h3 id="新建容器"><a href="#新建容器" class="headerlink" title="新建容器"></a>新建容器</h3><p>可以使用 <strong>docker create</strong> 命令新建一个容器，新建的容器处于停止状态，可以使用 docker start 命令来启动他。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker create -it ubuntu:latest</span><br></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">create</span> -<span class="keyword">it</span> ubuntu:latest</span><br></pre></td></tr></table></figure>
 
 <p>容器是整个 Docker 技术栈的核心，支持的选项十分复杂。主要包括如下几大类：</p>
 <ul>
@@ -368,23 +368,23 @@
 </ul>
 <a id="more"></a>
 <h3 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h3><p>使用 <strong>docker start</strong> 命令来启动一个已经创建的容器：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker start af</span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="literal">start</span> af</span><br></pre></td></tr></table></figure>
 
 <p>此时，通过 docker ps 命令可以查看到一个运行中的容器。</p>
 <h3 id="新建并启动容器"><a href="#新建并启动容器" class="headerlink" title="新建并启动容器"></a>新建并启动容器</h3><p>也可以直接<code>新建并启动</code>容器，所需要的命令为 <strong>docker run</strong>。等价于先执行 docker create 命令，再执行 docker start 命令。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it ubuntu:18.04 /bin/bash</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">run</span> -<span class="keyword">it</span> ubuntu:<span class="number">18.04</span> /bin/bash</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>对于容器来说，当其中的应用退出后，容器的使命完成，也就没有继续运行的必要了。</p>
 </blockquote>
 <h3 id="守护态运行"><a href="#守护态运行" class="headerlink" title="守护态运行"></a>守护态运行</h3><p>更多的时候，需要让容器在后台以守护态（daemonized）形式运行，可以通过添加 <code>-d</code> 参数来实现。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d ubuntu /bin/bash -c <span class="string">"while true; do echo hello world; sleep 1; done"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">run</span><span class="bash"> -d ubuntu /bin/bash -c <span class="string">"while true; do echo hello world; sleep 1; done"</span></span></span><br></pre></td></tr></table></figure>
 
 <h3 id="查看容器输出"><a href="#查看容器输出" class="headerlink" title="查看容器输出"></a>查看容器输出</h3><p>要获取容器的输出信息，可以通过 <strong>docker logs</strong> 命令。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker logs ce554267d7a4</span><br></pre></td></tr></table></figure>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker logs ce5<span class="number">54267d7a4</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="停止容器"><a href="#停止容器" class="headerlink" title="停止容器"></a>停止容器</h2><h3 id="暂停容器"><a href="#暂停容器" class="headerlink" title="暂停容器"></a>暂停容器</h3><p>可以使用 <strong>docker pause</strong> 命令来暂停一个运行中的容器：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --name <span class="built_in">test</span> --rm -it ubuntu bash</span><br><span class="line">$ docker pause <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">run</span> --name <span class="keyword">test</span> --<span class="keyword">rm</span> -it ubuntu bash</span><br><span class="line">$ docker <span class="keyword">pause</span> <span class="keyword">test</span></span><br></pre></td></tr></table></figure>
 
 <p>处于 <code>Paused</code> 状态的容器，可以使用 <strong>docker unpause</strong> 命令来恢复到运行状态。</p>
 <h3 id="终止容器"><a href="#终止容器" class="headerlink" title="终止容器"></a>终止容器</h3><p>可以使用 <strong>docker stop</strong> 来终止一个运行中的容器，该命令会首先向容器发送 SIGTERM 信号，等待一段超时时间后（默认为 10 秒），再发送 SIGKILL 信号来终止容器。<br>还可以通过 <strong>docker kill</strong> 直接发送 SIGKILL 信号来强行终止容器<br>执行 <strong>docker container prune</strong> 命令，会自动清除掉所有处于 <code>Exited</code> 状态的容器。</p>
@@ -393,23 +393,23 @@
 </blockquote>
 <p><strong>docker restart</strong> 命令会将一个运行态的容器先终止，然后再重新启动。</p>
 <h2 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h2><p>使用 <code>-d</code> 参数，容器启动后进入后台，用户无法看到其中的信息，也无法进行操作。此时，推荐使用官方的 <strong>attach</strong> 或 <strong>exec</strong> 命令。</p>
-<h3 id="attach-命令"><a href="#attach-命令" class="headerlink" title="attach 命令"></a>attach 命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker attach nostalgic_hypatia</span><br></pre></td></tr></table></figure>
+<h3 id="attach-命令"><a href="#attach-命令" class="headerlink" title="attach 命令"></a>attach 命令</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">attach</span> nostalgic_hypatia</span><br></pre></td></tr></table></figure>
 
 <p>使用 attach 命令有时候并不方便。当多个窗口同时 attach 到同一个容器的时候，所有窗口都会<code>同步显示</code>；当某个窗口因命令阻塞时，其他窗口也无法执行操作了。</p>
-<h3 id="exec-命令"><a href="#exec-命令" class="headerlink" title="exec 命令"></a>exec 命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">exec</span> -it 243c32535da7 /bin/bash</span><br></pre></td></tr></table></figure>
+<h3 id="exec-命令"><a href="#exec-命令" class="headerlink" title="exec 命令"></a>exec 命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker <span class="built_in">exec</span> -it 243c32535da7 /bin/bash</span></span><br></pre></td></tr></table></figure>
 
 <p>可以在运行中容器内直接执行任意命令。会打开一个新的 bash 终端，在不影响容器内其他应用的前提下，用户可以与容器进行交互。</p>
 <blockquote>
 <p><code>-t</code> 选项让 Docker 分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上；<code>-i</code> 则让容器的标准输入保持打开。通过 exec 命令对容器执行操作是最为推荐的方式。</p>
 </blockquote>
-<h2 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker rm ce554267d7a4</span><br></pre></td></tr></table></figure>
+<h2 id="删除容器"><a href="#删除容器" class="headerlink" title="删除容器"></a>删除容器</h2><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker rm ce5<span class="number">54267d7a4</span></span><br></pre></td></tr></table></figure>
 
 <p>默认情况下，<strong>docker rm</strong> 命令只能删除已经处于终止或退出状态的容器，并不能删除还处于运行状态的容器。</p>
 <h2 id="导出和导入容器"><a href="#导出和导入容器" class="headerlink" title="导出和导入容器"></a>导出和导入容器</h2><h3 id="导出容器"><a href="#导出容器" class="headerlink" title="导出容器"></a>导出容器</h3><p>导出一个已经创建的容器到一个文件，不管此时这个容器是否处于运行状态，可以使用 <strong>docker export</strong> 命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">export</span> e81 &gt; test_for_stop.tar</span><br></pre></td></tr></table></figure>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker ex<span class="keyword">port</span> e81 &gt; test_for_stop.tar</span><br></pre></td></tr></table></figure>
 
 <h3 id="导入容器"><a href="#导入容器" class="headerlink" title="导入容器"></a>导入容器</h3><p>导出的文件又可以使用 <strong>docker import</strong> 命令导入变成镜像：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker import test_for_stop.tar <span class="built_in">test</span>/ubuntu:v1.0</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="meta">import</span> test_for_stop.tar test/ubuntu:<span class="built_in">v1</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
 
 <p>既可以使用 docker load 命令来导入镜像存储文件到本地镜像库，也可以使用 docker import 命令来导入一个容器快照到本地镜像库，两者的区别在于：</p>
 <ul>
@@ -417,25 +417,25 @@
 <li>从容器快照文件导入时，可以重新指定标签等元数据信息。</li>
 </ul>
 <h2 id="查看容器"><a href="#查看容器" class="headerlink" title="查看容器"></a>查看容器</h2><h3 id="查看容器详情"><a href="#查看容器详情" class="headerlink" title="查看容器详情"></a>查看容器详情</h3><p>查看容器详情可以使用 <strong>docker inspect</strong> 命令，会以 JSON 格式返回包括容器 ID、创建时间、路径、状态、镜像、配置等在内的各项信息。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker inspect <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker inspect <span class="built_in">test</span></span></span><br></pre></td></tr></table></figure>
 
 <h3 id="查看容器内进程"><a href="#查看容器内进程" class="headerlink" title="查看容器内进程"></a>查看容器内进程</h3><p>查看容器内进程可以使用 <strong>docker top</strong> 命令，会打印出包括 PID、用户、时间、命令等进程信息。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker top <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker top <span class="built_in">test</span></span></span><br></pre></td></tr></table></figure>
 
 <h3 id="查看统计信息"><a href="#查看统计信息" class="headerlink" title="查看统计信息"></a>查看统计信息</h3><p>查看统计信息可以使用 <strong>docker stats</strong> 命令，会显示 CPU、内存、存储、网络等使用情况的统计信息。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker stats</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>docker stats</span><br></pre></td></tr></table></figure>
 
 <h2 id="其他容器命令"><a href="#其他容器命令" class="headerlink" title="其他容器命令"></a>其他容器命令</h2><h3 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h3><p><strong>docker cp</strong> 命令支持在容器和主机时间复制文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker cp data <span class="built_in">test</span>:/tmp/</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="meta">cp</span> <span class="meta">data</span> test:/tmp/</span><br></pre></td></tr></table></figure>
 
 <h3 id="查看变更"><a href="#查看变更" class="headerlink" title="查看变更"></a>查看变更</h3><p><strong>docker diff</strong> 命令查看容器内文件系统的变更：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker diff <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker diff <span class="built_in">test</span></span></span><br></pre></td></tr></table></figure>
 
 <h3 id="查看端口映射"><a href="#查看端口映射" class="headerlink" title="查看端口映射"></a>查看端口映射</h3><p><strong>docker port</strong> 命令可以查看容器的端口映射情况：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker port <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker<span class="built_in"> port </span>test</span><br></pre></td></tr></table></figure>
 
 <h3 id="更新配置"><a href="#更新配置" class="headerlink" title="更新配置"></a>更新配置</h3><p><strong>docker update</strong> 命令可以更新容器的一些运行时配置，例如，限制总配额为 1 秒，容器 test 所占用时间为 10%：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker update --cpu-quota 1000000 <span class="built_in">test</span></span><br><span class="line">$ docker update --cpu-period 100000 <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker update --cpu-quota 1000000 <span class="built_in">test</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker update --cpu-period 100000 <span class="built_in">test</span></span></span><br></pre></td></tr></table></figure>
 
 <p>在生产环境中，提高容器的高可用性和安全性：</p>
 <ul>
