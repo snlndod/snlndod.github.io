@@ -87,18 +87,18 @@
 
 
 
-<meta name="description" content="StatementGiven a target find a number of distinct ways to reach the target. ApproachSum all possible ways to reach the current state:  routes[i] = routes[i-1] + routes[i-2] + … + routes[i-k]  Generate">
+<meta name="description" content="StatementGiven a target find a number of distinct ways to reach the target. ApproachSum all possible ways to reach the current state:  dp[i] = dp[i-1] + dp[i-2] + … + dp[i-k]  Generate sum for all val">
 <meta name="keywords" content="CodingInterview">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Distinct Ways">
 <meta property="og:url" content="http://yoursite.com/2021/03/01/Distinct-Ways/index.html">
 <meta property="og:site_name" content="SDE PREPARES">
-<meta property="og:description" content="StatementGiven a target find a number of distinct ways to reach the target. ApproachSum all possible ways to reach the current state:  routes[i] = routes[i-1] + routes[i-2] + … + routes[i-k]  Generate">
+<meta property="og:description" content="StatementGiven a target find a number of distinct ways to reach the target. ApproachSum all possible ways to reach the current state:  dp[i] = dp[i-1] + dp[i-2] + … + dp[i-k]  Generate sum for all val">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-04-11T16:40:03.000Z">
+<meta property="og:updated_time" content="2021-05-23T16:19:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Distinct Ways">
-<meta name="twitter:description" content="StatementGiven a target find a number of distinct ways to reach the target. ApproachSum all possible ways to reach the current state:  routes[i] = routes[i-1] + routes[i-2] + … + routes[i-k]  Generate">
+<meta name="twitter:description" content="StatementGiven a target find a number of distinct ways to reach the target. ApproachSum all possible ways to reach the current state:  dp[i] = dp[i-1] + dp[i-2] + … + dp[i-k]  Generate sum for all val">
 
 
 
@@ -358,7 +358,7 @@
         <h2 id="Statement"><a href="#Statement" class="headerlink" title="Statement"></a>Statement</h2><p>Given a target find a number of distinct ways to reach the target.</p>
 <h2 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h2><p>Sum all possible ways to reach the current state:</p>
 <blockquote>
-<p>routes[i] = routes[i-1] + routes[i-2] + … + routes[i-k]</p>
+<p>dp[i] = dp[i-1] + dp[i-2] + … + dp[i-k]</p>
 </blockquote>
 <p>Generate sum for all values in the target and return the value for the target:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= target; ++i) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; ways.size(); ++j) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ways[j] &lt;= i) &#123;</span><br><span class="line">            dp[i] += dp[i-ways[j]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> dp[target];</span><br></pre></td></tr></table></figure>
