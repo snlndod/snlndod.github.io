@@ -98,7 +98,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/00.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/03.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/04.png">
-<meta property="og:updated_time" content="2021-05-25T11:23:57.000Z">
+<meta property="og:updated_time" content="2021-05-25T14:00:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从容器到容器云：谈谈 Kubernetes 的本质">
 <meta name="twitter:description" content="一个容器，实际上是一个由 Linux Namespace、Linux Cgroups 和 rootfs 三种技术构建出来的进程的隔离环境。从这个结构中我们不难看出，一个正在运行的 Linux 容器，其实可以被“一分为二”地看待：  一组联合挂载在 /var/lib/docker/aufs/mnt 上的 rootfs，这一部分我们称为容器镜像（Container Image），是容器的静态视图； 一">
@@ -365,6 +365,8 @@
 <li>一个由 Namespace + Cgroups 构成的隔离环境，这一部分我们称为<strong>容器运行时</strong>（Container Runtime），是容器的动态视图；</li>
 </ol>
 <p>更进一步地说，作为一名开发者，我并不关心容器运行时的差异。因为，在整个“开发 -&gt; 测试 -&gt; 发布”的流程中，真正承载着容器信息进行传递的，是容器镜像，而不是容器运行时。这个重要假设，正是容器技术圈在 Docker 项目成功后不久，就迅速走向了“容器编排”这个“上层建筑”的主要原因：作为一家云服务商或者基础设施提供商，我只要能够<strong>将用户提交的 Docker 镜像以容器的方式运行起来，就能成为这个非常热闹的容器生态图上的一个承载点</strong>，从而将整个容器技术栈上的价值，沉淀在我的这个节点上。更重要的是，只要从我这个承载点向 Docker 镜像制作者和使用者方向回溯，整条路径上的各个服务节点，比如 CI/CD、监控、安全、网络、存储等等，都有我可以发挥和盈利的余地。这个逻辑，正是所有云计算提供商如此热衷于容器技术的重要原因：通过容器镜像，它们可以和潜在用户（即，开发者）直接关联起来。</p>
+<a id="more"></a>
+
 <p>从一个开发者和单一的容器镜像，到无数开发者和庞大的容器集群，容器技术实现了从“容器”到“容器云”的飞跃，标志着它真正得到了市场和生态的认可。这样，容器就从一个开发者手里的小工具，一跃成为了云计算领域的绝对主角；而<strong>能够定义容器组织和管理规范的“容器编排”技术，则当仁不让地坐上了容器技术领域的“头把交椅”</strong>。相比于“小打小闹”的 Docker 公司、“旧瓶装新酒”的 Mesos 社区，Kubernetes 项目从一开始就比较幸运地站上了一个他人难以企及的高度：在它的成长阶段，这个项目每一个核心特性的提出，几乎都脱胎于 Borg/Omega 系统的设计与经验。更重要的是，这些特性在开源社区落地的过程中，又在整个社区的合力之下得到了极大的改进，修复了很多当年遗留在 Borg 体系中的缺陷和问题。所以，尽管在发布之初被批评是“曲高和寡”，但是在逐渐觉察到 Docker 技术栈的“稚嫩”和 Mesos 社区的“老迈”之后，这个社区很快就明白了：Kubernetes 项目在 Borg 体系的指导下，体现出了一种独有的“先进性”与“完备性”，而这些特质才是一个基础设施领域开源项目赖以生存的核心价值。</p>
 <p>实际上，在定义核心功能的过程中，Kubernetes 项目正是依托着 Borg 项目的理论优势，才在短短几个月内迅速站稳了脚跟，进而确定了一个如下图所示的全局架构：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/00.png" alt></p>
 <p>我们可以看到，Kubernetes 项目的架构，跟它的原型项目 Borg 非常类似，都由 Master 和 Node 两种节点组成，而这两种角色分别对应着控制节点和计算节点：</p>
