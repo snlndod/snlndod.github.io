@@ -280,6 +280,139 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/08/Composite-Design-Pattern/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="snlndod">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/12/08/Composite-Design-Pattern/" itemprop="url">
+                  Composite Design Pattern
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-08T23:17:46+08:00">
+                2020-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="组合模式的原理与实现"><a href="#组合模式的原理与实现" class="headerlink" title="组合模式的原理与实现"></a>组合模式的原理与实现</h2><p><code>组合模式</code>（Composite Design Pattern）是这样定义的：</p>
+<blockquote>
+<p>Compose objects into tree structure to represent part-whole hierarchies. Composite lets client treat individual objects and compositions of objects uniformly.</p>
+</blockquote>
+<p>翻译成中文就是：<strong>将一组对象组织（Compose）成树形结构，以表示一种“部分-整体”的层次结构</strong>。组合让客户端可以统一单个对象和组合对象的处理逻辑。</p>
+<p>假设我们有这样一个需求：设计一个类来表示文件系统中的目录，能方便地实现下面这些功能：</p>
+<ul>
+<li>动态地添加、删除某个目录下的子目录或文件；</li>
+<li>统计指定目录下的文件个数；</li>
+<li>统计指定目录下的文件总大小；</li>
+</ul>
+<p>我们把文件和目录统一用 FileSystemNode 类来表示，并且通过 isFile 属性来区分。我这里给出了这个类的骨架代码，如下所示：</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/12/08/Composite-Design-Pattern/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/07/Facade-Design-Pattern/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -777,130 +910,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/02/Proxy-Design-Pattern/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SDE PREPARES">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2020/12/02/Proxy-Design-Pattern/" itemprop="url">
-                  Proxy Design Pattern
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-02T00:56:30+08:00">
-                2020-12-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="代理模式的原理解析"><a href="#代理模式的原理解析" class="headerlink" title="代理模式的原理解析"></a>代理模式的原理解析</h2><p><code>代理模式</code>（Proxy Design Pattern）的原理和代码实现都不难掌握。它在不改变原始类（或叫被代理类）代码的情况下，通过<strong>引入代理类来给原始类附加功能</strong>。</p>
-<p>我们开发了一个性能计数器 – MetricsCollector 类，在业务系统中，我们采用如下方式来使用这个 MetricsCollector 类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">//...省略其他属性和方法...</span></span><br><span class="line">    <span class="keyword">private</span> MetricsCollector metricsCollector; <span class="comment">// 依赖注入</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserVo <span class="title">login</span><span class="params">(String telephone, String password)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> startTimestamp = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//...省略 login 逻辑...</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> endTimeStamp = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">long</span> responseTime = endTimeStamp - startTimestamp;</span><br><span class="line">        RequestInfo requestInfo = <span class="keyword">new</span> RequestInfo(<span class="string">"login"</span>, responseTime, startTimestamp);</span><br><span class="line">        metricsCollector.recordRequest(requestInfo);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//...返回 UserVo 数据...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserVo <span class="title">register</span><span class="params">(String telephone, String password)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> startTimestamp = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//...省略 register 逻辑...</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> endTimeStamp = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">long</span> responseTime = endTimeStamp - startTimestamp;</span><br><span class="line">        RequestInfo requestInfo = <span class="keyword">new</span> RequestInfo(<span class="string">"register"</span>, responseTime, startTimestamp);</span><br><span class="line">        metricsCollector.recordRequest(requestInfo);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//...返回 UserVo 数据...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/12/02/Proxy-Design-Pattern/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -948,7 +957,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">211</span>
+                <span class="site-state-item-count">212</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
