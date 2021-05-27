@@ -280,10 +280,132 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/31/Modified-Binary-Search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hymsft">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2021/01/31/Modified-Binary-Search/" itemprop="url">
+                  Modified Binary Search
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-31T20:46:57+08:00">
+                2021-01-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>As we know, whenever we are given a sorted <strong>Array</strong> or <strong>LinkedList</strong> or <strong>Matrix</strong>, and we are asked to find a certain element, the best algorithm we can use is the <em>Binary Search</em>.</p>
+<p>This pattern describes an efficient way to handle all problems involving <em>Binary Search</em>. We will go through a set of problems that will help us build an understanding of this pattern so that we can apply this technique to other problems we might come across in the interviews.</p>
+<h2 id="Snippet"><a href="#Snippet" class="headerlink" title="Snippet"></a>Snippet</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span><span class="params">(nums: List[int], target: int)</span> -&gt; bool:</span></span><br><span class="line">    lo, hi = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> lo &lt;= hi:</span><br><span class="line">        mid = lo + ((hi - lo) &gt;&gt; <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> nums[mid] == target:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="comment"># handle duplicates</span></span><br><span class="line">        <span class="keyword">if</span> nums[lo] == nums[mid] == nums[hi]:</span><br><span class="line">            lo += <span class="number">1</span></span><br><span class="line">            hi -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> nums[lo] &lt;= nums[mid]:</span><br><span class="line">            <span class="keyword">if</span> nums[lo] &lt;= target &lt; nums[mid]:</span><br><span class="line">                hi = mid - <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                lo = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> nums[mid] &lt; target &lt;= nums[hi]:</span><br><span class="line">                lo = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                hi = mid - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h2><p><a href="https://leetcode.com/problems/find-smallest-letter-greater-than-target/" target="_blank" rel="noopener">Find Smallest Letter Greater Than Target</a><br><a href="https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/" target="_blank" rel="noopener">Find First and Last Position of Element in Sorted Array</a><br><a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="noopener">Search in Rotated Sorted Array</a><br><a href="https://leetcode.com/problems/search-in-rotated-sorted-array-ii/" target="_blank" rel="noopener">Search in Rotated Sorted Array II</a><br><a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank" rel="noopener">Find Minimum in Rotated Sorted Array</a><br><a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/" target="_blank" rel="noopener">Find Minimum in Rotated Sorted Array II</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/31/Subsets/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -404,7 +526,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/30/Two-Heaps/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -526,7 +648,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/30/Tree-Depth-First-Search/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -648,7 +770,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/30/Tree-Breadth-First-Search/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -758,128 +880,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/30/In-Place-Reversal-of-a-LinkedList/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SDE PREPARES">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2021/01/30/In-Place-Reversal-of-a-LinkedList/" itemprop="url">
-                  In-Place Reversal of a LinkedList
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-30T17:09:24+08:00">
-                2021-01-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>In a lot of problems, we are asked to reverse the links between a set of nodes of a LinkedList. Often, the constraint is that we need to do this in-place, i.e., using the existing node objects and without using extra memory.</p>
-<p><em>In-Place Reversal of a LinkedList</em> pattern describes an efficient way to solve the above problem.</p>
-<h2 id="Snippet"><a href="#Snippet" class="headerlink" title="Snippet"></a>Snippet</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverse_between</span><span class="params">(head: ListNode, left: int, right: int)</span> -&gt; ListNode:</span></span><br><span class="line">    <span class="comment"># set sentinel</span></span><br><span class="line">    dummy, dummy.next = ListNode(), head</span><br><span class="line">    prev = dummy</span><br><span class="line">    <span class="comment"># obtain previous node</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(left - <span class="number">1</span>):</span><br><span class="line">        prev = prev.next</span><br><span class="line">    rev, curr = <span class="literal">None</span>, prev.next</span><br><span class="line">    <span class="comment"># reverse from left to right</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(right - left + <span class="number">1</span>):</span><br><span class="line">        temp = curr.next</span><br><span class="line">        curr.next = rev</span><br><span class="line">        rev = curr</span><br><span class="line">        curr = temp</span><br><span class="line">    <span class="comment"># merge three parts</span></span><br><span class="line">    prev.next.next = curr</span><br><span class="line">    prev.next = rev</span><br><span class="line">    <span class="keyword">return</span> dummy.next</span><br></pre></td></tr></table></figure>
-
-<h2 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h2><p><a href="https://leetcode.com/problems/reverse-linked-list/" target="_blank" rel="noopener">Reverse Linked List</a><br><a href="https://leetcode.com/problems/reverse-linked-list-ii/" target="_blank" rel="noopener">Reverse Linked List II</a><br><a href="https://leetcode.com/problems/reverse-nodes-in-k-group/" target="_blank" rel="noopener">Reverse Nodes in k-Group</a><br><a href="https://leetcode.com/problems/rotate-list/" target="_blank" rel="noopener">Rotate List</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -916,8 +916,8 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="snlndod">
-          <p class="site-author-name" itemprop="name">snlndod</p>
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="hymsft">
+          <p class="site-author-name" itemprop="name">hymsft</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
           
@@ -927,7 +927,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">212</span>
+                <span class="site-state-item-count">213</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1000,7 +1000,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">snlndod</span>
+  <span class="author" itemprop="copyrightHolder">hymsft</span>
 </div>
 
 

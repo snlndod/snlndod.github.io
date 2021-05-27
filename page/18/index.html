@@ -280,10 +280,134 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/04/红黑树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hymsft">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2021/01/04/红黑树/" itemprop="url">
+                  红黑树
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-04T17:47:55+08:00">
+                2021-01-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="什么是“平衡二叉查找树”？"><a href="#什么是“平衡二叉查找树”？" class="headerlink" title="什么是“平衡二叉查找树”？"></a>什么是“平衡二叉查找树”？</h2><p>平衡二叉树的严格定义是这样的：<strong>二叉树中任意一个节点的左右子树的高度相差不能大于 1</strong>。从这个定义来看，上一节我们讲的完全二叉树、满二叉树其实都是平衡二叉树，但是非完全二叉树也有可能是平衡二叉树：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/114.png" alt></p>
+<p>平衡二叉查找树不仅满足上面平衡二叉树的定义，还满足二叉查找树的特点。最先被发明的平衡二叉查找树是 <code>AVL 树</code>，它严格符合我刚讲到的平衡二叉查找树的定义，即任何节点的左右子树高度相差不超过 1，是一种高度平衡的二叉查找树。发明平衡二叉查找树这类数据结构的初衷是，<strong>解决普通二叉查找树在频繁的插入、删除等动态更新的情况下，出现时间复杂度退化的问题</strong>。</p>
+<p>平衡二叉查找树中“平衡”的意思，其实就是让整棵树左右看起来比较“对称”、比较“平衡”，不要出现左子树很高、右子树很矮的情况。这样就能让整棵树的高度相对来说低一些，相应的插入、删除、查找等操作的效率高一些。所以，如果我们现在设计一个新的平衡二叉查找树，<strong>只要树的高度不比 log2n 大很多（比如树的高度仍然是对数量级的）</strong>，尽管它不符合我们前面讲的严格的平衡二叉查找树的定义，但我们仍然可以说，这是一个合格的平衡二叉查找树。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/01/04/红黑树/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/03/二叉树基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -406,7 +530,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/03/哈希算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -542,7 +666,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/02/散列表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -667,7 +791,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/31/跳表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -780,129 +904,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/31/二分查找/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SDE PREPARES">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2020/12/31/二分查找/" itemprop="url">
-                  二分查找
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-31T00:19:36+08:00">
-                2020-12-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><code>二分查找</code>（Binary Search）算法，也叫折半查找算法。二分查找的思想非常简单，很多非计算机专业的同学很容易就能理解，但是看似越简单的东西往往越难掌握好，想要灵活应用就更加困难。</p>
-<h2 id="无处不在的二分思想"><a href="#无处不在的二分思想" class="headerlink" title="无处不在的二分思想"></a>无处不在的二分思想</h2><p>我们现在来做一个猜字游戏：我随机写一个 0 到 99 之间的数字，然后你来猜我写的是什么。猜的过程中，你每猜一次，我就会告诉你猜的大了还是小了，直到猜中为止。假设我写的数字是 23，你可以按照下面的步骤来试一试：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/68.png" alt></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/12/31/二分查找/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -939,8 +940,8 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="snlndod">
-          <p class="site-author-name" itemprop="name">snlndod</p>
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="hymsft">
+          <p class="site-author-name" itemprop="name">hymsft</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
           
@@ -950,7 +951,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">212</span>
+                <span class="site-state-item-count">213</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1023,7 +1024,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">snlndod</span>
+  <span class="author" itemprop="copyrightHolder">hymsft</span>
 </div>
 
 

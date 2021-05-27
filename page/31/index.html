@@ -280,10 +280,141 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/15/数据库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hymsft">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2020/01/15/数据库/" itemprop="url">
+                  数据库
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-15T00:10:29+08:00">
+                2020-01-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="关系型数据库管理系统（RDBMS）"><a href="#关系型数据库管理系统（RDBMS）" class="headerlink" title="关系型数据库管理系统（RDBMS）"></a>关系型数据库管理系统（RDBMS）</h2><p>像 SQL 这样的关系型数据库，是一系列以<code>表</code>的形式组织的<strong>数据项集合</strong>。</p>
+<p><code>ACID</code> 用来描述关系型数据库事务的特性：</p>
+<ul>
+<li>原子性（<strong>A</strong>tomicity）：每个事务内部所有操作要么全部完成，要么全部不完成；</li>
+<li>一致性（<strong>C</strong>onsistency）：任何事务都使数据库从一个有效的状态转换到另一个有效状态；</li>
+<li>隔离性（<strong>I</strong>solation）：并发执行事务的结果与顺序执行事务的结果相同；</li>
+<li>持久性（<strong>D</strong>urability）：事务提交后，对系统的影响是永久的。</li>
+</ul>
+<p>关系型数据库的扩展，包括许多技术：<code>主-从复制</code>、<code>主-主复制</code>、<code>联邦</code>、<code>分片</code>、<code>非规范化</code>和 <code>SQL 调优</code>。</p>
+<h3 id="主-从复制"><a href="#主-从复制" class="headerlink" title="主-从复制"></a>主-从复制</h3><p>主库同时负责读取和写入操作，并复制写入到一个或多个从库中，<strong>从库只负责读操作</strong>。树状形式的从库再将写入复制到更多的从库中去。如果<strong>主库离线，系统可以以只读模式运行</strong>，直到某个从库被提升为主库或有新的主库出现：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/00.jpg" alt></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/01/15/数据库/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/28/反向代理与应用层/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -420,7 +551,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/25/负载均衡器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -553,7 +684,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/域名系统与内容分发网络/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -683,7 +814,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/21/高层次的权衡/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -893,131 +1024,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/18/Scalability-for-Dummies/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SDE PREPARES">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2019/12/18/Scalability-for-Dummies/" itemprop="url">
-                  Scalability for Dummies
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-18T22:54:52+08:00">
-                2019-12-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/01/00.jpg" alt><br>Just recently I was asked what it would take to <strong>make a web service massively scalable</strong>. My answer was lengthy and maybe it is also for other people interesting. So I share it with you here in my blog and split it into parts to make it easier to read. New parts are released on a regular basis. Have fun and your comments are always welcomed!</p>
-<h2 id="Clones"><a href="#Clones" class="headerlink" title="Clones"></a>Clones</h2><p>Public servers of a scalable web service are hidden <strong>behind a load balancer</strong>. This load balancer <strong>evenly distributes</strong> load (requests from your users) onto your group/cluster of application servers. That means that if, for example, user Steve interacts with your service, he may be served at his first request by server 2, then with his second request by server 9 and then maybe again by server 2 on his third request. </p>
-<p>Steve should always get the same results of his request back, independent what server he “landed on”. That leads to the first golden rule for scalability: every server contains exactly the same codebase and <strong>does not store any user-related data</strong>, like sessions or profile pictures, on local disc or memory. </p>
-<p>Sessions need to be stored in a centralized data store which is accessible to all your application servers. It can be an <code>external database</code> or an <code>external persistent cache</code>, like Redis. An external persistent cache will have better performance than an external database. By external I mean that the data store does not reside on the application servers. Instead, it is somewhere in or <strong>near the data center</strong> of your application servers.</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/12/18/Scalability-for-Dummies/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1054,8 +1060,8 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="snlndod">
-          <p class="site-author-name" itemprop="name">snlndod</p>
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="hymsft">
+          <p class="site-author-name" itemprop="name">hymsft</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
           
@@ -1065,7 +1071,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">212</span>
+                <span class="site-state-item-count">213</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1138,7 +1144,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">snlndod</span>
+  <span class="author" itemprop="copyrightHolder">hymsft</span>
 </div>
 
 

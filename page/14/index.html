@@ -280,10 +280,134 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/28/索引/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hymsft">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2021/01/28/索引/" itemprop="url">
+                  索引
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-28T00:18:26+08:00">
+                2021-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>MySQL 底层依赖的是 B+ 树这种数据结构。那类似 Redis 这样的 Key-Value 数据库中的索引，又是怎么实现的呢？底层依赖的又是什么数据结构呢？今天，我就来讲一下<strong>索引这种常用的技术解决思路，底层往往会依赖哪些数据结构</strong>。</p>
+<h2 id="为什么需要索引？"><a href="#为什么需要索引？" class="headerlink" title="为什么需要索引？"></a>为什么需要索引？</h2><p>在实际的软件开发中，业务纷繁复杂，功能千变万化，但是，万变不离其宗。<strong>如果抛开这些业务和功能的外壳，其实它们的本质都可以抽象为：对数据的存储和计算</strong>。对应到数据结构和算法中，那“存储”需要的就是数据结构，“计算”需要的就是算法。对于存储的需求，功能上无外乎增删改查，这其实并不复杂。但是，<strong>一旦存储的数据很多，那性能就成了这些系统要关注的重点</strong>，特别是在一些跟存储相关的基础系统（比如 MySQL 数据库、分布式文件系统等）、中间件（比如消息中间件 RocketMQ 等）中。</p>
+<p>“如何节省存储空间、如何提高数据增删改查的执行效率”，这样的问题就成了设计的重点。而这些系统的实现，都离不开一个东西，那就是索引。不夸张地说，<strong>索引设计得好坏，直接决定了这些系统是否优秀</strong>。索引这个概念，非常好理解。你可以类比书籍的目录来理解。如果没有目录，我们想要查找某个知识点的时候，就要一页一页翻。通过目录，我们就可以快速定位相关知识点的页数，查找的速度也会有质的提高。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/01/28/索引/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/25/搜索/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -407,7 +531,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/23/B-树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -536,7 +660,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/23/向量空间/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -663,7 +787,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/21/概率统计/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -777,131 +901,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/20/位图/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SDE PREPARES">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2021/01/20/位图/" itemprop="url">
-                  位图
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-20T23:39:22+08:00">
-                2021-01-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="如何实现网页爬虫中的-URL-去重功能"><a href="#如何实现网页爬虫中的-URL-去重功能" class="headerlink" title="如何实现网页爬虫中的 URL 去重功能"></a>如何实现网页爬虫中的 URL 去重功能</h2><p>网页爬虫是搜索引擎中的非常重要的系统，负责爬取几十亿、上百亿的网页。爬虫的工作原理是，通过解析已经爬取页面中的网页链接，然后再爬取这些链接对应的网页。而<strong>同一个网页链接有可能被包含在多个页面中，这就会导致爬虫在爬取的过程中，重复爬取相同的网页</strong>。如果你是一名负责爬虫的工程师，你会如何避免这些重复的爬取呢？</p>
-<p>最容易想到的方法就是，我们记录已经爬取的网页链接（也就是 URL），<strong>在爬取一个新的网页之前，我们拿它的链接，在已经爬取的网页链接列表中搜索</strong>。如果存在，那就说明这个网页已经被爬取过了；如果不存在，那就说明这个网页还没有被爬取过，可以继续去爬取。等爬取到这个网页之后，我们将这个网页的链接添加到已经爬取的网页链接列表了。</p>
-<h2 id="算法解析"><a href="#算法解析" class="headerlink" title="算法解析"></a>算法解析</h2><p>这个问题要处理的对象是网页链接，也就是 URL，需要支持的操作有两个，添加一个 URL 和查询一个 URL。除了这两个功能性的要求之外，在非功能性方面，我们还要求这两个操作的执行效率要尽可能高。除此之外，因为<strong>我们处理的是上亿的网页链接，内存消耗会非常大</strong>，所以在存储效率上，我们要尽可能地高效。</p>
-<p>显然，散列表、红黑树、跳表这些动态数据结构，都能支持快速地插入、查找数据，但是在内存消耗方面，是否可以接受呢？我们拿散列表来举例，假设一个 URL 的平均长度是 64 字节，那单纯存储这 10 亿个 URL，需要大约 60GB 的内存空间。因为散列表必须维持较小的装载因子，才能保证不会出现过多的散列冲突，导致操作的性能下降。而且，<strong>用链表法解决冲突的散列表，还会存储链表指针</strong>。所以，如果将这 10 亿个 URL 构建成散列表，那需要的内存空间会远大于 60GB，有可能会超过 100GB。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/01/20/位图/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -938,8 +937,8 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="snlndod">
-          <p class="site-author-name" itemprop="name">snlndod</p>
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="hymsft">
+          <p class="site-author-name" itemprop="name">hymsft</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
           
@@ -949,7 +948,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">212</span>
+                <span class="site-state-item-count">213</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1022,7 +1021,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">snlndod</span>
+  <span class="author" itemprop="copyrightHolder">hymsft</span>
 </div>
 
 

@@ -280,10 +280,139 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/31/Python-语言精要-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hymsft">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/12/31/Python-语言精要-3/" itemprop="url">
+                  Python 语言精要-3
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-31T23:24:52+08:00">
+                2017-12-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="列表、集合以及字典的推导式"><a href="#列表、集合以及字典的推导式" class="headerlink" title="列表、集合以及字典的推导式"></a>列表、集合以及字典的推导式</h2><p><strong>列表推导式</strong>是最受欢迎的 Python 的语言特性之一，只需一条简洁的表达式，即可对一组元素进行过滤，并对得到的元素进行转换变形。基本形式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[expr <span class="keyword">for</span> value <span class="keyword">in</span> collection <span class="keyword">if</span> condition]</span><br></pre></td></tr></table></figure>
+
+<p>这相当于下面这段 for 循环：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">result = []</span><br><span class="line"><span class="keyword">for</span> val <span class="keyword">in</span> collection:</span><br><span class="line">    <span class="keyword">if</span> condition:</span><br><span class="line">        result.append(expr)</span><br></pre></td></tr></table></figure>
+
+<p>过滤条件可以省略。滤除长度小于等于 2 的字符串，并将剩下的字符串转换成大写字母形式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">strings = [<span class="string">'a'</span>, <span class="string">'as'</span>, <span class="string">'bat'</span>, <span class="string">'car'</span>, <span class="string">'dove'</span>, <span class="string">'python'</span>]</span><br><span class="line">[x.upper() <span class="keyword">for</span> x <span class="keyword">in</span> strings <span class="keyword">if</span> len(x) &gt; <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="string">'BAT'</span>, <span class="string">'CAR'</span>, <span class="string">'DOVE'</span>, <span class="string">'PYTHON'</span>]</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/31/Python-语言精要-3/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/27/Python-语言精要-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -411,7 +540,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/21/面试题-11：旋转数组的最小数字/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -545,7 +674,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/18/面试题-10：斐波那契数列/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -675,7 +804,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/08/初识-SLAM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -790,132 +919,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/29/SLAM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SDE PREPARES">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/29/SLAM/" itemprop="url">
-                  SLAM
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-29T21:25:46+08:00">
-                2017-11-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="本书讲什么"><a href="#本书讲什么" class="headerlink" title="本书讲什么"></a>本书讲什么</h2><p>SLAM 是 <strong>S</strong>imultaneous <strong>L</strong>ocalization <strong>A</strong>nd <strong>M</strong>apping 的缩写，中文译作：同时定位与地图构建。<br>SLAM 的目的是解决<code>定位</code>与<code>地图构建</code>，希望<strong>实时地</strong>、在<strong>没有先验知识</strong>的情况下进行 SLAM。<br>我们眼中的花草树木、虫鱼鸟兽，在计算机中只是一个个由数字排列而成的矩阵。<br>与人工智能和机器学习所用的方式——<strong>概率学建模</strong>是不同的。<br>与 SLAM 相关的应用点：在许多地方，我们都希望知道自身的位置。<br>虽然 SLAM 的理论框架基本趋于稳定，但其编程实现仍然较为复杂。<br>我们会详细地介绍 SLAM 的理论背景、系统架构，以及各个模块的主流做法。<br>经典书籍：《概率机器人》（Probabilistic robotics）、《计算机视觉中的多视图几何》（Multiple View Geometry in Computer Vision）、《机器人学中的状态估计》（State Estimation for Robotics: A Matrix-Lie-Group Approach）</p>
-<ul>
-<li>目的在于介绍基础理论，SLAM 只是其应用之一；</li>
-<li>内容偏重于数学理论，基本不涉及编程实现。</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/29/SLAM/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -952,8 +955,8 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="snlndod">
-          <p class="site-author-name" itemprop="name">snlndod</p>
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="hymsft">
+          <p class="site-author-name" itemprop="name">hymsft</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
           
@@ -963,7 +966,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">212</span>
+                <span class="site-state-item-count">213</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1036,7 +1039,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">snlndod</span>
+  <span class="author" itemprop="copyrightHolder">hymsft</span>
 </div>
 
 

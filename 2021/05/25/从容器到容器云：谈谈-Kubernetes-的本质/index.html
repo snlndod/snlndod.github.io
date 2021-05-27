@@ -98,7 +98,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/00.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/03.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/04.png">
-<meta property="og:updated_time" content="2021-05-25T14:00:05.000Z">
+<meta property="og:updated_time" content="2021-05-27T17:14:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从容器到容器云：谈谈 Kubernetes 的本质">
 <meta name="twitter:description" content="一个容器，实际上是一个由 Linux Namespace、Linux Cgroups 和 rootfs 三种技术构建出来的进程的隔离环境。从这个结构中我们不难看出，一个正在运行的 Linux 容器，其实可以被“一分为二”地看待：  一组联合挂载在 /var/lib/docker/aufs/mnt 上的 rootfs，这一部分我们称为容器镜像（Container Image），是容器的静态视图； 一">
@@ -290,7 +290,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/25/从容器到容器云：谈谈-Kubernetes-的本质/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="snlndod">
+      <meta itemprop="name" content="hymsft">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.png">
     </span>
@@ -375,7 +375,7 @@
 <li><strong>计算节点</strong>上最核心的部分，则是一个叫作 kubelet 的组件：<ul>
 <li>在 Kubernetes 项目中，kubelet 主要负责同容器运行时（比如 Docker 项目）打交道。而这个交互所依赖的，是一个称作 <em>CRI (Container Runtime Interface)</em> 的远程调用接口，这个接口定义了容器运行时的各项核心操作，比如：启动一个容器需要的所有参数。这也是为何，Kubernetes 项目并不关心你部署的是什么容器运行时、使用的什么技术实现，<strong>只要你的这个容器运行时能够运行标准的容器镜像，它就可以通过实现 CRI 接入到 Kubernetes 项目当中</strong>。而具体的容器运行时，比如 Docker 项目，则一般通过 <em>OCI (Open Container Initiative)</em> 这个容器运行时规范同底层的 Linux 操作系统进行交互，即：把 CRI 请求翻译成对 Linux 操作系统的调用（操作 Linux Namespace 和 Cgroups 等）；</li>
 <li>此外，kubelet 还通过 gRPC 协议同一个叫作 <em>Device Plugin</em> 的插件进行交互。这个插件，是 Kubernetes 项目用来管理 GPU 等宿主机物理设备的主要组件，也是基于 Kubernetes 项目进行机器学习训练、高性能作业支持等工作必须关注的功能；</li>
-<li>而 kubelet 的另一个重要功能，则是调用网络插件和存储插件为容器配置网络和持久化存储。这两个插件与 kubelet 进行交互的接口，分别是 <em>CNI (Container Networking Interface)</em> 和 _CSI (Container Storage Interface)_；</li>
+<li>而 kubelet 的另一个重要功能，则是调用网络插件和存储插件为容器配置网络和持久化存储。这两个插件与 kubelet 进行交互的接口，分别是 <em>CNI (Container Networking Interface)</em> 和 <em>CSI (Container Storage Interface)</em> ；</li>
 </ul>
 </li>
 </ol>
@@ -446,6 +446,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2021/05/28/重新认识-Docker-容器/" rel="prev" title="重新认识 Docker 容器">
+                重新认识 Docker 容器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -494,8 +498,8 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="snlndod">
-          <p class="site-author-name" itemprop="name">snlndod</p>
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="hymsft">
+          <p class="site-author-name" itemprop="name">hymsft</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
           
@@ -505,7 +509,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">212</span>
+                <span class="site-state-item-count">213</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -578,7 +582,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">snlndod</span>
+  <span class="author" itemprop="copyrightHolder">hymsft</span>
 </div>
 
 
