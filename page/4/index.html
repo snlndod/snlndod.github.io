@@ -743,10 +743,7 @@
 <p>Generate sum for all values in the target and return the value for the target:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= target; ++i) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; ways.size(); ++j) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ways[j] &lt;= i) &#123;</span><br><span class="line">            dp[i] += dp[i-ways[j]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> dp[target];</span><br></pre></td></tr></table></figure>
 
-<p><strong>Note</strong>:</p>
-<blockquote>
-<p>Some questions point out the number of repetitions, in that case, add one more loop to simulate every repetition.</p>
-</blockquote>
+<p><strong>Note</strong>:<br>Some questions point out the number of repetitions, in that case, add one more loop to simulate every repetition.</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2021/03/01/Distinct-Ways/#more" rel="contents">
