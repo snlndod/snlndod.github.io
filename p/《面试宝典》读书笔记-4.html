@@ -1,0 +1,1015 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Java,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="容器、多线程、Java 数据库操作  Java Collections 框架包含了大量集合接口以及这些接口的实现类和操作它们的算法。Collection 是整个集合框架的基础，它里面储存一组对象，表示不同类型的 Collections，它的作用只是维护一组对象的基本接口而已。Set、List、Map 都继承自 Collection 接口：">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《面试宝典》读书笔记-4">
+<meta property="og:url" content="https://umarellyh.github.io/p/《面试宝典》读书笔记-4.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="容器、多线程、Java 数据库操作  Java Collections 框架包含了大量集合接口以及这些接口的实现类和操作它们的算法。Collection 是整个集合框架的基础，它里面储存一组对象，表示不同类型的 Collections，它的作用只是维护一组对象的基本接口而已。Set、List、Map 都继承自 Collection 接口：">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/4_1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/4_2.jpg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《面试宝典》读书笔记-4">
+<meta name="twitter:description" content="容器、多线程、Java 数据库操作  Java Collections 框架包含了大量集合接口以及这些接口的实现类和操作它们的算法。Collection 是整个集合框架的基础，它里面储存一组对象，表示不同类型的 Collections，它的作用只是维护一组对象的基本接口而已。Set、List、Map 都继承自 Collection 接口：">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/4_1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/p/《面试宝典》读书笔记-4.html">
+
+
+
+
+
+  <title> 《面试宝典》读书笔记-4 | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/《面试宝典》读书笔记-4.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                《面试宝典》读书笔记-4
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-06T22:18:16+08:00">
+                2018-01-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>容器、多线程、Java 数据库操作</p>
+</blockquote>
+<h2 id="Java-Collections-框架"><a href="#Java-Collections-框架" class="headerlink" title="Java Collections 框架"></a>Java Collections 框架</h2><p>包含了大量集合接口以及这些接口的实现类和操作它们的算法。<br><code>Collection</code> 是整个集合框架的基础，它里面储存一组对象，表示不同类型的 Collections，它的作用只是维护一组对象的基本接口而已。<br>Set、List、Map 都继承自 Collection 接口：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/4_1.jpg" alt></p>
+<a id="more"></a>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>表示数学意义上的<strong>集合概念</strong>，集合中的元素不能重复，必须定义 equals() 方法来确保对象的唯一性。<br>两个实现类：HashSet、TreeSet，TreeSet 容器中的元素是有序的。</p>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>按对象进入的顺序保存对象，可以保存重复的对象。LinkedList、ArrayList、Vector 都实现了 List 接口。</p>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><p>提供了一个<strong>从键映射到值</strong>的数据结构，用于保存键值对。值可以重复，键是唯一的。</p>
+<ul>
+<li>HashMap 是基于散列表实现的，采用对象的 HashCode 可以进行快速查询；</li>
+<li>TreeMap 基于红黑树的数据结构来实现的，内部元素是按序排列的。</li>
+</ul>
+<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><p>迭代器（Iterator）是一个对象，它的工作是<strong>遍历并选择</strong>序列中的对象，提供了一种访问容器对象中的各个元素，而又不必暴露该对象内部细节的方法。</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>使用 iterator() 方法返回一个 Iterator，然后通过 next() 方法返回第一个元素；</li>
+<li>使用 hasNext() 方法判容器中是否还有元素；</li>
+<li>可以通过 remove() 方法删除迭代器返回的元素。</li>
+</ul>
+<h3 id="Iterator-与-ListIterator-的区别"><a href="#Iterator-与-ListIterator-的区别" class="headerlink" title="Iterator 与 ListIterator 的区别"></a>Iterator 与 ListIterator 的区别</h3><ul>
+<li>Iterator 只能正向遍历集合，适用于获取移除元素；</li>
+<li>ListIterator 继承自 Iterator，专门针对 List，可以从两个方向遍历 List，同时支持元素的修改。</li>
+</ul>
+<h2 id="ArrayList、Vector、LinkedList-的区别"><a href="#ArrayList、Vector、LinkedList-的区别" class="headerlink" title="ArrayList、Vector、LinkedList 的区别"></a>ArrayList、Vector、LinkedList 的区别</h2><blockquote>
+<p>ArrayList、Vector、LinkedList 类均在 java.util 包中，为可伸缩数组。</p>
+</blockquote>
+<h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><p>ArrayList、Vector 都是基于存储元素的 Object[] array 来实现的，会在内存中开辟一块连续的空间来存储，支持用<code>下标</code>来访问元素。</p>
+<h3 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h3><p>ArrayList、Vector 最大的区别就是<code>同步</code>的使用。没有一个 ArrayList 的方法是同步的，不是<strong>线程安全</strong>的；而 Vector 的绝大多数方法都是同步的，是线程安全的。</p>
+<h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3><p>采用双向列表来实现，对数据的索引需要从列表头开始遍历。随机访问效率较低，插入效率较高，是非线程安全的容器。</p>
+<h3 id="容器的选择"><a href="#容器的选择" class="headerlink" title="容器的选择"></a>容器的选择</h3><ul>
+<li>当对数据的操作主要为索引或只在集合的末端操作时，使用 ArrayList、Vector 效率比较高；</li>
+<li>当对数据的操作主要为指定位置的操作时，使用 LinkedList 效率比较高；</li>
+<li>当在多线程中使用容器时，选用 Vector 较为安全。</li>
+</ul>
+<h2 id="HashMap、HashTable、TreeMap、WeakHashMap-的区别"><a href="#HashMap、HashTable、TreeMap、WeakHashMap-的区别" class="headerlink" title="HashMap、HashTable、TreeMap、WeakHashMap 的区别"></a>HashMap、HashTable、TreeMap、WeakHashMap 的区别</h2><p>为数据结构中的<code>映射</code>定义了一个接口 java.util.Map，包括 3 个实现类：HashMap、HashTable、TreeMap。<br>在数组中通过<strong>数组下标</strong>来对其内容索引。而在 Map 中，则是通过对象来进行索引，用来索引的对象叫做 key，其对应的对象叫做 value。</p>
+<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p>最常用的 Map，它根据<strong>键的 hashCode 值</strong>存储数据，根据键可以直接获取它的值，具有很快的访问速度。<br>HashMap 是 HashTable 的轻量级（非线程安全）实现，允许<code>空键值</code>，而 HashTable 不允许。<br>把 HashTable 的 contains 方法去掉了，改成 containsValue 和 containsKey。是 Map 接口的一个实现，而 HashTable 继承自 Dictionary 类。</p>
+<h3 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a>HashTable</h3><p>是<strong>线程安全</strong>的，而 HashMap 不支持线程的同步。就效率而言，HashMap 可能高于 HashTable。<br>HashTable 和 HashMap 采用的 hash/rehash 算法几乎一样，所以性能不会有很大的差异。</p>
+<blockquote>
+<p>HashTable 使用 Enumeration，HashMap 使用 Iterator。</p>
+</blockquote>
+<h3 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h3><ul>
+<li>在 Map 中插入、删除、定位元素，HashMap 是最好的选择。</li>
+<li>TreeMap 实现了 <strong>SortMap 接口</strong>，如果需要按自然顺序或自定义顺序遍历键，那么 TreeMap 会更好。</li>
+<li>LinkedHashMap 是 HashMap 的一个子类，如果需要输出的顺序和输入的相同，那么用 LinkedHashMap 可以实现。</li>
+</ul>
+<h3 id="WeakHashMap"><a href="#WeakHashMap" class="headerlink" title="WeakHashMap"></a>WeakHashMap</h3><p>与 HashMap 类似，不同之处在于 WeakHashMap 中，key 采用的是<code>弱引用</code>的方式，只要 key 不再被外部引用，它就可以被垃圾回收器回收。</p>
+<h2 id="用自定义类作为-HashMap-HashTable-的-key-时，需要注意的问题"><a href="#用自定义类作为-HashMap-HashTable-的-key-时，需要注意的问题" class="headerlink" title="用自定义类作为 HashMap/HashTable 的 key 时，需要注意的问题"></a>用自定义类作为 HashMap/HashTable 的 key 时，需要注意的问题</h2><p>对于不同的 key 值可能会得到相同的 hash 值，因此就需要对冲突进行处理。<code>处理冲突</code>的方法有：开放地址发、再hash法、链地址法。<br>HashMap 使用的是链地址法来解决冲突：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/4_2.jpg" alt></p>
+<ul>
+<li>如果想根据<strong>对象的相关属性</strong>来自定义对象是否相等的逻辑，就需要重写 equals() 方法，一旦重写了 equals() 方法，那么就必须重写 hashCode() 方法。</li>
+<li>当自定义类的多项作为 HashMap 的 key 时，最好把这个类设计为不可变类。</li>
+<li>如果两个对象相等，那么这两个对象有着相同的 hashCode，反之不成立。</li>
+</ul>
+<h2 id="Collection和Collections的区别"><a href="#Collection和Collections的区别" class="headerlink" title="Collection和Collections的区别"></a>Collection和Collections的区别</h2><h3 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h3><p>是一个<code>集合接口</code>，实现该接口的类主要有 List 和 Set，为各种具体的集合提供最大化的统一的操作方式。</p>
+<h3 id="Collections"><a href="#Collections" class="headerlink" title="Collections"></a>Collections</h3><p>是针对集合类的一个<code>包装类</code>，提供一系列静态方法以实现对各种集合的搜索、排序、线程安全化等操作。<br><strong>不能实例化</strong>，如同一个工具类，服务于 Collection 框架。</p>
+<hr>
+<h2 id="线程与进程的区别，为什么要使用多线程？"><a href="#线程与进程的区别，为什么要使用多线程？" class="headerlink" title="线程与进程的区别，为什么要使用多线程？"></a>线程与进程的区别，为什么要使用多线程？</h2><p>线程是程序执行的最小单元。各个线程之间共享程序的内存空间（代码段、数据段、堆空间）及一些进程级的资源（打开的文件），但是各个线程线程拥有自己的<code>栈空间</code>。<br>线程有<strong>四种状态：</strong>运行、就绪、挂起、结束。<br>在<strong>操作系统级别</strong>上，程序的执行都是以进程为单位的，而每个进程中通常都会有多个线程互不影响地并发执行：</p>
+<ul>
+<li>使用多线程可以减少程序的响应时间。</li>
+<li>与进程相比，线程的创建和切换开销更小，多线程在数据共享方面效率非常高。</li>
+<li>在多 CPU 计算机上使用多线程能提高 CPU 的利用率。</li>
+<li>使用多线程能简化程序的结构，使程序便于理解和维护。</li>
+</ul>
+<h2 id="同步、异步的区别"><a href="#同步、异步的区别" class="headerlink" title="同步、异步的区别"></a>同步、异步的区别</h2><h3 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h3><p>要想实现同步操作，必须获得每一个线程对象的<code>锁</code>。获得它可以保证在同一时刻只有一个线程能够进入临界区，并且在这个锁被释放之前，其他线程就不能再进入这个临界区。<br>Java 语言在同步机制中提供了语言级的支持，可以通过使用 <strong>synchronized 关键字</strong>来实现同步。是以很大的系统开销作为代价的，有时候甚至可能造成死锁。</p>
+<blockquote>
+<p>同步控制并非越多越好，要尽量避免无谓的同步控制。</p>
+</blockquote>
+<p>实现同步的方式有两种：</p>
+<ul>
+<li>同步代码块</li>
+<li>同步方法</li>
+</ul>
+<h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h3><p>异步与<code>非阻塞</code>类似，由于每个线程都包含了运行时自身所需要的数据或方法，因此，在进行输入输出处理时，不必关心其他线程的状态或行为，也不必等到输入输出处理完毕才返回。</p>
+<h2 id="实现-Java-多线程"><a href="#实现-Java-多线程" class="headerlink" title="实现 Java 多线程"></a>实现 Java 多线程</h2><h3 id="继承-Thread-类，重写-run-方法"><a href="#继承-Thread-类，重写-run-方法" class="headerlink" title="继承 Thread 类，重写 run() 方法"></a>继承 Thread 类，重写 run() 方法</h3><p>Thread 本质上也是实现了 Runnable 接口的一个实例，它代表一个线程的实例。启动线程的唯一方法就是通过 Thread 类的 start() 方法。</p>
+<h3 id="实现-Runnable-接口，并实现该接口的-run-方法"><a href="#实现-Runnable-接口，并实现该接口的-run-方法" class="headerlink" title="实现 Runnable 接口，并实现该接口的 run() 方法"></a>实现 Runnable 接口，并实现该接口的 run() 方法</h3><ol>
+<li>自定义类并实现 Runnable 接口，实现 run() 方法。</li>
+<li>创建 Thread 对象，用实现 Runnable 接口的对象作为参数实例化该 Thread 对象。</li>
+<li>调用 Thread 的 start() 方法。</li>
+</ol>
+<blockquote>
+<p>不管是通过继承 Thread 类还是通过使用 Runnable 接口来实现多线程的方法，最终还是通过 Thread 的对象的 API 来控制线程的。</p>
+</blockquote>
+<h3 id="实现-Callable-接口，重写-call-方法"><a href="#实现-Callable-接口，重写-call-方法" class="headerlink" title="实现 Callable 接口，重写 call() 方法"></a>实现 Callable 接口，重写 call() 方法</h3><p>与 Runnable 接口的功能类似，但提供了更强大的功能：</p>
+<ul>
+<li>Callable 可以在任务结束后提供一个返回值。</li>
+<li>Callable 中的 call() 方法可以抛出异常。</li>
+<li>运行 Callable 可以拿到一个 Future 对象，表示异步计算的结果，提供了检查计算是否完成的方法。</li>
+</ul>
+<h2 id="run-方法、start-方法的区别"><a href="#run-方法、start-方法的区别" class="headerlink" title="run() 方法、start() 方法的区别"></a>run() 方法、start() 方法的区别</h2><p>系统通过调用线程类的 start() 方法来启动一个线程，此时该线程处于<strong>就绪状态</strong>，而非运行状态。也就意味着这个线程可以被 JVM 来调度执行。<br>在调度过程中，JVM 通过调用线程类的 run() 方法来完成实际的操作，当 run() 方法结束后，此线程就会终止。<br>start() 方法能够异步地调用 run() 方法，但是直接调用 run() 方法却是同步的。</p>
+<blockquote>
+<p>只有通过调用线程类的 start() 方法才能真正达到多线程的目的。</p>
+</blockquote>
+<h2 id="多线程同步的实现方法"><a href="#多线程同步的实现方法" class="headerlink" title="多线程同步的实现方法"></a>多线程同步的实现方法</h2><h3 id="synchronized-关键字"><a href="#synchronized-关键字" class="headerlink" title="synchronized 关键字"></a>synchronized 关键字</h3><p>在 Java 语言中，每个对象都有一个<code>对象锁</code>与之相关联，该锁表明对象在任何时候只允许被一个线程所拥有。</p>
+<ul>
+<li>synchronized 方法：<br>只要把多个线程对类，需要被同步的资源的操作，放到 mutiThreadAccess() 方法中，就能保证多线程访问的安全性。<br>当一个方法的方法体规模非常大时，把该方法声明为 synchronized 会大大影响程序的执行效率。</li>
+<li>synchronized 块：<br>可以指定上锁的对象，有非常高的灵活性。</li>
+</ul>
+<h3 id="wait-方法与-notify-方法"><a href="#wait-方法与-notify-方法" class="headerlink" title="wait() 方法与 notify() 方法"></a>wait() 方法与 notify() 方法</h3><p>线程可以调用对象的 wait() 方法，释放对象锁，进入等待状态；<br>并且可以调用 notify() 方法或 notifyAll() 方法通知正在等待的其他进程。</p>
+<h3 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h3><p>提供了如下一些方法来实现多线程的同步：</p>
+<ul>
+<li>lock()<br>以<code>阻塞</code>的方式获取锁，如果获取到了锁，立即返回；如果别的线程持有锁，当前线程等待，直到获取锁后返回。</li>
+<li>tryLock()<br>以<code>非阻塞</code>的方式获取锁，只是尝试性地去获取一下锁，如果获取到锁，立即返回 true，否则，立即返回 false。</li>
+<li>tryLock(long timeout, TimeUnit unit)<br>会等待参数给定的时间单元，在等待的过程中，如果获取了锁，就返回 true，如果等待超时，返回 false。</li>
+<li>lockInterruptibly()<br>如果没有获取锁，当前线程处于休眠状态，<strong>直到获得锁</strong>；<br>或者当前线程被别的线程中断。</li>
+</ul>
+<h2 id="sleep-方法、wait-方法的区别"><a href="#sleep-方法、wait-方法的区别" class="headerlink" title="sleep() 方法、wait() 方法的区别"></a>sleep() 方法、wait() 方法的区别</h2><h3 id="原理不同"><a href="#原理不同" class="headerlink" title="原理不同"></a>原理不同</h3><ul>
+<li>sleep() 方法是 Thread 类的静态方法，是线程用来控制自身流程的，它会使此线程暂停执行一段时间，等到计时时间一到，此线程会<strong>自动苏醒</strong>；</li>
+<li>wait() 方法是 Object 类的方法，用于线程间通信，这个方法会使当前拥有该对象锁的进程等待，直到<strong>其他线程调用 notify() 方法</strong>时才醒来。</li>
+</ul>
+<h3 id="对锁的处理机制不同"><a href="#对锁的处理机制不同" class="headerlink" title="对锁的处理机制不同"></a>对锁的处理机制不同</h3><ul>
+<li>sleep() 方法的主要作用是让线程暂停执行一段时间，时间一到则自动恢复，<strong>不涉及线程间的通信</strong>，因此，调用 sleep() 方法并不会释放锁；</li>
+<li>当调用 wait() 方法后，线程会释放掉它所占用的锁，从而使线程所在对象中的其他 synchronized 数据可被别的线程使用。</li>
+</ul>
+<h3 id="使用区域不同"><a href="#使用区域不同" class="headerlink" title="使用区域不同"></a>使用区域不同</h3><ul>
+<li>wait() 方法必须放在同步控制方法或同步控制语句块中使用，而 sleep() 方法则可以放在任何地方使用；</li>
+<li>sleep() 方法必须捕获异常，而 wait()、notify() 不需要捕获异常。</li>
+</ul>
+<blockquote>
+<p>由于 sleep() 不会释放“锁标志”，容易导致死锁问题的发生，一般情况下，推荐使用 wait() 方法。</p>
+</blockquote>
+<h2 id="终止线程的方法"><a href="#终止线程的方法" class="headerlink" title="终止线程的方法"></a>终止线程的方法</h2><h3 id="stop"><a href="#stop" class="headerlink" title="stop()"></a>stop()</h3><p>当用 Thread.stop() 来终止线程时，它会释放已经锁定的<strong>所有监视资源</strong>，这可能会导致程序执行的不确定性，并且这种问题很难被定位。</p>
+<h3 id="suspend"><a href="#suspend" class="headerlink" title="suspend()"></a>suspend()</h3><p>由于调用 suspend() 方法不会释放锁，这就会容易发生死锁。</p>
+<h3 id="自行结束进入-Dead-状态"><a href="#自行结束进入-Dead-状态" class="headerlink" title="自行结束进入 Dead 状态"></a>自行结束进入 Dead 状态</h3><p>如果想要停止一个线程的执行，就要提供某种方式让线程能够自动结束 run() 方法的执行。在实现时，可以通过设置一个 flag 标志来控制循环是否执行。</p>
+<h2 id="synchronized、Lock-的异同"><a href="#synchronized、Lock-的异同" class="headerlink" title="synchronized、Lock 的异同"></a>synchronized、Lock 的异同</h2><p>Java 语言提供了两种锁机制来实现对某个共享资源的同步：synchronized 和 Lock。<br>其中，synchronized 使用 Object 对象本身的 wait、notify 调度机制；而 Lock 可以使用 Condition 进行线程之间的调度，完成 synchronized 实现的所有功能。</p>
+<h3 id="用法不一样"><a href="#用法不一样" class="headerlink" title="用法不一样"></a>用法不一样</h3><p>synchronized 既可以加在方法上，也可以加在特定代码块中；而 Lock 需要显式地指定起始位置和终止位置。<br>synchronized 是托管给 JVM 执行的，而 Lock 的锁定是通过代码实现的，它有比 synchronized 更精确的线程语义。</p>
+<h3 id="性能不一样"><a href="#性能不一样" class="headerlink" title="性能不一样"></a>性能不一样</h3><p>在资源竞争不是很激烈的情况下，synchronized 的性能要优于 ReetrantLock（重入锁）；<br>但是在资源竞争很激烈的情况下，synchronized 的性能会下降得非常快，而 ReetrantLock 的性能基本保持不变。</p>
+<h3 id="锁机制不一样"><a href="#锁机制不一样" class="headerlink" title="锁机制不一样"></a>锁机制不一样</h3><p>synchronized 获取多个锁时，必须以相反的顺序释放，并且是自动解锁，不会引发死锁；<br>而 Lock 则需要开发人员手动去释放，并且必须在 finally 块中释放，否则会引起死锁问题的发生。Lock 还提供了<strong>更强大的功能</strong>。</p>
+<blockquote>
+<p>因为 ReetrantLock、synchronized 所使用的机制不同，最好不要同时使用这两种同步机制。</p>
+</blockquote>
+<h2 id="守护线程"><a href="#守护线程" class="headerlink" title="守护线程"></a>守护线程</h2><p>Java 提供了<strong>两种线程：</strong>守护线程、用户线程。守护线程并不属于程序中不可或缺的部分，通俗点讲，任何一个守护线程都是整个JVM中所有非守护线程的“保姆”。<br>如果用户线程已经全部退出运行，只剩下守护线程存在，JVM 也就退出了。<br>在 Java 语言中，守护线程一般具有较低的优先级，但用户在编写程序时也可以<strong>自己设置守护线程</strong>。例如，在调用 start() 方法启动线程之前，调用对象的 setDaemon(true) 方法（false：用户线程模式）。</p>
+<blockquote>
+<p>守护线程的一个典型例子就是垃圾回收器。只要 JVM 启动，它始终在运行，实时监控和管理系统中可以被回收的资源。</p>
+</blockquote>
+<h2 id="join-方法的作用"><a href="#join-方法的作用" class="headerlink" title="join() 方法的作用"></a>join() 方法的作用</h2><p>在 Java 语言中，join() 方法的作用是让调用该方法的线程在执行完 run() 方法后，再执行 join() 方法后面的代码。简单点说，就是<strong>将两个线程合并</strong>，用于实现同步功能。</p>
+<hr>
+<h2 id="通过-JDBC-访问数据库"><a href="#通过-JDBC-访问数据库" class="headerlink" title="通过 JDBC 访问数据库"></a>通过 JDBC 访问数据库</h2><p>Java 数据库连接（Java DataBase Connectivity，JDBC），用于在 Java 程序中实现数据库操作功能，java.sql 包中包含了 JDBC 操作数据库的所有类。<br>JDBC 访问数据库的<code>步骤</code>：</p>
+<ol>
+<li>加载 JDBC 驱动器。将数据库的 JDBC 驱动加载到 classpath 中；</li>
+<li>加载 JDBC 驱动，并将其注册到 DriverManager 中。使用反射 Class.forName(String driveName)；</li>
+<li>建立数据库连接，取得 Connection 对象。通过 DriverManager.getConnection(url, username, passwd)；</li>
+<li>建立 Statement 对象或 PrepairedStatement 对象；</li>
+<li>执行 SQL 语句；</li>
+<li>访问结果集 ResultSet 对象；</li>
+<li>依次将 ResultSet、Statement、PreparedStatement、Connection 对象关闭，释放掉所占用资源。使用 rs.close()、con.close() 等。</li>
+</ol>
+<h2 id="JDBC-处理事务的方法"><a href="#JDBC-处理事务的方法" class="headerlink" title="JDBC 处理事务的方法"></a>JDBC 处理事务的方法</h2><p>一个事务是由一条或多条对数据库操作的 SQL 语句组成的一个<code>不可分割</code>的工作单元，只有当事务中的所有操作都正常执行完了，整个事务才会被提交给数据库。<br>在 JDBC 中，一般是通过 commit() 方法或 rollback() 方法来结束事务的操作。其中 commit() 表示完成对<strong>事务的提交</strong>；rollback() 表示完成<strong>事务的回滚</strong>，多用于在处理事务的过程中出现了异常的情况。<br>这两种方法都位于 java.sql.Connection 类中。</p>
+<h2 id="JDBC-的事务隔离级别"><a href="#JDBC-的事务隔离级别" class="headerlink" title="JDBC 的事务隔离级别"></a>JDBC 的事务隔离级别</h2><p>为了解决与“多个线程请求相同数据”相关的问题，事务之间通常会用锁相互隔离开。在 JDBC 中，定义了以下<strong>五种事务隔离级别：</strong></p>
+<ol>
+<li>TRANSACTION_NONE JDB。不支持事务；</li>
+<li>TRANSACTION_READ_UNCOMMITTED。未提交读；</li>
+<li>TRANSACTION_READ_COMMITTED。已提交读；</li>
+<li>TRANSACTION_REPEATABLE_READ。可重复读；</li>
+<li>TRANSACTION_SERIALIZABLE。可序列化，是最高的事务级别。</li>
+</ol>
+<p>可以通过 Connection 对象的 conn.setTransactionLevel() 方法来设置隔离级别，通过 conn.getTransactionIsolation() 方法来确定当前事务的级别。</p>
+<blockquote>
+<p>事务隔离级别越高，为避免冲突所花的精力也就越多。</p>
+</blockquote>
+<h2 id="Class-forName-的作用"><a href="#Class-forName-的作用" class="headerlink" title="Class.forName() 的作用"></a>Class.forName() 的作用</h2><p>在 Java 语言中，任何类只有被装载到 JVM 上才能运行。<br>Class.forName() 方法的作用就是把类加载到 JVM 中，它会返回一个与带有给定字符串名的类或接口相关联的 Class 对象，并且 JVM 会加载这个类，同时 JVM 会执行该类的静态代码段。</p>
+<h2 id="Statement、PreparedStatement、CallableStatement-的区别"><a href="#Statement、PreparedStatement、CallableStatement-的区别" class="headerlink" title="Statement、PreparedStatement、CallableStatement 的区别"></a>Statement、PreparedStatement、CallableStatement 的区别</h2><h3 id="Statement"><a href="#Statement" class="headerlink" title="Statement"></a>Statement</h3><p>用于执行不带参数的简单 SQL 语句，并返回它所生成结果的对象，每次执行 SQL 语句时，数据库都要编译该 SQL 语句。</p>
+<h3 id="PreparedStatement"><a href="#PreparedStatement" class="headerlink" title="PreparedStatement"></a>PreparedStatement</h3><p>表示预编译的 SQL 语句的对象，用于执行带参数的预编译 SQL 语句。<br>虽然 Statement 对象与 PreparedStatement 对象能够完成相同的功能，但相比之下，PreparedStatement 具有以下<code>优点</code>：</p>
+<ul>
+<li>效率更高</li>
+<li>代码可读性和可维护性更好</li>
+<li>安全性更好</li>
+</ul>
+<h3 id="CallableStatement"><a href="#CallableStatement" class="headerlink" title="CallableStatement"></a>CallableStatement</h3><p>提供了用来调用数据库中存储过程的接口，若有输出参数要注册，说明是输出参数。</p>
+<h2 id="getString-方法与-getObject-方法的区别"><a href="#getString-方法与-getObject-方法的区别" class="headerlink" title="getString() 方法与 getObject() 方法的区别"></a>getString() 方法与 getObject() 方法的区别</h2><p>JDBC 提供了 getString()、getObject() 等方法从 ResultSet 中获取数据。程序会一次性地把数据都放到内存中，当查询结果集中的<code>数据量</code>较小时，不用考虑性能，使用这些方法完全能够满足需求；<br>当数据量大到内存中放不下时，使用 getObject() 方法。数据不会一次性被读到内存中，每次调用时会直接从数据库中去获取数据。</p>
+<h2 id="使用-JDBC-时需要注意的问题"><a href="#使用-JDBC-时需要注意的问题" class="headerlink" title="使用 JDBC 时需要注意的问题"></a>使用 JDBC 时需要注意的问题</h2><ul>
+<li>与数据库的连接是非常重要的资源，JDBC 连接池提供了数目有限的连接。编程时，一定要保证释放不再使用的连接；</li>
+<li>在使用 JDBC 访问数据库时，createStatement、prepareStatement 最好放在循环外面，如果把对这两个方法的调用放到循环内，会一直不停地打开 cursor（游标）。</li>
+</ul>
+<h2 id="JDO"><a href="#JDO" class="headerlink" title="JDO"></a>JDO</h2><p>Java 数据对象（Java Data Object，JDO），是一种用于存取某种数据仓库中的对象的<strong>标准化 API</strong>，它使开发人员能够间接地访问数据库。</p>
+<ul>
+<li>JDO 是 JDBC 的一个补充，存储数据对象完全不需要额外的代码，这些繁琐的工作已经转移到 JDO 产品提供商身上，使开发人员解脱出来；</li>
+<li>JDO 更灵活、更通用，提供了到任何数据底层（关系数据库、文件、XML 等）的存储功能，使得应用可移植性更强。</li>
+</ul>
+<h2 id="JDBC-与-Hibernate-的区别"><a href="#JDBC-与-Hibernate-的区别" class="headerlink" title="JDBC 与 Hibernate 的区别"></a>JDBC 与 Hibernate 的区别</h2><p>Hibernate 是 JDBC 的封装，采用<code>配置文件</code>的形式将数据库的连接参数写到 XML 文件中。对数据库的访问还是通过 JDBC 来完成的。</p>
+<ul>
+<li>Hibernate 是一个<strong>持久化框架</strong>，使用 HQL（Hibernate Query Language）查询，查询语句返回的是 List；</li>
+<li>Hibernate 具有访问层（DAO 层），是 HQL 查询语句唯一出现的位置。如果表名改变了，只需修改 DAO 层的类即可，具有很好的维护性和扩展性。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/p/Python-语言精要-3.html" rel="next" title="Python 语言精要-3">
+                <i class="fa fa-chevron-left"></i> Python 语言精要-3
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/p/数据库原理.html" rel="prev" title="数据库原理">
+                数据库原理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-Collections-框架"><span class="nav-number">1.</span> <span class="nav-text">Java Collections 框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Set"><span class="nav-number">1.1.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List"><span class="nav-number">1.2.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-number">1.3.</span> <span class="nav-text">Map</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代器"><span class="nav-number">2.</span> <span class="nav-text">迭代器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">2.1.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterator-与-ListIterator-的区别"><span class="nav-number">2.2.</span> <span class="nav-text">Iterator 与 ListIterator 的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList、Vector、LinkedList-的区别"><span class="nav-number">3.</span> <span class="nav-text">ArrayList、Vector、LinkedList 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList"><span class="nav-number">3.1.</span> <span class="nav-text">ArrayList</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vector"><span class="nav-number">3.2.</span> <span class="nav-text">Vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedList"><span class="nav-number">3.3.</span> <span class="nav-text">LinkedList</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器的选择"><span class="nav-number">3.4.</span> <span class="nav-text">容器的选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap、HashTable、TreeMap、WeakHashMap-的区别"><span class="nav-number">4.</span> <span class="nav-text">HashMap、HashTable、TreeMap、WeakHashMap 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap"><span class="nav-number">4.1.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashTable"><span class="nav-number">4.2.</span> <span class="nav-text">HashTable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TreeMap"><span class="nav-number">4.3.</span> <span class="nav-text">TreeMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WeakHashMap"><span class="nav-number">4.4.</span> <span class="nav-text">WeakHashMap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用自定义类作为-HashMap-HashTable-的-key-时，需要注意的问题"><span class="nav-number">5.</span> <span class="nav-text">用自定义类作为 HashMap/HashTable 的 key 时，需要注意的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Collection和Collections的区别"><span class="nav-number">6.</span> <span class="nav-text">Collection和Collections的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection"><span class="nav-number">6.1.</span> <span class="nav-text">Collection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Collections"><span class="nav-number">6.2.</span> <span class="nav-text">Collections</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程与进程的区别，为什么要使用多线程？"><span class="nav-number">7.</span> <span class="nav-text">线程与进程的区别，为什么要使用多线程？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步、异步的区别"><span class="nav-number">8.</span> <span class="nav-text">同步、异步的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#同步"><span class="nav-number">8.1.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步"><span class="nav-number">8.2.</span> <span class="nav-text">异步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现-Java-多线程"><span class="nav-number">9.</span> <span class="nav-text">实现 Java 多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#继承-Thread-类，重写-run-方法"><span class="nav-number">9.1.</span> <span class="nav-text">继承 Thread 类，重写 run() 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-Runnable-接口，并实现该接口的-run-方法"><span class="nav-number">9.2.</span> <span class="nav-text">实现 Runnable 接口，并实现该接口的 run() 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现-Callable-接口，重写-call-方法"><span class="nav-number">9.3.</span> <span class="nav-text">实现 Callable 接口，重写 call() 方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#run-方法、start-方法的区别"><span class="nav-number">10.</span> <span class="nav-text">run() 方法、start() 方法的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程同步的实现方法"><span class="nav-number">11.</span> <span class="nav-text">多线程同步的实现方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronized-关键字"><span class="nav-number">11.1.</span> <span class="nav-text">synchronized 关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wait-方法与-notify-方法"><span class="nav-number">11.2.</span> <span class="nav-text">wait() 方法与 notify() 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lock"><span class="nav-number">11.3.</span> <span class="nav-text">Lock</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sleep-方法、wait-方法的区别"><span class="nav-number">12.</span> <span class="nav-text">sleep() 方法、wait() 方法的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理不同"><span class="nav-number">12.1.</span> <span class="nav-text">原理不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对锁的处理机制不同"><span class="nav-number">12.2.</span> <span class="nav-text">对锁的处理机制不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用区域不同"><span class="nav-number">12.3.</span> <span class="nav-text">使用区域不同</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#终止线程的方法"><span class="nav-number">13.</span> <span class="nav-text">终止线程的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#stop"><span class="nav-number">13.1.</span> <span class="nav-text">stop()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#suspend"><span class="nav-number">13.2.</span> <span class="nav-text">suspend()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自行结束进入-Dead-状态"><span class="nav-number">13.3.</span> <span class="nav-text">自行结束进入 Dead 状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#synchronized、Lock-的异同"><span class="nav-number">14.</span> <span class="nav-text">synchronized、Lock 的异同</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法不一样"><span class="nav-number">14.1.</span> <span class="nav-text">用法不一样</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能不一样"><span class="nav-number">14.2.</span> <span class="nav-text">性能不一样</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁机制不一样"><span class="nav-number">14.3.</span> <span class="nav-text">锁机制不一样</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#守护线程"><span class="nav-number">15.</span> <span class="nav-text">守护线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#join-方法的作用"><span class="nav-number">16.</span> <span class="nav-text">join() 方法的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过-JDBC-访问数据库"><span class="nav-number">17.</span> <span class="nav-text">通过 JDBC 访问数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDBC-处理事务的方法"><span class="nav-number">18.</span> <span class="nav-text">JDBC 处理事务的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDBC-的事务隔离级别"><span class="nav-number">19.</span> <span class="nav-text">JDBC 的事务隔离级别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Class-forName-的作用"><span class="nav-number">20.</span> <span class="nav-text">Class.forName() 的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Statement、PreparedStatement、CallableStatement-的区别"><span class="nav-number">21.</span> <span class="nav-text">Statement、PreparedStatement、CallableStatement 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Statement"><span class="nav-number">21.1.</span> <span class="nav-text">Statement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PreparedStatement"><span class="nav-number">21.2.</span> <span class="nav-text">PreparedStatement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CallableStatement"><span class="nav-number">21.3.</span> <span class="nav-text">CallableStatement</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getString-方法与-getObject-方法的区别"><span class="nav-number">22.</span> <span class="nav-text">getString() 方法与 getObject() 方法的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-JDBC-时需要注意的问题"><span class="nav-number">23.</span> <span class="nav-text">使用 JDBC 时需要注意的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDO"><span class="nav-number">24.</span> <span class="nav-text">JDO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDBC-与-Hibernate-的区别"><span class="nav-number">25.</span> <span class="nav-text">JDBC 与 Hibernate 的区别</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

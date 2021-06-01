@@ -1,0 +1,874 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="SystemDesign,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="Load Balancer 将传入的请求分发到应用服务器和数据库等计算资源。无论哪种情况，负载均衡器将来自计算资源的响应，返回给恰当的客户端。负载均衡器的效用在于:  防止请求进入不好的服务器 防止资源过载 帮助消除单一的故障点   负载均衡器可以通过硬件（昂贵）或 HAProxy 等软件来实现。 增加的好处包括：  SSL 终结：解密传入的请求并加密服务器响应，这样的话后端服务器就不必再执行这些">
+<meta name="keywords" content="SystemDesign">
+<meta property="og:type" content="article">
+<meta property="og:title" content="负载均衡器">
+<meta property="og:url" content="https://umarellyh.github.io/p/负载均衡器.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="Load Balancer 将传入的请求分发到应用服务器和数据库等计算资源。无论哪种情况，负载均衡器将来自计算资源的响应，返回给恰当的客户端。负载均衡器的效用在于:  防止请求进入不好的服务器 防止资源过载 帮助消除单一的故障点   负载均衡器可以通过硬件（昂贵）或 HAProxy 等软件来实现。 增加的好处包括：  SSL 终结：解密传入的请求并加密服务器响应，这样的话后端服务器就不必再执行这些">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/04/00.jpg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="负载均衡器">
+<meta name="twitter:description" content="Load Balancer 将传入的请求分发到应用服务器和数据库等计算资源。无论哪种情况，负载均衡器将来自计算资源的响应，返回给恰当的客户端。负载均衡器的效用在于:  防止请求进入不好的服务器 防止资源过载 帮助消除单一的故障点   负载均衡器可以通过硬件（昂贵）或 HAProxy 等软件来实现。 增加的好处包括：  SSL 终结：解密传入的请求并加密服务器响应，这样的话后端服务器就不必再执行这些">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/04/00.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/p/负载均衡器.html">
+
+
+
+
+
+  <title> 负载均衡器 | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/负载均衡器.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                负载均衡器
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-25T17:56:19+08:00">
+                2019-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>Load Balancer</code> 将传入的请求分发到应用服务器和数据库等计算资源。无论哪种情况，负载均衡器将来自计算资源的响应，返回给恰当的客户端。负载均衡器的效用在于:</p>
+<ul>
+<li>防止请求进入不好的服务器</li>
+<li>防止资源过载</li>
+<li><strong>帮助消除单一的故障点</strong></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/04/00.jpg" alt></p>
+<p>负载均衡器可以通过硬件（昂贵）或 HAProxy 等软件来实现。 增加的好处包括：</p>
+<ul>
+<li>SSL 终结：<strong>解密传入的请求并加密服务器响应</strong>，这样的话后端服务器就不必再执行这些潜在高消耗运算了（不需要再每台服务器上安装 <code>X.509</code>）；</li>
+<li>Session 留存：当 <strong>Web 应用程序不追踪 session</strong> 时，发出 <code>cookie</code> 并将特定客户端的请求，路由到同一实例。</li>
+</ul>
+<a id="more"></a>
+<p>通常会设置采用 <code>active-passive</code> 或 <code>active-active</code> 模式的多个负载均衡器，以免发生故障。</p>
+<p>负载均衡器能基于多种方式来路由流量：</p>
+<ul>
+<li>随机</li>
+<li>最少负载</li>
+<li>session/cookie</li>
+<li>（加权）轮询调度算法</li>
+<li>四层负载均衡</li>
+<li>七层负载均衡</li>
+</ul>
+<h2 id="四层负载均衡"><a href="#四层负载均衡" class="headerlink" title="四层负载均衡"></a>四层负载均衡</h2><p>四层负载均衡，通过<strong>监控传输层的信息</strong>来决定如何分发请求。通常，这会涉及来源，目标 IP 地址和请求头中的端口，但不包括数据包（报文）内容。四层负载均衡器，执行<code>NAT</code>来向上游服务器转发网络数据包。</p>
+<h2 id="七层负载均衡"><a href="#七层负载均衡" class="headerlink" title="七层负载均衡"></a>七层负载均衡</h2><p>七层负载均衡，通过<strong>监控应用层的信息</strong>来决定怎样分发请求。这会涉及请求头的内容，消息和 cookie。七层负载均衡器，终结网络流量，读取消息，做出负载均衡判定，然后传送给特定服务器。</p>
+<p>比如，一个七层负载均衡器能直接将视频流量连接到托管视频的服务器，同时，将更敏感的用户账单流量引导到安全性更强的服务器。</p>
+<p><strong>以损失灵活性为代价</strong>，四层负载均衡比七层负载均衡花费更少的时间和计算资源（这对现代商用硬件的性能影响甚微）。</p>
+<h2 id="水平扩展"><a href="#水平扩展" class="headerlink" title="水平扩展"></a>水平扩展</h2><p>负载均衡器还能帮助水平扩展，提高性能和可用性。使用商业硬件的性价比更高，并且比在单台硬件上<code>垂直扩展</code>更贵的硬件具有更高的可用性。<strong>相比招聘特定企业系统人才，招聘商业硬件方面的人才更加容易</strong>。</p>
+<h3 id="缺陷：水平扩展"><a href="#缺陷：水平扩展" class="headerlink" title="缺陷：水平扩展"></a>缺陷：水平扩展</h3><ul>
+<li>水平扩展引入了复杂度并涉及服务器复制：<ul>
+<li>服务器是<strong>无状态的</strong>：它们不应该包含 session 或资料图片等与用户关联的数据；</li>
+<li>session 可以集中存储在持久化缓存（Redis、Memcached）或数据库（SQL、NoSQL）的数据存储区中。</li>
+</ul>
+</li>
+<li>缓存和数据库等下游服务器，需要<strong>随着上游服务器进行扩展</strong>，以处理更多的并发连接。</li>
+</ul>
+<h2 id="缺陷：负载均衡器"><a href="#缺陷：负载均衡器" class="headerlink" title="缺陷：负载均衡器"></a>缺陷：负载均衡器</h2><ul>
+<li>如果没有足够的资源配置或配置错误，负载均衡器会变成一个性能瓶颈；</li>
+<li>引入负载均衡器以帮助消除单点故障，但导致了额外的复杂性；</li>
+<li>单个负载均衡器会导致单点故障，但配置多个负载均衡器会进一步增加复杂性。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SystemDesign/" rel="tag"># SystemDesign</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/p/域名系统与内容分发网络.html" rel="next" title="域名系统与内容分发网络">
+                <i class="fa fa-chevron-left"></i> 域名系统与内容分发网络
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/p/反向代理与应用层.html" rel="prev" title="反向代理与应用层">
+                反向代理与应用层 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#四层负载均衡"><span class="nav-number">1.</span> <span class="nav-text">四层负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七层负载均衡"><span class="nav-number">2.</span> <span class="nav-text">七层负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#水平扩展"><span class="nav-number">3.</span> <span class="nav-text">水平扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缺陷：水平扩展"><span class="nav-number">3.1.</span> <span class="nav-text">缺陷：水平扩展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺陷：负载均衡器"><span class="nav-number">4.</span> <span class="nav-text">缺陷：负载均衡器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

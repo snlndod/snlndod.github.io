@@ -1,0 +1,1150 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="CLRS,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="数据类型指的是一组值和一组对这些值的操作的集合。原则上所有程序都只需要使用原始数据类型即可，但为了在更高层次的抽象上编写程序更加方便，重点学习定义和使用数据类型，这个过程也被称为数据抽象。 Java 编程的基础主要是使用 class 关键字构造被称为引用类型的数据类型。这种编程风格称为面向对象编程，因为它的核心概念是对象，即保存了某个数据类型的值的实体。 抽象数据类型（ADT）是一种能够对使用者隐">
+<meta name="keywords" content="CLRS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据抽象">
+<meta property="og:url" content="https://umarellyh.github.io/p/数据抽象.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="数据类型指的是一组值和一组对这些值的操作的集合。原则上所有程序都只需要使用原始数据类型即可，但为了在更高层次的抽象上编写程序更加方便，重点学习定义和使用数据类型，这个过程也被称为数据抽象。 Java 编程的基础主要是使用 class 关键字构造被称为引用类型的数据类型。这种编程风格称为面向对象编程，因为它的核心概念是对象，即保存了某个数据类型的值的实体。 抽象数据类型（ADT）是一种能够对使用者隐">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/01.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/02.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/03.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/04.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/05.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/06.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/07.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/08.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/09.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/10.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/11.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/12.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/13.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/14.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/15.jpg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据抽象">
+<meta name="twitter:description" content="数据类型指的是一组值和一组对这些值的操作的集合。原则上所有程序都只需要使用原始数据类型即可，但为了在更高层次的抽象上编写程序更加方便，重点学习定义和使用数据类型，这个过程也被称为数据抽象。 Java 编程的基础主要是使用 class 关键字构造被称为引用类型的数据类型。这种编程风格称为面向对象编程，因为它的核心概念是对象，即保存了某个数据类型的值的实体。 抽象数据类型（ADT）是一种能够对使用者隐">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/01.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/p/数据抽象.html">
+
+
+
+
+
+  <title> 数据抽象 | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/数据抽象.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数据抽象
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-29T23:32:23+08:00">
+                2019-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>数据类型</code>指的是一组值和一组对这些值的<strong>操作的集合</strong>。原则上所有程序都只需要使用原始数据类型即可，但为了在<strong>更高层次的抽象</strong>上编写程序更加方便，重点学习定义和使用数据类型，这个过程也被称为<code>数据抽象</code>。</p>
+<p>Java 编程的基础主要是使用 class 关键字构造被称为<code>引用类型</code>的数据类型。这种编程风格称为<code>面向对象编程</code>，因为它的核心概念是对象，即<strong>保存了某个数据类型的值的实体</strong>。</p>
+<p>抽象数据类型（ADT）是一种能够对使用者<strong>隐藏数据表示</strong>的数据类型：</p>
+<ul>
+<li>在使用 ADT 时，我们的注意力集中在 API 描述的操作上，而不会去关心数据的表示；</li>
+<li>在实现 ADT 时，我们的注意力集中在数据本身，并将实现对该数据的各种操作；</li>
+</ul>
+<p>在程序设计上，<strong>ADT 支持封装</strong>：</p>
+<ul>
+<li>以适用于各种用途的 API 形式，准确地定义问题；</li>
+<li>用 API 的实现描述算法和数据结构；</li>
+</ul>
+<h2 id="使用抽象数据类型"><a href="#使用抽象数据类型" class="headerlink" title="使用抽象数据类型"></a>使用抽象数据类型</h2><p>要使用一种数据类型<strong>并不一定非得知道它是如何实现的</strong>，所以我们首先来编写一个使用一种名为 Counter 的简单数据类型的程序。</p>
+<p>要使用 Counter 对象，首先需要了解应该如何定义数据类型的操作，以及在 Java 语言中应该如何创建和使用某个数据类型的对象。</p>
+<a id="more"></a>
+<h3 id="抽象数据类型的-API"><a href="#抽象数据类型的-API" class="headerlink" title="抽象数据类型的 API"></a>抽象数据类型的 API</h3><p>我们使用 API 来说明抽象数据类型的行为，列出所有<code>构造函数</code>和<code>实例方法</code>（即操作），并简要描述它们的功用：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/01.jpg" alt></p>
+<p>ADT 和静态方法库之间有许多共同之处：</p>
+<ul>
+<li>两者的实现均为 Java 类；</li>
+<li>实例方法也能接受 0 个或多个指定类型的参数；</li>
+<li>它们可能会返回一个指定类型的值，也可能不会；</li>
+</ul>
+<p>当然，它们也有三个<strong>显著的不同</strong>：</p>
+<ul>
+<li>ADT 中可能会出现若干个名称和类名相同且没有返回值的函数，这些特殊的函数被称为构造函数；</li>
+<li>实例方法不需要 static 关键字，它们不是静态方法；</li>
+<li>某些实例方法的存在是为了<strong>尊重 Java 的习惯</strong>——我们将此类方法称为继承的方法；</li>
+</ul>
+<blockquote>
+<p>ADT 的 API 是和用例之间的一份契约，因此它是开发任何用例代码以及实现任意数据类型的起点。</p>
+</blockquote>
+<h3 id="继承的方法"><a href="#继承的方法" class="headerlink" title="继承的方法"></a>继承的方法</h3><p>根据 Java 的约定，任意数据类型都能通过<strong>在 API 中包含特定的方法</strong>从 Java 的内在机制中获益。</p>
+<p>例如，Java 中的所有数据类型都会继承 toString() 方法来返回用 String 表示的该类型的值。但这种默认实现并不实用，我们常常会提供实现来<strong>重载默认实现</strong>，并在 API 中加上 toString() 方法。</p>
+<h3 id="用例代码"><a href="#用例代码" class="headerlink" title="用例代码"></a>用例代码</h3><p>将程序组织为独立模块的机制可以应用于所有的 Java 类，因此它对基于抽象数据类型的模块化编程与静态函数库一样有效。</p>
+<p>通过将实现某种数据类型的全部代码封装在一个 Java 类中，我们可以将用例代码推向<strong>更高的抽象层次</strong>。这种方式<strong>和原始数据的使用方式非常不同</strong>。</p>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>可以声明一个变量 heads 并将它通过以下代码和 Counter 类型的数据关联起来：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Counter heads;</span><br></pre></td></tr></table></figure>
+
+<p>对象是能够承载数据类型的值的实体，所有对象都有三大重要特性：<code>状态</code>、<code>标识</code>和<code>行为</code>：</p>
+<ul>
+<li>对象的状态即数据类型中的值；</li>
+<li>对象的标识能够将一个对象区别于另一个对象，可以认为是<strong>在内存中的位置</strong>；</li>
+<li>对象的行为就是数据类型的操作；</li>
+</ul>
+<p>Java 使用<code>引用类型</code>以示和原始数据类型的区别，可以认为<strong>引用就是内存地址</strong>。</p>
+<h3 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h3><p>要实例化一个对象，我们用<strong>关键字 new 并紧跟类名以及 ()</strong> 来触发它的构造函数，或在括号中指定一系列的参数，如果构造函数需要的话。</p>
+<p>每当用例调用了 new()，<strong>系统就会</strong>：</p>
+<ul>
+<li>为新的对象分配内存空间；</li>
+<li>调用构造函数初始化对象中的值；</li>
+<li>返回该对象的一个引用；</li>
+</ul>
+<p>我们一般都会在一条<strong>声明语句中</strong>创建一个对象并通过将它和一个变量关联起来初始化该变量。和原始数据类型不同的是，<strong>变量关联的是指向对象的引用</strong>，而并非数据类型的值本身：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/02.jpg" alt></p>
+<h3 id="调用实例方法"><a href="#调用实例方法" class="headerlink" title="调用实例方法"></a>调用实例方法</h3><p>实例方法的意义在于<strong>操作数据类型中的值</strong>。我们调用一个实例方法的方式是先写出对象的变量名，紧接着是一个句点，然后是实例方法的名称，之后是 0 个或多个<strong>在括号中由逗号分隔的参数</strong>。</p>
+<p>实例方法<strong>参数按值传递</strong>，方法名可以被重载，方法可以有返回值，它们也许还会产生一些副作用。</p>
+<p>实例方法和静态方法的调用方式完全相同，可以通过<strong>语句（void 方法）</strong>，也可以通过<strong>表达式（有返回值的方法）</strong>；静态方法的主要作用是实现函数，非静态方法的主要作用是实现数据类型的操作：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/03.jpg" alt></p>
+<h3 id="使用对象"><a href="#使用对象" class="headerlink" title="使用对象"></a>使用对象</h3><p>要开发某种给定数据类型的用例，我们需要：</p>
+<ul>
+<li>声明该类型的变量，以用来引用对象；</li>
+<li>使用关键字 new 触发能够创建该类型的对象的<strong>构造函数</strong>；</li>
+<li>使用变量名在语句或表达式中调用实例方法；</li>
+</ul>
+<p>除了这些直接用法外，我们可以<strong>和使用原始数据类型的变量一样</strong>使用和对象关联的变量：</p>
+<ul>
+<li>赋值语句；</li>
+<li>向方法传递对象或从方法中返回对象；</li>
+<li>创建并使用对象的数组；</li>
+</ul>
+<blockquote>
+<p>你需要<strong>从引用而非值的角度</strong>去考虑问题才能理解这些用法的行为。</p>
+</blockquote>
+<h3 id="赋值语句"><a href="#赋值语句" class="headerlink" title="赋值语句"></a>赋值语句</h3><p>使用引用类型的赋值语句将会创建该引用的一个<code>副本</code>。赋值语句不会创建新的对象，而只是创建另一个指向某个已经存在的对象的引用。这种情况被称为<code>别名</code>：两个变量同时指向同一个对象。如下例所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Counter c1 = <span class="keyword">new</span> Counter(<span class="string">"ones"</span>);</span><br><span class="line">c1.increment();</span><br><span class="line">Counter c2 = c1;</span><br><span class="line">c2.increment();</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/04.jpg" alt></p>
+<blockquote>
+<p>改变一个对象的状态将会<strong>影响到所有和该对象的别名有关的代码</strong>。</p>
+</blockquote>
+<h3 id="将对象作为参数"><a href="#将对象作为参数" class="headerlink" title="将对象作为参数"></a>将对象作为参数</h3><p>可以<strong>将对象作为参数传递给方法</strong>，这一般都能简化用例代码。</p>
+<p>这将会传递引用的值，也就是传递对象的引用；方法虽然<strong>无法改变原始的引用</strong>，但它能够改变该对象的值。</p>
+<h3 id="将对象作为返回值"><a href="#将对象作为返回值" class="headerlink" title="将对象作为返回值"></a>将对象作为返回值</h3><p>当然也能够<strong>将对象作为方法的返回值</strong>。这种能力非常重要，因为 Java 中的方法只能有一个返回值——有了对象我们的代码实际上就能返回多个值。</p>
+<h3 id="数组也是对象"><a href="#数组也是对象" class="headerlink" title="数组也是对象"></a>数组也是对象</h3><p>在 Java 中，所有非原始数据类型的值都是对象，也就是说，<strong>数组也是对象</strong>。<br>当我们将数据传递给一个方法或是将一个数组变量放在赋值语句的右侧时，我们都是在创建该数组引用的一个副本，<strong>而非数组的副本</strong>。</p>
+<h3 id="对象的数组"><a href="#对象的数组" class="headerlink" title="对象的数组"></a>对象的数组</h3><p>创建一个对象的数组需要以下两个步骤：</p>
+<ul>
+<li>使用方括号语法<strong>调用数组的构造函数创建数组</strong>；</li>
+<li>对于每个数组元素调用它的构造函数创建相应的对象；</li>
+</ul>
+<p>在 Java 中，对象数组即是一个<strong>由对象的引用组成的数组</strong>，而非所有对象本身组成的数组：</p>
+<ul>
+<li>如果对象非常大，那么在移动它们时由于只需要操作引用而非对象本身，这就会大大提高效率；</li>
+<li>如果对象很小，每次获取信息时都需要通过引用反而会降低效率；</li>
+</ul>
+<p>运用数据抽象的思想编写代码（<strong>定义和使用数据类型，将数据类型的值封装在对象中</strong>）的方式称为<code>面向对象编程</code>。</p>
+<p>一个数据类型的实现所支持的操作如下：</p>
+<ul>
+<li><strong>创建对象</strong>：使用 new 关键字触发构造函数并创建对象，初始化对象中值并返回对它的引用；</li>
+<li><strong>操作对象中的值</strong>：使用和对象关联的变量，调用实例方法，来对对象中的值进行操作；</li>
+<li><strong>操作多个对象</strong>：创建对象的数组，像原始数据类型的值一样将它们传递给方法，或是从方法中返回；</li>
+</ul>
+<blockquote>
+<p>这些能力是这种灵活且应用广泛的现代编程方式的基础，也是我们对算法研究的基础。</p>
+</blockquote>
+<h2 id="抽象数据类型举例"><a href="#抽象数据类型举例" class="headerlink" title="抽象数据类型举例"></a>抽象数据类型举例</h2><p>Java 语言内置了上千种抽象数据类型，我们也会为了<strong>辅助算法研究</strong>，创建许多其他抽象数据类型。</p>
+<p>我们将会用到或开发的数据类型，可以被分为以下几类：</p>
+<ul>
+<li>java.lang.* 中的标准系统抽象数据类型，可以被任意 Java 程序调用；</li>
+<li>Java 标准库中的抽象数据类型，如 java.swt、java.net 和 java.io，它们也可以被任意 Java 程序调用，但<strong>需要 import 语句</strong>；</li>
+<li>I/O 处理类抽象数据类型，和 StdIn 和 StdOut 类似，允许我们处理多个输入输出流；</li>
+<li><strong>面向数据的抽象数据类型</strong>，它们的主要作用是通过封装数据的表示，简化数据的组织和处理；</li>
+<li>集合类抽象数据类型，它们的主要用途是简化对同一类型的一组数据的操作；</li>
+<li><strong>面向操作的抽象数据类型</strong>，我们用它们分析各种算法；</li>
+<li>图算法相关的抽象数据类型；</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/05.jpg" alt></p>
+<blockquote>
+<p>从整体上来说，我们使用的抽象数据类型说明，<strong>组织并理解所使用的数据结构</strong>，是现代编程中的重要因素。</p>
+</blockquote>
+<h3 id="几何对象"><a href="#几何对象" class="headerlink" title="几何对象"></a>几何对象</h3><p>面向对象编程的一个典型例子是<strong>为几何对象设计数据类型</strong>：</p>
+<ul>
+<li>Point2D：平面上的点；</li>
+<li>Interval1D：直线上的间隔；</li>
+<li>Interval2D：平面上的二维间隔；</li>
+</ul>
+<p><strong>处理几何对象的程序</strong>在自然世界模型、科学计算、电子游戏、电影等许多应用的计算中有着广泛的应用。此类程序的研发已经发展成了<code>计算机几何学</code>，这门影响深远的研究学科。</p>
+<h3 id="信息处理"><a href="#信息处理" class="headerlink" title="信息处理"></a>信息处理</h3><p>无数应用的核心都是组织和处理信息，抽象数据类型是组织信息的一种自然方式。</p>
+<p>为了简化用例的代码，我们为每个类型都提供了两个构造函数，一个接受适当类型的数据，<strong>另一个则能够解析字符串中的数据</strong>。</p>
+<blockquote>
+<p><strong>每当遇到逻辑上相关的不同类型的数据时</strong>，都应该考虑定义一个抽象数据类型。这么做能够帮助我们组织数据，并在一般应用程序中极大地简化使用者的代码。</p>
+</blockquote>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>Java 的 String 是一种重要而实用的 ADT。一个 String 值是一串<strong>可以由索引访问</strong>的 char 值，String 对象拥有许多实例方法：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/06.jpg" alt></p>
+<p>split() 方法的参数可以是<code>正则表达式</code>，“\s+”表示“一个或多个制表符、空格、换行符或回车”。</p>
+<blockquote>
+<p>为了使代码更加简洁清晰，<strong>不直接使用字符数组代替 String 值</strong>。</p>
+</blockquote>
+<h3 id="再谈输入输出"><a href="#再谈输入输出" class="headerlink" title="再谈输入输出"></a>再谈输入输出</h3><p>我们的标准库定义了数据类型 In、Out 和 Draw。当使用一个 <strong>String 类型的参数</strong>调用它们的构造函数时：</p>
+<ol>
+<li>首先尝试在当前目录下查找指定的文件；</li>
+<li>假设该参数是一个网站的名称，并尝试连接到那个网站；</li>
+<li>抛出一个运行时异常；</li>
+</ol>
+<p>指定的文件或网站都会成为，被创建的输入或输出流对象的来源或目标，<strong>所有 read*() 和 print*() 方法</strong>都会指向那个文件或网站。</p>
+<h2 id="抽象数据类型的实现"><a href="#抽象数据类型的实现" class="headerlink" title="抽象数据类型的实现"></a>抽象数据类型的实现</h2><p>和静态方法库一样，我们也需要使用 class 实现 ADT，并将所有代码放入一个和类名相同并带有 <strong>.java 扩展名</strong>的文件中。</p>
+<p>文件的第一部分语句会定义表示数据类型的值的<code>实例变量</code>。它们之后是实现对数据类型的值的操作的<code>构造函数</code>和<code>实例方法</code>：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/07.jpg" alt></p>
+<blockquote>
+<p>单元测试用例 main()，通常在调试和测试中很实用。</p>
+</blockquote>
+<h3 id="实例变量"><a href="#实例变量" class="headerlink" title="实例变量"></a>实例变量</h3><p>实例变量和局部变量的<strong>关键区别</strong>在于：</p>
+<ul>
+<li>每一时刻，每个局部变量只会有一个值；</li>
+<li>每一时刻，每个实例变量对应着无数值；</li>
+</ul>
+<p>每个实例变量的声明都需要一个<code>可见性修饰符</code>，在 ADT 的实现中，我们会使用 private，也就是使用 Java 语言的机制来保证向使用者<strong>隐藏 ADT 中的数据表示</strong>。</p>
+<p>如果我们使用 public 修饰这些实例变量，那么根据定义，这种数据类型就<strong>不再是抽象的了</strong>。</p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>每个 Java 类都至少含有一个构造函数，以创建一个对象的<code>标识</code>。</p>
+<p>构造函数的作用是初始化实例变量，每个构造函数都将创建一个对象并向调用者<strong>返回一个该对象的引用</strong>。</p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/08.jpg" alt></p>
+<p>如果没有定义构造函数，类将会隐式定义一个默认情况下不接受任何参数的构造函数，并将所有实例变量<strong>初始化为默认值</strong>。</p>
+<p>重载构造函数一般用于将实例变量<strong>由默认值初始化为用例提供的值</strong>。</p>
+<h3 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h3><p>每个实例方法都有一个返回值类型、一个签名和一个<code>主体</code>。</p>
+<p>当调用者触发了一个方法时，它的效果就好像调用者代码中的函数调用，<strong>被替换为了这个返回值</strong>。</p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/09.jpg" alt></p>
+<p>实例方法的所有行为都和静态方法相同，只有一点关键的不同：</p>
+<ul>
+<li>它们可以访问并操作实例变量；</li>
+</ul>
+<p>面向对象编程为 Java 程序增加了<strong>另一种使用变量的重要方式</strong>：通过触发一个实例方法来操作该对象的值。</p>
+<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>实现实例方法的 Java 代码中，使用了三种变量：</p>
+<ul>
+<li><code>参数变量</code>：作用域是整个方法；</li>
+<li><code>局部变量</code>：作用域是当前代码段中，它定义之后的所有语句；</li>
+<li><code>实例变量</code>：作用域是整个类，如果出现二义性，可以使用 this 前缀区分；</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/10.jpg" alt></p>
+<h3 id="API、用例与实现"><a href="#API、用例与实现" class="headerlink" title="API、用例与实现"></a>API、用例与实现</h3><p>每个 ADT 的实现都是一个含有若干私有实例变量、构造函数、实例方法和<strong>一个测试用例</strong>的 Java 类。</p>
+<p>按照下面三步走的方式，用 ADT 满足用例的需求：</p>
+<ul>
+<li>定义一份 API：API 的作用是<strong>将使用和实现分离</strong>；</li>
+<li>用一个 Java 类实现 API 的定义：首先我们选择适当的实例变量，然后再编写构造函数和实例方法；</li>
+<li>实现多个测试用例，<strong>验证前两步做出的设计决定</strong>；</li>
+</ul>
+<h2 id="更多抽象数据类型的实现"><a href="#更多抽象数据类型的实现" class="headerlink" title="更多抽象数据类型的实现"></a>更多抽象数据类型的实现</h2><p>理解抽象数据类型的威力和用法的最好方法，就是仔细研究更多的例子和实现。</p>
+<h3 id="日期"><a href="#日期" class="headerlink" title="日期"></a>日期</h3><p>实现的<code>性能</code>往往是有区别的：实现中保存数据类型的值所需的<strong>空间较小</strong>，代价是在向用例按照约定的格式，提供这些值时花费的<strong>时间更多</strong>。</p>
+<p>在实现中使用数据抽象的一个关键优势是：我们可以将一种实现替换为另一种而<strong>无需改变用例的任何代码</strong>。</p>
+<h3 id="维护多个实现"><a href="#维护多个实现" class="headerlink" title="维护多个实现"></a>维护多个实现</h3><p>同一个 API 的多个实现可能会产生<strong>维护和命名问题</strong>。</p>
+<p>在某些情况下，我们可能只是想将较老的实现替换为改进的实现；而在另一些情况下，我们可能需要维护两种实现，一种适用于某些用例，另一种适用于另一些用例：</p>
+<ul>
+<li>通过<code>前缀</code>的描述性修饰符，区别同一份 API 的不同实现；</li>
+<li>维护一个没有前缀的参考实现，它应该适用于大多数用例的需求；</li>
+</ul>
+<h3 id="累加器"><a href="#累加器" class="headerlink" title="累加器"></a>累加器</h3><p>累加器 API 定义了一种能够为用例计算一组数据的<strong>实时平均值</strong>的抽象数据类型：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/11.jpg" alt></p>
+<p>它的实现很简单：维护一个 int 类型的实例变量，来记录已经处理过的数据值的数量；以及一个 double 类型的实例变量，来记录所有数据值之和，将和除以数据数量即可得到平均值：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/12.jpg" alt></p>
+<blockquote>
+<p>请注意该实现并没有保存数据的值——它可以用于处理大规模的数据，甚至是在一个<strong>无法全部保存</strong>它们的设备上。</p>
+</blockquote>
+<h3 id="可视化的累加器"><a href="#可视化的累加器" class="headerlink" title="可视化的累加器"></a>可视化的累加器</h3><p>可视化累加器的实现继承了 Accumulator 类并展示了一种<strong>实用的副作用</strong>。完成这项任务最简单的办法是<strong>添加一个构造函数</strong>，来指定需要绘出的点数和它们的最大值。</p>
+<blockquote>
+<p>添加一个构造函数来取得某些功能，有时能通过测试用例，因为它对用例的影响和改变类名所产生的变化相同。</p>
+</blockquote>
+<h2 id="数据类型的设计"><a href="#数据类型的设计" class="headerlink" title="数据类型的设计"></a>数据类型的设计</h2><p>抽象数据类型是一种<strong>向用例隐藏内部表示</strong>的数据类型，这种思想强有力地影响了现代编程。</p>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>面向对象编程的特征之一，就是使用数据类型的实现<code>封装</code>数据，以简化实现和隔离用例开发。<strong>封装实现了模块化编程</strong>，它允许我们：</p>
+<ul>
+<li>独立开发用例和实现的代码；</li>
+<li>切换至改进的实现而不会影响用例的代码；</li>
+<li>支持尚未编写的程序（对于后续用例，API 能够起到指南的作用）；</li>
+</ul>
+<p>封装同时也<strong>隔离了数据类型的操作</strong>，这使我们可以：</p>
+<ul>
+<li>限制潜在的错误；</li>
+<li>在实现中添加一致性检查等调试工具；</li>
+<li>确保用例代码更明晰；</li>
+</ul>
+<p>模块化编程成功的关键在于保持模块之间的独立性，我们坚持将 API 作为用例和之间的<strong>唯一的依赖点</strong>。</p>
+<p>我们并不需要知道一个数据类型是如何实现的才能使用它，实现数据类型时也应该假设使用者除了 API 什么也不知道。<strong>封装是获得所有这些优势的关键</strong>。</p>
+<h3 id="设计-API"><a href="#设计-API" class="headerlink" title="设计 API"></a>设计 API</h3><p>构建现代软件最重要也是最有挑战的一项任务就是设计 API，它需要经验、思考和反复的修改，但设计一份优秀的 API 所付出的所有时间，都能<strong>从调试和代码复用所节省的时间中获得回报</strong>。</p>
+<p>为了验证我们的设计，我们会在 API 附近的正文中给出一些用例代码。但这些宏观概述之中也隐藏着每一份 API 设计都可能落入的无数陷阱：</p>
+<ul>
+<li>API 可能会难以实现：实现的开发非常困难，甚至不可能；</li>
+<li>API 可能会难以使用：用例代码甚至比没有 API 时更复杂；</li>
+<li>API 的范围可能太窄：缺少用例所需的方法；</li>
+<li>API 的范围可能太宽：包含许多不会被任何用例调用的方法。API 的大小一般会随着时间而增长，因为向已有的 API 中添加新方法很简单，但在不破坏已有用例程序的前提下，从中<strong>删除方法却很困难</strong>；</li>
+<li>API 可能会太粗略：无法提供有效的抽象；</li>
+<li>API 可能会太详细：抽象过于细致或是发散而无法使用；</li>
+<li>API 可能会过于依赖某种特定的数据表示：用例代码可能会因此无法从数据表示的细节中解脱出来。要避免这种缺陷也是困难的，因为<strong>数据表示显然是 ADT 实现的核心</strong>；</li>
+</ul>
+<blockquote>
+<p>只为用例提供它们所需要的，仅此而已。</p>
+</blockquote>
+<h3 id="算法与抽象数据类型"><a href="#算法与抽象数据类型" class="headerlink" title="算法与抽象数据类型"></a>算法与抽象数据类型</h3><p>数据抽象天生适合算法研究，因为它能够为我们<strong>提供一个框架</strong>，在其中能够准确地说明一个算法的目的，以及其他程序应该如何使用该算法。</p>
+<p>每个 Java 程序都是<strong>一组静态方法和（或）一种数据类型实现</strong>的集合。数据抽象使我们能够：</p>
+<ul>
+<li>准确定义算法能为用例提供什么；</li>
+<li>隔离算法的实现和用例的代码；</li>
+<li>实现多层抽象，用已知算法实现其他算法；</li>
+</ul>
+<p>使用 <strong>Java 的类机制</strong>来支持数据的抽象，将使我们收获良多：我们编写的代码将能够测试算法，并比较各种用例程序的性能。</p>
+<h3 id="接口继承"><a href="#接口继承" class="headerlink" title="接口继承"></a>接口继承</h3><p>Java 语言为定义对象之间的关系提供了支持，称为<code>接口</code>。</p>
+<p>接口继承使得我们的程序能够通过调用接口中的方法，操作<strong>实现该接口的任意类型的对象</strong>（甚至是还未被创建的类型）。</p>
+<p>在某些情况下 Java 的习惯用法鼓励我们使用接口：我们用它们<strong>进行比较和迭代</strong>。</p>
+<h3 id="实现继承"><a href="#实现继承" class="headerlink" title="实现继承"></a>实现继承</h3><p>Java 还支持另一种继承机制，被称为子类。这种非常强大的技术使程序员<strong>不需要重写整个类</strong>，就能改变它的行为或者为它添加新的功能。</p>
+<p>它的主要思想是定义一个新类（子类，或称为<code>派生类</code>），来继承另一个类（父类，或称为<code>基类</code>）的所有实例方法和实例变量。</p>
+<p>每个类都是 Java 的 Object 类的子类：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/13.jpg" alt></p>
+<h3 id="字符串表示的习惯"><a href="#字符串表示的习惯" class="headerlink" title="字符串表示的习惯"></a>字符串表示的习惯</h3><p>当连接运算符的一个操作数是字符串时，Java 会<strong>自动将另一个操作数也转换为字符串</strong>。如果一个对象的数据类型没有实现 toString() 方法，那么转换会调用 Object 的默认实现。</p>
+<p><strong>默认实现一般都没有多大实用价值</strong>，因为它只会返回一个含有该对象内存地址的字符串。因此我们通常会为我们的每个类实现，并重写默认的 toString() 方法。</p>
+<h3 id="封装类型"><a href="#封装类型" class="headerlink" title="封装类型"></a>封装类型</h3><p>Java 提供了一些内置的引用类型，称为<code>封装类型</code>。<strong>每种原始数据类型都有一个对应的封装类型</strong>：Boolean、Byte、Character、Double、Float、Integer、Long 和 Short 分别对应着 boolean、byte、char、double、float、int、long 和 short。</p>
+<blockquote>
+<p>在需要的时候 Java 会自动将原始数据类型转换为封装类型。</p>
+</blockquote>
+<h3 id="等价性"><a href="#等价性" class="headerlink" title="等价性"></a>等价性</h3><p>我们检测的是<code>标识</code>是否相同，即<code>引用</code>是否相同。一般用例希望能够检测数据类型的值（对象的状态）是否相同，或者实现某种针对该类型的规则。</p>
+<p>当我们定义自己的数据类型时，需要重载 equals() 方法，Java 约定 equals() <strong>必须是一种等价性关系</strong>，它必须具有：</p>
+<ul>
+<li>自反性：x.equals(x) 为 true；</li>
+<li>对称性：当且仅当 y.equals(x) 为 true 时，x.equals(y) 返回 true；</li>
+<li>传递性：如果 x.equals(y) 和 y.equals(z) 均为 true，x.equals(z) 也将为 true；</li>
+<li>一致性：当两个对象均未被修改时，反复调用 x.equals(y) 总是会返回相同的值；</li>
+<li>非空性：x.equals(null) 总是返回 false；</li>
+</ul>
+<p>确保这些性质成立并遵守 Java 的约定，同时又避免在实现时做无用功<strong>并不容易</strong>：</p>
+<ul>
+<li>如果该对象的引用和参数对象的引用相同，返回 true。这样测试在成立时，<strong>能够免去其他所有测试工作</strong>；</li>
+<li>如果参数为 null，根据约定返回 false。还可以<strong>避免在下面的代码中使用空引用</strong>；</li>
+<li>如果两个对象的类不同，返回 false。要得到一个对象的类，可以使用 <strong>getClass() 方法</strong>；</li>
+<li>将参数对象的类型从 Object 转换到 Date；</li>
+<li>如果任意实例变量的值不相同，返回 false。对于其他类，<strong>等价性测试方法的定义可能不同</strong>；</li>
+</ul>
+<p>可以使用下面的实现，作为实现任意数据类型的 toString() 和 equals() 方法的模版：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/14.jpg" alt></p>
+<h3 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h3><p>如下所示的三行赋值语句：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Date a = <span class="keyword">new</span> Date(<span class="number">12</span>, <span class="number">31</span>, <span class="number">1999</span>);</span><br><span class="line">Date b = <span class="keyword">new</span> Date(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2011</span>);</span><br><span class="line">a = b;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/02/15.jpg" alt></p>
+<p>本来该对象的唯一引用就是变量 a，但是<strong>该引用被赋值语句覆盖了</strong>，这样的对象被称为<code>孤儿</code>。</p>
+<p>内存管理对于原始数据类型更容易，因为内存分配所需要的所有信息，<strong>在编译阶段就能够获取</strong>。</p>
+<p>对象的内存管理更加复杂：系统会在创建一个对象时为它分配内存，但是<strong>程序在执行时的动态性</strong>，决定了一个对象何时才会变为孤儿，系统并不能准确地知道应该何时释放一个对象的内存。</p>
+<p>Java 最重要的一个特性就是<strong>自动内存管理</strong>。它通过记录孤儿对象，并将它们的内存释放到内存池中，将程序员从管理内存的责任中解放出来。这种回收内存的方式叫做<code>垃圾回收</code>。</p>
+<blockquote>
+<p>Java 的一个特点就是它<strong>不允许修改引用</strong>的策略，这种策略使 Java 能够高效自动地回收垃圾。</p>
+</blockquote>
+<h3 id="不可变性"><a href="#不可变性" class="headerlink" title="不可变性"></a>不可变性</h3><p>Java 语言通过 final 修饰符来强制保证不可变性。当你将一个变量声明为 final 时，也就<strong>保证了只会对它赋值一次</strong>，可以用赋值语句，也可以用构造函数。试图改变 final 变量的值的代码，将会产生一个<code>编译时错误</code>。</p>
+<p>一般来说，不可变的数据类型比可变的数据类型使用更容易，<strong>误用更困难</strong>，因为能够改变它们的值的方式要少得多。</p>
+<p>不可变性的缺点：</p>
+<ul>
+<li><strong>需要为每个值创建一个新对象</strong>。这种开销一般是可以接受的，因为 Java 的垃圾回收器通常都为此进行了优化；</li>
+<li>final 非常不幸地只能用来保证原始数据类型的实例变量的不可变性，而<strong>无法用于引用类型的变量</strong>；</li>
+</ul>
+<p>任何数据类型的设计都需要考虑到不可变性，而且数据类型是否是不可变的<strong>应该在 API 中说明</strong>，这样使用者才能知道该对象中的值，是无法改变的。</p>
+<h3 id="契约式设计"><a href="#契约式设计" class="headerlink" title="契约式设计"></a>契约式设计</h3><p>Java 语言中能够<strong>在程序运行时检验程序状态</strong>，为此我们将使用两种 Java 的语言特性：</p>
+<ul>
+<li>异常（Exception）：一般用于处理不受我们控制的不可预见的错误；</li>
+<li>断言（Assertion）：验证我们在代码中做出的一些假设；</li>
+</ul>
+<blockquote>
+<p>大量使用异常和断言是很好的编程实践。</p>
+</blockquote>
+<h4 id="异常与错误"><a href="#异常与错误" class="headerlink" title="异常与错误"></a>异常与错误</h4><p>异常和错误都是在程序运行中出现的破坏性事件，Java 采取的行动称为<code>抛出异常</code>或是<code>抛出错误</code>。</p>
+<p>一种叫做<strong>快速出错</strong>的常规编程实践提倡：一旦出错就立刻抛出异常，使定位出错位置更容易。</p>
+<h4 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h4><p>断言是一条需要在程序的某处确认为 true 的布尔表达式。如果表达式的值为 false，<strong>程序将会终止并报告一条出错信息</strong>。我们使用断言来确定程序的正确性，并记录我们的意图。</p>
+<p>默认设置没有启动断言，可以在命令行下使用 -ea 标志启用断言。<strong>断言的作用是调试</strong>：程序在正常操作中不应该依赖断言，因为它们可能会被禁用。</p>
+<p>一种叫做<code>契约式设计</code>的编程模型采用的就是这种思想，数据类型的设计者需要说明：</p>
+<ul>
+<li>前提条件：用例在调用某个方法前必须满足的条件；</li>
+<li>后置条件：实现在方法返回时必须达到的要求；</li>
+<li>副作用：方法可能对对象状态产生的任何其他变更；</li>
+</ul>
+<p>在开发过程中，这些条件可以用断言进行测试。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CLRS/" rel="tag"># CLRS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/p/分布式处理与大数据平台.html" rel="next" title="分布式处理与大数据平台">
+                <i class="fa fa-chevron-left"></i> 分布式处理与大数据平台
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/p/Kubernetes-生产级容器集群平台.html" rel="prev" title="Kubernetes - 生产级容器集群平台">
+                Kubernetes - 生产级容器集群平台 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用抽象数据类型"><span class="nav-number">1.</span> <span class="nav-text">使用抽象数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象数据类型的-API"><span class="nav-number">1.1.</span> <span class="nav-text">抽象数据类型的 API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承的方法"><span class="nav-number">1.2.</span> <span class="nav-text">继承的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用例代码"><span class="nav-number">1.3.</span> <span class="nav-text">用例代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象"><span class="nav-number">1.4.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建对象"><span class="nav-number">1.5.</span> <span class="nav-text">创建对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用实例方法"><span class="nav-number">1.6.</span> <span class="nav-text">调用实例方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用对象"><span class="nav-number">1.7.</span> <span class="nav-text">使用对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#赋值语句"><span class="nav-number">1.8.</span> <span class="nav-text">赋值语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将对象作为参数"><span class="nav-number">1.9.</span> <span class="nav-text">将对象作为参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将对象作为返回值"><span class="nav-number">1.10.</span> <span class="nav-text">将对象作为返回值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组也是对象"><span class="nav-number">1.11.</span> <span class="nav-text">数组也是对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的数组"><span class="nav-number">1.12.</span> <span class="nav-text">对象的数组</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象数据类型举例"><span class="nav-number">2.</span> <span class="nav-text">抽象数据类型举例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#几何对象"><span class="nav-number">2.1.</span> <span class="nav-text">几何对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息处理"><span class="nav-number">2.2.</span> <span class="nav-text">信息处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">2.3.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#再谈输入输出"><span class="nav-number">2.4.</span> <span class="nav-text">再谈输入输出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象数据类型的实现"><span class="nav-number">3.</span> <span class="nav-text">抽象数据类型的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实例变量"><span class="nav-number">3.1.</span> <span class="nav-text">实例变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数"><span class="nav-number">3.2.</span> <span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例方法"><span class="nav-number">3.3.</span> <span class="nav-text">实例方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域"><span class="nav-number">3.4.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API、用例与实现"><span class="nav-number">3.5.</span> <span class="nav-text">API、用例与实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多抽象数据类型的实现"><span class="nav-number">4.</span> <span class="nav-text">更多抽象数据类型的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#日期"><span class="nav-number">4.1.</span> <span class="nav-text">日期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#维护多个实现"><span class="nav-number">4.2.</span> <span class="nav-text">维护多个实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#累加器"><span class="nav-number">4.3.</span> <span class="nav-text">累加器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可视化的累加器"><span class="nav-number">4.4.</span> <span class="nav-text">可视化的累加器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型的设计"><span class="nav-number">5.</span> <span class="nav-text">数据类型的设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#封装"><span class="nav-number">5.1.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计-API"><span class="nav-number">5.2.</span> <span class="nav-text">设计 API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法与抽象数据类型"><span class="nav-number">5.3.</span> <span class="nav-text">算法与抽象数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口继承"><span class="nav-number">5.4.</span> <span class="nav-text">接口继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现继承"><span class="nav-number">5.5.</span> <span class="nav-text">实现继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串表示的习惯"><span class="nav-number">5.6.</span> <span class="nav-text">字符串表示的习惯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#封装类型"><span class="nav-number">5.7.</span> <span class="nav-text">封装类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等价性"><span class="nav-number">5.8.</span> <span class="nav-text">等价性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存管理"><span class="nav-number">5.9.</span> <span class="nav-text">内存管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不可变性"><span class="nav-number">5.10.</span> <span class="nav-text">不可变性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#契约式设计"><span class="nav-number">5.11.</span> <span class="nav-text">契约式设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#异常与错误"><span class="nav-number">5.11.1.</span> <span class="nav-text">异常与错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#断言"><span class="nav-number">5.11.2.</span> <span class="nav-text">断言</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

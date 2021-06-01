@@ -1,0 +1,899 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Docker,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="在实践中，经常会碰到多个服务组件容器共同协作的情况，这往往需要多个容器之间，能够互相访问到对方的服务。Docker 除了通过网络访问外，还提供了两个很方便的功能，来满足服务访问的基本需求：  允许映射容器内应用的服务端口到宿主机。 互联机制实现多个容器间，通过容器名来快速访问。  端口映射实现容器访问从外部访问容器应用当容器中运行一些网络应用，要让外部访问这些应用时，可以通过 -P 或 -p 参数">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="端口映射与容器互联">
+<meta property="og:url" content="https://umarellyh.github.io/p/端口映射与容器互联.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="在实践中，经常会碰到多个服务组件容器共同协作的情况，这往往需要多个容器之间，能够互相访问到对方的服务。Docker 除了通过网络访问外，还提供了两个很方便的功能，来满足服务访问的基本需求：  允许映射容器内应用的服务端口到宿主机。 互联机制实现多个容器间，通过容器名来快速访问。  端口映射实现容器访问从外部访问容器应用当容器中运行一些网络应用，要让外部访问这些应用时，可以通过 -P 或 -p 参数">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="端口映射与容器互联">
+<meta name="twitter:description" content="在实践中，经常会碰到多个服务组件容器共同协作的情况，这往往需要多个容器之间，能够互相访问到对方的服务。Docker 除了通过网络访问外，还提供了两个很方便的功能，来满足服务访问的基本需求：  允许映射容器内应用的服务端口到宿主机。 互联机制实现多个容器间，通过容器名来快速访问。  端口映射实现容器访问从外部访问容器应用当容器中运行一些网络应用，要让外部访问这些应用时，可以通过 -P 或 -p 参数">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/p/端口映射与容器互联.html">
+
+
+
+
+
+  <title> 端口映射与容器互联 | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/端口映射与容器互联.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                端口映射与容器互联
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-23T22:23:38+08:00">
+                2019-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在实践中，经常会碰到多个服务组件容器共同协作的情况，这往往需要多个容器之间，能够互相访问到对方的服务。<br>Docker 除了通过网络访问外，还提供了两个很方便的功能，来满足服务访问的基本需求：</p>
+<ul>
+<li>允许映射容器内应用的服务端口到宿主机。</li>
+<li>互联机制实现多个容器间，通过容器名来快速访问。</li>
+</ul>
+<h2 id="端口映射实现容器访问"><a href="#端口映射实现容器访问" class="headerlink" title="端口映射实现容器访问"></a>端口映射实现容器访问</h2><h3 id="从外部访问容器应用"><a href="#从外部访问容器应用" class="headerlink" title="从外部访问容器应用"></a>从外部访问容器应用</h3><p>当容器中运行一些网络应用，要让外部访问这些应用时，可以通过 <strong>-P</strong> 或 <strong>-p</strong> 参数来指定端口映射。<br>当使用 -P 参数时，Docker 会随机映射一个端口到内部容器开放的网络端口：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">run</span><span class="bash"> -d -P training/webapp python app.py</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>当使用 -p 参数时，可以指定要映射的端口，并且在一个指定端口上，只可以绑定一个容器。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="映射所有接口地址"><a href="#映射所有接口地址" class="headerlink" title="映射所有接口地址"></a>映射所有接口地址</h3><p>使用 <code>HostPort:ContainerPort</code> 格式，将宿主机的 5000 端口映射到容器的 5000 端口，可以执行如下命令：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">run</span><span class="bash"> -d -p 5000:5000 training/webapp python app.py</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>默认会绑定宿主机所有接口上的所有地址。</p>
+</blockquote>
+<h3 id="映射到指定地址的指定端口"><a href="#映射到指定地址的指定端口" class="headerlink" title="映射到指定地址的指定端口"></a>映射到指定地址的指定端口</h3><p>使用 <code>IP:HostPort:ContainerPort</code> 格式，指定映射的特定地址：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$</span> <span class="string">docker</span> <span class="string">run</span> <span class="string">-d</span> <span class="string">-p</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:5000:5000</span> <span class="string">training/webapp</span> <span class="string">python</span> <span class="string">app.py</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="映射到指定地址的任意端口"><a href="#映射到指定地址的任意端口" class="headerlink" title="映射到指定地址的任意端口"></a>映射到指定地址的任意端口</h3><p>使用 <code>IP::ContainerPort</code> 绑定 localhost 的任意端口到容器的 5000 端口，宿主机会<strong>自动分配</strong>一个端口：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$</span> <span class="string">docker</span> <span class="string">run</span> <span class="string">-d</span> <span class="string">-p</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">::5000</span> <span class="string">training/webapp</span> <span class="string">python</span> <span class="string">app.py</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查看映射端口配置"><a href="#查看映射端口配置" class="headerlink" title="查看映射端口配置"></a>查看映射端口配置</h3><p>使用 <strong>docker port</strong> 来查看当前映射的端口配置，也可以查看到绑定的地址：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker<span class="built_in"> port </span>relaxed_pike 5000</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>容器有自己的内部网络和 IP 地址，使用 docker inspect 可以获取容器的具体信息。</p>
+</blockquote>
+<h2 id="互联机制实现便捷互访"><a href="#互联机制实现便捷互访" class="headerlink" title="互联机制实现便捷互访"></a>互联机制实现便捷互访</h2><p>容器的<strong>互联</strong>（linking）是一种让多个容器中的应用进行快速交互的方式，接收容器可以通过容器名快速访问到源容器，而不用指定具体的 IP 地址。</p>
+<h3 id="自定义容器命名"><a href="#自定义容器命名" class="headerlink" title="自定义容器命名"></a>自定义容器命名</h3><p>自定义容器命名的好处：</p>
+<ul>
+<li>自定义的命名比较好记，比如一个 Web 应用容器我们可以给他起名叫 web，一目了然。</li>
+<li>当要连接其他容器的时候（即便重启），也可以使用容器名而不用改变，比如连接 web 容器到 db 容器。</li>
+</ul>
+<p>使用 <code>--name</code> 参数可以为容器自定义命名：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">run</span> -d -P <span class="comment">--name web training/webapp python app.py</span></span><br></pre></td></tr></table></figure>
+
+<p>在执行 docker run 的时候，如果添加 --rm 参数，则容器在终止后会立刻删除。注意：<strong>--rm 和 -d 参数不能同时使用</strong>。</p>
+<h3 id="容器互联"><a href="#容器互联" class="headerlink" title="容器互联"></a>容器互联</h3><p>使用 <code>--link</code> 参数可以让容器之间安全的交互。<br>先创建一个新的数据库容器：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="built_in">run</span> -d <span class="comment">--name db training/postgres</span></span><br></pre></td></tr></table></figure>
+
+<p>然后创建一个新的 web 容器，并将他连接到 db 容器：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">run</span> -<span class="keyword">d</span> -P --name web --link <span class="keyword">db</span>:<span class="keyword">db</span> training/webapp python <span class="keyword">app</span>.py</span><br></pre></td></tr></table></figure>
+
+<p>此时，db 容器和 web 容器建立互联关系。<br>--link 参数的格式为 <code>--link name:alias</code>，其中 name 是要连接的容器的名称，alias 是别名。<br>Docker 相当于在两个互联的容器之间创建了一个虚机通道，而且不用映射他们的端口到宿主机上，<strong>避免了暴露数据库服务端口到外部网络上</strong>。<br>Docker 通过两种方式为容器公开连接信息：</p>
+<ul>
+<li>环境变量</li>
+<li><code>/etc/hosts</code> 文件</li>
+</ul>
+<p>使用 <strong>env 命令</strong>来查看 web 容器的环境变量：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">run</span> --<span class="keyword">rm</span> --link <span class="keyword">db</span>:<span class="keyword">db</span> training/webapp env</span><br></pre></td></tr></table></figure>
+
+<p> 查看父容器 web 的 hosts 文件：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker <span class="keyword">run</span> -it --<span class="keyword">rm</span> --link <span class="keyword">db</span>:<span class="keyword">db</span> training/webapp /bin/bash</span><br><span class="line">$ <span class="keyword">cat</span> /etc/hosts</span><br></pre></td></tr></table></figure>
+
+<p>可以在 web 容器中安装 <strong>ping 命令</strong>，来测试跟 db 容器的连通：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ apt-<span class="builtin-name">get</span> install -yqq inetutils-ping</span><br><span class="line">$<span class="built_in"> ping </span>db</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>用户可以连接多个子容器到父容器，比如可以连接多个 web 到同一个 db 容器上。</p>
+</blockquote>
+<p>在生产环境中，网络方面的需求更加复杂和多变，包括跨主机甚至跨数据中心的通信，这时候往往就需要引入格外的机制：</p>
+<ul>
+<li>SDN（软件定义网络）</li>
+<li>NFV（网络功能虚拟化）</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/p/Docker-数据管理.html" rel="next" title="Docker 数据管理">
+                <i class="fa fa-chevron-left"></i> Docker 数据管理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/p/SAP-HANA-Overview.html" rel="prev" title="SAP HANA Overview">
+                SAP HANA Overview <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#端口映射实现容器访问"><span class="nav-number">1.</span> <span class="nav-text">端口映射实现容器访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从外部访问容器应用"><span class="nav-number">1.1.</span> <span class="nav-text">从外部访问容器应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#映射所有接口地址"><span class="nav-number">1.2.</span> <span class="nav-text">映射所有接口地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#映射到指定地址的指定端口"><span class="nav-number">1.3.</span> <span class="nav-text">映射到指定地址的指定端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#映射到指定地址的任意端口"><span class="nav-number">1.4.</span> <span class="nav-text">映射到指定地址的任意端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看映射端口配置"><span class="nav-number">1.5.</span> <span class="nav-text">查看映射端口配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#互联机制实现便捷互访"><span class="nav-number">2.</span> <span class="nav-text">互联机制实现便捷互访</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义容器命名"><span class="nav-number">2.1.</span> <span class="nav-text">自定义容器命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器互联"><span class="nav-number">2.2.</span> <span class="nav-text">容器互联</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

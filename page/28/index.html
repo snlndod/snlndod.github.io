@@ -280,7 +280,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/Liskov-Substitution-Principle-LSP.html">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/Liskov-Substitution-Principle-LSP.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -302,7 +302,7 @@
             
               
                 
-                <a class="post-title-link" href="/Liskov-Substitution-Principle-LSP.html" itemprop="url">
+                <a class="post-title-link" href="/p/Liskov-Substitution-Principle-LSP.html" itemprop="url">
                   Liskov Substitution Principle (LSP)
                 </a>
               
@@ -368,7 +368,7 @@
 <p>这么说还是比较抽象，我们通过一个例子来解释一下。如下代码中，父类 Transporter 使用 org.apache.http 库中的 HttpClient 类来传输网络数据。子类 SecurityTransporter 继承父类 Transporter，增加了额外的功能，支持传输 appId 和 appToken 安全认证信息：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Liskov-Substitution-Principle-LSP.html#more" rel="contents">
+            <a class="btn" href="/p/Liskov-Substitution-Principle-LSP.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -411,7 +411,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/Open-Closed-Principle-OCP.html">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/Open-Closed-Principle-OCP.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -433,7 +433,7 @@
             
               
                 
-                <a class="post-title-link" href="/Open-Closed-Principle-OCP.html" itemprop="url">
+                <a class="post-title-link" href="/p/Open-Closed-Principle-OCP.html" itemprop="url">
                   Open Closed Principle (OCP)
                 </a>
               
@@ -497,7 +497,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Alert</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> AlertRule rule;</span><br><span class="line">    <span class="keyword">private</span> Notification notification;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Alert</span><span class="params">(AlertRule rule, Notification notification)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.rule = rule;</span><br><span class="line">        <span class="keyword">this</span>.notification = notification;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">check</span><span class="params">(String api, <span class="keyword">long</span> requestCount, <span class="keyword">long</span> errorCount, <span class="keyword">long</span> durationOfSeconds)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> tps = requestCount / durationOfSeconds;</span><br><span class="line">        <span class="keyword">if</span> (tps &gt; rule.getMatchedRule(api).getMaxTps()) </span><br><span class="line">        &#123;</span><br><span class="line">            notification.notify(NotificationEmergencyLevel.URGENCY, <span class="string">"..."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (errorCount &gt; rule.getMatchedRule(api).getMaxErrorCount()) </span><br><span class="line">        &#123;</span><br><span class="line">            notification.notify(NotificationEmergencyLevel.SEVERE, <span class="string">"..."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Open-Closed-Principle-OCP.html#more" rel="contents">
+            <a class="btn" href="/p/Open-Closed-Principle-OCP.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -540,7 +540,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/Single-Responsibility-Principle-SRP.html">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/Single-Responsibility-Principle-SRP.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -562,7 +562,7 @@
             
               
                 
-                <a class="post-title-link" href="/Single-Responsibility-Principle-SRP.html" itemprop="url">
+                <a class="post-title-link" href="/p/Single-Responsibility-Principle-SRP.html" itemprop="url">
                   Single Responsibility Principle (SRP)
                 </a>
               
@@ -627,7 +627,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserInfo</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> userId;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="keyword">private</span> String telephone;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> createTime;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> lastLoginTime;</span><br><span class="line">    <span class="keyword">private</span> String avatarUrl;</span><br><span class="line">    <span class="keyword">private</span> String provinceOfAddress; <span class="comment">// 省</span></span><br><span class="line">    <span class="keyword">private</span> String cityOfAddress; <span class="comment">// 市</span></span><br><span class="line">    <span class="keyword">private</span> String regionOfAddress; <span class="comment">// 区 </span></span><br><span class="line">    <span class="keyword">private</span> String detailedAddress; <span class="comment">// 详细地址</span></span><br><span class="line">    <span class="comment">//...省略其他属性和方法...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Single-Responsibility-Principle-SRP.html#more" rel="contents">
+            <a class="btn" href="/p/Single-Responsibility-Principle-SRP.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -670,7 +670,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/贫血模型-vs-充血模型.html">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/贫血模型-vs-充血模型.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -692,7 +692,7 @@
             
               
                 
-                <a class="post-title-link" href="/贫血模型-vs-充血模型.html" itemprop="url">
+                <a class="post-title-link" href="/p/贫血模型-vs-充血模型.html" itemprop="url">
                   贫血模型 vs. 充血模型
                 </a>
               
@@ -753,7 +753,7 @@
 <p>实际上，<strong>你可能一直都在用贫血模型做开发，只是自己不知道而已</strong>。不夸张地讲，据我了解，目前几乎所有的业务后端系统，都是基于贫血模型的。我举一个简单的例子来给你解释一下：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/贫血模型-vs-充血模型.html#more" rel="contents">
+            <a class="btn" href="/p/贫血模型-vs-充血模型.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -796,7 +796,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/Simple-Strategy-for-Delivering-Better-Talks.html">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/Simple-Strategy-for-Delivering-Better-Talks.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -818,7 +818,7 @@
             
               
                 
-                <a class="post-title-link" href="/Simple-Strategy-for-Delivering-Better-Talks.html" itemprop="url">
+                <a class="post-title-link" href="/p/Simple-Strategy-for-Delivering-Better-Talks.html" itemprop="url">
                   Simple Strategy for Delivering Better Talks
                 </a>
               
@@ -879,7 +879,7 @@
 <p>Before working on your slides, write down the main message you want to communicate in one or two sentences. Then, be ruthless: <strong>include only slides that support your central thread</strong>.</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Simple-Strategy-for-Delivering-Better-Talks.html#more" rel="contents">
+            <a class="btn" href="/p/Simple-Strategy-for-Delivering-Better-Talks.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>

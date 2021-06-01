@@ -1,0 +1,880 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="SystemDesign,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="域名系统Domain Name System（DNS）将 www.example.com 等域名转换成 IP 地址：  域名系统是分层次的，一些 DNS 服务器位于顶层。当查询（域名）IP 时，路由或 ISP 提供连接 DNS 服务器的信息。较底层的 DNS 服务器缓存映射，它可能会因为 DNS 传播延时而失效。DNS 结果可以缓存在浏览器或操作系统中一段时间，时间长短取决于 TTL（Time T">
+<meta name="keywords" content="SystemDesign">
+<meta property="og:type" content="article">
+<meta property="og:title" content="域名系统与内容分发网络">
+<meta property="og:url" content="https://umarellyh.github.io/p/域名系统与内容分发网络.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="域名系统Domain Name System（DNS）将 www.example.com 等域名转换成 IP 地址：  域名系统是分层次的，一些 DNS 服务器位于顶层。当查询（域名）IP 时，路由或 ISP 提供连接 DNS 服务器的信息。较底层的 DNS 服务器缓存映射，它可能会因为 DNS 传播延时而失效。DNS 结果可以缓存在浏览器或操作系统中一段时间，时间长短取决于 TTL（Time T">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/03/00.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/03/01.jpg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="域名系统与内容分发网络">
+<meta name="twitter:description" content="域名系统Domain Name System（DNS）将 www.example.com 等域名转换成 IP 地址：  域名系统是分层次的，一些 DNS 服务器位于顶层。当查询（域名）IP 时，路由或 ISP 提供连接 DNS 服务器的信息。较底层的 DNS 服务器缓存映射，它可能会因为 DNS 传播延时而失效。DNS 结果可以缓存在浏览器或操作系统中一段时间，时间长短取决于 TTL（Time T">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/03/00.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/p/域名系统与内容分发网络.html">
+
+
+
+
+
+  <title> 域名系统与内容分发网络 | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/域名系统与内容分发网络.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                域名系统与内容分发网络
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-21T00:49:11+08:00">
+                2019-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="域名系统"><a href="#域名系统" class="headerlink" title="域名系统"></a>域名系统</h2><p><strong>D</strong>omain <strong>N</strong>ame <strong>S</strong>ystem（DNS）将 <a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a> 等域名转换成 IP 地址：</p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/03/00.jpg" alt></p>
+<p>域名系统是分层次的，一些 DNS 服务器位于顶层。当查询（域名）IP 时，路由或 ISP 提供连接 DNS 服务器的信息。<strong>较底层的 DNS 服务器缓存映射</strong>，它可能会因为 DNS 传播延时而失效。DNS 结果可以缓存在浏览器或操作系统中一段时间，时间长短取决于 <code>TTL</code>（Time To Live）：</p>
+<ul>
+<li>NS 记录（域名服务）：指定解析域名或子域名的 DNS 服务器；</li>
+<li>MX 记录（邮件交换）：指定接收信息的邮件服务器；</li>
+<li>A 记录（地址）：指定域名对应的 IP 地址记录；</li>
+<li>CNAME（规范）：一个域名映射到另一个域名，或映射到一个 A 记录。</li>
+</ul>
+<a id="more"></a>
+<p><code>CloudFlare</code> 和 <code>Route 53</code> 等平台提供管理 DNS 的功能。某些 DNS 服务通过<strong>集中方式</strong>来路由流量:</p>
+<ul>
+<li>加权轮询调度：<ul>
+<li>防止流量进入维护中的服务器</li>
+<li>在不同大小集群间负载均衡</li>
+<li>A/B 测试</li>
+</ul>
+</li>
+<li>基于延迟路由</li>
+<li>基于地理位置路由</li>
+</ul>
+<h3 id="缺陷：DNS"><a href="#缺陷：DNS" class="headerlink" title="缺陷：DNS"></a>缺陷：DNS</h3><ul>
+<li>虽说缓存可以减轻 DNS 延迟，但连接 DNS 服务器还是带来了轻微的延迟；</li>
+<li>虽然它们通常由政府、网络服务提供商和大公司管理，但 DNS 服务管理仍可能是复杂的；</li>
+<li>DNS 服务可能遭受 <code>DDoS 攻击</code>，例如：阻止不知道 Twitter IP 地址的用户访问 Twitter。</li>
+</ul>
+<h2 id="内容分发网络"><a href="#内容分发网络" class="headerlink" title="内容分发网络"></a>内容分发网络</h2><p><strong>C</strong>ontent <strong>D</strong>elivery <strong>N</strong>etwork（CDN）是一个<strong>全球性的代理服务器分布式网络</strong>，它从靠近用户的位置提供内容。通常，HTML/CSS/JS，图片和视频等静态内容由 CDN 提供，亚马逊 <code>CloudFront</code> 等也支持动态内容。</p>
+<blockquote>
+<p>CDN 的 DNS 解析会告知客户端连接哪台服务器。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/03/01.jpg" alt></p>
+<p>将内容存储在 CDN 上可以从两个方面来提高性能:</p>
+<ul>
+<li>从靠近用户的数据中心提供资源；</li>
+<li>借助 CDN，服务器不必真的处理请求。</li>
+</ul>
+<h3 id="CDN-推送"><a href="#CDN-推送" class="headerlink" title="CDN 推送"></a>CDN 推送</h3><p>当服务器上的<strong>内容发生变动时</strong>，推送 CDN 接受新内容。直接推送给 CDN 并重写 URL 地址，以指向内容的 CDN 地址，可以配置内容的到期时间和更新时间。内容只有在新增或更改时才推送，<strong>流量最小化，但存储最大化</strong>。</p>
+<p>CDN 推送可以很好地处理流量较小或内容不经常更新的站点，内容一次性放置在 CDN 上，而<strong>不是定期重新拉取</strong>。</p>
+<h3 id="CDN-拉取"><a href="#CDN-拉取" class="headerlink" title="CDN 拉取"></a>CDN 拉取</h3><p>CDN 拉取是当第一个用户请求资源时，从服务器上拉取资源。将内容留在服务器上，并重写 URL 指向 CDN 地址。在<strong>内容被缓存在 CDN 上</strong>之前，这都会导致请求变慢。</p>
+<p>内容的缓存时间取决于 TTL。CDN 拉取可以最大程度地减少 CDN 上的存储空间，但如果文件过期，或在文件实际更改之前就被拉取，则<strong>会产生多余的流量</strong>。</p>
+<p>CDN 拉取可以很好地处理高流量的站点，因为<strong>流量分散得更均匀</strong>，只有最近请求的内容保留在 CDN 上。</p>
+<h3 id="缺陷：CDN"><a href="#缺陷：CDN" class="headerlink" title="缺陷：CDN"></a>缺陷：CDN</h3><ul>
+<li>CDN 成本因流量而异，可能在权衡之后你将不会使用 CDN；</li>
+<li>如果在 TTL 过期之前更新内容，CDN 缓存内容可能会过时；</li>
+<li>CDN 需要更改静态内容的 URL 地址以指向 CDN。</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SystemDesign/" rel="tag"># SystemDesign</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/p/高层次的权衡.html" rel="next" title="高层次的权衡">
+                <i class="fa fa-chevron-left"></i> 高层次的权衡
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/p/负载均衡器.html" rel="prev" title="负载均衡器">
+                负载均衡器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#域名系统"><span class="nav-number">1.</span> <span class="nav-text">域名系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缺陷：DNS"><span class="nav-number">1.1.</span> <span class="nav-text">缺陷：DNS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内容分发网络"><span class="nav-number">2.</span> <span class="nav-text">内容分发网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CDN-推送"><span class="nav-number">2.1.</span> <span class="nav-text">CDN 推送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CDN-拉取"><span class="nav-number">2.2.</span> <span class="nav-text">CDN 拉取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺陷：CDN"><span class="nav-number">2.3.</span> <span class="nav-text">缺陷：CDN</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

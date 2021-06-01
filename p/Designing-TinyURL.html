@@ -1,0 +1,993 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="SystemDesign,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="Why do We Need URL Shortening?URL shortening is used to create shorter aliases for long URLs. We call these shortened aliases “short links”. Users are redirected to the original URL when they hit thes">
+<meta name="keywords" content="SystemDesign">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Designing TinyURL">
+<meta property="og:url" content="https://umarellyh.github.io/p/Designing-TinyURL.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="Why do We Need URL Shortening?URL shortening is used to create shorter aliases for long URLs. We call these shortened aliases “short links”. Users are redirected to the original URL when they hit thes">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/19.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/20.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/21.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/22.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/23.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/24.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Designing TinyURL">
+<meta name="twitter:description" content="Why do We Need URL Shortening?URL shortening is used to create shorter aliases for long URLs. We call these shortened aliases “short links”. Users are redirected to the original URL when they hit thes">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/19.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/p/Designing-TinyURL.html">
+
+
+
+
+
+  <title> Designing TinyURL | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/Designing-TinyURL.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Designing TinyURL
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-08T21:38:19+08:00">
+                2021-02-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Why-do-We-Need-URL-Shortening"><a href="#Why-do-We-Need-URL-Shortening" class="headerlink" title="Why do We Need URL Shortening?"></a>Why do We Need URL Shortening?</h2><p>URL shortening is used to create shorter aliases for long URLs. We call these shortened aliases “short links”. Users are redirected to the original URL when they hit these short links. Short links save a lot of space when displayed, printed, messaged, or tweeted. Additionally, users are less likely to mistype shorter URLs.</p>
+<p>For example, if we shorten this page through TinyURL:</p>
+<blockquote>
+<p><a href="https://www.educative.io/collection/page/5668639101419520/5649050225344512/5668600916475904/" target="_blank" rel="noopener">https://www.educative.io/collection/page/5668639101419520/5649050225344512/5668600916475904/</a></p>
+</blockquote>
+<p>We would get:</p>
+<blockquote>
+<p><a href="http://tinyurl.com/jlg8zpc" target="_blank" rel="noopener">http://tinyurl.com/jlg8zpc</a></p>
+</blockquote>
+<p>The shortened URL is nearly one-third the size of the actual URL.<br>URL shortening is used to optimize links across devices, track individual links to analyze audience, measure ad campaigns’ performance, or hide affiliated original URLs.</p>
+<p>If you haven’t used <a href="https://tinyurl.com/app" target="_blank" rel="noopener">tinyurl.com</a> before, please try creating a new shortened URL and spend some time going through the various options their service offers. This will help you a lot in understanding this chapter.</p>
+<a id="more"></a>
+
+<h2 id="Requirements-and-Goals-of-the-System"><a href="#Requirements-and-Goals-of-the-System" class="headerlink" title="Requirements and Goals of the System"></a>Requirements and Goals of the System</h2><blockquote>
+<p>You should always clarify requirements at the beginning of the interview. Be sure to ask questions to find the exact scope of the system that the interviewer has in mind.</p>
+</blockquote>
+<p>Our URL shortening system should meet the following requirements:<br><strong>Functional Requirements</strong>:</p>
+<ol>
+<li>Given a URL, our service should generate a shorter and unique alias of it. This is called a short link. This link should be short enough to be easily copied and pasted into applications;</li>
+<li>When users access a short link, our service should redirect them to the original link;</li>
+<li>Users should optionally be able to pick a custom short link for their URL;</li>
+<li>Links will expire after a standard default time span. Users should be able to specify the expiration time;</li>
+</ol>
+<p><strong>Non-Functional Requirements</strong>:</p>
+<ol>
+<li>The system should be highly available. This is required because, if our service is down, all the URL redirections will start failing;</li>
+<li>URL redirection should happen in real-time with minimal latency;</li>
+<li>Shortened links should not be guessable (not predictable);</li>
+</ol>
+<p><strong>Extended Requirements</strong>:</p>
+<ol>
+<li>Analytics ,e.g., how many times a redirection happened?</li>
+<li>Our service should also be accessible through REST APIs by other services;</li>
+</ol>
+<h2 id="Capacity-Estimation-and-Constraints"><a href="#Capacity-Estimation-and-Constraints" class="headerlink" title="Capacity Estimation and Constraints"></a>Capacity Estimation and Constraints</h2><p>Our system will be read-heavy. There will be lots of redirection requests compared to new URL shortenings. Let’s assume a 100:1 ratio between read and write.</p>
+<p><strong>Traffic estimates</strong>: Assuming, we will have 500M new URL shortenings per month, with 100:1 read/write ratio, we can expect 50B redirections during the same period:</p>
+<blockquote>
+<p>100 * 500M = 50B</p>
+</blockquote>
+<p>What would be Queries Per Second (QPS) for our system? New URLs shortenings per second:</p>
+<blockquote>
+<p>500 million / (30 days * 24 hours * 3600 seconds) ≈ 200 URLs/s</p>
+</blockquote>
+<p>Considering 100:1 read/write ratio, URLs redirections per second will be:</p>
+<blockquote>
+<p>100 * 200 URLs/s = 20K/s</p>
+</blockquote>
+<p><strong>Storage estimates</strong>: Let’s assume we store every URL shortening request (and associated shortened link) for 5 years. Since we expect to have 500M new URLs every month, the total number of objects we expect to store will be 30 billion:</p>
+<blockquote>
+<p>500 million * 5 years * 12 months = 30 billion</p>
+</blockquote>
+<p>Let’s assume that each stored object will be approximately 500 bytes. We will need 15TB of total storage:</p>
+<blockquote>
+<p>30 billion * 500 bytes = 15 TB</p>
+</blockquote>
+<p><strong>Bandwidth estimates</strong>: For write requests, since we expect 200 new URLs every second, total incoming data for our service will be 100KB per second:</p>
+<blockquote>
+<p>200 * 500 bytes = 100 KB/s</p>
+</blockquote>
+<p>For read requests, since every second we expect 20K URLs redirections, total outgoing data for our service would be 10MB per second:</p>
+<blockquote>
+<p>20K * 500 bytes = 10 MB/s</p>
+</blockquote>
+<p><strong>Memory estimates</strong>: If we want to cache some of the hot URLs that are frequently accessed, how much memory will we need to store them? If we follow the 80-20 rule, meaning 20% of URLs generate 80% of traffic, we would like to cache these 20% hot URLs. Since we have 20K requests per second, we will be getting 1.7 billion requests per day:</p>
+<blockquote>
+<p>20K * 3600 seconds * 24 hours ≈ 1.7 billion</p>
+</blockquote>
+<p>To cache 20% of these requests, we will need 170GB of memory:</p>
+<blockquote>
+<p>0.2 * 1.7 billion * 500 bytes = 170 GB</p>
+</blockquote>
+<p>One thing to note here is that since there will be many duplicate requests (of the same URL), our actual memory usage will be less than 170GB.</p>
+<p><strong>High-level estimates</strong>: Assuming 500 million new URLs per month and 100:1 read:write ratio, following is the summary of the high-level estimates for our service:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/19.png" alt></p>
+<h2 id="System-APIs"><a href="#System-APIs" class="headerlink" title="System APIs"></a>System APIs</h2><blockquote>
+<p>Once we’ve finalized the requirements, it’s always a good idea to define the system APIs. This should explicitly state what is expected from the system.</p>
+</blockquote>
+<p>We can have SOAP or REST APIs to expose the functionality of our service. Following could be the definitions of the APIs for creating and deleting URLs:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">createURL(api_dev_key, original_url, custom_alias=None, user_name=None, expire_date=None)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Parameters</strong>: </p>
+<ul>
+<li>api_dev_key: The API developer key of a registered account. This will be used to, among other things, throttle users based on their allocated quota;</li>
+<li>original_url: Original URL to be shortened;</li>
+<li>custom_alias: Optional custom key for the URL;</li>
+<li>user_name: Optional user name to be used in the encoding;</li>
+<li>expire_date: Optional expiration date for the shortened URL;</li>
+</ul>
+<p><strong>Returns</strong>: A successful insertion returns the shortened URL; otherwise, it returns an error code.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deleteURL(api_dev_key, url_key)</span><br></pre></td></tr></table></figure>
+
+<p>Where “url_key” is a string representing the shortened URL to be retrieved; a successful deletion returns “URL Removed”.</p>
+<p><strong>How do we detect and prevent abuse</strong>? A malicious user can put us out of business by consuming all URL keys in the current design. To prevent abuse, we can limit users via their api_dev_key. Each api_dev_key can be limited to a certain number of URL creations and redirections per some time period (which may be set to a different duration per developer key).</p>
+<h2 id="Database-Design"><a href="#Database-Design" class="headerlink" title="Database Design"></a>Database Design</h2><blockquote>
+<p>Defining the DB schema in the early stages of the interview would help to understand the data flow among various components and later would guide towards data partitioning.</p>
+</blockquote>
+<p>A few observations about the nature of the data we will store:</p>
+<ul>
+<li>We need to store billions of records;</li>
+<li>Each object we store is small (less than 1K);</li>
+<li>There are no relationships between records - other than storing which user created a URL;</li>
+<li>Our service is read-heavy;</li>
+</ul>
+<p><strong>Database Schema</strong>: We would need two tables: one for storing information about the URL mappings and one for the user’s data who created the short link:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/20.png" alt></p>
+<p><strong>What kind of database should we use</strong>? Since we anticipate storing billions of rows, and we don’t need to use relationships between objects – a NoSQL store like DynamoDB, Cassandra or Riak is a better choice. A NoSQL choice would also be easier to scale.</p>
+<h2 id="Basic-System-Design-and-Algorithm"><a href="#Basic-System-Design-and-Algorithm" class="headerlink" title="Basic System Design and Algorithm"></a>Basic System Design and Algorithm</h2><p>The problem we are solving here is how to generate a short and unique key for a given URL.<br>In the TinyURL, the shortened URL is “<a href="http://tinyurl.com/jlg8zpc&quot;" target="_blank" rel="noopener">http://tinyurl.com/jlg8zpc&quot;</a>. The last seven characters of this URL is the short key we want to generate. We’ll explore two solutions here.</p>
+<h3 id="Encoding-actual-URL"><a href="#Encoding-actual-URL" class="headerlink" title="Encoding actual URL"></a>Encoding actual URL</h3><p>We can compute a unique hash (e.g., MD5 or SHA256, etc.) of the given URL. The hash can then be encoded for display. This encoding could be base36 ([a-z, 0-9]) or base62 ([A-Z, a-z, 0-9]) and if we add “+” and “/“ we can use Base64 encoding. A reasonable question would be, what should be the length of the short key? 6, 8, or 10 characters?</p>
+<p>Using base64 encoding, a 6 letters long key would result in 64^6 ≈ 68.7 billion possible strings; Using base64 encoding, an 8 letters long key would result in 64^8 ≈ 281 trillion possible strings.<br>With 68.7B unique strings, let’s assume six letter keys would suffice for our system.</p>
+<p>If we use the MD5 algorithm as our hash function, it’ll produce a 128 bits hash value. After base64 encoding, well get a string having more than 21 characters (since each base64 character encodes 6 bits of the hash value). Now we only have space for 6 characters per short key; how will we choose our key then? We can take the first 6 letters for the key. This could result in key duplication; to resolve that, we can choose some other characters out of the encoding string or swap some characters.</p>
+<p><strong>What are the different issues with our solution</strong>? We have the following couple of problems with our encoding scheme:</p>
+<ol>
+<li>If multiple users enter the same URL, they can get the same shortened URL, which is not acceptable;</li>
+<li>What if parts of the URL are URL-encoded? e.g., <a href="http://www.educative.io/distributed.php?id=design" target="_blank" rel="noopener">http://www.educative.io/distributed.php?id=design</a> and <a href="http://www.educative.io/distributed.php%3Fid%3Ddesign" target="_blank" rel="noopener">http://www.educative.io/distributed.php%3Fid%3Ddesign</a> are identical except for the URL encoding;</li>
+</ol>
+<p><strong>Workaround for the issues</strong>: We can append an increasing sequence number to each input URL to make it unique and then generate its hash. We don’t need to store this sequence number in the databases, though. Possible problems with this approach could be an ever-increasing sequence number. Can it overflow? Appending an increasing sequence number will also impact the performance of the service.</p>
+<p>Another solution could be to append the user id (which should be unique) to the input URL. However, if the user has not signed in, we would have to ask the user to choose a uniqueness key. Even after this, if we have a conflict, we have to keep generating a key until we get a unique one:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/21.png" alt></p>
+<h3 id="Generating-keys-offline"><a href="#Generating-keys-offline" class="headerlink" title="Generating keys offline"></a>Generating keys offline</h3><p>We can have a standalone <strong>Key Generation Service (KGS)</strong> that generates random six-letter strings beforehand and stores them in a database (let’s call it key-DB). Whenever we want to shorten a URL, we will take one of the already-generated keys and use it. This approach will make things quite simple and fast. Not only are we not encoding the URL, but we won’t have to worry about duplications or collisions. KGS will make sure all the keys inserted into key-DB are unique:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/22.png" alt></p>
+<p><strong>Can concurrency cause problems</strong>? As soon as a key is used, it should be marked in the database to ensure that it is not used again. If there are multiple servers reading keys concurrently, we might get a scenario where two or more servers try to read the same key from the database. How can we solve this concurrency problem?<br>Servers can use KGS to read/mark keys in the database. KGS can use two tables to store keys: one for keys that are not used yet, and one for all the used keys. As soon as KGS gives keys to one of the servers, it can move them to the used keys table. KGS can always keep some keys in memory to quickly provide them whenever a server needs them.</p>
+<p>For simplicity, as soon as KGS loads some keys in memory, it can move them to the used keys table. This ensures each server gets unique keys. If KGS dies before assigning all the loaded keys to some server, we will be wasting those keys–which could be acceptable, given the huge number of keys we have.<br>KGS also has to make sure not to give the same key to multiple servers. For that, it must synchronize (or get a lock on) the data structure holding the keys before removing keys from it and giving them to a server.</p>
+<p><strong>What would be the key-DB size</strong>? With base64 encoding, we can generate 68.7B unique six letters keys. If we need one byte to store one alpha-numeric character, we can store all these keys in:</p>
+<blockquote>
+<p>6 (characters per key) * 68.7B (unique keys) ≈ 412 GB</p>
+</blockquote>
+<p><strong>Isn’t KGS a single point of failure</strong>? Yes, it is. To solve this, we can have a standby replica of KGS. Whenever the primary server dies, the standby server can take over to generate and provide keys.</p>
+<p><strong>Can each app server cache some keys from key-DB</strong>? Yes, this can surely speed things up. Although, in this case, if the application server dies before consuming all the keys, we will end up losing those keys. This can be acceptable since we have 68.7B unique six-letter keys.</p>
+<p><strong>How would we perform a key lookup</strong>? We can look up the key in our database to get the full URL. If it’s present in the DB, issue an “HTTP 302 Redirect” status back to the browser, passing the stored URL in the “Location” field of the request. If that key is not present in our system, issue an “HTTP 404 Not Found” status or redirect the user back to the homepage.</p>
+<p><strong>Should we impose size limits on custom aliases</strong>? Our service supports custom aliases. Users can pick any “key” they like, but providing a custom alias is not mandatory. However, it is reasonable (and often desirable) to impose a size limit on a custom alias to ensure we have a consistent URL database. Let’s assume users can specify a maximum of 16 characters per customer key (as reflected in the above database schema).</p>
+<h2 id="Data-Partitioning-and-Replication"><a href="#Data-Partitioning-and-Replication" class="headerlink" title="Data Partitioning and Replication"></a>Data Partitioning and Replication</h2><p>To scale out our DB, we need to partition it so that it can store information about billions of URLs. We need to develop a partitioning scheme that would divide and store our data into different DB servers:</p>
+<ol>
+<li><strong>Range-Based Partitioning</strong>: We can store URLs in separate partitions based on the hash key’s first letter. Hence we save all the URLs starting with the letter “A” (and “a”) in one partition, save those that start with the letter “B” in another partition, and so on. This approach is called range-based partitioning. We can even combine certain less frequently occurring letters into one database partition. We should come up with a static partitioning scheme to always store/find a URL in a predictable manner.<br>The main problem with this approach is that it can lead to unbalanced DB servers. For example, we decide to put all URLs starting with the letter “E” into a DB partition, but later we realize that we have too many URLs that start with the letter “E”;</li>
+<li><strong>Hash-Based Partitioning</strong>: In this scheme, we take a hash of the object we are storing. We then calculate which partition to use based upon the hash. In our case, we can take the hash of the ‘key’ or the short link to determine the partition in which we store the data object.<br>Our hashing function will randomly distribute URLs into different partitions (e.g., our hashing function can always map any “key” to a number between [1, 256]). This number would represent the partition in which we store our object. This approach can still lead to overloaded partitions, which can be solved using Consistent Hashing;</li>
+</ol>
+<h2 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h2><p>We can cache URLs that are frequently accessed. We can use some off-the-shelf solution like Memcached, which can store full URLs with their respective hashes. Before hitting backend storage, the application servers can quickly check if the cache has the desired URL.</p>
+<p><strong>How much cache memory should we have</strong>? We can start with 20% of daily traffic and, based on clients’ usage patterns, we can adjust how many cache servers we need. As estimated above, we need 170GB memory to cache 20% of daily traffic. Since a modern-day server can have 256GB memory, we can easily fit all the cache into one machine. Alternatively, we can use a couple of smaller servers to store all these hot URLs.</p>
+<p><strong>Which cache eviction policy would best fit our needs</strong>? When the cache is full, and we want to replace a link with a newer/hotter URL, how would we choose? Least Recently Used (LRU) can be a reasonable policy for our system. Under this policy, we discard the least recently used URL first. We can use a Linked Hash Map or a similar data structure to store our URLs and Hashes, which will also keep track of the URLs that have been accessed recently.</p>
+<p>To further increase the efficiency, we can replicate our caching servers to distribute the load between them.<br><strong>How can each cache replica be updated</strong>? Whenever there is a cache miss, our servers would be hitting a backend database. Whenever this happens, we can update the cache and pass the new entry to all the cache replicas. Each replica can update its cache by adding the new entry. If a replica already has that entry, it can simply ignore it:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/23.png" alt></p>
+<h2 id="Load-Balancer"><a href="#Load-Balancer" class="headerlink" title="Load Balancer"></a>Load Balancer</h2><p>We can add a Load balancing layer at three places in our system:</p>
+<ol>
+<li>Between Clients and Application Servers;</li>
+<li>Between Application Servers and Database Servers;</li>
+<li>Between Application Servers and Cache Servers;</li>
+</ol>
+<p>Initially, we could use a simple Round Robin approach that distributes incoming requests equally among backend servers. This LB is simple to implement and does not introduce any overhead. Another benefit of this approach is that if a server is dead, LB will take it out of the rotation and will stop sending any traffic to it.</p>
+<p>A problem with Round Robin LB is that we don’t take the server load into consideration. If a server is overloaded or slow, the LB will not stop sending new requests to that server. To handle this, a more intelligent LB solution can be placed that periodically queries the backend server about its load and adjusts traffic based on that.</p>
+<h2 id="Purging-or-DB-Cleanup"><a href="#Purging-or-DB-Cleanup" class="headerlink" title="Purging or DB Cleanup"></a>Purging or DB Cleanup</h2><p>Should entries stick around forever, or should they be purged? If a user-specified expiration time is reached, what should happen to the link?</p>
+<p>If we chose to actively search for expired links to remove them, it would put a lot of pressure on our database. Instead, we can slowly remove expired links and do a lazy cleanup. Our service will ensure that only expired links will be deleted, although some expired links can live longer but will never be returned to users:</p>
+<ul>
+<li>Whenever a user tries to access an expired link, we can delete the link and return an error to the user;</li>
+<li>A separate Cleanup Service can run periodically to remove expired links from our storage and cache. This service should be very lightweight and can be scheduled to run only when the user traffic is expected to be low;</li>
+<li>We can have a default expiration time for each link (e.g., two years);</li>
+<li>After removing an expired link, we can put the key back in the key-DB to be reused;</li>
+<li>Should we remove links that haven’t been visited in some length of time, say six months? This could be tricky. Since storage is getting cheap, we can decide to keep links forever;</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/24.png" alt></p>
+<h2 id="Telemetry"><a href="#Telemetry" class="headerlink" title="Telemetry"></a>Telemetry</h2><p>How many times a short URL has been used, what were user locations, etc.? How would we store these statistics? If it is part of a DB row that gets updated on each view, what will happen when a popular URL is slammed with a large number of concurrent requests?<br>Some statistics worth tracking: country of the visitor, date and time of access, web page that referred the click, browser, or platform from where the page was accessed.</p>
+<h2 id="Security-and-Permissions"><a href="#Security-and-Permissions" class="headerlink" title="Security and Permissions"></a>Security and Permissions</h2><p>Can users create private URLs or allow a particular set of users to access a URL?<br>We can store the permission level (public/private) with each URL in the database. We can also create a separate table to store UserIDs that have permission to see a specific URL. If a user does not have permission and tries to access a URL, we can send an error (HTTP 401) back. Given that we are storing our data in a NoSQL wide-column database like Cassandra, the key for the table storing permissions would be the “Hash” (or the KGS generated “key”). The columns will store the UserIDs of those users that have permission to see the URL.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SystemDesign/" rel="tag"># SystemDesign</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/p/A-Step-by-Step-Guide.html" rel="next" title="A Step by Step Guide">
+                <i class="fa fa-chevron-left"></i> A Step by Step Guide
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/p/Designing-Pastebin.html" rel="prev" title="Designing Pastebin">
+                Designing Pastebin <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-do-We-Need-URL-Shortening"><span class="nav-number">1.</span> <span class="nav-text">Why do We Need URL Shortening?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Requirements-and-Goals-of-the-System"><span class="nav-number">2.</span> <span class="nav-text">Requirements and Goals of the System</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Capacity-Estimation-and-Constraints"><span class="nav-number">3.</span> <span class="nav-text">Capacity Estimation and Constraints</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#System-APIs"><span class="nav-number">4.</span> <span class="nav-text">System APIs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Database-Design"><span class="nav-number">5.</span> <span class="nav-text">Database Design</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-System-Design-and-Algorithm"><span class="nav-number">6.</span> <span class="nav-text">Basic System Design and Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Encoding-actual-URL"><span class="nav-number">6.1.</span> <span class="nav-text">Encoding actual URL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generating-keys-offline"><span class="nav-number">6.2.</span> <span class="nav-text">Generating keys offline</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Partitioning-and-Replication"><span class="nav-number">7.</span> <span class="nav-text">Data Partitioning and Replication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cache"><span class="nav-number">8.</span> <span class="nav-text">Cache</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Load-Balancer"><span class="nav-number">9.</span> <span class="nav-text">Load Balancer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Purging-or-DB-Cleanup"><span class="nav-number">10.</span> <span class="nav-text">Purging or DB Cleanup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Telemetry"><span class="nav-number">11.</span> <span class="nav-text">Telemetry</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Security-and-Permissions"><span class="nav-number">12.</span> <span class="nav-text">Security and Permissions</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

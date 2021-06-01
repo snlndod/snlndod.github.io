@@ -1,0 +1,946 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Python,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="列表、集合以及字典的推导式列表推导式是最受欢迎的 Python 的语言特性之一，只需一条简洁的表达式，即可对一组元素进行过滤，并对得到的元素进行转换变形。基本形式： 1[expr for value in collection if condition]  这相当于下面这段 for 循环： 1234result = []for val in collection:    if condition:">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 语言精要-3">
+<meta property="og:url" content="https://umarellyh.github.io/p/Python-语言精要-3.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="列表、集合以及字典的推导式列表推导式是最受欢迎的 Python 的语言特性之一，只需一条简洁的表达式，即可对一组元素进行过滤，并对得到的元素进行转换变形。基本形式： 1[expr for value in collection if condition]  这相当于下面这段 for 循环： 1234result = []for val in collection:    if condition:">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/python/python_3.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/python/python_4.jpeg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 语言精要-3">
+<meta name="twitter:description" content="列表、集合以及字典的推导式列表推导式是最受欢迎的 Python 的语言特性之一，只需一条简洁的表达式，即可对一组元素进行过滤，并对得到的元素进行转换变形。基本形式： 1[expr for value in collection if condition]  这相当于下面这段 for 循环： 1234result = []for val in collection:    if condition:">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/python/python_3.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/p/Python-语言精要-3.html">
+
+
+
+
+
+  <title> Python 语言精要-3 | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/Python-语言精要-3.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python 语言精要-3
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-31T23:24:52+08:00">
+                2017-12-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="列表、集合以及字典的推导式"><a href="#列表、集合以及字典的推导式" class="headerlink" title="列表、集合以及字典的推导式"></a>列表、集合以及字典的推导式</h2><p><strong>列表推导式</strong>是最受欢迎的 Python 的语言特性之一，只需一条简洁的表达式，即可对一组元素进行过滤，并对得到的元素进行转换变形。基本形式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[expr <span class="keyword">for</span> value <span class="keyword">in</span> collection <span class="keyword">if</span> condition]</span><br></pre></td></tr></table></figure>
+
+<p>这相当于下面这段 for 循环：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">result = []</span><br><span class="line"><span class="keyword">for</span> val <span class="keyword">in</span> collection:</span><br><span class="line">    <span class="keyword">if</span> condition:</span><br><span class="line">        result.append(expr)</span><br></pre></td></tr></table></figure>
+
+<p>过滤条件可以省略。滤除长度小于等于 2 的字符串，并将剩下的字符串转换成大写字母形式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">strings = [<span class="string">'a'</span>, <span class="string">'as'</span>, <span class="string">'bat'</span>, <span class="string">'car'</span>, <span class="string">'dove'</span>, <span class="string">'python'</span>]</span><br><span class="line">[x.upper() <span class="keyword">for</span> x <span class="keyword">in</span> strings <span class="keyword">if</span> len(x) &gt; <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="string">'BAT'</span>, <span class="string">'CAR'</span>, <span class="string">'DOVE'</span>, <span class="string">'PYTHON'</span>]</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+<p><strong>字典推导式</strong>的基本形式，产生的是字典：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dict_comp = &#123;key_expr:value_expr <span class="keyword">for</span> value <span class="keyword">in</span> collection <span class="keyword">if</span> condition&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>集合推导式</strong>的基本形式，跟列表推导式的唯一区别就是花括号：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set_comp = &#123;expr <span class="keyword">for</span> value <span class="keyword">in</span> collection <span class="keyword">if</span> condition&#125;</span><br></pre></td></tr></table></figure>
+
+<p>推导式都只是<strong>语法糖</strong>而已，使代码变得更容易读写。<br>构造一个集合，其内容为列表字符串的各种长度：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">unique_lengths = &#123;len(x) <span class="keyword">for</span> x <span class="keyword">in</span> strings&#125;</span><br><span class="line">unique_lengths</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>set([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">6</span>])</span><br></pre></td></tr></table></figure>
+
+<p>为这些字符串创建一个指向其列表位置的映射关系：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">loc_mapping = &#123;val:index <span class="keyword">for</span> index, val <span class="keyword">in</span> enumerate(strings)&#125;</span><br><span class="line">loc_mapping</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>&#123;<span class="string">'a'</span>:<span class="number">0</span>, <span class="string">'as'</span>:<span class="number">1</span>, <span class="string">'bat'</span>:<span class="number">2</span>, <span class="string">'car'</span>:<span class="number">3</span>, <span class="string">'dove'</span>:<span class="number">4</span>, <span class="string">'python'</span>:<span class="number">5</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="嵌套列表推导式"><a href="#嵌套列表推导式" class="headerlink" title="嵌套列表推导式"></a>嵌套列表推导式</h3><p>嵌套 for 循环中各个 for 的顺序是怎样的，嵌套推导式中各个 for 表达式的顺序就是怎样的。将一个由整数元组构成的列表<strong>扁平化</strong>为一个简单的整数列表：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">some_tuples = [(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>), (<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>), (<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>)]</span><br><span class="line">flattened = [x <span class="keyword">for</span> tup <span class="keyword">in</span> some_tuples <span class="keyword">for</span> x <span class="keyword">in</span> tup]</span><br><span class="line">flattened</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br></pre></td></tr></table></figure>
+
+<p>如果嵌套超过两三层，就需要思考一下<strong>数据结构</strong>的设计问题了。注意与“列表推导式中的列表推导式”之间的区别：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[x <span class="keyword">for</span> x <span class="keyword">in</span> tup] <span class="keyword">for</span> tup <span class="keyword">in</span> some_tuples]</span><br></pre></td></tr></table></figure>
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>函数是用 def 关键字声明的，并使用 return 关键字返回。可以有一些<strong>位置参数</strong>（positional）和一些<strong>关键字参数</strong>（keyword）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_function</span><span class="params">(x, y, z=<span class="number">1.5</span>)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> z &gt; <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> z * (x + y)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> z / (x + y)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>关键字参数必须位于位置参数之后，你可以任何顺序指定关键字参数。</p>
+</blockquote>
+<h3 id="命名空间、作用域，以及局部函数"><a href="#命名空间、作用域，以及局部函数" class="headerlink" title="命名空间、作用域，以及局部函数"></a>命名空间、作用域，以及局部函数</h3><p>函数可以访问两种不同作用域中的变量：<strong>全局</strong>（global）和<strong>局部</strong>（local）。局部命名空间（namespace）是在函数被调用时创建的，执行完毕之后就会被销毁。<br>在函数中对全局变量进行赋值操作，必须用 <strong>global</strong> 关键字声明成全局的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="literal">None</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bind_a_variable</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">global</span> a</span><br><span class="line">    a = []</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>不要频繁使用 global 关键字，因为全局变量一般是用于存放系统的某些状态的。如果用了很多，说明需要面向对象编程（使用类）。</p>
+</blockquote>
+<p>严格意义上来说，所有函数都是某个作用域的局部函数。</p>
+<h3 id="返回多个值"><a href="#返回多个值" class="headerlink" title="返回多个值"></a>返回多个值</h3><p>许多函数都可能会有多个输出（在该函数内部计算出的数据结构或其他辅助数据），其实只返回了一个对象，也就是<strong>一个元组</strong>。<br>返回字典：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">()</span>:</span></span><br><span class="line">    a = <span class="number">5</span></span><br><span class="line">    b = <span class="number">6</span></span><br><span class="line">    c = <span class="number">7</span></span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">'a'</span>:a, <span class="string">'b'</span>:b, <span class="string">'c'</span>:c&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="函数亦为对象"><a href="#函数亦为对象" class="headerlink" title="函数亦为对象"></a>函数亦为对象</h3><p>假设我们有下面这样一个字符串数组，希望对其进行一些数据清理工作并执行一堆转换：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">states = [<span class="string">'Alabama '</span>, <span class="string">'Georgia!'</span>, <span class="string">'Georgia'</span>, <span class="string">'georgia'</span>, <span class="string">'FlOrIda'</span>, <span class="string">'south   carolina##'</span>, <span class="string">'West virginia?'</span>]</span><br></pre></td></tr></table></figure>
+
+<p>将需要在一组给定字符串上执行的所有运算做成一个列表：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># 移除标点符号</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">remove_punctuation</span><span class="params">(value)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> re.sub(<span class="string">'[!#?]'</span>, <span class="string">''</span>, value)</span><br><span class="line">clean_ops = [str.strip, remove_punctuation, str.title]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clean_strings</span><span class="params">(strings, ops)</span>:</span></span><br><span class="line">    result = []</span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> strings:</span><br><span class="line">        <span class="keyword">for</span> function <span class="keyword">in</span> ops:</span><br><span class="line">            value = function(value)</span><br><span class="line">        result.append(value)</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+
+<p>然后我们就有了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">clean_strings(states, clean_ops)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="string">'Alabama'</span>, <span class="string">'Georgia'</span>, <span class="string">'Georgia'</span>, <span class="string">'Georgia'</span>, <span class="string">'Florida'</span>, <span class="string">'South   Carolina'</span>, <span class="string">'West Virginia'</span>]</span><br></pre></td></tr></table></figure>
+
+<p>这种多函数模式，能在很高的层次上，轻松修改字符串的转换方式。此时的 clean_strings 也更具<strong>可复用性</strong>。<br>还可以将函数用作其他函数的参数。<strong>map 函数</strong>用于在一组数据上应用一个函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map(remove_punctuation, states)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="string">'Alabama '</span>, <span class="string">'Georgia'</span>, <span class="string">'Georgia'</span>, <span class="string">'georgia'</span>, <span class="string">'FlOrIda'</span>, <span class="string">'south   carolina'</span>, <span class="string">'West virginia'</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="匿名（lambda）函数"><a href="#匿名（lambda）函数" class="headerlink" title="匿名（lambda）函数"></a>匿名（lambda）函数</h3><p>仅由<strong>单条语句</strong>组成，该语句的结果就是返回值。<br>通过 <strong>lambda</strong> 关键字定义的，没有别的含义，仅仅是说“我们正在声明的是一个匿名函数”。<br>很多数据转换函数都以函数作为参数，直接传入 lambda 函数比编写完整的函数声明要少输入很多字，也更清晰：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">apply_to_list</span><span class="params">(some_list, f)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [f(x) <span class="keyword">for</span> x <span class="keyword">in</span> some_list]</span><br><span class="line">ints = [<span class="number">4</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>apply_to_list(ints, <span class="keyword">lambda</span> x: x * <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>根据各字符串不同字母的数量对其进行排序：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">strings = [<span class="string">'foo'</span>, <span class="string">'card'</span>, <span class="string">'bar'</span>, <span class="string">'aaaa'</span>, <span class="string">'abab'</span>]</span><br><span class="line">strings.sort(key=<span class="keyword">lambda</span> x: len(set(list(x))))</span><br><span class="line">strings</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="string">'aaaa'</span>, <span class="string">'foo'</span>, <span class="string">'abab'</span>, <span class="string">'bar'</span>, <span class="string">'card'</span>]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>lambda 函数之所以会被称为匿名函数，原因之一就是这种函数对象，本身是没有提供名称属性的。</p>
+</blockquote>
+<h3 id="闭包：返回函数的函数"><a href="#闭包：返回函数的函数" class="headerlink" title="闭包：返回函数的函数"></a>闭包：返回函数的函数</h3><p>闭包就是由其他函数动态生成，并返回的函数。<br><strong>关键性质：</strong>被返回的函数可以访问，其创建者局部命名空间中的变量。<br>虽然可以修改任何内部状态对象（比如向字典添加键值对），但不能绑定外层函数作用域中的变量。解决办法是，修改字典或列表，而不是绑定变量：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_counter</span><span class="params">()</span>:</span></span><br><span class="line">    count = [<span class="number">0</span>]</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">counter</span><span class="params">()</span>:</span></span><br><span class="line">        count[<span class="number">0</span>] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> counter</span><br><span class="line"></span><br><span class="line">cnt = make_counter()</span><br></pre></td></tr></table></figure>
+
+<p>可以编写带有大量选项的非常一般化的函数，然后再组装出更简单、更专门化的函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">format_and_pad</span><span class="params">(template, space)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">formatter</span><span class="params">(x)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> (template % x).rjust(space)</span><br><span class="line">    <span class="keyword">return</span> formatter</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个始终返回 15 位字符串的浮点数格式化器</span></span><br><span class="line">fmt = format_and_pad(<span class="string">'%.4f'</span>, <span class="number">15</span>)</span><br><span class="line">fmt(<span class="number">1.756</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'         1.7560'</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>通过面向对象编程，这种模式也能用类来实现。</p>
+</blockquote>
+<h3 id="扩展调用语法和-args、-kwargs"><a href="#扩展调用语法和-args、-kwargs" class="headerlink" title="扩展调用语法和 args、*kwargs"></a>扩展调用语法和 <em>args、*</em>kwargs</h3><p>在 Python 中，函数参数的工作方式其实很简单，位置和关键字参数分别被打包成元组和字典。<br>这一切都是在幕后悄悄发生的，函数实际接收到的是一个<strong>元组 args</strong> 和一个<strong>字典 kwargs</strong>。</p>
+<h3 id="柯里化：部分参数应用"><a href="#柯里化：部分参数应用" class="headerlink" title="柯里化：部分参数应用"></a>柯里化：部分参数应用</h3><p>柯里化（currying）指的是：通过<strong>部分参数应用</strong>（partial argument application）从现有函数派生出新函数的技术。<br>其实只是定义了一个可以调用现有函数的新函数而已：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_numbers</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line">add_five = <span class="keyword">lambda</span> y: add_numbers(<span class="number">5</span>, y)</span><br></pre></td></tr></table></figure>
+
+<p>add_numbers 的第二个参数称为“柯里化的”。内置的 functools 模块可以用 <strong>partial 函数</strong>将此过程简化：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> partial</span><br><span class="line">add_five = partial(add_numbers, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h3><p>能以一种一致的方式对序列进行迭代，是 Python 的一个重要特点。这是通过一种叫做迭代器协议（iterator protocol）的方式实现的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">some_dict = &#123;<span class="string">'a'</span>:<span class="number">1</span>, <span class="string">'b'</span>:<span class="number">2</span>, <span class="string">'c'</span>:<span class="number">3</span>&#125;</span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> some_dict:</span><br><span class="line">    <span class="keyword">print</span> key,    <span class="comment"># 注意逗号</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a c b</span><br></pre></td></tr></table></figure>
+
+<p><strong>迭代器</strong>是一种特殊对象，当你编写 for key in some_dict 时，Python 解释器首先会尝试从 some_dict 创建一个迭代器：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dict_iterator = iter(some_dict)</span><br><span class="line">dict_iterator</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>&lt;dictionary-keyiterator at <span class="number">0x10a0a1578</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>生成器</strong>（generator）是构造可迭代对象的一种简单方式。生成器以<strong>延迟</strong>的方式返回一个值序列，即每返回一个值之后暂停，直到下一个值被请求时再继续。<br>要创建一个生成器，只需要将函数中的 return 替换为 <strong>yeild</strong> 即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">squares</span><span class="params">(n=<span class="number">10</span>)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Generating squares from 1 to %d'</span> % (n ** <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">yield</span> i ** <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>调用该生成器时，没有任何代码会被立即执行：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gen = squares()</span><br><span class="line">gen</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>&lt;generator object squares at <span class="number">0x34c8280</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>直到你从该生成器中请求元素时，它才会开始执行其代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> gen:</span><br><span class="line">    <span class="keyword">print</span> x,</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Generating squares <span class="keyword">from</span> <span class="number">1</span> to <span class="number">100</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span> <span class="number">4</span> <span class="number">9</span> <span class="number">16</span> <span class="number">25</span> <span class="number">36</span> <span class="number">49</span> <span class="number">64</span> <span class="number">81</span> <span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="生成器表达式"><a href="#生成器表达式" class="headerlink" title="生成器表达式"></a>生成器表达式</h4><p>生成器表达式（generator expression）是构造生成器的最简单方式。类似于列表、字典、集合推导式，创建方式为，把列表推导式两端的方括号改成圆括号：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gen = (x ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> xrange(<span class="number">100</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 与下面这个冗长的生成器，完全等价</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_gen</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> xrange(<span class="number">100</span>):</span><br><span class="line">        <span class="keyword">yield</span> x ** <span class="number">2</span></span><br><span class="line">gen = make_gen()</span><br></pre></td></tr></table></figure>
+
+<p>生成器表达式可用于任何接受生成器的 Python 函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sum(x ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> xrange(<span class="number">100</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">328350</span></span><br><span class="line"></span><br><span class="line">dict((i, i ** <span class="number">2</span>) <span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">5</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>&#123;<span class="number">0</span>:<span class="number">0</span>, <span class="number">1</span>:<span class="number">1</span>, <span class="number">2</span>:<span class="number">4</span>, <span class="number">3</span>:<span class="number">9</span>, <span class="number">4</span>:<span class="number">16</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="itertools-模块"><a href="#itertools-模块" class="headerlink" title="itertools 模块"></a>itertools 模块</h4><p>标准库 itertools 模块中有一组用于许多常见数据算法的生成器。例如，groupby 可以接受任何序列和一个函数，根据函数的返回值，对序列中的连续元素<strong>进行分组：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line">first_letter = <span class="keyword">lambda</span> x: x[<span class="number">0</span>]</span><br><span class="line">names = [<span class="string">'Alan'</span>, <span class="string">'Adam'</span>, <span class="string">'Wes'</span>, <span class="string">'Will'</span>, <span class="string">'Albert'</span>, <span class="string">'Steven'</span>]</span><br><span class="line"><span class="keyword">for</span> letter, names <span class="keyword">in</span> itertools.groupby(names, first_letter):</span><br><span class="line">    <span class="keyword">print</span> letter, list(names)    <span class="comment"># names 是一个生成器</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A [<span class="string">'Alan'</span>, <span class="string">'Adam'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>W [<span class="string">'Wes'</span>, <span class="string">'Will'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A [<span class="string">'Albert'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>S [<span class="string">'Steven'</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件和操作系统"><a href="#文件和操作系统" class="headerlink" title="文件和操作系统"></a>文件和操作系统</h2><p>Python 在文本和文件处理方面很流行。<br>为了打开一个文件以便读写，可以使用内置的 <strong>open 函数</strong>以及一个相对或绝对的文件路径：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">path = <span class="string">'ch13/segismundo.txt'</span></span><br><span class="line">f = open(path)</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下，文件是以只读模式（’r’）打开的。然后，我们就可以处理这个文件<strong>句柄</strong> f 了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> f:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>Python 的文件模式：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/python/python_3.jpeg" alt><br>重要的 Python 文件方法或属性：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/python/python_4.jpeg" alt></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/p/Python-语言精要-2.html" rel="next" title="Python 语言精要-2">
+                <i class="fa fa-chevron-left"></i> Python 语言精要-2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/p/《面试宝典》读书笔记-4.html" rel="prev" title="《面试宝典》读书笔记-4">
+                《面试宝典》读书笔记-4 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#列表、集合以及字典的推导式"><span class="nav-number">1.</span> <span class="nav-text">列表、集合以及字典的推导式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套列表推导式"><span class="nav-number">1.1.</span> <span class="nav-text">嵌套列表推导式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">2.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命名空间、作用域，以及局部函数"><span class="nav-number">2.1.</span> <span class="nav-text">命名空间、作用域，以及局部函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回多个值"><span class="nav-number">2.2.</span> <span class="nav-text">返回多个值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数亦为对象"><span class="nav-number">2.3.</span> <span class="nav-text">函数亦为对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名（lambda）函数"><span class="nav-number">2.4.</span> <span class="nav-text">匿名（lambda）函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包：返回函数的函数"><span class="nav-number">2.5.</span> <span class="nav-text">闭包：返回函数的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展调用语法和-args、-kwargs"><span class="nav-number">2.6.</span> <span class="nav-text">扩展调用语法和 args、*kwargs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#柯里化：部分参数应用"><span class="nav-number">2.7.</span> <span class="nav-text">柯里化：部分参数应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成器"><span class="nav-number">2.8.</span> <span class="nav-text">生成器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生成器表达式"><span class="nav-number">2.8.1.</span> <span class="nav-text">生成器表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#itertools-模块"><span class="nav-number">2.8.2.</span> <span class="nav-text">itertools 模块</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件和操作系统"><span class="nav-number">3.</span> <span class="nav-text">文件和操作系统</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

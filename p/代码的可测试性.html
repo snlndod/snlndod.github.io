@@ -1,0 +1,904 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="GoF,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="编写可测试代码案例实战其中，Transaction 是经过我抽象简化之后的一个电商系统的交易类，用来记录每笔订单交易的情况。Transaction 类中的 execute() 函数负责执行转账操作，将钱从买家的钱包转到卖家的钱包中。真正的转账操作是通过调用 WalletRpcService RPC 服务来完成的。除此之外，代码中还涉及一个分布式锁 DistributedLock 单例类，用来避免">
+<meta name="keywords" content="GoF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码的可测试性">
+<meta property="og:url" content="https://umarellyh.github.io/p/代码的可测试性.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="编写可测试代码案例实战其中，Transaction 是经过我抽象简化之后的一个电商系统的交易类，用来记录每笔订单交易的情况。Transaction 类中的 execute() 函数负责执行转账操作，将钱从买家的钱包转到卖家的钱包中。真正的转账操作是通过调用 WalletRpcService RPC 服务来完成的。除此之外，代码中还涉及一个分布式锁 DistributedLock 单例类，用来避免">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代码的可测试性">
+<meta name="twitter:description" content="编写可测试代码案例实战其中，Transaction 是经过我抽象简化之后的一个电商系统的交易类，用来记录每笔订单交易的情况。Transaction 类中的 execute() 函数负责执行转账操作，将钱从买家的钱包转到卖家的钱包中。真正的转账操作是通过调用 WalletRpcService RPC 服务来完成的。除此之外，代码中还涉及一个分布式锁 DistributedLock 单例类，用来避免">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/p/代码的可测试性.html">
+
+
+
+
+
+  <title> 代码的可测试性 | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/代码的可测试性.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                代码的可测试性
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-15T23:01:56+08:00">
+                2020-11-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="编写可测试代码案例实战"><a href="#编写可测试代码案例实战" class="headerlink" title="编写可测试代码案例实战"></a>编写可测试代码案例实战</h2><p>其中，Transaction 是经过我抽象简化之后的一个电商系统的交易类，用来记录每笔订单交易的情况。Transaction 类中的 execute() 函数负责执行转账操作，将钱从买家的钱包转到卖家的钱包中。真正的转账操作是通过调用 WalletRpcService RPC 服务来完成的。除此之外，代码中还涉及一个分布式锁 DistributedLock 单例类，用来避免 Transaction 并发执行，导致用户的钱被重复转出。具体的被测试代码如下所示：</p>
+<a id="more"></a>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Transaction</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    <span class="keyword">private</span> Long buyerId;</span><br><span class="line">    <span class="keyword">private</span> Long sellerId;</span><br><span class="line">    <span class="keyword">private</span> Long productId;</span><br><span class="line">    <span class="keyword">private</span> String orderId;</span><br><span class="line">    <span class="keyword">private</span> Long createTimestamp;</span><br><span class="line">    <span class="keyword">private</span> Double amount;</span><br><span class="line">    <span class="keyword">private</span> STATUS status;</span><br><span class="line">    <span class="keyword">private</span> String walletTransactionId;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//...get() methods...</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Transaction</span><span class="params">(String preAssignedId, Long buyerId, Long sellerId, Long productId, String orderId)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (preAssignedId != <span class="keyword">null</span> &amp;&amp; !preAssignedId.isEmpty()) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">this</span>.id = preAssignedId;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">this</span>.id = IdGenerator.generateTransactionId();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>.id.startWith(<span class="string">"t_"</span>)) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">this</span>.id = <span class="string">"t_"</span> + preAssignedId;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.buyerId = buyerId;</span><br><span class="line">        <span class="keyword">this</span>.sellerId = sellerId;</span><br><span class="line">        <span class="keyword">this</span>.productId = productId;</span><br><span class="line">        <span class="keyword">this</span>.orderId = orderId;</span><br><span class="line">        <span class="keyword">this</span>.status = STATUS.TO_BE_EXECUTED;</span><br><span class="line">        <span class="keyword">this</span>.createTimestamp = System.currentTimestamp();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> InvalidTransactionException </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ((buyerId == <span class="keyword">null</span> || (sellerId == <span class="keyword">null</span> || amount &lt; <span class="number">0.0</span>) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> InvalidTransactionException(...);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (status == STATUS.EXECUTED) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">boolean</span> isLocked = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">try</span> </span><br><span class="line">        &#123;</span><br><span class="line">            isLocked = RedisDistributedLock.getSingletonInstance().lockTransaction(id);</span><br><span class="line">            <span class="keyword">if</span> (!isLocked) </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>; <span class="comment">// 锁定未成功，返回 false，job 兜底执行</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (status == STATUS.EXECUTED) </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>; <span class="comment">// double check</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">long</span> executionInvokedTimestamp = System.currentTimestamp();</span><br><span class="line">            <span class="keyword">if</span> (executionInvokedTimestamp - createdTimestamp &gt; <span class="number">14</span>) </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">this</span>.status = STATUS.EXPIRED;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            WalletRpcService walletRpcService = <span class="keyword">new</span> WalletRpcService();</span><br><span class="line">            String walletTransactionId = walletRpcService.moveMoney(id, buyerId, sellerId, amount);</span><br><span class="line">            <span class="keyword">if</span> (walletTransactionId != <span class="keyword">null</span>) </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">this</span>.walletTransactionId = walletTransactionId;</span><br><span class="line">                <span class="keyword">this</span>.status = STATUS.EXECUTED;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125; </span><br><span class="line">            <span class="keyword">else</span> </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">this</span>.status = STATUS.FAILED;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">finally</span> </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (isLocked) </span><br><span class="line">            &#123;</span><br><span class="line">                RedisDistributedLock.getSingletonInstance().unlockTransaction(id);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 Transaction 类中，主要逻辑集中在 execute() 函数中，所以它是我们测试的重点对象。为了尽可能全面覆盖各种正常和异常情况，针对这个函数，我设计了下面 6 个测试用例：</p>
+<ol>
+<li>正常情况下，交易执行成功，回填用于对账（交易与钱包的交易流水）用的 walletTransactionId，交易状态设置为 EXECUTED，函数返回 true；</li>
+<li>buyerId、sellerId 为 null、amount 小于 0，返回 InvalidTransactionException；</li>
+<li>交易已过期（createTimestamp 超过 14 天），交易状态设置为 EXPIRED，返回 false；</li>
+<li>交易已经执行了（status==EXECUTED），不再重复执行转钱逻辑，返回 true；</li>
+<li>钱包（WalletRpcService）转钱失败，交易状态设置为 FAILED，函数返回 false；</li>
+<li>交易正在执行着，不会被重复执行，函数直接返回 false；</li>
+</ol>
+<p>测试用例设计完了。现在看起来似乎一切进展顺利。但是，事实是，当我们将测试用例落实到具体的代码实现时，你就会发现有很多行不通的地方。我们来看测试用例 1 的代码实现。具体如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testExecute</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Long buyerId = <span class="number">123L</span>;</span><br><span class="line">    Long sellerId = <span class="number">234L</span>;</span><br><span class="line">    Long productId = <span class="number">345L</span>;</span><br><span class="line">    Long orderId = <span class="number">456L</span>;</span><br><span class="line">    Transaction transaction = <span class="keyword">new</span> Transaction(<span class="keyword">null</span>, buyerId, sellerId, productId, orderId);</span><br><span class="line">    <span class="keyword">boolean</span> executedResult = transaction.execute();</span><br><span class="line">    assertTrue(executedResult);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>execute() 函数的执行依赖两个外部的服务</strong>，一个是 RedisDistributedLock，一个 WalletRpcService。这就导致上面的单元测试代码存在下面几个问题：</p>
+<ul>
+<li>如果要让这个单元测试能够运行，我们需要搭建 Redis 服务和 Wallet RPC 服务。搭建和维护的成本比较高；</li>
+<li>我们还需要保证将伪造的 transaction 数据发送给 Wallet RPC 服务之后，能够正确返回我们期望的结果，然而 Wallet RPC 服务有可能是第三方（另一个团队开发维护的）的服务，并不是我们可控的。换句话说，并不是我们想让它返回什么数据就返回什么；</li>
+<li>Transaction 的执行跟 Redis、RPC 服务通信，需要走网络，耗时可能会比较长，对单元测试本身的执行性能也会有影响；</li>
+<li>网络的中断、超时、Redis、RPC 服务的不可用，都会影响单元测试的执行；</li>
+</ul>
+<p>我们回到单元测试的定义上来看一下。单元测试主要是测试程序员自己编写的代码逻辑的正确性，<strong>并非是端到端的集成测试</strong>，它不需要测试所依赖的外部系统（分布式锁、Wallet RPC 服务）的逻辑正确性。所以，如果代码中依赖了外部系统或者不可控组件，比如，需要依赖数据库、网络通信、文件系统等，那我们就<strong>需要将被测代码与外部系统解依赖</strong>，而这种解依赖的方法就叫作<code>mock</code>。所谓的 mock 就是用一个“假”的服务替换真正的服务。mock 的服务完全在我们的控制之下，模拟输出我们想要的数据。</p>
+<blockquote>
+<p>mock 的方式主要有两种：手动 mock 和利用框架 mock。</p>
+</blockquote>
+<p>我们通过继承 WalletRpcService 类，并且重写其中的 moveMoney() 函数的方式来实现 mock。通过 mock 的方式，我们可以让 moveMoney() 返回任意我们想要的数据，完全在我们的控制范围内，并且不需要真正进行网络通信。具体的代码实现如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MockWalletRpcServiceOne</span> <span class="keyword">extends</span> <span class="title">WalletRpcService</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">moveMoney</span><span class="params">(Long id, Long fromUserId, Long toUserId, Double amount)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"123bac"</span>;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MockWalletRpcServiceTwo</span> <span class="keyword">extends</span> <span class="title">WalletRpcService</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">moveMoney</span><span class="params">(Long id, Long fromUserId, Long toUserId, Double amount)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在我们再来看，如何用 MockWalletRpcServiceOne、MockWalletRpcServiceTwo 来替换代码中的真正的 WalletRpcService 呢？因为 WalletRpcService 是在 execute() 函数中<strong>通过 new 的方式创建的，我们无法动态地对其进行替换</strong>。也就是说，Transaction 类中的 execute() 方法的可测试性很差，需要通过重构来让其变得更容易测试。</p>
+<p>我们可以应用<code>依赖注入</code>，将 WalletRpcService 对象的创建反转给上层逻辑，在外部创建好之后，再注入到 Transaction 类中。重构之后的 Transaction 类的代码如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Transaction</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="comment">// 添加一个成员变量及其 set 方法</span></span><br><span class="line">    <span class="keyword">private</span> WalletRpcService walletRpcService;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setWalletRpcService</span><span class="params">(WalletRpcService walletRpcService)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.walletRpcService = walletRpcService;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">execute</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        <span class="comment">// 删除下面这一行代码</span></span><br><span class="line">        <span class="comment">// WalletRpcService walletRpcService = new WalletRpcService();</span></span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在，我们就可以在单元测试中，非常容易地将 WalletRpcService 替换成 MockWalletRpcServiceOne 或 WalletRpcServiceTwo 了。重构之后的代码对应的单元测试如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testExecute</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Long buyerId = <span class="number">123L</span>;</span><br><span class="line">    Long sellerId = <span class="number">234L</span>;</span><br><span class="line">    Long productId = <span class="number">345L</span>;</span><br><span class="line">    Long orderId = <span class="number">456L</span>;</span><br><span class="line">    Transaction transaction = <span class="keyword">new</span> Transaction(<span class="keyword">null</span>, buyerId, sellerId, productId, orderId);</span><br><span class="line">    <span class="comment">// 使用 mock 对象来替代真正的 RPC 服务</span></span><br><span class="line">    transaction.setWalletRpcService(<span class="keyword">new</span> MockWalletRpcServiceOne()):</span><br><span class="line">    <span class="keyword">boolean</span> executedResult = transaction.execute();</span><br><span class="line">    assertTrue(executedResult);</span><br><span class="line">    assertEquals(STATUS.EXECUTED, transaction.getStatus());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>WalletRpcService 的 mock 和替换问题解决了，我们再来看 RedisDistributedLock。它的 mock 和替换要复杂一些，主要是因为 RedisDistributedLock 是一个单例类。<strong>单例相当于一个全局变量，我们无法 mock（无法继承和重写方法），也无法通过依赖注入的方式来替换</strong>。</p>
+<p>如果 RedisDistributedLock 是我们自己维护的，可以自由修改、重构，那我们可以<strong>将其改为非单例的模式，或者定义一个接口</strong>，比如 IDistributedLock，让 RedisDistributedLock 实现这个接口。这样我们就可以像前面 WalletRpcService 的替换方式那样，替换 RedisDistributedLock 为 MockRedisDistributedLock 了；但如果 RedisDistributedLock 不是我们维护的，我们无权去修改这部分代码，我们可以<strong>对 transaction 上锁这部分逻辑重新封装一下</strong>。具体代码实现如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TransactionLock</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">lock</span><span class="params">(String id)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> RedisDistributedLock.getSingletonInstance().lockTransaction(id);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        RedisDistributedLock.getSingletonInstance().unlockTransaction(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Transaction</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">private</span> TransactionLock lock;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTransactionLock</span><span class="params">(TransactionLock lock)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.lock = lock;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">execute</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="keyword">try</span> </span><br><span class="line">        &#123;</span><br><span class="line">            isLocked = lock.lock();</span><br><span class="line">            <span class="comment">//...</span></span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">finally</span> </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (isLocked) </span><br><span class="line">            &#123;</span><br><span class="line">                lock.unlock();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>针对重构过的代码，我们的单元测试代码修改为下面这个样子。这样，我们就能在单元测试代码中隔离真正的 RedisDistributedLock 分布式锁这部分逻辑了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testExecute</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Long buyerId = <span class="number">123L</span>;</span><br><span class="line">    Long sellerId = <span class="number">234L</span>;</span><br><span class="line">    Long productId = <span class="number">345L</span>;</span><br><span class="line">    Long orderId = <span class="number">456L</span>;</span><br><span class="line">    </span><br><span class="line">    TransactionLock mockLock = <span class="keyword">new</span> TransactionLock() </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">lock</span><span class="params">(String id)</span> </span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">unlock</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="comment">//...</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    Transaction transaction = <span class="keyword">new</span> Transaction(<span class="keyword">null</span>, buyerId, sellerId, productId, orderId);</span><br><span class="line">    transaction.setWalletRpcService(<span class="keyword">new</span> MockWalletRpcServiceOne());</span><br><span class="line">    transaction.setTransactionLock(mockLock);</span><br><span class="line">    <span class="keyword">boolean</span> executedResult = transaction.execute();</span><br><span class="line">    assertTrue(executedResult);</span><br><span class="line">    assertEquals(STATUS.EXECUTED, transaction.getStatus());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在，我们再来看测试用例 3：交易已过期（createTimestamp 超过 14 天），交易状态设置为 EXPIRED，返回 false。针对这个单元测试用例，我们还是先把代码写出来，然后再来分析：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testExecute_with_TransactionIsExpired</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Long buyerId = <span class="number">123L</span>;</span><br><span class="line">    Long sellerId = <span class="number">234L</span>;</span><br><span class="line">    Long productId = <span class="number">345L</span>;</span><br><span class="line">    Long orderId = <span class="number">456L</span>;</span><br><span class="line">    Transaction transaction = <span class="keyword">new</span> Transaction(<span class="keyword">null</span>, buyerId, sellerId, productId, orderId);</span><br><span class="line">    transaction.setCreatedTimestamp(System.currentTimestamp() - <span class="number">14</span>);</span><br><span class="line">    <span class="keyword">boolean</span> actualResult = transaction.execute();</span><br><span class="line">    assertFalse(actualResult);</span><br><span class="line">    assertEquals(STATUS.EXPIRED, transaction.getStatus());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码看似没有任何问题。我们将 transaction 的创建时间 createdTimestamp 设置为 14 天前，也就是说，当单元测试代码运行的时候，transaction 一定是处于过期状态。实际上，这<strong>违反了类的封装特性</strong>。在 Transaction 类的设计中，createTimestamp 是在交易生成时（也就是构造函数中）自动获取的系统时间，本来就不应该人为地轻易修改，所以，暴露 createTimestamp 的 set 方法，虽然带来了灵活性，但也带来了不可控性。</p>
+<p>实际上，这是一类比较常见的问题，就是<strong>代码中包含跟时间有关的未决行为逻辑</strong>。我们一般的处理方式是将这种未决行为逻辑<code>二次封装</code>。针对 Transaction 类，我们只需要将交易是否过期的逻辑，封装到 isExpired() 函数中即可，具体的代码实现如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Transaction</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">isExpired</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> executionInvokedTimestamp = System.currentTimestamp();</span><br><span class="line">        <span class="keyword">return</span> executionInvokedTimestamp - createdTimestamp &gt; <span class="number">14</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> InvalidTransactionException </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="keyword">if</span> (isExpired()) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">this</span>.status = STATUS.EXPIRED;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>针对重构之后的代码，测试用例 3 的代码实现如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testExecute_with_TransactionIsExpired</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Long buyerId = <span class="number">123L</span>;</span><br><span class="line">    Long sellerId = <span class="number">234L</span>;</span><br><span class="line">    Long productId = <span class="number">345L</span>;</span><br><span class="line">    Long orderId = <span class="number">456L</span>;</span><br><span class="line">    Transaction transaction = <span class="keyword">new</span> Transaction(<span class="keyword">null</span>, buyerId, sellerId, productId, orderId) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">isExpired</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">boolean</span> actualResult = transaction.execute();</span><br><span class="line">    assertFalse(actualResult);</span><br><span class="line">    assertEquals(STATUS.EXPIRED, transaction.getStatus());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Transaction 类的构造函数的设计还有点不妥。我们发现，构造函数中并非只包含简单赋值操作。<strong>交易 id 的赋值逻辑稍微复杂，我们最好也要测试一下</strong>，以保证这部分逻辑的正确性。为了方便测试，我们可以把 id 赋值这部分逻辑单独抽象到一个函数中，具体的代码实现如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Transaction</span><span class="params">(String preAssignedId, Long buyerId, Long sellerId, Long productId, String orderId)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    fillTransactionId(preAssignId);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">fillTransactionId</span><span class="params">(String preAssignedId)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (preAssignedId != <span class="keyword">null</span> &amp;&amp; !preAssignedId.isEmpty()) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.id = preAssignedId;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.id = IdGenerator.generateTransactionId();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.id.startWith(<span class="string">"t_"</span>)) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.id = <span class="string">"t_"</span> + preAssignedId;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>到此为止，我们一步一步将 Transaction 从不可测试代码重构成了测试性良好的代码。不过，你可能还会有疑问，Transaction 类中 isExpired() 函数就不用测试了吗？对于 isExpired() 函数，逻辑非常简单，<strong>肉眼就能判定是否有 bug，是可以不用写单元测试的</strong>。</p>
+<p>实际上，<strong>可测试性差的代码，本身代码设计得也不够好</strong>，很多地方都没有遵守我们之前讲到的设计原则和思想，比如“基于接口而非实现编程”思想、依赖反转原则等。重构之后的代码，不仅可测试性更好，而且从代码设计的角度来说，也遵从了经典的设计原则和思想。</p>
+<blockquote>
+<p>代码的可测试性，可以从侧面上反应代码设计是否合理。</p>
+</blockquote>
+<h2 id="常见的-Anti-Patterns"><a href="#常见的-Anti-Patterns" class="headerlink" title="常见的 Anti-Patterns"></a>常见的 Anti-Patterns</h2><p>刚刚我们通过一个实战案例，讲解了<strong>如何利用依赖注入来提高代码的可测试性</strong>，以及编写单元测试中最复杂的一部分内容：<strong>如何通过 mock、二次封装等方式解依赖外部服务</strong>。现在，我们再来总结一下，有哪些典型的、常见的测试性不好的代码，也就是我们常说的 Anti-Patterns。</p>
+<h3 id="未决行为"><a href="#未决行为" class="headerlink" title="未决行为"></a>未决行为</h3><p>所谓的未决行为逻辑就是，代码的输出是随机或者说不确定的，比如，跟时间、随机数有关的代码。</p>
+<h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><p>前面我们讲过，<strong>全局变量是一种面向过程的编程风格，有种种弊端</strong>。实际上，滥用全局变量也让编写单元测试变得困难。我举个例子来解释一下。RangeLimiter 表示一个 [-5, 5] 的区间，position 初始在 0 位置，move() 函数负责移动 position。其中，position 是一个静态全局变量。RangeLimiterTest 类是为其设计的单元测试，不过，这里面存在很大的问题：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RangeLimiter</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> AtomicInteger position = <span class="keyword">new</span> AtomicInteger(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_LIMIT = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_LIMIT = -<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> delta)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> currentPos = position.addAndGet(delta);</span><br><span class="line">        <span class="keyword">boolean</span> betweenRange = (currentPos &lt;= MAX_LIMIT) &amp;&amp; (currentPos &gt;= MIN_LIMIT);</span><br><span class="line">        <span class="keyword">return</span> betweenRange;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RangeLimiterTest</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMove_betweenRange</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        RangeLimiter rangeLimiter = <span class="keyword">new</span> RangeLimiter();</span><br><span class="line">        assertTrue(rangeLimiter.move(<span class="number">1</span>));</span><br><span class="line">        assertTrue(rangeLimiter.move(<span class="number">3</span>));</span><br><span class="line">        assertTrue(rangeLimiter.move(-<span class="number">5</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMove_exceedRange</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        RangeLimiter rangeLimiter = <span class="keyword">new</span> RangeLimiter();</span><br><span class="line">        assertFalse(rangeLimiter.move(<span class="number">6</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的单元测试有可能会运行失败。假设单元测试框架顺序依次执行 testMove_betweenRange() 和 testMove_exceedRange() 两个测试用例。在第一个测试用例执行完成之后，position 的值变成了 -1；再执行第二个测试用例的时候，position 变成了 5，move() 函数返回 true，assertFalse 语句判定失败。所以，第二个测试用例运行失败。</p>
+<p>每个单元测试框架执行单元测试用例的方式可能是不同的。<strong>有的是顺序执行，有的是并发执行</strong>。对于并发执行的情况，即便我们每次都把 position 重设为 0，也并不奏效。如果两个测试用例并发执行，可能会影响到 move() 函数的执行结果。</p>
+<h3 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3><p><strong>静态方法跟全局变量一样，也是一种面向过程的编程思维</strong>。在代码中调用静态方法，有时候会导致代码不易测试。主要原因是静态方法也很难 mock。但是，这个要分情况来看。只有在这个静态方法执行耗时太长、依赖外部资源、逻辑复杂、行为未决等情况下，我们才需要在单元测试中 mock 这个静态方法。除此之外，如果只是类似 Math.abs() 这样的<strong>简单静态方法，并不会影响代码的可测试性</strong>，因为本身并不需要 mock。</p>
+<h3 id="复杂继承"><a href="#复杂继承" class="headerlink" title="复杂继承"></a>复杂继承</h3><p>相比组合关系，<strong>继承关系的代码结构更加耦合、不灵活，更加不易扩展、不易维护</strong>。如果父类需要 mock 某个依赖对象才能进行单元测试，那所有的子类、子类的子类…在编写单元测试的时候，都要 mock 这个依赖对象。对于层次很深（在继承关系类图中表现为<code>纵向深度</code>）、结构复杂（在继承关系类图中表现为<code>横向广度</code>）的继承关系，越底层的子类要 mock 的对象可能就会越多，这样就会导致，底层子类在写单元测试的时候，要一个一个 mock 很多依赖对象，而且还需要查看父类代码，去了解该如何 mock 这些依赖对象。</p>
+<p>如果我们利用组合而非继承来组织类之间的关系，<strong>类之间的结构层次比较扁平</strong>，在编写单元测试的时候，只需要 mock 类所组合依赖的对象即可。</p>
+<h3 id="紧耦合代码"><a href="#紧耦合代码" class="headerlink" title="紧耦合代码"></a>紧耦合代码</h3><p>如果一个类职责很重，需要依赖十几个外部对象才能完成工作，代码高度耦合，那我们在编写单元测试的时候，可能需要 mock 这十几个依赖的对象。不管是<strong>从代码设计的角度来说，还是从编写单元测试的角度来说</strong>，这都是不合理的。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GoF/" rel="tag"># GoF</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/p/单元测试.html" rel="next" title="单元测试">
+                <i class="fa fa-chevron-left"></i> 单元测试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/p/解耦.html" rel="prev" title="解耦">
+                解耦 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#编写可测试代码案例实战"><span class="nav-number">1.</span> <span class="nav-text">编写可测试代码案例实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的-Anti-Patterns"><span class="nav-number">2.</span> <span class="nav-text">常见的 Anti-Patterns</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#未决行为"><span class="nav-number">2.1.</span> <span class="nav-text">未决行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局变量"><span class="nav-number">2.2.</span> <span class="nav-text">全局变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态方法"><span class="nav-number">2.3.</span> <span class="nav-text">静态方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂继承"><span class="nav-number">2.4.</span> <span class="nav-text">复杂继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#紧耦合代码"><span class="nav-number">2.5.</span> <span class="nav-text">紧耦合代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,908 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="GoF,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="简单工厂（Simple Factory）在下面这段代码中，我们根据配置文件的后缀（json、xml…），选择不同的解析器（JsonRuleConfigParser、XmlRuleConfigParser…），将存储在文件中的配置解析成内存对象 RuleConfig： 123456789101112131415161718192021222324252627282930313233343536373">
+<meta name="keywords" content="GoF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Factory Design Pattern">
+<meta property="og:url" content="https://umarellyh.github.io/p/Factory-Design-Pattern.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="简单工厂（Simple Factory）在下面这段代码中，我们根据配置文件的后缀（json、xml…），选择不同的解析器（JsonRuleConfigParser、XmlRuleConfigParser…），将存储在文件中的配置解析成内存对象 RuleConfig： 123456789101112131415161718192021222324252627282930313233343536373">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Factory Design Pattern">
+<meta name="twitter:description" content="简单工厂（Simple Factory）在下面这段代码中，我们根据配置文件的后缀（json、xml…），选择不同的解析器（JsonRuleConfigParser、XmlRuleConfigParser…），将存储在文件中的配置解析成内存对象 RuleConfig： 123456789101112131415161718192021222324252627282930313233343536373">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/p/Factory-Design-Pattern.html">
+
+
+
+
+
+  <title> Factory Design Pattern | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/Factory-Design-Pattern.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Factory Design Pattern
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-22T16:32:49+08:00">
+                2020-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简单工厂（Simple-Factory）"><a href="#简单工厂（Simple-Factory）" class="headerlink" title="简单工厂（Simple Factory）"></a>简单工厂（Simple Factory）</h2><p>在下面这段代码中，我们根据配置文件的后缀（json、xml…），选择不同的解析器（JsonRuleConfigParser、XmlRuleConfigParser…），将存储在文件中的配置解析成内存对象 RuleConfig：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RuleConfigSource</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> RuleConfig <span class="title">load</span><span class="params">(String ruleConfigFilePath)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        String ruleConfigFileExtension = getFileExtension(ruleConfigFilePath);</span><br><span class="line">        IRuleConfigParser parser = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"json"</span>.equalsIgnoreCase(ruleConfigFileExtension)) </span><br><span class="line">        &#123;</span><br><span class="line">            parser = <span class="keyword">new</span> JsonRuleConfigParser();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"xml"</span>.equalsIgnoreCase(ruleConfigFileExtension)) </span><br><span class="line">        &#123;</span><br><span class="line">            parser = <span class="keyword">new</span> XmlRuleConfigParser();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"yaml"</span>.equalsIgnoreCase(ruleConfigFileExtension)) </span><br><span class="line">        &#123;</span><br><span class="line">            parser = <span class="keyword">new</span> YamlRuleConfigParser();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"properties"</span>.equalsIgnoreCase(ruleConfigFileExtension)) </span><br><span class="line">        &#123;</span><br><span class="line">            parser = <span class="keyword">new</span> PropertiesRuleConfigParser();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> InvalidRuleConfigException(<span class="string">"Rule config file format is not supported: "</span> + ruleConfigFilePath);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        String configText = <span class="string">""</span>;</span><br><span class="line">        <span class="comment">// 从 ruleConfigFilePath 文件中读取配置文本到 configText 中</span></span><br><span class="line">        RuleConfig ruleConfig = parser.parse(configText);</span><br><span class="line">        <span class="keyword">return</span> ruleConfig;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">getFileExtension</span><span class="params">(String filePath)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//...解析文件名获取扩展名，比如 rule.json，返回 json</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"json"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>为了让代码逻辑更加清晰，可读性更好，我们要善于<strong>将功能独立的代码块封装成函数</strong>。按照这个设计思路，我们可以将代码中涉及 parser 创建的部分逻辑剥离出来，抽象成 createParser() 函数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> RuleConfig <span class="title">load</span><span class="params">(String ruleConfigFilePath)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    String ruleConfigFileExtension = getFileExtension(ruleConfigFilePath);</span><br><span class="line">    IRuleConfigParser parser = createParser(ruleConfigFileExtension);</span><br><span class="line">    <span class="keyword">if</span> (parser == <span class="keyword">null</span>) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> InvalidRuleConfigException(<span class="string">"Rule config file format is not supported: "</span> + ruleConfigFilePath);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    String configText = <span class="string">""</span>;</span><br><span class="line">    <span class="comment">// 从 ruleConfigFilePath 文件中读取配置文本到 configText 中</span></span><br><span class="line">    RuleConfig ruleConfig = parser.parse(configText);</span><br><span class="line">    <span class="keyword">return</span> ruleConfig;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">getFileExtension</span><span class="params">(String filePath)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//...解析文件名获取扩展名，比如 rule.json，返回 json</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"json"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> IRuleConfigParser <span class="title">createParser</span><span class="params">(String configFormat)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    IRuleConfigParser parser = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="string">"json"</span>.equalsIgnoreCase(configFormat)) </span><br><span class="line">    &#123;</span><br><span class="line">        parser = <span class="keyword">new</span> JsonRuleConfigParser();</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"xml"</span>.equalsIgnoreCase(configFormat)) </span><br><span class="line">    &#123;</span><br><span class="line">        parser = <span class="keyword">new</span> XmlRuleConfigParser();</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"yaml"</span>.equalsIgnoreCase(configFormat)) </span><br><span class="line">    &#123;</span><br><span class="line">        parser = <span class="keyword">new</span> YamlRuleConfigParser();</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"properties"</span>.equalsIgnoreCase(configFormat)) </span><br><span class="line">    &#123;</span><br><span class="line">        parser = <span class="keyword">new</span> PropertiesRuleConfigParser();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> parser;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为了让类的职责更加单一、代码更加清晰，我们还可以<strong>进一步将 createParser() 函数剥离到一个独立的类中</strong>，让这个类只负责对象的创建。而这个类就是我们现在要讲的简单工厂模式类。具体的代码如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RuleConfigSource</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> RuleConfig <span class="title">load</span><span class="params">(String ruleConfigFilePath)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        String ruleConfigFileExtension = getFileExtension(ruleConfigFilePath);</span><br><span class="line">        IRuleConfigParser parser = RuleConfigParserFactory.createParser(ruleConfigFileExtension);</span><br><span class="line">        <span class="keyword">if</span> (parser == <span class="keyword">null</span>) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> InvalidRuleConfigException(<span class="string">"Rule config file format is not supported: "</span> + ruleConfigFilePath);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        String configText = <span class="string">""</span>;</span><br><span class="line">        <span class="comment">// 从 ruleConfigFilePath 文件中读取配置文本到 configText 中</span></span><br><span class="line">        RuleConfig ruleConfig = parser.parse(configText);</span><br><span class="line">        <span class="keyword">return</span> ruleConfig;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">getFileExtension</span><span class="params">(String filePath)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//...解析文件名获取扩展名，比如 rule.json，返回 json</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"json"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RuleConfigParserFactory</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IRuleConfigParser <span class="title">createParser</span><span class="params">(String configFormat)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        IRuleConfigParser parser = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"json"</span>.equalsIgnoreCase(configFormat)) </span><br><span class="line">        &#123;</span><br><span class="line">            parser = <span class="keyword">new</span> JsonRuleConfigParser();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"xml"</span>.equalsIgnoreCase(configFormat)) </span><br><span class="line">        &#123;</span><br><span class="line">            parser = <span class="keyword">new</span> XmlRuleConfigParser();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"yaml"</span>.equalsIgnoreCase(configFormat)) </span><br><span class="line">        &#123;</span><br><span class="line">            parser = <span class="keyword">new</span> YamlRuleConfigParser();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"properties"</span>.equalsIgnoreCase(configFormat)) </span><br><span class="line">        &#123;</span><br><span class="line">            parser = <span class="keyword">new</span> PropertiesRuleConfigParser();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> parser;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的代码实现中，我们每次调用 RuleConfigParserFactory 的 createParser() 的时候，都要创建一个新的 parser。实际上，如果 parser 可以复用，<strong>为了节省内存和对象创建的时间，我们可以将 parser 事先创建好缓存起来</strong>。当调用 createParser() 函数的时候，我们从缓存中取出 parser 对象直接使用。</p>
+<p>这有点<strong>类似单例模式和简单工厂模式的结合</strong>，具体的代码实现如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RuleConfigParserFactory</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;String, RuleConfigParser&gt; cachedParsers = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> </span><br><span class="line">    &#123;</span><br><span class="line">        cachedParsers.put(<span class="string">"json"</span>, <span class="keyword">new</span> JsonRuleConfigParser());</span><br><span class="line">        cachedParsers.put(<span class="string">"xml"</span>, <span class="keyword">new</span> XmlRuleConfigParser());</span><br><span class="line">        cachedParsers.put(<span class="string">"yaml"</span>, <span class="keyword">new</span> YamlRuleConfigParser());</span><br><span class="line">        cachedParsers.put(<span class="string">"properties"</span>, <span class="keyword">new</span> PropertiesRuleConfigParser());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IRuleConfigParser <span class="title">createParser</span><span class="params">(String configFormat)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (configFormat == <span class="keyword">null</span> || configFormat.isEmpty()) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>; <span class="comment">// 返回 null 还是 IllegalArgumentException 全凭你自己说了算</span></span><br><span class="line">        &#125;</span><br><span class="line">        IRuleConfigParser parser = cachedParsers.get(configFormat.toLowerCase());</span><br><span class="line">        <span class="keyword">return</span> parser;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于上面两种简单工厂模式的实现方法，如果我们要添加新的 parser，那势必要改动到 RuleConfigParserFactory 的代码，那这是不是违反开闭原则呢？实际上，如果<strong>不是需要频繁地添加新的 parser</strong>，只是偶尔修改一下 RuleConfigParserFactory 代码，稍微不符合开闭原则，也是完全可以接受的。</p>
+<p>除此之外，在 RuleConfigParserFactory 的第一种代码实现中，有一组 if 分支判断逻辑，是不是应该用多态或其他设计模式来替代呢？实际上，<strong>如果 if 分支并不是很多，代码中有 if 分支也是完全可以接受的</strong>。应用多态或设计模式来替代 if 分支判断逻辑，也并不是没有任何缺点的，它虽然提高了代码的扩展性，更加符合开闭原则，但也<strong>增加了类的个数，牺牲了代码的可读性</strong>。</p>
+<h2 id="工厂方法（Factory-Method）"><a href="#工厂方法（Factory-Method）" class="headerlink" title="工厂方法（Factory Method）"></a>工厂方法（Factory Method）</h2><p>如果我们非得要将 if 分支逻辑去掉，那该怎么办呢？比较经典处理方法就是利用<code>多态</code>。按照多态的实现思路，对上面的代码进行重构：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IRuleConfigParserFactory</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function">IRuleConfigParser <span class="title">createParser</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JsonRuleConfigParserFactory</span> <span class="keyword">implements</span> <span class="title">IRuleConfigParserFactory</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IRuleConfigParser <span class="title">createParser</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> JsonRuleConfigParser();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XmlRuleConfigParserFactory</span> <span class="keyword">implements</span> <span class="title">IRuleConfigParserFactory</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IRuleConfigParser <span class="title">createParser</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> XmlRuleConfigParser();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">YamlRuleConfigParserFactory</span> <span class="keyword">implements</span> <span class="title">IRuleConfigParserFactory</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IRuleConfigParser <span class="title">createParser</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> YamlRuleConfigParser();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PropertiesRuleConfigParserFactory</span> <span class="keyword">implements</span> <span class="title">IRuleConfigParserFactory</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IRuleConfigParser <span class="title">createParser</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> PropertiesRuleConfigParser();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实际上，这就是<strong>工厂方法模式的典型代码实现</strong>。这样当我们新增一种 parser 的时候，只需要新增一个实现了 IRuleConfigParserFactory 接口的 Factory 类即可。所以，<strong>工厂方法模式比起简单工厂模式更加符合开闭原则</strong>。</p>
+<p>从上面的工厂方法的实现来看，一切都很完美，但是实际上存在挺大的问题。<strong>问题存在于这些工厂类的使用上</strong>。接下来，我们看一下，如何用这些工厂类来实现 RuleConfigSource 的 load() 函数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RuleConfigSource</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> RuleConfig <span class="title">load</span><span class="params">(String ruleConfigFilePath)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        String ruleConfigFileExtension = getFileExtension(ruleConfigFilePath);</span><br><span class="line"></span><br><span class="line">        IRuleConfigParserFactory parserFactory = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"json"</span>.equalsIgnoreCase(ruleConfigFileExtension)) </span><br><span class="line">        &#123;</span><br><span class="line">            parserFactory = <span class="keyword">new</span> JsonRuleConfigParserFactory();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"xml"</span>.equalsIgnoreCase(ruleConfigFileExtension)) </span><br><span class="line">        &#123;</span><br><span class="line">            parserFactory = <span class="keyword">new</span> XmlRuleConfigParserFactory();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"yaml"</span>.equalsIgnoreCase(ruleConfigFileExtension)) </span><br><span class="line">        &#123;</span><br><span class="line">            parserFactory = <span class="keyword">new</span> YamlRuleConfigParserFactory();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"properties"</span>.equalsIgnoreCase(ruleConfigFileExtension)) </span><br><span class="line">        &#123;</span><br><span class="line">            parserFactory = <span class="keyword">new</span> PropertiesRuleConfigParserFactory();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> InvalidRuleConfigException(<span class="string">"Rule config file format is not supported: "</span> + ruleConfigFilePath);</span><br><span class="line">        &#125;</span><br><span class="line">        IRuleConfigParser parser = parserFactory.createParser();</span><br><span class="line"></span><br><span class="line">        String configText = <span class="string">""</span>;</span><br><span class="line">        <span class="comment">// 从 ruleConfigFilePath 文件中读取配置文本到 configText 中</span></span><br><span class="line">        RuleConfig ruleConfig = parser.parse(configText);</span><br><span class="line">        <span class="keyword">return</span> ruleConfig;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">getFileExtension</span><span class="params">(String filePath)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//...解析文件名获取扩展名，比如 rule.json，返回 json</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"json"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从上面的代码实现来看，工厂类对象的创建逻辑又耦合进了 load() 函数中，跟我们最初的代码版本非常相似，引入工厂方法非但没有解决问题，反倒让设计变得更加复杂了。我们<strong>可以为工厂类再创建一个简单工厂</strong>，也就是工厂的工厂，用来创建工厂类对象。其中，RuleConfigParserFactoryMap 类是创建工厂对象的工厂类，getParserFactory() 返回的是缓存好的单例工厂对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RuleConfigSource</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> RuleConfig <span class="title">load</span><span class="params">(String ruleConfigFilePath)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        String ruleConfigFileExtension = getFileExtension(ruleConfigFilePath);</span><br><span class="line"></span><br><span class="line">        IRuleConfigParserFactory parserFactory = RuleConfigParserFactoryMap.getParserFactory(ruleConfigFileExtension);</span><br><span class="line">        <span class="keyword">if</span> (parserFactory == <span class="keyword">null</span>) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> InvalidRuleConfigException(<span class="string">"Rule config file format is not supported: "</span> + ruleConfigFilePath);</span><br><span class="line">        &#125;</span><br><span class="line">        IRuleConfigParser parser = parserFactory.createParser();</span><br><span class="line"></span><br><span class="line">        String configText = <span class="string">""</span>;</span><br><span class="line">        <span class="comment">// 从 ruleConfigFilePath 文件中读取配置文本到 configText 中</span></span><br><span class="line">        RuleConfig ruleConfig = parser.parse(configText);</span><br><span class="line">        <span class="keyword">return</span> ruleConfig;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">getFileExtension</span><span class="params">(String filePath)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//...解析文件名获取扩展名，比如 rule.json，返回 json</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"json"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 因为工厂类只包含方法，不包含成员变量，完全可以复用，</span></span><br><span class="line"><span class="comment">// 不需要每次都创建新的工厂类对象，所以，简单工厂模式的第二种实现思路更加合适</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RuleConfigParserFactoryMap</span> // 工厂的工厂</span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;String, IRuleConfigParserFactory&gt; cachedFactories = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span></span><br><span class="line">    &#123;</span><br><span class="line">        cachedFactories.put(<span class="string">"json"</span>, <span class="keyword">new</span> JsonRuleConfigParserFactory());</span><br><span class="line">        cachedFactories.put(<span class="string">"xml"</span>, <span class="keyword">new</span> XmlRuleConfigParserFactory());</span><br><span class="line">        cachedFactories.put(<span class="string">"yaml"</span>, <span class="keyword">new</span> YamlRuleConfigParserFactory());</span><br><span class="line">        cachedFactories.put(<span class="string">"properties"</span>, <span class="keyword">new</span> PropertiesRuleConfigParserFactory());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IRuleConfigParserFactory <span class="title">getParserFactory</span><span class="params">(String type)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (type == <span class="keyword">null</span> || type.isEmpty()) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        IRuleConfigParserFactory parserFactory = cachedFactories.get(type.toLowerCase());</span><br><span class="line">        <span class="keyword">return</span> parserFactory;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实际上，对于规则配置文件解析这个应用场景来说，工厂模式需要额外创建诸多 Factory 类，也会增加代码的复杂性，而且，<strong>每个 Factory 类只是做简单的 new 操作，功能非常单薄</strong>，也没必要设计成独立的类，所以，在这个应用场景下，简单工厂模式简单好用，比工厂方法模式更加合适。</p>
+<p>当对象的创建逻辑比较复杂，不只是简单的 new 一下就可以，而是要组合其他类对象，做各种初始化操作的时候，我们推荐使用工厂方法模式，<strong>将复杂的创建逻辑拆分到多个工厂类中，让每个工厂类都不至于过于复杂</strong>。</p>
+<h2 id="抽象工厂（Abstract-Factory）"><a href="#抽象工厂（Abstract-Factory）" class="headerlink" title="抽象工厂（Abstract Factory）"></a>抽象工厂（Abstract Factory）</h2><p>抽象工厂模式的应用场景比较特殊，没有前两种常用。<strong>在简单工厂和工厂方法中，类只有一种分类方式</strong>。比如，在规则配置解析那个例子中，解析器类只会根据配置文件格式（Json、Xml、Yaml…）来分类。但是，如果类有两种分类方式，比如，我们既可以按照配置文件格式来分类，也可以按照解析的对象（Rule 规则配置还是 System 系统配置）来分类，那就会对应下面这 8 个 parser 类：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">针对规则配置的解析器：基于接口 IRuleConfigParser</span><br><span class="line"><span class="keyword">JsonRuleConfigParser</span></span><br><span class="line"><span class="keyword">XmlRuleConfigParser</span></span><br><span class="line"><span class="keyword">YamlRuleConfigParser</span></span><br><span class="line"><span class="keyword">PropertiesRuleConfigParser</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword">针对系统配置的解析器：基于接口 </span>ISystemConfigParser</span><br><span class="line"><span class="keyword">JsonSystemConfigParser</span></span><br><span class="line"><span class="keyword">XmlSystemConfigParser</span></span><br><span class="line"><span class="keyword">YamlSystemConfigParser</span></span><br><span class="line"><span class="keyword">PropertiesSystemConfigParser</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>过多的类也会让系统难维护，抽象工厂就是针对这种非常特殊的场景而诞生的</strong>。我们可以让一个工厂负责创建多个不同类型的对象（IRuleConfigParser、ISystemConfigParser 等），而不是只创建一种 parser 对象。这样就可以有效地减少工厂类的个数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IConfigParserFactory</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function">IRuleConfigParser <span class="title">createRuleParser</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">ISystemConfigParser <span class="title">createSystemParser</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 此处可以扩展新的 parser 类型，比如 IBizConfigParser</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JsonConfigParserFactory</span> <span class="keyword">implements</span> <span class="title">IConfigParserFactory</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IRuleConfigParser <span class="title">createRuleParser</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> JsonRuleConfigParser();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ISystemConfigParser <span class="title">createSystemParser</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> JsonSystemConfigParser();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XmlConfigParserFactory</span> <span class="keyword">implements</span> <span class="title">IConfigParserFactory</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IRuleConfigParser <span class="title">createRuleParser</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> XmlRuleConfigParser();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ISystemConfigParser <span class="title">createSystemParser</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> XmlSystemConfigParser();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 省略 YamlConfigParserFactory 和 PropertiesConfigParserFactory 代码</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="工厂模式的作用"><a href="#工厂模式的作用" class="headerlink" title="工厂模式的作用"></a>工厂模式的作用</h2><p>工厂模式的作用无外乎下面这四个。这也是判断要不要使用工厂模式的最本质的参考标准：</p>
+<ul>
+<li><strong>封装变化</strong>：创建逻辑有可能变化，封装成工厂类之后，创建逻辑的变更对调用者透明；</li>
+<li><strong>代码复用</strong>：创建代码抽离到独立的工厂类之后可以复用；</li>
+<li><strong>隔离复杂性</strong>：封装复杂的创建逻辑，调用者无需了解如何创建对象；</li>
+<li><strong>控制复杂度</strong>：将创建代码抽离出来，让原本的函数或类职责更单一，代码更简洁；</li>
+</ul>
+<h2 id="工厂模式和-DI-容器有何区别？"><a href="#工厂模式和-DI-容器有何区别？" class="headerlink" title="工厂模式和 DI 容器有何区别？"></a>工厂模式和 DI 容器有何区别？</h2><p>创建对象的“大工程” – 依赖注入框架，或者叫<code>依赖注入容器</code>（Dependency Injection Container），简称 DI 容器。实际上，<strong>DI 容器底层最基本的设计思路就是基于工厂模式的</strong>。DI 容器相当于一个大的工厂类，负责在程序启动的时候，根据配置（要创建哪些类对象，每个类对象的创建需要依赖哪些其他类对象）事先创建好对象。当应用程序需要使用某个类对象的时候，直接从容器中获取即可。<strong>正是因为它持有一堆对象，所以这个框架才被称为“容器”</strong>。</p>
+<p>工厂模式中，一个工厂类只负责某个类对象或者某一组相关类对象（继承自同一抽象类或者接口的子类）的创建，而 <strong>DI 容器负责的是整个应用中所有类对象的创建</strong>。除此之外，DI 容器负责的事情要比单纯的工厂模式要多。比如，它还包括配置的解析、对象生命周期的管理。</p>
+<h2 id="DI-容器的核心功能有哪些？"><a href="#DI-容器的核心功能有哪些？" class="headerlink" title="DI 容器的核心功能有哪些？"></a>DI 容器的核心功能有哪些？</h2><p>一个简单的 DI 容器的核心功能一般有三个：配置解析、对象创建和对象生命周期管理。</p>
+<h3 id="配置解析"><a href="#配置解析" class="headerlink" title="配置解析"></a>配置解析</h3><p>作为一个通用的框架来说，框架代码跟应用代码应该是高度解耦的，DI 容器事先并不知道应用会创建哪些对象，<strong>不可能把某个应用要创建的对象写死在框架代码中</strong>。所以，我们需要通过一种形式，让应用告知 DI 容器要创建哪些对象。</p>
+<p>我们将需要由 DI 容器来创建的类对象和创建类对象的必要信息（使用哪个构造函数以及对应的构造函数参数都是什么等等），放到配置文件中。<strong>容器读取配置文件，根据配置文件提供的信息来创建对象</strong>。</p>
+<p>下面是一个典型的 Spring 容器的配置文件。Spring 容器读取这个配置文件，解析出要创建的两个对象：rateLimiter 和 redisCounter，并且得到两者的依赖关系：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RateLimiter</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> RedisCounter redisCounter;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RateLimiter</span><span class="params">(RedisCounter redisCounter)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.redisCounter = redisCounter;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello World!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisCounter</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String ipAddress;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> port;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RedisCounter</span><span class="params">(String ipAddress, <span class="keyword">int</span> port)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.ipAddress = ipAddress;</span><br><span class="line">        <span class="keyword">this</span>.port = port;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">配置文件 beans.xml：</span><br><span class="line">&lt;beans&gt;</span><br><span class="line">    &lt;bean id=<span class="string">"rateLimiter"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"com.xzg.RateLimiter"</span>&gt;</span><br><span class="line">        &lt;constructor-arg ref=<span class="string">"redisCounter"</span>/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;bean id=<span class="string">"redisCounter"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"com.xzg.redisCounter"</span>&gt;</span><br><span class="line">        &lt;constructor-arg type=<span class="string">"String"</span> value=<span class="string">"127.0.0.1"</span>&gt;</span><br><span class="line">        &lt;constructor-arg type=<span class="string">"int"</span> value=<span class="number">1234</span>&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="对象创建"><a href="#对象创建" class="headerlink" title="对象创建"></a>对象创建</h3><p>在 DI 容器中，如果我们给每个类都对应创建一个工厂类，那项目中类的个数会成倍增加，这会增加代码的维护成本。要解决这个问题并不难。我们只需要<strong>将所有类对象的创建都放到一个工厂类中完成</strong>就可以了，比如 BeansFactory。</p>
+<p>借助<code>反射语法</code>，<strong>在程序运行的过程中动态地加载类、创建对象</strong>，不需要事先在代码中写死要创建哪些对象。所以，BeansFactory 中的代码不会线性膨胀（代码量跟创建对象的个数成正比）。</p>
+<h3 id="对象生命周期管理"><a href="#对象生命周期管理" class="headerlink" title="对象生命周期管理"></a>对象生命周期管理</h3><p>简单工厂模式有两种实现方式，一种是每次都返回新创建的对象，另一种是每次都返回同一个事先创建好的对象，也就是所谓的单例对象。在 Spring 框架中，我们可以<strong>通过配置 scope 属性，来区分这两种不同类型的对象</strong>。scope=prototype 表示返回新创建的对象，scope=singleton 表示返回单例对象。</p>
+<p>除此之外，我们还可以<strong>配置对象是否支持懒加载</strong>。如果 lazy-init=true，对象在真正被使用到的时候（比如：BeansFactory.getBean(“userService”)）才被被创建；如果 lazy-init=false，对象在应用启动的时候就事先创建好。</p>
+<p>不仅如此，我们还可以配置对象的 <code>init-method</code> 和 <code>destroy-method</code> 方法，比如 init-method=loadProperties()，destroy-method=updateConfigFile()。DI 容器在创建好对象之后，会主动调用 init-method 属性指定的方法来初始化对象。在对象被最终销毁之前，DI 容器会主动调用 destroy-method 属性指定的方法来做一些清理工作，比如释放数据库连接池、关闭文件。</p>
+<h2 id="如何实现一个简单的-DI-容器？"><a href="#如何实现一个简单的-DI-容器？" class="headerlink" title="如何实现一个简单的 DI 容器？"></a>如何实现一个简单的 DI 容器？</h2><p>用 Java 语言来实现一个简单的 DI 容器，核心逻辑只需要包括这样两个部分：</p>
+<ol>
+<li>配置文件解析；</li>
+<li>根据配置文件，通过反射语法创建对象；</li>
+</ol>
+<h3 id="最小原型设计"><a href="#最小原型设计" class="headerlink" title="最小原型设计"></a>最小原型设计</h3><p>像 Spring 框架这样的 DI 容器，它支持的配置格式非常灵活和复杂。为了<strong>简化代码实现，重点讲解原理</strong>，在最小原型中，我们只支持下面配置文件中涉及的配置语法：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">配置文件 beans.xml</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"rateLimiter"</span> <span class="attr">class</span>=<span class="string">"com.xzg.RateLimiter"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">ref</span>=<span class="string">"redisCounter"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"redisCounter"</span> <span class="attr">class</span>=<span class="string">"com.xzg.redisCounter"</span> <span class="attr">scope</span>=<span class="string">"singleton"</span> <span class="attr">lazy-init</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">type</span>=<span class="string">"String"</span> <span class="attr">value</span>=<span class="string">"127.0.0.1"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">type</span>=<span class="string">"int"</span> <span class="attr">value</span>=<span class="string">1234</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span></span></span><br></pre></td></tr></table></figure>
+
+<p>最小原型的使用方式跟 Spring 框架非常类似，示例代码如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        ApplicationContext applicationContext = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"beans.xml"</span>);</span><br><span class="line">        RateLimiter rateLimiter = (RateLimiter) applicationContext.getBean(<span class="string">"rateLimiter"</span>);</span><br><span class="line">        rateLimiter.test();</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="提供执行入口"><a href="#提供执行入口" class="headerlink" title="提供执行入口"></a>提供执行入口</h3><p><strong>面向对象设计的最后一步是：组装类并提供执行入口</strong>。在这里，执行入口就是一组暴露给外部使用的接口和类。通过刚刚的最小原型使用示例代码，我们可以看出，执行入口主要包含两部分：ApplicationContext 和 ClassPathXmlApplicationContext。其中，ApplicationContext 是接口，ClassPathXmlApplicationContext 是接口的实现类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ApplicationContext</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function">Object <span class="title">getBean</span><span class="params">(String beanId)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassPathXmlApplicationContext</span> <span class="keyword">implements</span> <span class="title">ApplicationContext</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> BeansFactory beansFactory;</span><br><span class="line">    <span class="keyword">private</span> BeanConfigParser beanConfigParser;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ClassPathXmlApplicationContext</span><span class="params">(String configLocation)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.beansFactory = <span class="keyword">new</span> BeansFactory();</span><br><span class="line">        <span class="keyword">this</span>.beanConfigParser = <span class="keyword">new</span> XmlBeanConfigParser();</span><br><span class="line">        loadBeanDefinitions(configLocation);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">loadBeanDefinitions</span><span class="params">(String configLocation)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        InputStream in = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> </span><br><span class="line">        &#123;</span><br><span class="line">            in = <span class="keyword">this</span>.getClass().getResourceAsStream(<span class="string">"/"</span> + configLocation);</span><br><span class="line">            <span class="keyword">if</span> (in == <span class="keyword">null</span>) </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Can not find config file: "</span> + configLocation);</span><br><span class="line">            &#125;</span><br><span class="line">            List&lt;BeanDefinition&gt; beanDefinitions = beanConfigParser.parse(in);</span><br><span class="line">            beansFactory.addBeanDefinitions(beanDefinitions);</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">finally</span> </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (in != <span class="keyword">null</span>) </span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">try</span> </span><br><span class="line">                &#123;</span><br><span class="line">                    in.close();</span><br><span class="line">                &#125; </span><br><span class="line">                <span class="keyword">catch</span> (IOException e) </span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">// <span class="doctag">TODO:</span> log error</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getBean</span><span class="params">(String beanId)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> beansFactory.getBean(beanId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从上面的代码中，我们可以看出，ClassPathXmlApplicationContext 负责<strong>组装 BeansFactory 和 BeanConfigParser 两个类，串联执行流程</strong>：从 ClassPath 中加载 XML 格式的配置文件，通过 BeanConfigParser 解析为统一的 BeanDefinition 格式，然后，BeansFactory 根据 BeanDefinition 来创建对象。</p>
+<h3 id="配置文件解析"><a href="#配置文件解析" class="headerlink" title="配置文件解析"></a>配置文件解析</h3><p>配置文件解析主要包含 BeanConfigParser 接口和 XmlBeanConfigParser 实现类，负责将配置文件解析为 BeanDefinition 结构，以便 BeansFactory 根据这个结构来创建对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BeanConfigParser</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function">List&lt;BeanDefinition&gt; <span class="title">parse</span><span class="params">(InputStream inputStream)</span></span>;</span><br><span class="line">    <span class="function">List&lt;BeanDefinition&gt; <span class="title">parse</span><span class="params">(String configContent)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XmlBeanConfigParser</span> <span class="keyword">implements</span> <span class="title">BeanConfigParser</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;BeanDefinition&gt; <span class="title">parse</span><span class="params">(InputStream inputStream)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        String content = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> ...</span></span><br><span class="line">        <span class="keyword">return</span> parse(content);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;BeanDefinition&gt; <span class="title">parse</span><span class="params">(String configContent)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        List&lt;BeanDefinition&gt; beanDefinitions = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> ...</span></span><br><span class="line">        <span class="keyword">return</span> beanDefinitions;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BeanDefinition</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    <span class="keyword">private</span> String className;</span><br><span class="line">    <span class="keyword">private</span> List&lt;ConstructorArg&gt; constructorArgs = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> Scope scope = Scope.SINGLETON;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> lazyInit = <span class="keyword">false</span>;</span><br><span class="line">    <span class="comment">// 省略必要的 getter/setter/constructors</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSingleton</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> scope.equals(Scope.SINGLETON);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">enum</span> Scope </span><br><span class="line">    &#123;</span><br><span class="line">        SINGLETON,</span><br><span class="line">        PROTOTYPE</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ConstructorArg</span> </span></span><br><span class="line"><span class="class">    </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">boolean</span> isRef;</span><br><span class="line">        <span class="keyword">private</span> Class type;</span><br><span class="line">        <span class="keyword">private</span> Object arg;</span><br><span class="line">        <span class="comment">// 省略必要的 getter/setter/constructors</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="核心工厂类设计"><a href="#核心工厂类设计" class="headerlink" title="核心工厂类设计"></a>核心工厂类设计</h3><p><strong>BeansFactory 是 DI 容器最核心的一个类</strong>。它负责根据从配置文件解析得到的 BeanDefinition 来创建对象。如果对象的 scope 属性是 singleton，那对象创建之后会缓存在 singletonObjects 这样一个 map 中，下次再请求此对象的时候，直接从 map 中取出返回，不需要重新创建。如果对象的 scope 属性是 prototype，那每次请求对象，BeansFactory 都会创建一个新的对象返回。</p>
+<p>实际上，BeansFactory 创建对象用到的主要技术点就是 Java 中的<strong>反射语法：一种动态加载类和创建对象的机制</strong>。我们知道，JVM 在启动的时候会根据代码自动地加载类、创建对象。至于都要加载哪些类、创建哪些对象，这些都是在代码中写死的，或者说提前写好的。但是，如果某个对象的创建并不是写死在代码中，而是放到配置文件中，我们需要在程序运行期间，动态地根据配置文件来加载类、创建对象，那<strong>这部分工作就没法让 JVM 帮我们自动完成</strong>了，我们需要利用 Java 提供的反射语法自己去编写代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BeansFactory</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> ConcurrentHashMap&lt;String, Object&gt; singletonObjects = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> ConcurrentHashMap&lt;String, BeanDefinition&gt; beanDefinitions = <span class="keyword">new</span> ConcurrentHashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addBeanDefinitions</span><span class="params">(List&lt;BeanDefinition&gt; beanDefinitionList)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (BeanDefinition beanDefinition : beanDefinitionList) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">this</span>.beanDefinitions.putIfAbsent(beanDefinition.getId(), beanDefinition);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (BeanDefinition beanDefinition : beanDefinitionList) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (beanDefinition.isLazyInit() == <span class="keyword">false</span> &amp;&amp; beanDefinition.isSingleton()) </span><br><span class="line">            &#123;</span><br><span class="line">                createBean(beanDefinition);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getBean</span><span class="params">(String beanId)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        BeanDefinition beanDefinition = beanDefinitions.get(beanId);</span><br><span class="line">        <span class="keyword">if</span> (beanDefinition == <span class="keyword">null</span>) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchBeanDefinitionException(<span class="string">"Bean is not defined: "</span> + beanId);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> createBean(beanDefinition);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@VisibleForTesting</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">createBean</span><span class="params">(BeanDefinition beanDefinition)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (beanDefinition.isSingleton() &amp;&amp; singletonObjects.containsKey(beanDefinition.getId())) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> singletonObjects.get(beanDefinition.getId());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Object bean = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> </span><br><span class="line">        &#123;</span><br><span class="line">            Class beanClass = Class.forName(beanDefinition.getClassName());</span><br><span class="line">            List&lt;BeanDefinition.ConstructorArg&gt; args = beanDefinition.getConstructorArgs();</span><br><span class="line">            <span class="keyword">if</span> (args.isEmpty()) </span><br><span class="line">            &#123;</span><br><span class="line">                bean = beanClass.newInstance();</span><br><span class="line">            &#125; </span><br><span class="line">            <span class="keyword">else</span> </span><br><span class="line">            &#123;</span><br><span class="line">                Class[] argClasses = <span class="keyword">new</span> Class[args.size()];</span><br><span class="line">                Object[] argObjects = <span class="keyword">new</span> Object[args.size()];</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; args.size(); ++i) </span><br><span class="line">                &#123;</span><br><span class="line">                    BeanDefinition.ConstructorArg arg = args.get(i);</span><br><span class="line">                    <span class="keyword">if</span> (!arg.getIsRef()) </span><br><span class="line">                    &#123;</span><br><span class="line">                        argClasses[i] = arg.getType();</span><br><span class="line">                        argObjects[i] = arg.getArg();</span><br><span class="line">                    &#125; </span><br><span class="line">                    <span class="keyword">else</span> </span><br><span class="line">                    &#123;</span><br><span class="line">                        BeanDefinition refBeanDefinition = beanDefinitions.get(arg.getArg());</span><br><span class="line">                        <span class="keyword">if</span> (refBeanDefinition == <span class="keyword">null</span>) </span><br><span class="line">                        &#123;</span><br><span class="line">                            <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchBeanDefinitionException(<span class="string">"Bean is not defined: "</span> + arg.getArg());</span><br><span class="line">                        &#125;</span><br><span class="line">                        argClasses[i] = Class.forName(refBeanDefinition.getClassName());</span><br><span class="line">                        argObjects[i] = createBean(refBeanDefinition);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                bean = beanClass.getConstructor(argClasses).newInstance(argObjects);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> BeanCreationFailureException(<span class="string">""</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (bean != <span class="keyword">null</span> &amp;&amp; beanDefinition.isSingleton()) </span><br><span class="line">        &#123;</span><br><span class="line">            singletonObjects.putIfAbsent(beanDefinition.getId(), bean);</span><br><span class="line">            <span class="keyword">return</span> singletonObjects.get(beanDefinition.getId());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> bean;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GoF/" rel="tag"># GoF</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/p/Singleton-Design-Pattern.html" rel="next" title="Singleton Design Pattern">
+                <i class="fa fa-chevron-left"></i> Singleton Design Pattern
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/p/Builder-Design-Pattern.html" rel="prev" title="Builder Design Pattern">
+                Builder Design Pattern <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单工厂（Simple-Factory）"><span class="nav-number">1.</span> <span class="nav-text">简单工厂（Simple Factory）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂方法（Factory-Method）"><span class="nav-number">2.</span> <span class="nav-text">工厂方法（Factory Method）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象工厂（Abstract-Factory）"><span class="nav-number">3.</span> <span class="nav-text">抽象工厂（Abstract Factory）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式的作用"><span class="nav-number">4.</span> <span class="nav-text">工厂模式的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式和-DI-容器有何区别？"><span class="nav-number">5.</span> <span class="nav-text">工厂模式和 DI 容器有何区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DI-容器的核心功能有哪些？"><span class="nav-number">6.</span> <span class="nav-text">DI 容器的核心功能有哪些？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置解析"><span class="nav-number">6.1.</span> <span class="nav-text">配置解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象创建"><span class="nav-number">6.2.</span> <span class="nav-text">对象创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象生命周期管理"><span class="nav-number">6.3.</span> <span class="nav-text">对象生命周期管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何实现一个简单的-DI-容器？"><span class="nav-number">7.</span> <span class="nav-text">如何实现一个简单的 DI 容器？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最小原型设计"><span class="nav-number">7.1.</span> <span class="nav-text">最小原型设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提供执行入口"><span class="nav-number">7.2.</span> <span class="nav-text">提供执行入口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文件解析"><span class="nav-number">7.3.</span> <span class="nav-text">配置文件解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心工厂类设计"><span class="nav-number">7.4.</span> <span class="nav-text">核心工厂类设计</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

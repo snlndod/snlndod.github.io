@@ -1,0 +1,985 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="SystemDesign,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="关系型数据库管理系统（RDBMS）像 SQL 这样的关系型数据库，是一系列以表的形式组织的数据项集合。 ACID 用来描述关系型数据库事务的特性：  原子性（Atomicity）：每个事务内部所有操作要么全部完成，要么全部不完成； 一致性（Consistency）：任何事务都使数据库从一个有效的状态转换到另一个有效状态； 隔离性（Isolation）：并发执行事务的结果与顺序执行事务的结果相同；">
+<meta name="keywords" content="SystemDesign">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库">
+<meta property="og:url" content="https://umarellyh.github.io/p/数据库.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="关系型数据库管理系统（RDBMS）像 SQL 这样的关系型数据库，是一系列以表的形式组织的数据项集合。 ACID 用来描述关系型数据库事务的特性：  原子性（Atomicity）：每个事务内部所有操作要么全部完成，要么全部不完成； 一致性（Consistency）：任何事务都使数据库从一个有效的状态转换到另一个有效状态； 隔离性（Isolation）：并发执行事务的结果与顺序执行事务的结果相同；">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/00.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/01.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/02.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/03.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/04.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/05.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/06.jpg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库">
+<meta name="twitter:description" content="关系型数据库管理系统（RDBMS）像 SQL 这样的关系型数据库，是一系列以表的形式组织的数据项集合。 ACID 用来描述关系型数据库事务的特性：  原子性（Atomicity）：每个事务内部所有操作要么全部完成，要么全部不完成； 一致性（Consistency）：任何事务都使数据库从一个有效的状态转换到另一个有效状态； 隔离性（Isolation）：并发执行事务的结果与顺序执行事务的结果相同；">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/00.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/p/数据库.html">
+
+
+
+
+
+  <title> 数据库 | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/数据库.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                数据库
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-15T00:10:29+08:00">
+                2020-01-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="关系型数据库管理系统（RDBMS）"><a href="#关系型数据库管理系统（RDBMS）" class="headerlink" title="关系型数据库管理系统（RDBMS）"></a>关系型数据库管理系统（RDBMS）</h2><p>像 SQL 这样的关系型数据库，是一系列以<code>表</code>的形式组织的<strong>数据项集合</strong>。</p>
+<p><code>ACID</code> 用来描述关系型数据库事务的特性：</p>
+<ul>
+<li>原子性（<strong>A</strong>tomicity）：每个事务内部所有操作要么全部完成，要么全部不完成；</li>
+<li>一致性（<strong>C</strong>onsistency）：任何事务都使数据库从一个有效的状态转换到另一个有效状态；</li>
+<li>隔离性（<strong>I</strong>solation）：并发执行事务的结果与顺序执行事务的结果相同；</li>
+<li>持久性（<strong>D</strong>urability）：事务提交后，对系统的影响是永久的。</li>
+</ul>
+<p>关系型数据库的扩展，包括许多技术：<code>主-从复制</code>、<code>主-主复制</code>、<code>联邦</code>、<code>分片</code>、<code>非规范化</code>和 <code>SQL 调优</code>。</p>
+<h3 id="主-从复制"><a href="#主-从复制" class="headerlink" title="主-从复制"></a>主-从复制</h3><p>主库同时负责读取和写入操作，并复制写入到一个或多个从库中，<strong>从库只负责读操作</strong>。树状形式的从库再将写入复制到更多的从库中去。如果<strong>主库离线，系统可以以只读模式运行</strong>，直到某个从库被提升为主库或有新的主库出现：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/00.jpg" alt></p>
+<a id="more"></a>
+
+<h4 id="缺陷：主-从复制"><a href="#缺陷：主-从复制" class="headerlink" title="缺陷：主-从复制"></a>缺陷：主-从复制</h4><ul>
+<li>将从库提升为主库需要额外的逻辑</li>
+</ul>
+<h3 id="主-主复制"><a href="#主-主复制" class="headerlink" title="主-主复制"></a>主-主复制</h3><p>两个主库都负责读操作和写操作，<strong>写入操作时互相协调</strong>。如果其中一个主库挂机，系统可以继续读取和写入：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/01.jpg" alt></p>
+<h4 id="缺陷：主-主复制"><a href="#缺陷：主-主复制" class="headerlink" title="缺陷：主-主复制"></a>缺陷：主-主复制</h4><ul>
+<li>需要添加负载均衡器或者在应用逻辑中做改动，来确定写入哪一个数据库；</li>
+<li>多数主-主系统要么不能保证一致性（违反 ACID），要么因为同步产生了写入延迟；</li>
+<li>随着更多写入节点的加入和延迟的提高，如何解决冲突显得越发重要。</li>
+</ul>
+<h3 id="缺陷：复制"><a href="#缺陷：复制" class="headerlink" title="缺陷：复制"></a>缺陷：复制</h3><ul>
+<li>如果主库在将新写入的数据复制到其他节点前挂掉，则有数据丢失的可能；</li>
+<li>写入会被重放到负责读取操作的副本。副本可能因为<strong>过多写操作阻塞，导致读取功能异常</strong>；</li>
+<li>读取从库越多，需要复制的写入数据就越多，导致更严重的复制延迟；</li>
+<li>在某些数据库系统中，写入主库的操作可以用多个线程并行写入，但写入副本只支持单线程顺序写入；</li>
+<li>复制意味着更多的硬件和额外的复杂度。</li>
+</ul>
+<h3 id="联邦"><a href="#联邦" class="headerlink" title="联邦"></a>联邦</h3><p><code>Federation</code> 将数据库<strong>按对应功能分割</strong>。例如，你可以有三个数据库：论坛、用户和产品，而不仅是一个单体数据库，从而减少每个数据库的读取和写入流量，减少复制延迟。较小的数据库意味着更多适合放入内存的数据，进而意味着<strong>更高的缓存命中几率</strong>。没有只能串行写入的中心化主库，你可以并行写入，<strong>提高负载能力</strong>:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/02.jpg" alt></p>
+<h4 id="缺陷：联邦"><a href="#缺陷：联邦" class="headerlink" title="缺陷：联邦"></a>缺陷：联邦</h4><ul>
+<li>如果你的数据库模式需要大量的功能和数据表，联邦的效率并不好；</li>
+<li>你需要<strong>更新应用程序的逻辑</strong>，来确定要读取和写入哪个数据库；</li>
+<li>用 <strong>server link</strong> 从两个库 JOIN 数据更复杂；</li>
+<li>联邦需要更多的硬件和额外的复杂度。</li>
+</ul>
+<h3 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h3><p><code>Sharding</code> 将数据分配在不同的数据库上，使得<strong>每个数据库仅管理整个数据集的一个子集</strong>。以用户数据库为例，随着用户数量的增加，越来越多的分片会被添加到集群中：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/03.jpg" alt></p>
+<p>类似联邦的优点，分片可以减少读取和写入流量，减少复制并提高缓存命中率。也<strong>减少了索引</strong>，通常意味着查询更快，性能更好。如果一个分片出问题，其他的仍能运行，你可以使用某种形式的冗余来防止数据丢失。类似联邦，没有只能串行写入的中心化主库，你可以并行写入，提高负载能力。</p>
+<p>常见的做法是：通过用户姓氏的首字母，或者用户的地理位置来分隔用户表。</p>
+<h4 id="缺陷：分片"><a href="#缺陷：分片" class="headerlink" title="缺陷：分片"></a>缺陷：分片</h4><ul>
+<li>你需要修改应用程序的逻辑来实现分片，这会带来复杂的 SQL 查询；</li>
+<li>分片不合理可能导致<strong>数据负载不均衡</strong>。例如，被频繁访问的用户数据会导致其所在分片的负载相对其他分片高：<ul>
+<li>再平衡会引入额外的复杂度（基于<code>一致性哈希</code>的分片算法可以减少这种情况）；</li>
+</ul>
+</li>
+<li>JOIN 多个分片的数据操作更复杂；</li>
+<li>分片需要更多的硬件和额外的复杂度。</li>
+</ul>
+<h3 id="非规范化"><a href="#非规范化" class="headerlink" title="非规范化"></a>非规范化</h3><p><code>Denormalization</code> 试图<strong>以写入性能为代价来换取读取性能</strong>。在多个表中冗余数据副本，以避免高成本的 JOIN 操作。一些关系型数据库，比如 PostgreSQL 和 Oracle 支持<code>物化视图</code>，可以存储冗余信息和保持冗余副本的一致。</p>
+<p>当数据使用诸如联邦和分片等技术被分割，进一步提高了处理跨数据中心的 JOIN 操作的复杂度。<strong>非规范化可以规避这种复杂的 JOIN 操作</strong>。</p>
+<p>在多数系统中，<strong>读取操作的频率远高于写入操作</strong>，比例可达到 100:1，甚至 1000:1。需要复杂的数据库 JOIN 的读取操作成本非常高，在磁盘操作上消耗了大量时间。</p>
+<h4 id="缺陷：非规范化"><a href="#缺陷：非规范化" class="headerlink" title="缺陷：非规范化"></a>缺陷：非规范化</h4><ul>
+<li>数据会冗余；</li>
+<li><code>Constraint</code> 可以帮助冗余的信息副本保持同步，但这样会增加数据库设计的复杂度；</li>
+<li>非规范化的数据库在<strong>高写入负载下</strong>，性能可能比规范化的数据库差；</li>
+</ul>
+<h3 id="SQL-调优"><a href="#SQL-调优" class="headerlink" title="SQL 调优"></a>SQL 调优</h3><p><code>SQL tuning</code> 是一个范围很广的话题，有很多相关的书可以作为参考。</p>
+<p>利用<strong>基准测试</strong>（Benchmark）和<strong>性能分析</strong>（Profiling）来模拟和发现系统瓶颈很重要：</p>
+<ul>
+<li>Benchmark：用 <code>ab</code> 等工具模拟高负载情况；</li>
+<li>Profiling：通过启用如<strong>慢查询日志</strong>等工具来辅助追踪性能问题。</li>
+</ul>
+<p>基准测试和性能分析可能会指引你到如下优化方案：</p>
+<h4 id="改进模式（Schema）"><a href="#改进模式（Schema）" class="headerlink" title="改进模式（Schema）"></a>改进模式（Schema）</h4><ul>
+<li>为了实现快速访问，MySQL 在磁盘上用<strong>连续的块</strong>存储数据；</li>
+<li>使用 CHAR 类型存储固定长度的字段，不要用 VARCHAR：<ul>
+<li><strong>CHAR 在快速、随机访问时效率很高</strong>。使用 VARCHAR 时，如果你想读取下一个字符串，不得不先读取到当前字符串的末尾；</li>
+</ul>
+</li>
+<li>使用 TEXT 类型存储大块的文本（允许<code>布尔检索</code>），例如博客正文。使用 TEXT 字段需要在磁盘上存储一个用于定位文本块的指针；</li>
+<li>使用 INT 类型存储高达 2^32（40 亿）的较大数字；</li>
+<li>使用 DECIMAL 类型存储货币可以<strong>避免浮点数表示错误</strong>；</li>
+<li>避免存储较大的 <code>BLOB</code>，而应存储获取<strong>对象的位置</strong>；</li>
+<li>VARCHAR(255) 是以 8 位数字存储的最大字符数，在某些关系型数据库中，<strong>最大限度地利用字节</strong>；</li>
+<li>在适用场景中设置 <code>NOT NULL</code> 约束，来提高搜索性能；</li>
+</ul>
+<h4 id="使用正确的索引"><a href="#使用正确的索引" class="headerlink" title="使用正确的索引"></a>使用正确的索引</h4><ul>
+<li>查询（SELECT、GROUP BY、ORDER BY、JOIN）的列，如果用了索引会更快；</li>
+<li>索引通常表示为<strong>自平衡的 B-tree</strong>，可以保持数据有序，并允许在对数时间内进行搜索、顺序访问、插入和删除操作；</li>
+<li>设置索引，会将数据存在内存中，<strong>占用更多的内存空间</strong>；</li>
+<li><strong>写入操作会变慢</strong>，因为索引需要被更新；</li>
+<li>加载大量数据时，<strong>禁用索引再加载数据，然后重建索引</strong>，这样也许会更快。</li>
+</ul>
+<h4 id="避免高成本的-JOIN-操作"><a href="#避免高成本的-JOIN-操作" class="headerlink" title="避免高成本的 JOIN 操作"></a>避免高成本的 JOIN 操作</h4><p>若有需要，可以进行非规范化。</p>
+<h4 id="分割数据表"><a href="#分割数据表" class="headerlink" title="分割数据表"></a>分割数据表</h4><p><strong>将热点数据拆分到单独的数据表中</strong>，可以有助于缓存。</p>
+<h4 id="调优查询缓存"><a href="#调优查询缓存" class="headerlink" title="调优查询缓存"></a>调优查询缓存</h4><p>在某些情况下，<code>查询缓存</code>可能会导致性能问题。</p>
+<h2 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h2><p>NoSQL 是采用<code>键-值存储</code>、<code>文档存储</code>、<code>宽列存储</code>和<code>图存储</code>的数据库的统称。数据库是非规范化的，<strong>JOIN 大多在应用程序代码中完成</strong>。大多数 NoSQL 无法完成真正满足 ACID 的事务，<strong>支持最终一致性</strong>。</p>
+<p><code>BASE</code> 通常被用于描述 NoSQL 数据库的特性。相比 CAP 理论，<strong>BASE 强调可用性超过一致性</strong>：</p>
+<ul>
+<li>基本可用（<strong>B</strong>asically <strong>A</strong>vailable）:系统保证可用性；</li>
+<li>软状态（<strong>S</strong>oft state）：即使没有输入，系统状态也可能随着时间变化；</li>
+<li>最终一致性（<strong>E</strong>ventual consistency）：经过一段时间之后，系统最终会变一致，因为系统在此期间没有收到任何输入。</li>
+</ul>
+<p>除了在 SQL 还是 NoSQL 之间做选择，了解哪种类型的 NoSQL 数据库，最适合你的用例也是非常有帮助的。</p>
+<h3 id="键-值存储"><a href="#键-值存储" class="headerlink" title="键-值存储"></a>键-值存储</h3><blockquote>
+<p>抽象类型：Hash table</p>
+</blockquote>
+<p>键-值存储通常可以实现 O(1) 时间的读写，用内存或 SSD 存储数据。数据存储可以按<code>字典序</code>维护键，从而实现键的高效检索。键-值存储可以<strong>用于存储元数据</strong>。</p>
+<p>键-值存储性能很高，通常用于存储简单数据模型或频繁修改的数据，如内存中的缓存。键-值存储提供的操作有限，如需更多操作，<strong>复杂度将转嫁到应用程序层面</strong>。</p>
+<p>键-值存储是<strong>更复杂的存储系统的基础</strong>，如文档存储和图存储。</p>
+<h3 id="文档存储"><a href="#文档存储" class="headerlink" title="文档存储"></a>文档存储</h3><blockquote>
+<p>抽象模型：将文档作为值的键-值存储</p>
+</blockquote>
+<p>文档存储以文档（XML、JSON、二进制文件等）为中心，文档存储了指定对象的全部信息。文档存储根据文档自身的内部结构，<strong>提供 API 或查询语句来实现查询</strong>。注意：许多键-值存储数据库有<strong>用值存储元数据的特性</strong>，这也模糊了这两种存储类型的界限。</p>
+<p>基于底层实现，文档可以根据集合、标签（<code>tag</code>）、元数据（<code>metadata</code>）或文件夹组织。尽管不同文档可以被组织在一起或分成一组，但<strong>相互之间可能具有完全不同的字段</strong>。</p>
+<p><code>MongoDB</code> 和 <code>Apache CouchDB</code> 等一些文档存储数据库，还提供了类似 SQL 的查询语句来实现复杂查询。<code>Amazon DynamoDB</code> 同时支持键-值存储和文档存储。</p>
+<p>文档存储具备高度的灵活性，常<strong>用于处理偶尔变化的数据</strong>。</p>
+<h3 id="宽列存储"><a href="#宽列存储" class="headerlink" title="宽列存储"></a>宽列存储</h3><p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/04.jpg" alt></p>
+<blockquote>
+<p>抽象模型：Nested map，ColumnFamily&lt;RowKey, Columns&lt;ColKey, Value, Timestamp&gt;&gt;</p>
+</blockquote>
+<p>宽列存储的<strong>基本数据单元是列</strong>（名/值对）。列可以在<code>列簇</code>（类似于 SQL 的数据表）中被分组，超级列簇再分组普通列簇。你可以使用行键独立访问每一列，<strong>具有相同行键值的列组成一行</strong>。每个值都包含时间戳，用于解决版本冲突。</p>
+<p>Google 发布了第一个列型存储数据库 <code>Bigtable</code>，它影响了 Hadoop 生态系统中活跃的开源数据库 <code>HBase</code> 和 Facebook 的 <code>Cassandra</code>。它们将键<strong>以字典序存储，实现高效检索</strong>。</p>
+<p>宽列存储具备高可用性和高可扩展性，常被<strong>用于大数据领域</strong>。</p>
+<h3 id="图存储"><a href="#图存储" class="headerlink" title="图存储"></a>图存储</h3><p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/05.jpg" alt></p>
+<blockquote>
+<p>抽象模型：Graph</p>
+</blockquote>
+<p>在图数据库中，一个节点对应一条记录，<strong>一条弧对应两个节点之间的关系</strong>。图数据库被优化用于表示外键繁多的复杂关系或多对多关系。</p>
+<p>图数据库为存储复杂关系的数据模型，如社交网络，提供了很高的性能。它们相对较新，尚未广泛应用，查找开发工具和资源相对较难，<strong>许多图只能通过 RESTful API 访问</strong>。</p>
+<h2 id="SQL-or-NoSQL"><a href="#SQL-or-NoSQL" class="headerlink" title="SQL or NoSQL"></a>SQL or NoSQL</h2><p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/06.jpg" alt></p>
+<h3 id="选择-SQL-的原因"><a href="#选择-SQL-的原因" class="headerlink" title="选择 SQL 的原因"></a>选择 SQL 的原因</h3><ul>
+<li>结构化数据；</li>
+<li>严格的模式；</li>
+<li>关系型数据；</li>
+<li>需要复杂的 JOIN 操作；</li>
+<li>事务；</li>
+<li>清晰的扩展模式；</li>
+<li>既有资源更丰富：开发者、社区、代码库、工具等；</li>
+<li>通过索引进行查询非常快；</li>
+</ul>
+<h3 id="选择-NoSQL-的原因"><a href="#选择-NoSQL-的原因" class="headerlink" title="选择 NoSQL 的原因"></a>选择 NoSQL 的原因</h3><ul>
+<li>半结构化数据；</li>
+<li>动态或灵活的模式；</li>
+<li>非关系型数据；</li>
+<li>不需要复杂的 JOIN 操作；</li>
+<li>存储 TB（甚至 PB）级别的数据；</li>
+<li>高数据密集的工作负载；</li>
+<li>高 <code>Throughput/IOPS</code>；</li>
+</ul>
+<h3 id="适合-NoSQL-的示例数据"><a href="#适合-NoSQL-的示例数据" class="headerlink" title="适合 NoSQL 的示例数据"></a>适合 NoSQL 的示例数据</h3><ul>
+<li>埋点数据和日志数据；</li>
+<li>排行榜或得分数据；</li>
+<li>临时数据，如购物车；</li>
+<li>频繁访问的热表；</li>
+<li>Metadata/Lookup table；</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SystemDesign/" rel="tag"># SystemDesign</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/p/反向代理与应用层.html" rel="next" title="反向代理与应用层">
+                <i class="fa fa-chevron-left"></i> 反向代理与应用层
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/p/异步与通讯.html" rel="prev" title="异步与通讯">
+                异步与通讯 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关系型数据库管理系统（RDBMS）"><span class="nav-number">1.</span> <span class="nav-text">关系型数据库管理系统（RDBMS）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主-从复制"><span class="nav-number">1.1.</span> <span class="nav-text">主-从复制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缺陷：主-从复制"><span class="nav-number">1.1.1.</span> <span class="nav-text">缺陷：主-从复制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主-主复制"><span class="nav-number">1.2.</span> <span class="nav-text">主-主复制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缺陷：主-主复制"><span class="nav-number">1.2.1.</span> <span class="nav-text">缺陷：主-主复制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺陷：复制"><span class="nav-number">1.3.</span> <span class="nav-text">缺陷：复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#联邦"><span class="nav-number">1.4.</span> <span class="nav-text">联邦</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缺陷：联邦"><span class="nav-number">1.4.1.</span> <span class="nav-text">缺陷：联邦</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分片"><span class="nav-number">1.5.</span> <span class="nav-text">分片</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缺陷：分片"><span class="nav-number">1.5.1.</span> <span class="nav-text">缺陷：分片</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非规范化"><span class="nav-number">1.6.</span> <span class="nav-text">非规范化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缺陷：非规范化"><span class="nav-number">1.6.1.</span> <span class="nav-text">缺陷：非规范化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL-调优"><span class="nav-number">1.7.</span> <span class="nav-text">SQL 调优</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#改进模式（Schema）"><span class="nav-number">1.7.1.</span> <span class="nav-text">改进模式（Schema）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用正确的索引"><span class="nav-number">1.7.2.</span> <span class="nav-text">使用正确的索引</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#避免高成本的-JOIN-操作"><span class="nav-number">1.7.3.</span> <span class="nav-text">避免高成本的 JOIN 操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分割数据表"><span class="nav-number">1.7.4.</span> <span class="nav-text">分割数据表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调优查询缓存"><span class="nav-number">1.7.5.</span> <span class="nav-text">调优查询缓存</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NoSQL"><span class="nav-number">2.</span> <span class="nav-text">NoSQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#键-值存储"><span class="nav-number">2.1.</span> <span class="nav-text">键-值存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文档存储"><span class="nav-number">2.2.</span> <span class="nav-text">文档存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#宽列存储"><span class="nav-number">2.3.</span> <span class="nav-text">宽列存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图存储"><span class="nav-number">2.4.</span> <span class="nav-text">图存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-or-NoSQL"><span class="nav-number">3.</span> <span class="nav-text">SQL or NoSQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择-SQL-的原因"><span class="nav-number">3.1.</span> <span class="nav-text">选择 SQL 的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择-NoSQL-的原因"><span class="nav-number">3.2.</span> <span class="nav-text">选择 NoSQL 的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#适合-NoSQL-的示例数据"><span class="nav-number">3.3.</span> <span class="nav-text">适合 NoSQL 的示例数据</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

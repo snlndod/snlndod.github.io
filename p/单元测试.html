@@ -1,0 +1,884 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="GoF,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="什么是单元测试？单元测试（Unit Testing）由研发工程师自己来编写，用来测试自己写的代码的正确性。我们常常将它跟集成测试（Integration Testing）放到一块来对比。单元测试相对于集成测试来说，测试的粒度更小一些。集成测试的测试对象是整个系统或者某个功能模块，比如测试用户注册、登录功能是否正常，是一种端到端的测试。而单元测试的测试对象是类或者函数，用来测试一个类和函数是否都按照">
+<meta name="keywords" content="GoF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单元测试">
+<meta property="og:url" content="https://umarellyh.github.io/p/单元测试.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="什么是单元测试？单元测试（Unit Testing）由研发工程师自己来编写，用来测试自己写的代码的正确性。我们常常将它跟集成测试（Integration Testing）放到一块来对比。单元测试相对于集成测试来说，测试的粒度更小一些。集成测试的测试对象是整个系统或者某个功能模块，比如测试用户注册、登录功能是否正常，是一种端到端的测试。而单元测试的测试对象是类或者函数，用来测试一个类和函数是否都按照">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="单元测试">
+<meta name="twitter:description" content="什么是单元测试？单元测试（Unit Testing）由研发工程师自己来编写，用来测试自己写的代码的正确性。我们常常将它跟集成测试（Integration Testing）放到一块来对比。单元测试相对于集成测试来说，测试的粒度更小一些。集成测试的测试对象是整个系统或者某个功能模块，比如测试用户注册、登录功能是否正常，是一种端到端的测试。而单元测试的测试对象是类或者函数，用来测试一个类和函数是否都按照">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/p/单元测试.html">
+
+
+
+
+
+  <title> 单元测试 | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/单元测试.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                单元测试
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-13T23:37:14+08:00">
+                2020-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="什么是单元测试？"><a href="#什么是单元测试？" class="headerlink" title="什么是单元测试？"></a>什么是单元测试？</h2><p><code>单元测试</code>（Unit Testing）由研发工程师自己来编写，用来测试自己写的代码的正确性。我们常常将它跟<code>集成测试</code>（Integration Testing）放到一块来对比。单元测试相对于集成测试来说，测试的粒度更小一些。集成测试的<strong>测试对象是整个系统或者某个功能模块</strong>，比如测试用户注册、登录功能是否正常，是一种端到端的测试。而单元测试的<strong>测试对象是类或者函数</strong>，用来测试一个类和函数是否都按照预期的逻辑执行，是代码层级的测试。</p>
+<p>这么说比较理论，我举个例子来解释一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Text</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String content;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Text</span><span class="params">(String content)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.content = content;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将字符串转化成数字，忽略字符串中的首尾空格</span></span><br><span class="line"><span class="comment">     * 如果字符串中包含除首尾空格之外的非数字字符，则返回 null</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">toNumber</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (content == <span class="keyword">null</span> || content.isEmpty()) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//...省略代码实现...</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>实际上，写单元测试本身不需要什么高深技术。它更多的是<strong>考验程序员思维的缜密程度</strong>，看能否设计出覆盖各种正常及异常情况的测试用例，来保证代码在任何预期或非预期的情况下都能正确运行。</p>
+<p>为了保证测试的全面性，针对 toNumber() 函数，我们需要设计下面这样几个测试用例：</p>
+<ul>
+<li>如果字符串只包含数字：“123”，toNumber() 函数输出对应的整数：123；</li>
+<li>如果字符串是空或者 null，toNumber() 函数返回：null；</li>
+<li>如果字符串包含首尾空格：“ 123”，“123 ”，“ 123 ”，toNumber() 返回对应的整数：123；</li>
+<li>如果字符串包含多个首尾空格：“ 123 ”，toNumber() 返回对应的整数：123；</li>
+<li>如果字符串包含非数字字符：“123a4”，“123 4”，toNumber() 返回 null；</li>
+</ul>
+<p>当我们设计好测试用例之后，剩下的就是将其翻译成代码了（我们这里没有使用任何测试框架）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Assert</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">assertEquals</span><span class="params">(Integer expectedValue, Integer actualValue)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (actualValue != expectedValue) </span><br><span class="line">        &#123;</span><br><span class="line">            String message = String.format(</span><br><span class="line">                <span class="string">"Test failed, expected: %d, actual: %d."</span>, expectedValue, actualValue);</span><br><span class="line">            System.out.println(message);</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> </span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">"Test succeeded."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">assertNull</span><span class="params">(Integer actualValue)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> isNull = actualValue == <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (isNull) </span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">"Test succeeded."</span>);</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            System.out.println(<span class="string">"Test failed, the value is not null:"</span> + actualValue);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> isNull;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestCaseRunner</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Run testToNumber()"</span>);</span><br><span class="line">        <span class="keyword">new</span> TextTest().testToNumber();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"Run testToNumber_nullOrEmpty()"</span>);</span><br><span class="line">        <span class="keyword">new</span> TextTest().testToNumber_nullOrEmpty();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"Run testToNumber_containsLeadingAndTrailingSpaces()"</span>);</span><br><span class="line">        <span class="keyword">new</span> TextTest().testToNumber_containsLeadingAndTrailingSpaces();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"Run testToNumber_containsMultiLeadingAndTrailingSpaces()"</span>);</span><br><span class="line">        <span class="keyword">new</span> TextTest().testToNumber_containsMultiLeadingAndTrailingSpaces();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"Run testToNumber_containsInvalidCharacters()"</span>);</span><br><span class="line">        <span class="keyword">new</span> TextTest().testToNumber_containsInvalidCharacters();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TextTest</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testToNumber</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Text text = <span class="keyword">new</span> Text(<span class="string">"123"</span>);</span><br><span class="line">        Assert.assertEquals(<span class="number">123</span>, text.toNumber());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testToNumber_nullOrEmpty</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Text text1 = <span class="keyword">new</span> Text(<span class="keyword">null</span>);</span><br><span class="line">        Assert.assertNull(text1.toNumber());</span><br><span class="line"></span><br><span class="line">        Text text2 = <span class="keyword">new</span> Text(<span class="string">""</span>);</span><br><span class="line">        Assert.assertNull(text2.toNumber());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testToNumber_containsLeadingAndTrailingSpaces</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Text text1 = <span class="keyword">new</span> Text(<span class="string">" 123"</span>);</span><br><span class="line">        Assert.assertEquals(<span class="number">123</span>, text1.toNumber());</span><br><span class="line"></span><br><span class="line">        Text text2 = <span class="keyword">new</span> Text(<span class="string">"123 "</span>);</span><br><span class="line">        Assert.assertEquals(<span class="number">123</span>, text2.toNumber());</span><br><span class="line"></span><br><span class="line">        Text text3 = <span class="keyword">new</span> Text(<span class="string">" 123 "</span>);</span><br><span class="line">        Assert.assertEquals(<span class="number">123</span>, text3.toNumber());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testToNumber_containsMultiLeadingAndTrailingSpaces</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Text text1 = <span class="keyword">new</span> Text(<span class="string">"  123"</span>);</span><br><span class="line">        Assert.assertEquals(<span class="number">123</span>, text1.toNumber());</span><br><span class="line"></span><br><span class="line">        Text text2 = <span class="keyword">new</span> Text(<span class="string">"123  "</span>);</span><br><span class="line">        Assert.assertEquals(<span class="number">123</span>, text2.toNumber());</span><br><span class="line"></span><br><span class="line">        Text text3 = <span class="keyword">new</span> Text(<span class="string">"  123  "</span>);</span><br><span class="line">        Assert.assertEquals(<span class="number">123</span>, text3.toNumber());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testToNumber_containsInvalidCharacters</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Text text1 = <span class="keyword">new</span> Text(<span class="string">"123a4"</span>);</span><br><span class="line">        Assert.assertNull(text1.toNumber());</span><br><span class="line"></span><br><span class="line">        Text text2 = <span class="keyword">new</span> Text(<span class="string">"123 4"</span>);</span><br><span class="line">        Assert.assertNull(text2.toNumber());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="为什么要写单元测试？"><a href="#为什么要写单元测试？" class="headerlink" title="为什么要写单元测试？"></a>为什么要写单元测试？</h2><p>单元测试除了能有效地为重构保驾护航之外，也是保证代码质量最有效的两个手段之一（另一个是 <code>Code Review</code>），我总结了以下几点单元测试的好处：</p>
+<ol>
+<li>单元测试能有效地帮你发现代码中的 bug<br>能否写出 bug free 的代码，是判断工程师编码能力的重要标准之一，也是很多大厂面试考察的重点，特别是像 FLAG 这样的外企。即便像我这样代码写了十几年，逻辑还算缜密、清晰的人，<strong>通过单元测试也常常会发现代码中的很多考虑不全面的地方</strong>。它节省了我很多 fix 低级 bug 的时间，能够有时间去做其他更有意义的事情，我也因此在工作上赢得了很多人的认可。可以这么说，坚持写单元测试是保证我的代码质量的一个“杀手锏”，也是<strong>帮助我拉开与其他人差距的一个“小秘密”</strong>。</li>
+<li>写单元测试能帮你发现代码设计上的问题<br>对于一段代码，如果很难为其编写单元测试，或者单元测试写起来很吃力，需要依靠单元测试框架里很高级的特性才能完成，那往往就意味着<strong>代码设计得不够合理</strong>，比如，没有使用依赖注入、大量使用静态函数、全局变量、代码高度耦合等。</li>
+<li>单元测试是对集成测试的有力补充<br>程序运行的 bug 往往出现在一些边界条件、异常情况下，比如，除数未判空、网络超时。而<strong>大部分异常情况都比较难在测试环境中模拟</strong>。而单元测试可以利用 mock 的方式，控制 mock 的对象返回我们需要模拟的异常，来测试代码在这些异常情况的表现。除此之外，对于一些复杂系统来说，<strong>集成测试也无法覆盖得很全面</strong>。复杂系统往往有很多模块。每个模块都有各种输入、输出、异常情况，组合起来，整个系统就有无数测试场景需要模拟，无数的测试用例需要设计，再强大的测试团队也无法穷举完备。</li>
+<li>写单元测试的过程本身就是代码重构的过程<br>写单元测试实际上就是落地执行持续重构的一个有效途径。设计和实现代码的时候，我们很难把所有的问题都想清楚。而编写单元测试就相当于<strong>对代码的一次自我 Code Review</strong>，在这个过程中，我们可以发现一些设计上的问题（比如代码设计的不可测试）以及代码编写方面的问题（比如一些边界条件处理不当）等，然后针对性的进行重构。</li>
+<li>阅读单元测试能帮助你快速熟悉代码<br>阅读代码最有效的手段，就是<strong>先了解它的业务背景和设计思路</strong>，然后再去看代码，这样代码读起来就会轻松很多。在没有文档和注释的情况下，单元测试就起了替代性作用。<strong>单元测试用例实际上就是用户用例</strong>，反映了代码的功能和如何使用。借助单元测试，我们不需要深入的阅读代码，便能知道代码实现了什么功能，有哪些特殊情况需要考虑，有哪些边界条件需要处理。</li>
+<li>单元测试是 TDD 可落地执行的改进方案<br>测试驱动开发（Test-Driven Development，简称 <code>TDD</code>）是一个经常被提及但很少被执行的开发模式。它的核心指导思想就是测试用例先于代码编写。不过，要让程序员能彻底地接受和习惯这种开发模式还是挺难的，毕竟很多程序员连单元测试都懒得写，更何况在编写代码之前先写好测试用例了。<strong>单元测试正好是对 TDD 的一种改进方案</strong>，先写代码，紧接着写单元测试，最后根据单元测试反馈出来问题，再回过头去重构代码。这个开发流程更加容易被接受，更加容易落地执行，而且又兼顾了 TDD 的优点。</li>
+</ol>
+<h2 id="如何编写单元测试？"><a href="#如何编写单元测试？" class="headerlink" title="如何编写单元测试？"></a>如何编写单元测试？</h2><blockquote>
+<p>写单元测试就是针对代码设计覆盖各种输入、异常、边界条件的测试用例，并将这些测试用例翻译成代码的过程。</p>
+</blockquote>
+<p>在把测试用例翻译成代码的时候，我们可以利用单元测试框架，来简化测试代码的编写。比如，Java 中比较出名的单元测试框架有 JUnit、TestNG、Spring Test 等。这些框架提供了<code>通用的执行流程</code>（比如执行测试用例的 TestCaseRunner）和<code>工具类库</code>（比如各种 Assert 判断函数）等。借助它们，我们在编写测试代码的时候，<strong>只需要关注测试用例本身的编写即可</strong>。</p>
+<p>针对 toNumber() 函数的测试用例，我们利用 JUnit 单元测试框架重新实现一下，具体代码如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TextTest</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testToNumber</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Text text = <span class="keyword">new</span> Text(<span class="string">"123"</span>);</span><br><span class="line">        Assert.assertEquals(<span class="keyword">new</span> Integer(<span class="number">123</span>), text.toNumber());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testToNumber_nullOrEmpty</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Text text1 = <span class="keyword">new</span> Text(<span class="keyword">null</span>);</span><br><span class="line">        Assert.assertNull(text1.toNumber());</span><br><span class="line"></span><br><span class="line">        Text text2 = <span class="keyword">new</span> Text(<span class="string">""</span>);</span><br><span class="line">        Assert.assertNull(text2.toNumber());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testToNumber_containsLeadingAndTrailingSpaces</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Text text1 = <span class="keyword">new</span> Text(<span class="string">" 123"</span>);</span><br><span class="line">        Assert.assertEquals(<span class="keyword">new</span> Integer(<span class="number">123</span>), text1.toNumber());</span><br><span class="line"></span><br><span class="line">        Text text2 = <span class="keyword">new</span> Text(<span class="string">"123 "</span>);</span><br><span class="line">        Assert.assertEquals(<span class="keyword">new</span> Integer(<span class="number">123</span>), text2.toNumber());</span><br><span class="line"></span><br><span class="line">        Text text3 = <span class="keyword">new</span> Text(<span class="string">" 123 "</span>);</span><br><span class="line">        Assert.assertEquals(<span class="keyword">new</span> Integer(<span class="number">123</span>), text3.toNumber());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testToNumber_containsMultiLeadingAndTrailingSpaces</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Text text1 = <span class="keyword">new</span> Text(<span class="string">"  123"</span>);</span><br><span class="line">        Assert.assertEquals(<span class="keyword">new</span> Integer(<span class="number">123</span>), text1.toNumber());</span><br><span class="line"></span><br><span class="line">        Text text2 = <span class="keyword">new</span> Text(<span class="string">"123  "</span>);</span><br><span class="line">        Assert.assertEquals(<span class="keyword">new</span> Integer(<span class="number">123</span>), text2.toNumber());</span><br><span class="line"></span><br><span class="line">        Text text3 = <span class="keyword">new</span> Text(<span class="string">"  123  "</span>);</span><br><span class="line">        Assert.assertEquals(<span class="keyword">new</span> Integer(<span class="number">123</span>), text3.toNumber());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testToNumber_containsInvalidCharacters</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Text text1 = <span class="keyword">new</span> Text(<span class="string">"123a4"</span>);</span><br><span class="line">        Assert.assertNull(text1.toNumber());</span><br><span class="line"></span><br><span class="line">        Text text2 = <span class="keyword">new</span> Text(<span class="string">"123 4"</span>);</span><br><span class="line">        Assert.assertNull(text2.toNumber());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于如何使用这些单元测试框架，大部分框架都给出了非常详细的官方文档，你可以自行查阅。关于如何编写单元测试，我更希望传达给你一些我的经验总结。具体包括以下几点：</p>
+<ol>
+<li><p>写单元测试真的是件很耗时的事情吗？<br>尽管单元测试的代码量可能是被测代码本身的 1~2 倍，写的过程很繁琐，但<strong>并不是很耗时</strong>。毕竟我们不需要考虑太多代码设计上的问题，测试代码实现起来也比较简单。不同测试用例之间的代码差别可能并不是很大，简单 copy-paste 改改就行。</p>
+</li>
+<li><p>对单元测试的代码质量有什么要求吗？<br>单元测试毕竟不会在产线上运行，而且每个类的测试代码也比较独立，基本不互相依赖。所以，相对于被测代码，我们对单元测试代码的质量可以放低一些要求。<strong>命名稍微有些不规范，代码稍微有些重复</strong>，也都是没有问题的。</p>
+</li>
+<li><p>单元测试只要覆盖率高就够了吗？<br> <strong>单元测试覆盖率是比较容易量化的指标</strong>，常常作为单元测试写得好坏的评判标准。有很多现成的工具专门用来做覆盖率统计，比如，JaCoCo、Cobertura、Emma、Clover。覆盖率的计算方式有很多种，比较简单的是语句覆盖，稍微高级点的有：条件覆盖、判定覆盖、路径覆盖。<br> 不管覆盖率的计算方式如何高级，<strong>将覆盖率作为衡量单元测试质量的唯一标准是不合理的</strong>。实际上，更重要的是要看测试用例是否覆盖了所有可能的情况，特别是一些 corner case。像下面这段代码，我们只需要一个测试用例就可以做到 100% 覆盖率，比如 cal(10.0, 2.0)，但并不代表测试足够全面了，我们还需要考虑，当除数等于０的情况下，代码执行是否符合预期：</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">cal</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (b != <span class="number">0</span>) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> a / b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 实际上，<strong>过度关注单元测试的覆盖率会导致开发人员为了提高覆盖率，写很多没有必要的测试代码</strong>，比如 get、set 方法非常简单，没有必要测试。从过往的经验上来讲，一个项目的单元测试覆盖率在 60～70% 即可上线。</p>
+</li>
+<li><p>写单元测试需要了解代码的实现逻辑吗？<br>单元测试<strong>不要依赖被测试函数的具体实现逻辑，它只关心被测函数实现了什么功能</strong>。我们切不可为了追求覆盖率，逐行阅读代码，然后针对实现逻辑编写单元测试。否则，一旦对代码进行重构，在代码的外部行为不变的情况下，对代码的实现逻辑进行了修改，那原本的单元测试都会运行失败，也就起不到为重构保驾护航的作用了，也<strong>违背了我们写单元测试的初衷</strong>。</p>
+</li>
+<li><p>如何选择单元测试框架？<br>写单元测试本身不需要太复杂的技术，大部分单元测试框架都能满足。在公司内部，起码<strong>团队内部需要统一单元测试框架</strong>。如果自己写的代码用已经选定的单元测试框架无法测试，那多半是代码写得不够好，代码的可测试性不够好。这个时候，我们要重构自己的代码，让其更容易测试，<strong>而不是去找另一个更加高级的单元测试框架</strong>。</p>
+</li>
+</ol>
+<h2 id="单元测试为何难落地执行？"><a href="#单元测试为何难落地执行？" class="headerlink" title="单元测试为何难落地执行？"></a>单元测试为何难落地执行？</h2><p>写单元测试确实是一件考验耐心的活儿。一般情况下，单元测试的代码量要大于被测试代码量，甚至是要多出好几倍。很多人往往会觉得<strong>写单元测试比较繁琐</strong>，并且没有太多挑战，而不愿意去做。有很多团队和项目在刚开始推行单元测试的时候，还比较认真，执行得比较好。但当开发任务紧了之后，就开始放低对单元测试的要求，<strong>一旦出现破窗效应，慢慢的，大家就都不写了</strong>，这种情况很常见。</p>
+<p>还有一种情况就是，由于历史遗留问题，原来的代码都没有写单元测试，代码已经堆砌了十几万行了，不可能再一个一个去补单元测试。这种情况下，我们首先要<strong>保证新写的代码都要有单元测试</strong>，其次，每次在改动到某个类时，如果没有单元测试就顺便补上，不过这<strong>要求工程师们有足够强的主人翁意识</strong>（ownership），毕竟光靠 leader 督促，很多事情是很难执行到位的。</p>
+<p>除此之外，还有人觉得，有了测试团队，写单元测试就是浪费时间，没有必要。程序员这一行业本该是智力密集型的，但现在很多公司把它搞成劳动密集型的，包括一些大厂，在开发过程中，既没有单元测试，也没有 Code Review 流程。即便有，做的也是差强人意。<strong>写好代码直接提交，然后丢给黑盒测试狠命去测</strong>，测出问题就反馈给开发团队再修改，测不出的问题就留在线上出了问题再修复。在这样的开发模式下，团队往往觉得没有必要写单元测试，但如果我们把单元测试写好、做好 Code Review，<strong>重视起代码质量，其实可以很大程度上减少黑盒测试的投入</strong>。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GoF/" rel="tag"># GoF</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/p/重构.html" rel="next" title="重构">
+                <i class="fa fa-chevron-left"></i> 重构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/p/代码的可测试性.html" rel="prev" title="代码的可测试性">
+                代码的可测试性 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是单元测试？"><span class="nav-number">1.</span> <span class="nav-text">什么是单元测试？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要写单元测试？"><span class="nav-number">2.</span> <span class="nav-text">为什么要写单元测试？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何编写单元测试？"><span class="nav-number">3.</span> <span class="nav-text">如何编写单元测试？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单元测试为何难落地执行？"><span class="nav-number">4.</span> <span class="nav-text">单元测试为何难落地执行？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

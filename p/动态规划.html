@@ -1,0 +1,977 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="CLRS,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="动态规划学习路线动态规划（Dynamic Programming）比较适合用来求解最优问题，比如求最大值、最小值等等。它可以非常显著地降低时间复杂度，提高代码的执行效率。不过，它也是出了名的难学。它的主要学习难点跟递归类似，那就是，求解问题的过程不太符合人类常规的思维方式。对于新手来说，要想入门确实不容易。不过，等你掌握了之后，你会发现，实际上并没有想象中那么难。 0-1 背包问题对于一组不同重量">
+<meta name="keywords" content="CLRS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划">
+<meta property="og:url" content="https://umarellyh.github.io/p/动态规划.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="动态规划学习路线动态规划（Dynamic Programming）比较适合用来求解最优问题，比如求最大值、最小值等等。它可以非常显著地降低时间复杂度，提高代码的执行效率。不过，它也是出了名的难学。它的主要学习难点跟递归类似，那就是，求解问题的过程不太符合人类常规的思维方式。对于新手来说，要想入门确实不容易。不过，等你掌握了之后，你会发现，实际上并没有想象中那么难。 0-1 背包问题对于一组不同重量">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/233.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/234.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/235.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/236.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/237.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/238.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/239.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/240.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/241.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/242.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/243.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/244.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/245.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/246.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="动态规划">
+<meta name="twitter:description" content="动态规划学习路线动态规划（Dynamic Programming）比较适合用来求解最优问题，比如求最大值、最小值等等。它可以非常显著地降低时间复杂度，提高代码的执行效率。不过，它也是出了名的难学。它的主要学习难点跟递归类似，那就是，求解问题的过程不太符合人类常规的思维方式。对于新手来说，要想入门确实不容易。不过，等你掌握了之后，你会发现，实际上并没有想象中那么难。 0-1 背包问题对于一组不同重量">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/233.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/p/动态规划.html">
+
+
+
+
+
+  <title> 动态规划 | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/动态规划.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                动态规划
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-17T16:14:01+08:00">
+                2021-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="动态规划学习路线"><a href="#动态规划学习路线" class="headerlink" title="动态规划学习路线"></a>动态规划学习路线</h2><p><code>动态规划</code>（Dynamic Programming）比较适合用来求解最优问题，比如求最大值、最小值等等。它可以非常显著地降低时间复杂度，提高代码的执行效率。不过，它也是出了名的难学。它的主要学习难点跟递归类似，那就是，<strong>求解问题的过程不太符合人类常规的思维方式</strong>。对于新手来说，要想入门确实不容易。不过，等你掌握了之后，你会发现，实际上并没有想象中那么难。</p>
+<h2 id="0-1-背包问题"><a href="#0-1-背包问题" class="headerlink" title="0-1 背包问题"></a>0-1 背包问题</h2><p>对于一组不同重量、不可分割的物品，我们需要选择一些装入背包，在满足背包最大重量限制的前提下，背包中物品总重量的最大值是多少呢。关于这个问题，回溯的解决方法就是穷举搜索所有可能的装法，然后找出满足条件的最大值。不过，<strong>回溯算法的复杂度比较高，是指数级别的</strong>。那有没有什么规律，可以有效降低时间复杂度呢：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 回溯算法实现。注意：我把输入的变量都定义成了成员变量</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> maxW = Integer.MIN_VALUE;   <span class="comment">// 结果放到 maxW 中</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span>[] weight = &#123;<span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">3</span>&#125;; <span class="comment">// 物品重量</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> n = <span class="number">5</span>; <span class="comment">// 物品个数</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> w = <span class="number">9</span>; <span class="comment">// 背包承受的最大重量</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> cw)</span> </span>&#123; </span><br><span class="line">    <span class="comment">// 调用 f(0, 0)</span></span><br><span class="line">    <span class="keyword">if</span> (cw == w || i == n) &#123; </span><br><span class="line">        <span class="comment">// cw==w 表示装满了，i==n 表示物品都考察完了</span></span><br><span class="line">        <span class="keyword">if</span> (cw &gt; maxW) &#123;</span><br><span class="line">            maxW = cw;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    f(i+<span class="number">1</span>, cw); <span class="comment">// 选择不装第 i 个物品</span></span><br><span class="line">    <span class="keyword">if</span> (cw + weight[i] &lt;= w) &#123;</span><br><span class="line">        f(i+<span class="number">1</span>, cw + weight[i]); <span class="comment">// 选择装第 i 个物品</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>我们假设背包的最大承载重量是 9。我们有 5 个不同的物品，每个物品的重量分别是 2, 2, 4, 6, 3。如果我们把这个例子的回溯求解过程，用递归树画出来，就是下面这个样子：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/233.png" alt></p>
+<p>递归树中的<strong>每个节点表示一种状态</strong>，我们用 (i, cw) 来表示。其中，i 表示将要决策第几个物品是否装入背包，cw 表示当前背包中物品的总重量。比如，<strong>(2, 2) 表示我们将要决策第 2 个物品是否装入背包，在决策前，背包中物品的总重量是 2</strong>。从递归树中有些子问题的求解是重复的，比如图中 f(2, 2) 和 f(3, 4) 都被重复计算了两次。我们可以<strong>借助“备忘录”的解决方式，记录已经计算好的 f(i, cw)</strong>，当再次计算到重复的 f(i, cw) 的时候，可以直接从备忘录中取出来用，就不用再递归计算了，这样就可以避免冗余计算：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> maxW = Integer.MIN_VALUE;    <span class="comment">// 结果放到 maxW 中</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span>[] weight = &#123;<span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">3</span>&#125;;  <span class="comment">// 物品重量</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> n = <span class="number">5</span>; <span class="comment">// 物品个数</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> w = <span class="number">9</span>; <span class="comment">// 背包承受的最大重量</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">boolean</span>[][] mem = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">5</span>][<span class="number">10</span>]; <span class="comment">// 备忘录，默认值 false</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> cw)</span> </span>&#123; </span><br><span class="line">    <span class="comment">// 调用 f(0, 0)</span></span><br><span class="line">    <span class="keyword">if</span> (cw == w || i == n) &#123; </span><br><span class="line">        <span class="comment">// cw==w 表示装满了，i==n 表示物品都考察完了</span></span><br><span class="line">        <span class="keyword">if</span> (cw &gt; maxW) &#123;</span><br><span class="line">            maxW = cw;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (mem[i][cw]) &#123;</span><br><span class="line">        <span class="keyword">return</span>; <span class="comment">// 重复状态</span></span><br><span class="line">    &#125;</span><br><span class="line">    mem[i][cw] = <span class="keyword">true</span>; <span class="comment">// 记录 (i, cw) 这个状态</span></span><br><span class="line">    f(i+<span class="number">1</span>, cw); <span class="comment">// 选择不装第 i 个物品</span></span><br><span class="line">    <span class="keyword">if</span> (cw + weight[i] &lt;= w) &#123;</span><br><span class="line">        f(i+<span class="number">1</span>, cw + weight[i]); <span class="comment">// 选择装第 i 个物品</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们<strong>把整个求解过程分为 n 个阶段，每个阶段会决策一个物品是否放到背包中</strong>。每个物品决策完之后，背包中的物品的重量会有多种情况，也就是说，会达到多种不同的状态，对应到递归树中，就是有很多不同的节点。我们<strong>把每一层重复的状态（节点）合并，只记录不同的状态，然后基于上一层的状态集合，来推导下一层的状态集合</strong>。我们可以通过合并每一层重复的状态，这样就保证每一层不同状态的个数都不会超过 w 个（w 表示背包的承载重量），也就是例子中的 9。于是，我们就成功避免了每层状态个数的指数级增长。</p>
+<p>我们用一个二维数组 states[n][w+1]，来记录每层可以达到的不同状态。第 0 个物品的重量是 2，要么装入背包，要么不装入背包，决策完之后，会对应背包的两种状态，背包中物品的总重量是 0 或者 2。我们用 states[0][0]=true 和 states[0][2]=true 来表示这两种状态。第 1 个物品的重量也是 2，基于之前的背包状态，在这个物品决策完之后，不同的状态有 3 个，背包中物品总重量分别是 0(0+0), 2(0+2 or 2+0), 4(2+2)。我们用 states[1][0]=true, states[1][2]=true, states[1][4]=true 来表示这三种状态。</p>
+<p>以此类推，直到考察完所有的物品后，整个 states 状态数组就都计算好了。我把整个计算的过程画了出来，你可以看看。图中 0 表示 false，1 表示 true。我们只需要在最后一层，找一个值为 true 的最接近 w 的值，就是背包中物品总重量的最大值：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/234.png" alt><br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/235.png" alt></p>
+<p>我把上面的过程，翻译成代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// weight：物品重量，n：物品个数，w：背包可承载重量</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">knapsack</span><span class="params">(<span class="keyword">int</span>[] weight, <span class="keyword">int</span> n, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[][] states = <span class="keyword">new</span> <span class="keyword">boolean</span>[n][w+<span class="number">1</span>]; <span class="comment">// 默认值 false</span></span><br><span class="line">    states[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">true</span>; <span class="comment">// 第一行的数据要特殊处理，可以利用哨兵优化</span></span><br><span class="line">    <span class="keyword">if</span> (weight[<span class="number">0</span>] &lt;= w) &#123;</span><br><span class="line">        states[<span class="number">0</span>][weight[<span class="number">0</span>]] = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123; </span><br><span class="line">        <span class="comment">// 动态规划状态转移</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= w; ++j) &#123;</span><br><span class="line">            <span class="comment">// 不把第 i 个物品放入背包</span></span><br><span class="line">            <span class="keyword">if</span> (states[i-<span class="number">1</span>][j] == <span class="keyword">true</span>) &#123;</span><br><span class="line">                states[i][j] = states[i-<span class="number">1</span>][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= w-weight[i]; ++j) &#123;</span><br><span class="line">            <span class="comment">// 把第 i 个物品放入背包</span></span><br><span class="line">            <span class="keyword">if</span> (states[i-<span class="number">1</span>][j] == <span class="keyword">true</span>) &#123;</span><br><span class="line">                states[i][j+weight[i]] = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = w; i &gt;= <span class="number">0</span>; --i) &#123; </span><br><span class="line">        <span class="comment">// 输出结果</span></span><br><span class="line">        <span class="keyword">if</span> (states[n-<span class="number">1</span>][i] == <span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实际上，这就是一种用动态规划解决问题的思路。我们把问题分解为多个阶段，每个阶段对应一个决策。我们记录每一个阶段可达的状态集合（去掉重复的），然后通过当前阶段的状态集合，来推导下一个阶段的状态集合，动态地往前推进。用回溯算法解决这个问题的时间复杂度 O(2^n)，是指数级的。这个代码的时间复杂度非常好分析，耗时最多的部分就是代码中的两层 for 循环，所以时间复杂度是 O(n*w)。n 表示物品个数，w 表示背包可以承载的总重量。从理论上讲，指数级的时间复杂度肯定要比 O(n*w) 高很多。</p>
+<p>尽管动态规划的执行效率比较高，但是就刚刚的代码实现来说，我们需要额外申请一个 n 乘以 w+1 的二维数组，对空间的消耗比较多。所以，有时候，我们会说，<strong>动态规划是一种空间换时间的解决思路</strong>。实际上，我们只需要一个大小为 w+1 的一维数组就可以解决这个问题。动态规划状态转移的过程，都可以基于这个一维数组来操作。具体的代码实现我贴在这里：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">knapsack2</span><span class="params">(<span class="keyword">int</span>[] items, <span class="keyword">int</span> n, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[] states = <span class="keyword">new</span> <span class="keyword">boolean</span>[w+<span class="number">1</span>]; <span class="comment">// 默认值 false</span></span><br><span class="line">    states[<span class="number">0</span>] = <span class="keyword">true</span>; <span class="comment">// 第一行的数据要特殊处理，可以利用哨兵优化</span></span><br><span class="line">    <span class="keyword">if</span> (items[<span class="number">0</span>] &lt;= w) &#123;</span><br><span class="line">        states[items[<span class="number">0</span>]] = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123; </span><br><span class="line">        <span class="comment">// 避免 for 循环重复计算的问题</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = w-items[i]; j &gt;= <span class="number">0</span>; --j) &#123;</span><br><span class="line">            <span class="comment">// 把第 i 个物品放入背包</span></span><br><span class="line">            <span class="keyword">if</span> (states[j] == <span class="keyword">true</span>) &#123;</span><br><span class="line">                states[j+items[i]] = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = w; i &gt;= <span class="number">0</span>; --i) &#123; </span><br><span class="line">        <span class="comment">// 输出结果</span></span><br><span class="line">        <span class="keyword">if</span> (states[i] == <span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="0-1-背包问题升级版"><a href="#0-1-背包问题升级版" class="headerlink" title="0-1 背包问题升级版"></a>0-1 背包问题升级版</h2><p>我们刚刚讲的背包问题，只涉及背包重量和物品重量。我们现在<strong>引入物品价值这一变量</strong>。对于一组不同重量、不同价值、不可分割的物品，我们选择将某些物品装入背包，在满足背包最大重量限制的前提下，背包中可装入物品的总价值最大是多少呢。这个问题依旧可以用回溯算法来解决：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> maxV = Integer.MIN_VALUE;  <span class="comment">// 结果放到 maxV 中</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span>[] items = &#123;<span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">3</span>&#125;; <span class="comment">// 物品的重量</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span>[] value = &#123;<span class="number">3</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">6</span>&#125;; <span class="comment">// 物品的价值</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> n = <span class="number">5</span>; <span class="comment">// 物品个数</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> w = <span class="number">9</span>; <span class="comment">// 背包承受的最大重量</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> cw, <span class="keyword">int</span> cv)</span> </span>&#123; </span><br><span class="line">    <span class="comment">// 调用 f(0, 0, 0)</span></span><br><span class="line">    <span class="keyword">if</span> (cw == w || i == n) &#123; </span><br><span class="line">        <span class="comment">// cw==w 表示装满了，i==n 表示物品都考察完了</span></span><br><span class="line">        <span class="keyword">if</span> (cv &gt; maxV) &#123;</span><br><span class="line">            maxV = cv;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    f(i+<span class="number">1</span>, cw, cv); <span class="comment">// 选择不装第 i 个物品</span></span><br><span class="line">    <span class="keyword">if</span> (cw + weight[i] &lt;= w) &#123;</span><br><span class="line">        f(i+<span class="number">1</span>, cw+weight[i], cv+value[i]); <span class="comment">// 选择装第 i 个物品</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>针对上面的代码，我们还是照例画出递归树。在递归树中，每个节点表示一个状态。现在我们需要 3 个变量 (i, cw, cv) 来表示一个状态。其中，i 表示即将要决策第 i 个物品是否装入背包，cw 表示当前背包中物品的总重量，cv 表示当前背包中物品的总价值：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/236.png" alt></p>
+<p>我们发现，在递归树中，有几个节点的 i 和 cw 是完全相同的，比如 f(2, 2, 4) 和 f(2, 2, 3)。在背包中物品总重量一样的情况下，f(2, 2, 4) 这种状态对应的物品总价值更大，我们可以舍弃 f(2, 2, 3) 这种状态，只需要沿着 f(2, 2, 4) 这条决策路线继续往下决策就可以。也就是说，对于 (i, cw) 相同的不同状态，那我们<strong>只需要保留 cv 值最大的那个，继续递归处理</strong>，其他状态不予考虑。</p>
+<p><strong>如果用回溯算法，这个问题就没法再用“备忘录”解决了</strong>。我们还是把整个求解过程分为 n 个阶段，每个阶段会决策一个物品是否放到背包中。每个阶段决策完之后，背包中的物品的总重量以及总价值，会有多种情况，也就是会达到多种不同的状态。我们用一个二维数组 states[n][w+1]，来记录每层可以达到的不同状态。不过这里<strong>数组存储的值不再是 boolean 类型的了，而是当前状态对应的最大总价值</strong>。我们把每一层中 (i, cw) 重复的状态（节点）合并，只记录 cv 值最大的那个状态，然后基于这些状态来推导下一层的状态：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">knapsack3</span><span class="params">(<span class="keyword">int</span>[] weight, <span class="keyword">int</span>[] value, <span class="keyword">int</span> n, <span class="keyword">int</span> w)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[][] states = <span class="keyword">new</span> <span class="keyword">int</span>[n][w+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123; </span><br><span class="line">        <span class="comment">// 初始化 states</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; w+<span class="number">1</span>; ++j) &#123;</span><br><span class="line">            states[i][j] = -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    states[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (weight[<span class="number">0</span>] &lt;= w) &#123;</span><br><span class="line">        states[<span class="number">0</span>][weight[<span class="number">0</span>]] = value[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123; </span><br><span class="line">        <span class="comment">// 动态规划，状态转移</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= w; ++j) &#123; </span><br><span class="line">            <span class="comment">// 不选择第 i 个物品</span></span><br><span class="line">            <span class="keyword">if</span> (states[i-<span class="number">1</span>][j] &gt;= <span class="number">0</span>) &#123; </span><br><span class="line">                states[i][j] = states[i-<span class="number">1</span>][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= w-weight[i]; ++j) &#123; </span><br><span class="line">            <span class="comment">// 选择第 i 个物品</span></span><br><span class="line">            <span class="keyword">if</span> (states[i-<span class="number">1</span>][j] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">int</span> v = states[i-<span class="number">1</span>][j] + value[i];</span><br><span class="line">                <span class="keyword">if</span> (v &gt; states[i][j+weight[i]]) &#123;</span><br><span class="line">                    states[i][j+weight[i]] = v;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 找出最大值</span></span><br><span class="line">    <span class="keyword">int</span> maxvalue = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= w; ++j) &#123;</span><br><span class="line">        <span class="keyword">if</span> (states[n-<span class="number">1</span>][j] &gt; maxvalue) &#123;</span><br><span class="line">            maxvalue = states[n-<span class="number">1</span>][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxvalue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何解决购物时的凑单问题"><a href="#如何解决购物时的凑单问题" class="headerlink" title="如何解决购物时的凑单问题"></a>如何解决购物时的凑单问题</h2><p>假设你女朋友的购物车中有 n 个（n&gt;100）想买的商品，她希望从里面选几个，在凑够满减条件的前提下，让选出来的商品价格总和最大程度地接近满减条件（200 元），这样就可以极大限度地“薅羊毛”。对于这个问题，你当然可以利用回溯算法，穷举所有的排列组合，看大于等于 200 并且最接近 200 的组合是哪一个。但是，这样效率太低了点，时间复杂度非常高，是指数级的。</p>
+<p>实际上，它<strong>跟第一个例子中讲的 0-1 背包问题很像，只不过是把“重量”换成了“价格”而已</strong>。购物车中有 n 个商品。我们针对每个商品都决策是否购买。每次决策之后，对应不同的状态集合。我们还是用一个二维数组 states[n][x]，来记录每次决策之后所有可达的状态。0-1 背包问题中，我们找的是小于等于 w 的最大值，x 就是背包的最大承载重量 w+1。对于这个问题来说，我们要找的是大于等于 200（满减条件）的值中最小的，所以就不能设置为 200 加 1 了。所以，我们可以限定 x 值为 601。</p>
+<p>不过，这个问题不仅要求大于等于 200 的总价格中的最小的，我们还要找出这个最小总价格对应都要购买哪些商品。实际上，我们<strong>可以利用 states 数组，倒推出这个被选择的商品序列</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// items 商品价格，n 商品个数, w 表示满减条件，比如 200</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">double11advance</span><span class="params">(<span class="keyword">int</span>[] items, <span class="keyword">int</span> n, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span>[][] states = <span class="keyword">new</span> <span class="keyword">boolean</span>[n][<span class="number">3</span>*w+<span class="number">1</span>]; <span class="comment">// 超过 3 倍就没有薅羊毛的价值了</span></span><br><span class="line">    states[<span class="number">0</span>][<span class="number">0</span>] = <span class="keyword">true</span>;  <span class="comment">// 第一行的数据要特殊处理</span></span><br><span class="line">    <span class="keyword">if</span> (items[<span class="number">0</span>] &lt;= <span class="number">3</span>*w) &#123;</span><br><span class="line">        states[<span class="number">0</span>][items[<span class="number">0</span>]] = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123; </span><br><span class="line">        <span class="comment">// 动态规划</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">3</span>*w; ++j) &#123;</span><br><span class="line">            <span class="comment">// 不购买第 i 个商品</span></span><br><span class="line">            <span class="keyword">if</span> (states[i-<span class="number">1</span>][j] == <span class="keyword">true</span>) &#123;</span><br><span class="line">                states[i][j] = states[i-<span class="number">1</span>][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= <span class="number">3</span>*w-items[i]; ++j) &#123;</span><br><span class="line">            <span class="comment">// 购买第 i 个商品</span></span><br><span class="line">            <span class="keyword">if</span> (states[i-<span class="number">1</span>][j] == <span class="keyword">true</span>) &#123;</span><br><span class="line">                states[i][j+items[i]] = <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> j;</span><br><span class="line">    <span class="keyword">for</span> (j = w; j &lt; <span class="number">3</span>*w+<span class="number">1</span>; ++j) &#123; </span><br><span class="line">        <span class="keyword">if</span> (states[n-<span class="number">1</span>][j] == <span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">break</span>; <span class="comment">// 输出结果大于等于 w 的最小值</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (j == <span class="number">3</span>*w+<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>; <span class="comment">// 没有可行解</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n-<span class="number">1</span>; i &gt;= <span class="number">1</span>; --i) &#123; </span><br><span class="line">        <span class="comment">// i 表示二维数组中的行，j 表示列</span></span><br><span class="line">        <span class="keyword">if</span> (j-items[i] &gt;= <span class="number">0</span> &amp;&amp; states[i-<span class="number">1</span>][j-items[i]] == <span class="keyword">true</span>) &#123;</span><br><span class="line">            System.out.print(items[i] + <span class="string">" "</span>); <span class="comment">// 购买这个商品</span></span><br><span class="line">            j = j - items[i];</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="comment">// else 没有购买这个商品，j 不变</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (j != <span class="number">0</span>) &#123;</span><br><span class="line">        System.out.print(items[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>状态 (i, j) 只有可能从 (i-1, j) 或者 (i-1, j-value[i]) 两个状态推导过来。所以，我们就检查这两个状态是否是可达的，也就是 states[i-1][j] 或者 states[i-1][j-value[i]] 是否是 true。<strong>如果 states[i-1][j] 可达，就说明我们没有选择购买第 i 个商品，如果 states[i-1][j-value[i]] 可达，那就说明我们选择了购买第 i 个商品</strong>。我们从中选择一个可达的状态（如果两个都可达，就随意选择一个），然后，继续迭代地考察其他商品是否有选择购买。</p>
+<h2 id="“一个模型三个特征”理论讲解"><a href="#“一个模型三个特征”理论讲解" class="headerlink" title="“一个模型三个特征”理论讲解"></a>“一个模型三个特征”理论讲解</h2><p>首先，我们来看，什么是“一个模型”？它指的是动态规划适合解决的问题的模型，我把这个模型定义为<strong>多阶段决策最优解模型</strong>。我们一般是用动态规划来解决最优问题，而解决问题的过程，需要经历多个决策阶段，每个决策阶段都对应着一组状态。然后我们寻找一组决策序列，经过这组决策序列，能够产生最终期望求解的最优值。</p>
+<p>现在，我们再来看，什么是“三个特征”：</p>
+<ol>
+<li>最优子结构：<br>最优子结构指的是，问题的最优解包含子问题的最优解。反过来说就是，我们可以通过子问题的最优解，推导出问题的最优解。如果我们把最优子结构，对应到我们前面定义的动态规划问题模型上，那我们也可以理解为，<strong>后面阶段的状态可以通过前面阶段的状态推导出来</strong>；</li>
+<li>无后效性：<br>无后效性有两层含义，第一层含义是，在推导后面阶段的状态的时候，我们只关心前面阶段的状态值，不关心这个状态是怎么一步一步推导出来的。第二层含义是，<strong>某阶段状态一旦确定，就不受之后阶段的决策影响</strong>。无后效性是一个非常“宽松”的要求。只要满足前面提到的动态规划问题模型，其实基本上都会满足无后效性；</li>
+<li>重复子问题：<br>如果用一句话概括一下，那就是：<strong>不同的决策序列，到达某个相同的阶段时，可能会产生重复的状态</strong>；</li>
+</ol>
+<h2 id="“一个模型三个特征”实例剖析"><a href="#“一个模型三个特征”实例剖析" class="headerlink" title="“一个模型三个特征”实例剖析"></a>“一个模型三个特征”实例剖析</h2><p>假设我们有一个 n 乘以 n 的矩阵 w[n][n]。矩阵存储的都是正整数。棋子起始位置在左上角，终止位置在右下角。我们将棋子从左上角移动到右下角。每次只能向右或者向下移动一位。从左上角到右下角，会有很多不同的路径可以走。我们把每条路径经过的数字加起来看作路径的长度。那从左上角移动到右下角的最短路径长度是多少呢：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/237.png" alt></p>
+<p>从 (0, 0) 走到 (n-1, n-1)，<strong>总共要走 2*(n-1) 步，也就对应着 2*(n-1) 个阶段</strong>。每个阶段都有向右走或者向下走两种决策，并且每个阶段都会对应一个状态集合。我们把状态定义为 min_dist(i, j)，其中 i 表示行，j 表示列。min_dist 表达式的值表示从 (0, 0) 到达 (i, j) 的最短路径长度。所以，这个问题是一个多阶段决策最优解问题，符合动态规划的模型：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/238.png" alt></p>
+<p>我们可以用回溯算法来解决这个问题。如果你自己写一下代码，画一下递归树，就会发现，递归树中有重复的节点。<strong>重复的节点表示，从左上角到节点对应的位置，有多种路线</strong>，这也能说明这个问题中存在重复子问题：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/239.png" alt></p>
+<p>如果我们走到 (i, j) 这个位置，我们只能通过 (i-1, j)，(i, j-1) 这两个位置移动过来，也就是说，我们想要计算 (i, j) 位置对应的状态，只需要关心 (i-1, j)，(i, j-1) 两个位置对应的状态，并不关心棋子是通过什么样的路线到达这两个位置的。而且，我们仅仅允许往下和往右移动，不允许后退，所以，<strong>前面阶段的状态确定之后，不会被后面阶段的决策所改变</strong>，所以，这个问题符合“无后效性”这一特征。</p>
+<p>刚刚定义状态的时候，我们把从起始位置 (0, 0) 到 (i, j) 的最小路径，记作 min_dist(i, j)。因为我们只能往右或往下移动，所以，我们只有可能从 (i, j-1) 或者 (i-1, j) 两个位置到达 (i, j)。也就是说，到达 (i, j) 的最短路径要么经过 (i, j-1)，要么经过 (i-1, j)，而且到达 (i, j) 的最短路径肯定包含到达这两个位置的最短路径之一。换句话说就是，<strong>min_dist(i, j) 可以通过 min_dist(i, j-1) 和 min_dist(i-1, j) 两个状态推导出来</strong>。这就说明，这个问题符合“最优子结构”：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">min_dist(i, j) = w[i][j] + min(min_dist(i, j-<span class="number">1</span>), min_dist(i-<span class="number">1</span>, j))</span><br></pre></td></tr></table></figure>
+
+<h2 id="两种动态规划解题思路总结"><a href="#两种动态规划解题思路总结" class="headerlink" title="两种动态规划解题思路总结"></a>两种动态规划解题思路总结</h2><p>解决动态规划问题，一般有两种思路。我把它们分别叫作，状态转移表法和状态转移方程法。</p>
+<h3 id="状态转移表法"><a href="#状态转移表法" class="headerlink" title="状态转移表法"></a>状态转移表法</h3><p>一般能用动态规划解决的问题，都可以使用回溯算法的暴力搜索解决。所以，当我们拿到问题的时候，我们可以先用简单的回溯算法解决，然后定义状态，每个状态表示一个节点，然后对应画出递归树。<strong>从递归树中，我们很容易可以看出来，是否存在重复子问题，以及重复子问题是如何产生的</strong>。以此来寻找规律，看是否能用动态规划解决。</p>
+<p>找到重复子问题之后，接下来，我们有两种处理思路：</p>
+<ol>
+<li>直接用回溯加“备忘录”的方法，来避免重复子问题。从执行效率上来讲，这跟动态规划的解决思路没有差别；</li>
+<li>使用动态规划的解决方法 – 状态转移表法；</li>
+</ol>
+<p>我们先画出一个状态表。状态表一般都是二维的，所以你可以把它想象成二维数组。其中，<strong>每个状态包含三个变量，行、列、数组值</strong>。我们根据决策的先后过程，从前往后，根据递推关系，分阶段填充状态表中的每个状态。最后，我们<strong>将这个递推填表的过程，翻译成代码，就是动态规划代码了</strong>。</p>
+<p>尽管大部分状态表都是二维的，但是如果问题的状态比较复杂，需要很多变量来表示，那对应的状态表可能就是高维的，比如三维、四维。那这个时候，我们就不适合用状态转移表法来解决了。一方面是因为高维状态转移表不好画图表示，另一方面是因为<strong>人脑确实很不擅长思考高维的东西</strong>。</p>
+<p>从起点到终点，我们有很多种不同的走法。我们可以穷举所有走法，然后对比找出一个最短走法。我们可以用回溯算法这个比较有规律的穷举算法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> minDist = Integer.MAX_VALUE; <span class="comment">// 全局变量或者成员变量</span></span><br><span class="line"><span class="comment">// 调用方式：minDistBT(0, 0, 0, w, n)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">minDistBT</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> dist, <span class="keyword">int</span>[][] w, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 到达了 (n-1, n-1) 这个位置了，这里看着有点奇怪哈，你自己举个例子看下</span></span><br><span class="line">    <span class="keyword">if</span> (i == n &amp;&amp; j == n) &#123;</span><br><span class="line">        <span class="keyword">if</span> (dist &lt; minDist) &#123;</span><br><span class="line">            minDist = dist;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; n) &#123; </span><br><span class="line">        <span class="comment">// 往下走，更新 i=i+1</span></span><br><span class="line">        minDistBT(i + <span class="number">1</span>, j, dist+w[i][j], w, n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (j &lt; n) &#123; </span><br><span class="line">        <span class="comment">// 往右走，更新 j=j+1</span></span><br><span class="line">        minDistBT(i, j+<span class="number">1</span>, dist+w[i][j], w, n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有了回溯代码之后，接下来，我们要画出递归树，以此来寻找重复子问题。在递归树中，一个状态（也就是一个节点）包含三个变量 (i, j, dist)。从图中，我们看出，尽管 (i, j, dist) 不存在重复的，但是 (i, j) 重复的有很多。<strong>对于 (i, j) 重复的节点，我们只需要选择 dist 最小的节点</strong>，继续递归求解，其他节点就可以舍弃了：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/240.png" alt></p>
+<p>我们画出一个二维状态表，表中的行、列表示棋子所在的位置，表中的数值表示从起点到这个位置的最短路径。我们<strong>按照决策过程，通过不断状态递推演进，将状态表填好</strong>。为了方便代码实现，我们按行来进行依次填充：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/241.png" alt><br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/242.png" alt></p>
+<p>弄懂了填表的过程，代码实现就简单多了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDistDP</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[][] states = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j) &#123; </span><br><span class="line">        <span class="comment">// 初始化 states 的第一行数据</span></span><br><span class="line">        sum += matrix[<span class="number">0</span>][j];</span><br><span class="line">        states[<span class="number">0</span>][j] = sum;</span><br><span class="line">    &#125;</span><br><span class="line">    sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123; </span><br><span class="line">        <span class="comment">// 初始化 states 的第一列数据</span></span><br><span class="line">        sum += matrix[i][<span class="number">0</span>];</span><br><span class="line">        states[i][<span class="number">0</span>] = sum;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; ++j) &#123;</span><br><span class="line">            states[i][j] = matrix[i][j] + Math.min(states[i][j-<span class="number">1</span>], states[i-<span class="number">1</span>][j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> states[n-<span class="number">1</span>][n-<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="状态转移方程法"><a href="#状态转移方程法" class="headerlink" title="状态转移方程法"></a>状态转移方程法</h3><p>状态转移方程法有点类似递归的解题思路。我们需要分析，<strong>某个问题如何通过子问题来递归求解，也就是所谓的最优子结构</strong>。根据最优子结构，写出递归公式，也就是所谓的状态转移方程。有了状态转移方程，代码实现就非常简单了。一般情况下，我们有两种代码实现方法：</p>
+<ol>
+<li>递归加“备忘录”；</li>
+<li>迭代递推；</li>
+</ol>
+<p>这里我强调一下，状态转移方程是解决动态规划的关键。如果我们能写出状态转移方程，那动态规划问题基本上就解决一大半了，而翻译成代码非常简单。但是很多动态规划问题的状态本身就不好定义，状态转移方程也就更不好想到。下面我用递归加“备忘录”的方式，将状态转移方程翻译成代码；对于另一种实现方式，跟状态转移表法的代码实现是一样的，只是思路不同：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span>[][] matrix = &#123;&#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">9</span>&#125;, &#123;<span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>&#125;, &#123;<span class="number">5</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">7</span>&#125;, &#123;<span class="number">6</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">3</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> n = <span class="number">4</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span>[][] mem = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">4</span>][<span class="number">4</span>];</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDist</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123; </span><br><span class="line">    <span class="comment">// 调用 minDist(n-1, n-1)</span></span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">0</span> &amp;&amp; j == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> matrix[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (mem[i][j] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> mem[i][j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> minLeft = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">if</span> (j-<span class="number">1</span> &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        minLeft = minDist(i, j-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> minUp = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">if</span> (i-<span class="number">1</span> &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">        minUp = minDist(i-<span class="number">1</span>, j);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> currMinDist = matrix[i][j] + Math.min(minLeft, minUp);</span><br><span class="line">    mem[i][j] = currMinDist;</span><br><span class="line">    <span class="keyword">return</span> currMinDist;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四种算法思想比较分析"><a href="#四种算法思想比较分析" class="headerlink" title="四种算法思想比较分析"></a>四种算法思想比较分析</h2><p>如果我们将这四种算法思想分一下类，那贪心、回溯、动态规划可以归为一类，而分治单独可以作为一类，因为它跟其他三个都不大一样。<strong>前三个算法解决问题的模型，都可以抽象成我们今天讲的那个多阶段决策最优解模型</strong>，而分治算法解决的问题尽管大部分也是最优解问题，但是，大部分都不能抽象成多阶段决策模型。</p>
+<p>回溯算法是个“万金油”。<strong>基本上能用的动态规划、贪心解决的问题，我们都可以用回溯算法解决</strong>。回溯算法相当于穷举搜索。穷举所有的情况，然后对比得到最优解。不过，回溯算法的时间复杂度非常高，是指数级别的，只能用来解决小规模数据的问题。对于大规模数据的问题，用回溯算法解决的执行效率就很低了。</p>
+<p>尽管动态规划比回溯算法高效，但是，并不是所有问题，都可以用动态规划来解决。<strong>能用动态规划解决的问题，需要满足三个特征</strong>，最优子结构、无后效性和重复子问题。在重复子问题这一点上，动态规划和分治算法的区分非常明显。<strong>分治算法要求分割成的子问题，不能有重复子问题</strong>，而动态规划正好相反，动态规划之所以高效，就是因为回溯算法实现中存在大量的重复子问题。</p>
+<p><strong>贪心算法实际上是动态规划算法的一种特殊情况</strong>。它解决问题起来更加高效，代码实现也更加简洁。不过，它可以解决的问题也更加有限。它能解决的问题需要满足三个条件，最优子结构、无后效性和<strong>贪心选择性</strong>。“贪心选择性”的意思是：<strong>通过局部最优的选择，能产生全局的最优选择</strong>。每一个阶段，我们都选择当前看起来最优的决策，所有阶段的决策完成之后，最终由这些局部最优解构成全局最优解。</p>
+<h2 id="如何量化两个字符串的相似度？"><a href="#如何量化两个字符串的相似度？" class="headerlink" title="如何量化两个字符串的相似度？"></a>如何量化两个字符串的相似度？</h2><p>有一个非常著名的量化方法，那就是<code>编辑距离</code>（Edit Distance）。根据所包含的编辑操作种类的不同，编辑距离有多种不同的计算方式，比较著名的有<code>莱文斯坦距离</code>（Levenshtein Distance）和<code>最长公共子串长度</code>（Longest Common Substring Length）。其中，莱文斯坦距离允许增加、删除、替换字符这三个编辑操作，最长公共子串长度只允许增加、删除字符这两个编辑操作。</p>
+<p>而且，莱文斯坦距离和最长公共子串长度，从两个截然相反的角度，分析字符串的相似程度。<strong>莱文斯坦距离的大小，表示两个字符串差异的大小；而最长公共子串的大小，表示两个字符串相似程度的大小</strong>。我举个例子给你说明一下。这里面，两个字符串 mitcmu 和 mtacnu 的莱文斯坦距离是 3，最长公共子串长度是 4：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/243.png" alt></p>
+<h2 id="如何编程计算莱文斯坦距离？"><a href="#如何编程计算莱文斯坦距离？" class="headerlink" title="如何编程计算莱文斯坦距离？"></a>如何编程计算莱文斯坦距离？</h2><p>这个问题是求把一个字符串变成另一个字符串，需要的最少编辑次数。整个求解过程，涉及多个决策阶段，我们需要依次考察一个字符串中的每个字符，跟另一个字符串中的字符是否匹配，匹配的话如何处理，不匹配的话又如何处理。所以，这个问题符合多阶段决策最优解模型。回溯是一个递归处理的过程。如果 a[i] 与 b[j] 匹配，我们递归考察 a[i+1] 和 b[j+1]。<strong>如果 a[i] 与 b[j] 不匹配，那我们有多种处理方式可选</strong>：</p>
+<ul>
+<li>可以删除 a[i]，然后递归考察 a[i+1] 和 b[j]；</li>
+<li>可以删除 b[j]，然后递归考察 a[i] 和 b[j+1]；</li>
+<li>可以在 a[i] 前面添加一个跟 b[j] 相同的字符，然后递归考察 a[i] 和 b[j+1]；</li>
+<li>可以在 b[j] 前面添加一个跟 a[i] 相同的字符，然后递归考察 a[i+1] 和 b[j]；</li>
+<li>可以将 a[i] 替换成 b[j]，或者将 b[j] 替换成 a[i]，然后递归考察 a[i+1] 和 b[j+1]；</li>
+</ul>
+<p>我们将上面的回溯算法的处理思路，翻译成代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">char</span>[] a = <span class="string">"mitcmu"</span>.toCharArray();</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">char</span>[] b = <span class="string">"mtacnu"</span>.toCharArray();</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> n = <span class="number">6</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> m = <span class="number">6</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> minDist = Integer.MAX_VALUE; <span class="comment">// 存储结果</span></span><br><span class="line"><span class="comment">// 调用方式：lwstBT(0, 0, 0)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">lwstBT</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> edist)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i == n || j == m) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; n) &#123;</span><br><span class="line">            edist += n - i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (j &lt; m) &#123;</span><br><span class="line">            edist += m - j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (edist &lt; minDist) &#123;</span><br><span class="line">            minDist = edist;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (a[i] == b[j]) &#123; </span><br><span class="line">        <span class="comment">// 两个字符匹配</span></span><br><span class="line">        lwstBT(i + <span class="number">1</span>, j + <span class="number">1</span>, edist);</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">else</span> &#123; </span><br><span class="line">        <span class="comment">// 两个字符不匹配</span></span><br><span class="line">        lwstBT(i + <span class="number">1</span>, j, edist + <span class="number">1</span>);     <span class="comment">// 删除 a[i] 或者 b[j] 前添加一个字符</span></span><br><span class="line">        lwstBT(i, j + <span class="number">1</span>, edist + <span class="number">1</span>);     <span class="comment">// 删除 b[j] 或者 a[i] 前添加一个字符</span></span><br><span class="line">        lwstBT(i + <span class="number">1</span>, j + <span class="number">1</span>, edist + <span class="number">1</span>); <span class="comment">// 将 a[i] 和 b[j] 替换为相同字符</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>根据回溯算法的代码实现，我们可以画出递归树，看是否存在重复子问题。如果存在重复子问题，那我们就可以考虑能否用动态规划来解决；<strong>如果不存在重复子问题，那回溯就是最好的解决方法</strong>：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/244.png" alt></p>
+<p>在递归树中，每个节点代表一个状态，状态包含三个变量 (i, j, edist)，其中，edist 表示处理到 a[i] 和 b[j] 时，已经执行的编辑操作的次数。在递归树中，(i, j) 两个变量重复的节点很多，比如 (3, 2) 和 (2, 3)。对于 (i, j) 相同的节点，我们只需要保留 edist 最小的，继续递归处理就可以了，剩下的节点都可以舍弃。所以，状态就从 (i, j, edist) 变成了 (i, j, min_edist)，其中 min_edist 表示处理到 a[i] 和 b[j]，已经执行的最少编辑次数。</p>
+<p>不过，这个问题的状态转移方式要复杂很多。状态 (i, j) 可能从 (i-1, j), (i, j-1), (i-1, j-1) 三个状态中的任意一个转移过来：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/245.png" alt></p>
+<p>基于刚刚的分析，我们可以尝试着将把状态转移的过程，用公式写出来：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果：a[i]!=b[j]，那么：min_edist(i, j) 就等于：</span></span><br><span class="line">min(min_edist(i-<span class="number">1</span>, j) + <span class="number">1</span>, min_edist(i, j-<span class="number">1</span>) + <span class="number">1</span>, min_edist(i-<span class="number">1</span>, j-<span class="number">1</span>) + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果：a[i]==b[j]，那么：min_edist(i, j) 就等于：</span></span><br><span class="line">min(min_edist(i-<span class="number">1</span>, j) + <span class="number">1</span>, min_edist(i, j-<span class="number">1</span>) + <span class="number">1</span>，min_edist(i-<span class="number">1</span>, j-<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+
+<p>了解了状态与状态之间的递推关系，我们画出一个二维的状态表，按行依次来填充状态表中的每个值：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/246.png" alt></p>
+<p>我们现在既有状态转移方程，又理清了完整的填表过程，代码实现就非常简单了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lwstDP</span><span class="params">(<span class="keyword">char</span>[] a, <span class="keyword">int</span> n, <span class="keyword">char</span>[] b, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[][] minDist = <span class="keyword">new</span> <span class="keyword">int</span>[n][m];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; ++j) &#123; </span><br><span class="line">        <span class="comment">// 初始化第 0 行： a[0] 与 b[0...j] 的编辑距离</span></span><br><span class="line">        <span class="keyword">if</span> (a[<span class="number">0</span>] == b[j]) &#123; </span><br><span class="line">            minDist[<span class="number">0</span>][j] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (j != <span class="number">0</span>) &#123;</span><br><span class="line">            minDist[<span class="number">0</span>][j] = minDist[<span class="number">0</span>][j-<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123; </span><br><span class="line">            minDist[<span class="number">0</span>][j] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123; </span><br><span class="line">        <span class="comment">// 初始化第 0 列：a[0...i] 与 b[0] 的编辑距离</span></span><br><span class="line">        <span class="keyword">if</span> (a[i] == b[<span class="number">0</span>]) &#123;</span><br><span class="line">            minDist[i][<span class="number">0</span>] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (i != <span class="number">0</span>) &#123;</span><br><span class="line">            minDist[i][<span class="number">0</span>] = minDist[i-<span class="number">1</span>][<span class="number">0</span>] + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123; </span><br><span class="line">            minDist[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123; </span><br><span class="line">        <span class="comment">// 按行填表</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; m; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i] == b[j]) &#123;</span><br><span class="line">                minDist[i][j] = min(minDist[i-<span class="number">1</span>][j]+<span class="number">1</span>, minDist[i][j-<span class="number">1</span>]+<span class="number">1</span>, minDist[i-<span class="number">1</span>][j-<span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                minDist[i][j] = min(minDist[i-<span class="number">1</span>][j]+<span class="number">1</span>, minDist[i][j-<span class="number">1</span>]+<span class="number">1</span>, minDist[i-<span class="number">1</span>][j-<span class="number">1</span>]+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> minDist[n-<span class="number">1</span>][m-<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当我们拿到一个问题的时候，我们可以先不思考，计算机会如何实现这个问题，而是单纯考虑“人脑”会如何去解决这个问题。人脑比较倾向于思考具象化的、摸得着看得见的东西，不适合思考过于抽象的问题。所以，我们需要<strong>把抽象问题具象化，实例化几个测试数据，通过人脑去分析具体实例的解，然后总结规律</strong>，再尝试套用学过的算法，看是否能够解决。</p>
+<h2 id="如何编程计算最长公共子串长度？"><a href="#如何编程计算最长公共子串长度？" class="headerlink" title="如何编程计算最长公共子串长度？"></a>如何编程计算最长公共子串长度？</h2><p>这个问题的解决思路，跟莱文斯坦距离的解决思路非常相似，也可以用动态规划解决。我刚刚已经详细讲解了莱文斯坦距离的动态规划解决思路，所以，针对这个问题，我直接定义状态，然后写状态转移方程。每个状态还是包括三个变量 (i, j, max_lcs)，max_lcs 表示 a[0…i] 和 b[0…j] 的最长公共子串长度。</p>
+<p>我们先来看回溯的处理思路。我们从 a[0] 和 b[0] 开始，依次考察两个字符串中的字符是否匹配：</p>
+<ul>
+<li>如果 a[i] 与 b[j] 互相匹配，我们将最大公共子串长度加一，并且继续考察 a[i+1] 和 b[j+1]；</li>
+<li>如果 a[i] 与 b[j] 不匹配，最长公共子串长度不变，这个时候，有两个不同的决策路线：<ul>
+<li>删除 a[i]，或者在 b[j] 前面加上一个字符 a[i]，然后继续考察 a[i+1] 和 b[j]；</li>
+<li>删除 b[j]，或者在 a[i] 前面加上一个字符 b[j]，然后继续考察 a[i] 和 b[j+1]；</li>
+</ul>
+</li>
+</ul>
+<p>反过来也就是说，如果我们要求 a[0…i] 和 b[0…j] 的最长公共长度 max_lcs(i, j)，我们只有可能通过这三个状态转移过来：(i-1, j-1, max_lcs), (i-1, j, max_lcs), (i, j-1, max_lcs)。</p>
+<p>如果我们把这个转移过程，用状态转移方程写出来，就是下面这个样子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果：a[i]==b[j]，那么：max_lcs(i, j) 就等于：</span></span><br><span class="line">max(max_lcs(i-<span class="number">1</span>, j-<span class="number">1</span>) + <span class="number">1</span>, max_lcs(i-<span class="number">1</span>, j), max_lcs(i, j-<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果：a[i]!=b[j]，那么：max_lcs(i, j) 就等于：</span></span><br><span class="line">max(max_lcs(i-<span class="number">1</span>, j-<span class="number">1</span>), max_lcs(i-<span class="number">1</span>, j), max_lcs(i, j-<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+
+<p>有了状态转移方程，代码实现就简单多了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lcs</span><span class="params">(<span class="keyword">char</span>[] a, <span class="keyword">int</span> n, <span class="keyword">char</span>[] b, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[][] maxLcs = <span class="keyword">new</span> <span class="keyword">int</span>[n][m];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; ++j) &#123;</span><br><span class="line">        <span class="comment">// 初始化第 0 行：a[0] 与 b[0...j] 的 maxLcs</span></span><br><span class="line">        <span class="keyword">if</span> (a[<span class="number">0</span>] == b[j]) &#123;</span><br><span class="line">            maxLcs[<span class="number">0</span>][j] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (j != <span class="number">0</span>) &#123;</span><br><span class="line">            maxLcs[<span class="number">0</span>][j] = maxLcs[<span class="number">0</span>][j-<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            maxLcs[<span class="number">0</span>][j] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="comment">// 初始化第 0 列：a[0...i] 与 b[0] 的 maxLcs</span></span><br><span class="line">        <span class="keyword">if</span> (a[i] == b[<span class="number">0</span>]) &#123;</span><br><span class="line">            maxLcs[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (i != <span class="number">0</span>) &#123;</span><br><span class="line">            maxLcs[i][<span class="number">0</span>] = maxLcs[i-<span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            maxLcs[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i) &#123; </span><br><span class="line">        <span class="comment">// 填表</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; m; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[i] == b[j]) &#123;</span><br><span class="line">                maxLcs[i][j] = max(maxLcs[i-<span class="number">1</span>][j], maxLcs[i][j-<span class="number">1</span>], maxLcs[i-<span class="number">1</span>][j-<span class="number">1</span>]+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                maxLcs[i][j] = max(maxLcs[i-<span class="number">1</span>][j], maxLcs[i][j-<span class="number">1</span>], maxLcs[i-<span class="number">1</span>][j-<span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxLcs[n-<span class="number">1</span>][m-<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何实现搜索引擎中的拼写纠错功能"><a href="#如何实现搜索引擎中的拼写纠错功能" class="headerlink" title="如何实现搜索引擎中的拼写纠错功能"></a>如何实现搜索引擎中的拼写纠错功能</h2><p>当用户在搜索框内，输入一个拼写错误的单词时，我们就<strong>拿这个单词跟词库中的单词一一进行比较，计算编辑距离，将编辑距离最小的单词，作为纠正之后的单词，提示给用户</strong>。这就是拼写纠错最基本的原理。不过，真正用于商用的搜索引擎，拼写纠错功能显然不会就这么简单。一方面，单纯利用编辑距离来纠错，效果并不一定好；另一方面，词库中的数据量可能很大，搜索引擎每天要支持海量的搜索，所以对纠错的性能要求很高。针对纠错效果不好的问题，我们有很多种优化思路，我这里介绍几种：</p>
+<ul>
+<li>我们并不仅仅取出编辑距离最小的那个单词，而是取出编辑距离最小的 Top 10，然后根据其他参数，决策选择哪个单词作为拼写纠错单词。比如使用搜索热门程度来决定哪个单词作为拼写纠错单词；</li>
+<li>我们还可以用多种编辑距离计算方法，比如今天讲到的两种，然后分别编辑距离最小的 Top 10，然后求交集，用交集的结果，再继续优化处理；</li>
+<li>我们还可以通过统计用户的搜索日志，得到最常被拼错的单词列表，以及对应的拼写正确的单词。搜索引擎在拼写纠错的时候，首先在这个最常被拼错单词列表中查找。如果一旦找到，直接返回对应的正确的单词。这样纠错的效果非常好；</li>
+<li>我们还有更加高级一点的做法，引入个性化因素。针对每个用户，维护这个用户特有的搜索喜好，也就是常用的搜索关键词。当用户输入错误的单词的时候，我们首先在这个用户常用的搜索关键词中，计算编辑距离，查找编辑距离最小的单词；</li>
+</ul>
+<p>针对纠错性能方面，我们也有相应的优化方式。我讲两种分治的优化思路：</p>
+<ul>
+<li>如果纠错功能的 TPS 不高，我们可以部署多台机器，每台机器运行一个独立的纠错功能。当有一个纠错请求的时候，我们通过负载均衡，分配到其中一台机器，来计算编辑距离，得到纠错单词；</li>
+<li>如果纠错系统的响应时间太长，也就是，每个纠错请求处理时间过长，我们可以将纠错的词库，分割到很多台机器。当有一个纠错请求的时候，我们就将这个拼写错误的单词，同时发送到这多台机器，让多台机器并行处理，分别得到编辑距离最小的单词，然后再比对合并，最终决定出一个最优的纠错单词；</li>
+</ul>
+<h2 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h2><p><a href="https://leetcode.com/problems/regular-expression-matching/" target="_blank" rel="noopener">Regular Expression Matching</a><br><a href="https://leetcode.com/problems/minimum-path-sum/" target="_blank" rel="noopener">Minimum Path Sum</a><br><a href="https://leetcode.com/problems/coin-change/" target="_blank" rel="noopener">Coin Change</a><br><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" target="_blank" rel="noopener">Best Time to Buy and Sell Stock</a><br><a href="https://leetcode.com/problems/maximum-product-subarray/" target="_blank" rel="noopener">Maximum Product Subarray</a><br><a href="https://leetcode.com/problems/triangle/" target="_blank" rel="noopener">Triangle</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CLRS/" rel="tag"># CLRS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/p/回溯算法.html" rel="next" title="回溯算法">
+                <i class="fa fa-chevron-left"></i> 回溯算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/p/拓扑排序.html" rel="prev" title="拓扑排序">
+                拓扑排序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划学习路线"><span class="nav-number">1.</span> <span class="nav-text">动态规划学习路线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-1-背包问题"><span class="nav-number">2.</span> <span class="nav-text">0-1 背包问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0-1-背包问题升级版"><span class="nav-number">3.</span> <span class="nav-text">0-1 背包问题升级版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何解决购物时的凑单问题"><span class="nav-number">4.</span> <span class="nav-text">如何解决购物时的凑单问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#“一个模型三个特征”理论讲解"><span class="nav-number">5.</span> <span class="nav-text">“一个模型三个特征”理论讲解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#“一个模型三个特征”实例剖析"><span class="nav-number">6.</span> <span class="nav-text">“一个模型三个特征”实例剖析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两种动态规划解题思路总结"><span class="nav-number">7.</span> <span class="nav-text">两种动态规划解题思路总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#状态转移表法"><span class="nav-number">7.1.</span> <span class="nav-text">状态转移表法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态转移方程法"><span class="nav-number">7.2.</span> <span class="nav-text">状态转移方程法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四种算法思想比较分析"><span class="nav-number">8.</span> <span class="nav-text">四种算法思想比较分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何量化两个字符串的相似度？"><span class="nav-number">9.</span> <span class="nav-text">如何量化两个字符串的相似度？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何编程计算莱文斯坦距离？"><span class="nav-number">10.</span> <span class="nav-text">如何编程计算莱文斯坦距离？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何编程计算最长公共子串长度？"><span class="nav-number">11.</span> <span class="nav-text">如何编程计算最长公共子串长度？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何实现搜索引擎中的拼写纠错功能"><span class="nav-number">12.</span> <span class="nav-text">如何实现搜索引擎中的拼写纠错功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LeetCode"><span class="nav-number">13.</span> <span class="nav-text">LeetCode</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

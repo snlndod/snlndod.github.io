@@ -1,0 +1,1001 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="HANA,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="IntroductionThis chapter presents the application developer’s view of SAP HANA. It gives an overview of both the programming languages for writing code that runs inside SAP HANA, and the client librar">
+<meta name="keywords" content="HANA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Programmer&#39;s View of SAP HANA">
+<meta property="og:url" content="https://umarellyh.github.io/p/The-Programmer-s-View-of-SAP-HANA.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="IntroductionThis chapter presents the application developer’s view of SAP HANA. It gives an overview of both the programming languages for writing code that runs inside SAP HANA, and the client librar">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/4-1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/4-2.jpg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Programmer&#39;s View of SAP HANA">
+<meta name="twitter:description" content="IntroductionThis chapter presents the application developer’s view of SAP HANA. It gives an overview of both the programming languages for writing code that runs inside SAP HANA, and the client librar">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/4-1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/p/The-Programmer-s-View-of-SAP-HANA.html">
+
+
+
+
+
+  <title> The Programmer's View of SAP HANA | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/The-Programmer-s-View-of-SAP-HANA.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                The Programmer's View of SAP HANA
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-09T21:44:58+08:00">
+                2019-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>This chapter presents the application developer’s view of SAP HANA. It gives an overview of both the <strong>programming languages</strong> for writing code that runs inside SAP HANA, and the <strong>client libraries</strong> used by client applications to connect to SAP HANA.<br>Database applications use well-defined interfaces to communicate with the database management system functioning as a <strong>data source</strong>, usually over a network connection.<br>The application, often running in the context of an application server, takes the role of <strong>a client</strong>, while the database system plays the role of <strong>a server</strong>. Client applications typically use vendor-supplied client libraries which implement part of the API and encapsulates the communication details.<br>The leading programming language for database application is the <code>SQL</code>. SQL provides <strong>functional capabilities</strong> for creating, accessing, maintaining, controlling, and protecting relational data.<br>SAP HANA greatly <strong>extends SQL</strong>. This includes <strong>SAP HANA-specific</strong> SQL statements, views, data types, and the possibility to write <code>Procedures</code> in several languages, such as SQLScript, L, C++ and R.<br><code>Modeled Views</code> are <strong>design-time abstractions</strong> that allow developers to work efficiently with SAP HANA’s extended views on a higher level of abstraction.<br>An alternative query language for clients is <code>MDX</code>. Pioneered by Microsoft, MDX is used by applications to <strong>query OLAP</strong> (OnLine Analytical Processing) data models. Applications can <strong>query graph data</strong> with the <code>openCypher</code> query language and implement custom graph algorithms as graph stored procedures.</p>
+<a id="more"></a>
+<p>Traditionally, the client application is written in a high-level language such as ABAP, Java or C++, has to <strong>build its own high-level data models</strong>. The involved data then needs to be sent back and forth across the SQL interface, often introducing significant inefficiencies. Another well-recognized complexity that application developers face is that these data models <strong>cannot easily be shared by different technology stacks</strong>, leading to duplication and re-engineering. Toady, SAP HANA helps to overcome these difficulties in 3 ways:</p>
+<ul>
+<li>SAP HANA allows developers to create application-specific procedures and models that are executed within the index server, with fast access to the in-memory data. This way, <strong>in-memory technology can be used</strong> and the <strong>data transfer with the client can be minimized</strong> as well.</li>
+<li>Developers can use XS to provide service APIs, data and resources to HTTP clients, <strong>without the need of an additional application server</strong>.</li>
+<li>SAP HANA has been enhanced with a new abstraction layer, called <code>Core Data Services</code> (CDS). The CDS allow application developers to create data models on a high level of abstraction. These models can then <strong>be reused from different application development environments</strong>.</li>
+</ul>
+<p>It shows <strong>most elements</strong> of the SAP HANA programming model and their relationships:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/4-1.jpg" alt></p>
+<h2 id="Clients"><a href="#Clients" class="headerlink" title="Clients"></a>Clients</h2><p>SAP HANA supports clients using the following development environments and interfaces:</p>
+<ul>
+<li>Client applications written in C/C++, which use the <code>ODBC</code> (Open DataBase Connectivity) interface.</li>
+<li>Client applications written in Java, which use the <code>JDBC</code> (Java DataBase Connectivity) interface.</li>
+<li>Client applications written in Python, which use the <code>Python Database API</code>.</li>
+<li>Windows-based client applications that use the <code>ODBO</code> (Object linking and embedding DataBase for Online analytical processing) interface for MDX.</li>
+<li>MDX clients using <code>XMLA</code> (XML for Analysis) over HTTP.</li>
+<li>ABAP applications using <code>DBSL</code> (DataBase Shared Library) to connect to the SAP HANA system.</li>
+<li>XS applications can execute SQL statements using a database API provided by the <code>XS</code> server.</li>
+<li>The <code>InA</code> (InformationAccess) infrastructure provides a client API, which combines analytical queries, search and planning. It connects to the InA service in the backend via HTTP using an InA-specific internal protocol.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/4-2.jpg" alt><br>ODBC is a standard, implementation-agnostic C-based API for accessing a database. Analogously, JDBC is a data access API for Java, and the Python Database API is the data access interface for Python. All three interfaces provide methods for creating and maintaining connections, as well as transactions, and other mechanisms for querying and updating data in a database, which map directly to underlying SQL semantics, <strong>hiding the actual communication details</strong>.<br>ODBO is a Microsoft specification and an industry standard for multi-dimensional data processing. The ODBO API is used by applications that use the MDX query language to access multi-dimensional data in SAP HANA. <strong>As alternative to ODBO</strong>, MDX clients can use XMLA which exposes a similar interface as a <code>SOAP</code> (Simple Object Access Protocol) web service over HTTP. On the server side, the <strong>XMLA interface is provided by an application that runs in the XS server</strong>.</p>
+<h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><p>The SAP HANA SQL implementation is based on the <code>P*TIME</code> (Parallel<em>Transact-In-Memory Engine) SQL dialect which implements SQL 92 entry level and some features of SQL 99. SAP HANA *</em>offers several SQL extensions** on top of this standard, for example:</p>
+<ul>
+<li>SQL extensions for creating tables as row-based or column-based and for conversion <strong>between both storage formats</strong>. Row-based tables can be converted into columnar tables and vice versa.</li>
+<li>Support for <strong>managing columnar in-memory tables</strong>. One example is the <code>MERGE DELTA</code> statement for merging the delta and the main part of a column-based table. Other examples are the <code>LOAD</code> and <code>UNLOAD</code> statements for explicitly loading and unloading table to memory.</li>
+<li>SAP HANA supports a number of <strong>extended SQL views</strong>. <code>Join views</code> are parameterized join-based views on columnar tables. <code>OLAP views</code> contain metadata for querying data cubes stored in column-based tables. <code>Calculation views</code> expose results calculated by a procedure or based on a data flow graph. <code>Hierarchy views</code> support querying and navigating hierarchical data in column-based tables in an efficient way.</li>
+<li>An extended <code>PROCEDURE</code> specification, allowing the <strong>development of embedded procedures</strong> using multiple technologies and programming languages.</li>
+<li>Support for defining and querying <strong>history tables</strong>.</li>
+<li>Support for <strong>full text search</strong> on database tables and views.</li>
+<li>Support for <strong>spatial data</strong>.</li>
+<li>Support for <strong>accessing remote data sources</strong> via virtual tables.</li>
+<li>Flexible tables, which can be dynamically extended with new columns when data is inserted or updated, <strong>without the need to explicitly call SQL data definition statements</strong>.</li>
+<li>Extensions to <strong>support the planning engine</strong>, which provides planning commands that are invoked by planning applications.</li>
+</ul>
+<blockquote>
+<p>For most SQL statement it is syntactically irrelevant whether the table is column-based or row-based.</p>
+</blockquote>
+<h2 id="Modeled-Views"><a href="#Modeled-Views" class="headerlink" title="Modeled Views"></a>Modeled Views</h2><p>Modeled views are <strong>design-time definitions</strong>, created by application developers with specific modeling tools. The <strong>actual database objects</strong> are generated from these definitions during deployment via HDI or during activation, if the classic repository is used.<br>There are <strong>several reasons</strong> why developers use modeled views:</p>
+<ul>
+<li>They support structured and modular <strong>abstractions</strong>.</li>
+<li>Using modeling tools is <strong>more convenient</strong> than writing complex statements in pure SQL.</li>
+<li><strong>Additional semantics</strong> can be provided, such as description texts for attributes, hierarchies, variables and parameters.</li>
+<li>Modeled views generate <strong>additional metadata</strong> at deploy-time, which enable access to the views for MDX clients and for generic Business Intelligence (BI).</li>
+<li>Values of columns in the resulting database objects can be <strong>calculated using formulas</strong>.</li>
+</ul>
+<h3 id="Calculation-Views"><a href="#Calculation-Views" class="headerlink" title="Calculation Views"></a>Calculation Views</h3><p>Calculation views can be used for <strong>defining advanced slices</strong> on the data available in the SAP HANA database, based on complex calculations. The data foundation of the calculation view can include any combination of various sources such as tables, views of different types, table functions and virtual tables for accessing remote data. The logic of a calculation view can be programmed in SQLScript or you can use a visual view editor to create the <strong>data flow graph</strong> for the view.</p>
+<h3 id="Traditionally-Used-Modeled-View-types"><a href="#Traditionally-Used-Modeled-View-types" class="headerlink" title="Traditionally Used Modeled View types"></a>Traditionally Used Modeled View types</h3><p><code>Attribute views</code> are created on data <strong>from column store tables</strong>, using projection and join operations. They were traditionally used to represent the master data dimensions in a <strong>star schema</strong>, and they also support the definition of hierarchies. <code>Analytic views</code> are created on column tables and attribute views. They were traditionally used to define star schemas, linking the central fact table to the dimensions.<br>In the <strong>SAP HANA studio</strong>, the traditional view types are still supported.</p>
+<h3 id="Modeled-Views-and-Column-Views"><a href="#Modeled-Views-and-Column-Views" class="headerlink" title="Modeled Views and Column Views"></a>Modeled Views and Column Views</h3><p>It is important to understand the difference between modeled views and the corresponding database objects that are <strong>generated at run-time</strong>. The modeled views are <strong>design-time artifacts</strong>. To create the actual database objects, the modeled views need to <code>deployed</code> (when HDI is used) or <code>activated</code> (if the classic repository is used). For calculation views, the main database object is a <strong>column view</strong> of type CALCULATION. For attribute views, it is a column view of type JOIN. For analytic views a column view of type OLAP is created.</p>
+<h2 id="Procedures"><a href="#Procedures" class="headerlink" title="Procedures"></a>Procedures</h2><p>An important SAP HANA SQL feature is its specification of database procedures (also known as <strong>stored procedures</strong>). The <code>CREATE PROCEDURE</code> statement supports the specification of the procedure body using several technologies and programming languages. These procedures <strong>run directly in the database layer</strong>, thus benefiting from the performance improvement of the SAP HANA algorithms and <strong>eliminating large amounts of data transfers</strong> from the database to the application.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Procedure Language</th>
+<th align="left">Comments</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">SQLScript</td>
+<td align="left">SQLScript is used to <strong>write procedural orchestration logic</strong>, to define complex data flows and to write user-defined scalar functions.</td>
+</tr>
+<tr>
+<td align="left">L</td>
+<td align="left">L is an imperative programming language, derived from C++, for implementing embedded code. L programs are <strong>compiled to native code</strong>, and thus very efficient.</td>
+</tr>
+<tr>
+<td align="left">C++</td>
+<td align="left">Application Function Libraries (<code>AFLs</code>) can be written in C++ to develop performance critical code. One example of AFLs is the <strong>Predictive Analytics Library</strong> (PAL).</td>
+</tr>
+<tr>
+<td align="left">R</td>
+<td align="left">R is an open-source programming language and software environment for <strong>statistical computing and graphics</strong>.</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Note that programming in L or C++ is not released for customers.</p>
+</blockquote>
+<h2 id="SQLScript"><a href="#SQLScript" class="headerlink" title="SQLScript"></a>SQLScript</h2><p>SAP HANA provides <code>SQLScript</code> as the <strong>default programming language</strong> for writing embedded orchestration and data flow logic, in the form of embedded procedures.<br>SQLScript has table variables that can contain internal tables, which can be seen as <strong>temporary tables</strong> inside the index server. Table variables need not be declared, their structure is automatically <strong>determined by the compiler</strong> from the type of the assigned values.<br>In SQLScript, the data types of procedure parameters need to be declared. A table type defines the names and the types of columns <strong>without creating a table</strong> on the database.<br>A SQLScript procedure may contain SQL statements, call other procedures, and uses if/else statements or loops for control flow. Cursors can be used to iterate through result sets. With <strong>support for loops and cursors</strong>, SQLScript procedures can process data row-by-row. However, procedures that follow the row-oriented processing model are <strong>hard to parallelize and optimize</strong>.</p>
+<blockquote>
+<p>Programmers are encouraged to process mass data using read-only procedures with declarative table operators.</p>
+</blockquote>
+<h3 id="Calculation-Engine-Operators"><a href="#Calculation-Engine-Operators" class="headerlink" title="Calculation Engine Operators"></a>Calculation Engine Operators</h3><p>SQLScript procedures may directly call the intrinsic operators of the calculation engine. Using intrinsic calculation engine operators can result in <strong>higher performance</strong> in some cases and therefore be used for fine-tuning the execution of a procedure. Calculation engine operators of the following categories are available:</p>
+<ul>
+<li>Operators for binding tables or views to <strong>table variables</strong>.</li>
+<li><strong>Relational operators</strong> such as join, union, projection and aggregation.</li>
+<li>Expressions with mathematical operations, string operations and date/time operations.</li>
+<li>Implementation of <strong>business logic</strong> such as currency conversion.</li>
+</ul>
+<p>While these operators are <strong>implemented inside</strong> the calculation engine, in some cases the operator implementation just forwards the execution to the column store.<br>The <code>calculation engine operators</code> and the <code>corresponding SQL statement</code> are implemented differently and sometimes even have different semantics.</p>
+<blockquote>
+<p>Mixing SQL queries and calculation engine operators in the same procedure is <strong>not recommended</strong> for performance reasons.</p>
+</blockquote>
+<h3 id="Read-Only-Procedures"><a href="#Read-Only-Procedures" class="headerlink" title="Read-Only Procedures"></a>Read-Only Procedures</h3><p>Read-only procedures must not contain any statements that modify the database and they may <strong>only call other read-only procedures</strong>. As read-only procedures are guaranteed to <strong>be free of side effects</strong>, they can be better optimized and execution can be better parallelized.<br>The code sample below shows a simple read-only procedure:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TYPE</span> TT_TAB1 <span class="keyword">AS</span> <span class="keyword">TABLE</span> (<span class="string">"A"</span> <span class="built_in">INTEGER</span>, <span class="string">"B"</span> <span class="built_in">INTEGER</span>);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TYPE</span> TT_TAB2 <span class="keyword">AS</span> <span class="keyword">TABLE</span> (<span class="string">"A"</span> <span class="built_in">INTEGER</span>, <span class="string">"C"</span> <span class="built_in">VARCHAR</span>(<span class="number">50</span>));</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TYPE</span> TT_TAB3 <span class="keyword">AS</span> <span class="keyword">TABLE</span> (<span class="string">"A"</span> <span class="built_in">INTEGER</span>, <span class="string">"B"</span> <span class="built_in">INTEGER</span>, <span class="string">"C"</span> <span class="built_in">VARCHAR</span>(<span class="number">50</span>));</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TYPE</span> TT_TAB4 <span class="keyword">AS</span> <span class="keyword">TABLE</span> (<span class="string">"A"</span> <span class="built_in">INTEGER</span>, <span class="string">"C"</span> <span class="built_in">VARCHAR</span>(<span class="number">50</span>));</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> PROC1 (</span><br><span class="line">    <span class="keyword">IN</span> T1 TT_TAB1,</span><br><span class="line">    <span class="keyword">IN</span> T2 TT_TAB2,</span><br><span class="line">    <span class="keyword">IN</span> T3 TT_TAB3,</span><br><span class="line">    <span class="keyword">IN</span> p1 <span class="built_in">INTEGER</span>,</span><br><span class="line">    <span class="keyword">OUT</span> T4 TT_TAB4  </span><br><span class="line">)</span><br><span class="line"><span class="keyword">LANGUAGE</span> SQLSCRIPT</span><br><span class="line"><span class="keyword">READS</span> <span class="keyword">SQL</span> <span class="keyword">DATA</span> <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    V1 = CE_JOIN (:T1, :T2, [<span class="string">"A"</span>], [<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>]);</span><br><span class="line">    V2 = CE_UNION_ALL (:V1, :T3);</span><br><span class="line">    V3 = CE_PROJECTION (:V2, ["B", "C"], '"B" &gt; :p1');</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Table-Functions"><a href="#Table-Functions" class="headerlink" title="Table Functions"></a>Table Functions</h3><p>SQLScript is also used to write table functions. A table function contains read-only SQLScript code and <strong>returns a single table</strong> as its result value. The function call can be used instead of a table or view in SQL queries.<br>In the following example a table function FUNC1 is used as the <strong>data source</strong> for a select operation:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> col1, col2 <span class="keyword">FROM</span> FUNC1(<span class="number">5</span>, <span class="string">'AB'</span>) <span class="keyword">WHERE</span> col1 &gt; <span class="number">3000</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Table functions make it <strong>possible to call complex logic</strong> from client tools that can only invoke queries and which cannot call procedures.</p>
+<h3 id="Scalar-SQLScript-Functions"><a href="#Scalar-SQLScript-Functions" class="headerlink" title="Scalar SQLScript Functions"></a>Scalar SQLScript Functions</h3><p>With SQLScript you can also write user-defined functions that <strong>return one or more scalar values</strong>. Like the <strong>built-in SQL functions</strong> they can be used in projection lists, group-by clauses and where conditions.<br>The code sample shows the definition of a scalar function F1, which returns two scalar values Y1 and Y2:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> F1 (X1 <span class="keyword">DOUBLE</span>, X2 <span class="keyword">DOUBLE</span>)</span><br><span class="line"><span class="keyword">RETURNS</span> Y1 <span class="keyword">DOUBLE</span>, Y2 <span class="keyword">DOUBLE</span></span><br><span class="line"><span class="keyword">LANGUAGE</span> SQLSCRIPT</span><br><span class="line"><span class="keyword">READS</span> <span class="keyword">SQL</span> <span class="keyword">DATA</span> <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    Y1 := X1 * X1 + <span class="number">3</span> * X2 - X1;</span><br><span class="line">    Y2 := X2 * X2 - X1 / 2;</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+
+<p>In the following example the function F1 is called twice, in the projection list and in the WHERE condition:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> A, F1(A, B).Y1 <span class="keyword">FROM</span> T1</span><br><span class="line"><span class="keyword">WHERE</span> B &gt; F1(A, B).Y2;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Currently, scalar functions do not support table-valued parameters and they cannot contain operations on database tables.</p>
+</blockquote>
+<h2 id="L"><a href="#L" class="headerlink" title="L"></a>L</h2><p><code>L</code> is a language designed by SAP for <strong>executing procedural code</strong> in SAP HANA. One purpose of L is to serve as an internal common <strong>intermediate language</strong> for other SAP HANA languages. SQLScript procedures and FOX formula code are internally compiled into L.<br>L can be roughly described as a <strong>safe subset of C++</strong> with support for the SAP HANA data types. Unlike C++, L does not contain unsafe language elements (e.g. pointers) that may crash the server process.<br>L programs consist of a set of type definitions, variables and functions:</p>
+<ul>
+<li>For control flow, the L language provides <strong>if/else</strong> clauses and loops.</li>
+<li>Exception handling with <strong>try/catch</strong> is also supported.</li>
+<li>L comes with a <strong>math library</strong> with common mathematical functions and matrix operations.</li>
+</ul>
+<p>L programs are <strong>compiled at runtime</strong>. Using L for the wrong tasks may cause performance issues, L programs are executed sequentially. If procedural code is required, <strong>SQLScript should be the first choice</strong>.</p>
+<blockquote>
+<p>User-defined scalar functions can also be written in L. However, the SQLScript is the preferred choice.</p>
+</blockquote>
+<h3 id="L-Procedures"><a href="#L-Procedures" class="headerlink" title="L Procedures"></a>L Procedures</h3><p>Writing procedures in L is useful when application logic <strong>cannot be expressed</strong> with SQL or SQLScript, and for accessing internal data structures that are <strong>not exposed</strong> in SQLScript.<br>Procedures written in L <strong>cannot contain SQL statements</strong>. Tables can only be accessed via table typed input and output parameters.</p>
+<h2 id="C-AFL"><a href="#C-AFL" class="headerlink" title="C++ (AFL)"></a>C++ (AFL)</h2><ul>
+<li>A typical use case is to develop application-specific C++ functions that can <strong>be called from L code</strong>, for example from a procedure written in L.</li>
+<li>Another use case is <strong>extending the calculation engine</strong> by writing custom operations in L which can call the C++ function.</li>
+</ul>
+<blockquote>
+<p>Application logic written in C++ can be executed within SAP HANA by creating an Application Function Library (AFL).</p>
+</blockquote>
+<ul>
+<li>The main reason for writing business logic in C++ is <strong>performance</strong>.</li>
+<li>Another reason may be the need to <strong>use internal interfaces</strong> that are not available otherwise.</li>
+</ul>
+<p>However, using C++ also means that programming errors in the application code affect the <strong>stability and availability of the whole server</strong>. It needs to be carefully examined, whether using C++ is really required and writing application logic in C++ is restricted to privileged developers.</p>
+<h2 id="R"><a href="#R" class="headerlink" title="R"></a>R</h2><p><code>R</code> is an open-source programming language and software environment for <strong>statistical computing and graphs</strong>. With over 4,000 add-on packages, R provides a wide range of <strong>library functions</strong>. It provides roughly the same functions as the combination of the most successful commercial packages, SAS and SPSS.<br>SAP HANA provides interoperability with the <strong>R runtime environment</strong>, via a tight component integration, and support for functions written in R, which are encapsulated by a regular embedded procedure interface. <strong>Table parameters</strong> can be passed to R code, and a result is returned in the form of tables:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- prepare tables</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> PRIME (<span class="built_in">NUMBER</span> <span class="built_in">INTEGER</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> PRIME <span class="keyword">VALUES</span>(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> PRIME <span class="keyword">VALUES</span>(<span class="number">3</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> PRIME <span class="keyword">VALUES</span>(<span class="number">5</span>);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> PRIME_SQR (<span class="built_in">NUMBER</span> <span class="built_in">INTEGER</span>);</span><br><span class="line"><span class="comment">-- create R procedure that fills output table with squares of values in input table</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> my_sq (</span><br><span class="line">    <span class="keyword">IN</span> input1 PRIME,</span><br><span class="line">    <span class="keyword">OUT</span> <span class="keyword">result</span> PRIME_SQR</span><br><span class="line">)</span><br><span class="line"><span class="keyword">LANGUAGE</span> RLANG <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    <span class="keyword">result</span> &lt;- as.data.frame(input1$<span class="built_in">NUMBER</span>^<span class="number">2</span>);</span><br><span class="line">    names(result) &lt;- c("NUMBER");</span><br><span class="line"><span class="keyword">END</span>;</span><br><span class="line"><span class="comment">-- execute procedure and retrieve result</span></span><br><span class="line"><span class="keyword">CALL</span> my_sq(PRIME, PRIME_SQR) <span class="keyword">WITH</span> OVERVIEW;</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> PRIME_SQR;</span><br></pre></td></tr></table></figure>
+
+<h2 id="MDX"><a href="#MDX" class="headerlink" title="MDX"></a>MDX</h2><p>MDX syntactically resembles SQL, but it <strong>incorporates concepts like cube, dimensions, hierarchies and measures</strong>, and can be used to connect a variety of analytics applications including SAP Business Objects BI tools and Microsoft Excel.<br>The following is an example of an MDX query:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> &#123;</span><br><span class="line">    [<span class="keyword">Measures</span>].[unit_sales],</span><br><span class="line">    [<span class="keyword">Measures</span>].[base_sales]</span><br><span class="line">&#125; <span class="keyword">ON</span> <span class="keyword">COLUMNS</span>,</span><br><span class="line">NON <span class="keyword">EMPTY</span></span><br><span class="line">FILTER (</span><br><span class="line">    CROSSJOIN (</span><br><span class="line">        [Product].[MyProducts].Members,</span><br><span class="line">        [Customer].[Country].[IT].Children</span><br><span class="line">    ),</span><br><span class="line">    [<span class="keyword">Measures</span>].[unit_sales] &gt; <span class="number">20000</span>  </span><br><span class="line">) <span class="keyword">ON</span> <span class="keyword">ROWS</span></span><br><span class="line"><span class="keyword">FROM</span> [MySales]</span><br><span class="line"><span class="keyword">WHERE</span> [<span class="built_in">Time</span>].[Calendar].[<span class="number">2011</span>];</span><br></pre></td></tr></table></figure>
+
+<p>MDX includes a rich set of functions for statistical analysis, but unlike SQL, MDX has <strong>limited DDL or DML capabilities</strong>. MDX cubes are defined in SAP HANA by creating calculation views.</p>
+<blockquote>
+<p>The current MDX implementation in SAP HANA covers most parts of the MDX specification, and includes additional SAP-specific extensions.</p>
+</blockquote>
+<h2 id="Decision-Tables"><a href="#Decision-Tables" class="headerlink" title="Decision Tables"></a>Decision Tables</h2><p>SAP HANA supports decision tables as an <strong>intuitive design-time representation of business rules</strong>. At runtime, the business rules are executed as database procedures for best performance. From the decision table model, a SQLScript procedure with result view is generated for execution.</p>
+<h2 id="Declarative-OData-Provisioning-in-XS"><a href="#Declarative-OData-Provisioning-in-XS" class="headerlink" title="Declarative OData Provisioning in XS"></a>Declarative OData Provisioning in XS</h2><p>XS application programmers can define <code>OData</code> (Open Data protocol) data access services <strong>without programming</strong>. OData is a resource-based web protocol for querying and updating data. OData defines operations on resources using HTTP verbs, and specifies the URI syntax for identifying the resources. OData defines a set of query parameters, which allow clients to <strong>influence the result set</strong>.<br>To create an OData service, XS developers just have to create an <strong>OData service descriptor file</strong>. These declarations are evaluated by a generic OData provider component of the XS platform to provide the services at runtime.</p>
+<h2 id="Server-Side-Application-Code-in-XS"><a href="#Server-Side-Application-Code-in-XS" class="headerlink" title="Server-Side Application Code in XS"></a>Server-Side Application Code in XS</h2><p>Developers of <code>XS Classic</code> applications can <strong>write server-side logic in JavaScript</strong>. This is server-side JavaScript, augmented to support connections to the SAP HANA database and the SAP HANA data types.<br>Ths server part of <code>XS Advanced</code> applications can be written in Java, or in JavaScript on Node.js. In addition, a <strong>XS Classic compatibility layer</strong> is provided, which was developed for executing existing XS Classic JavaScript code with as few migration efforts as possible.</p>
+<h2 id="Core-Data-Services-CDS"><a href="#Core-Data-Services-CDS" class="headerlink" title="Core Data Services (CDS)"></a>Core Data Services (CDS)</h2><h3 id="Introducing-CDS"><a href="#Introducing-CDS" class="headerlink" title="Introducing CDS"></a>Introducing CDS</h3><p>Application programs implement their own domain-specific models and access logic on top of the SQL standard API, but the implementation-specific information <strong>cannot be shared</strong> across technology stacks, programming languages, and application frameworks. To address this, HANA has introduced the Core Data Services (<code>CDS</code>), an infrastructure for defining and consuming semantically <strong>enriched data models</strong>. These CDS can be consumed by applications written in different languages, such as ABAP, Java and others.<br>The CDS comprise a family of programming specifications:</p>
+<ul>
+<li><strong>Schema Definition Language</strong> (SDL) for defining semantically enriched domain data models. The SDL allows developers to define persisted entities that are similar to tables but <strong>have some additional features</strong>. SDL also supports the definition of views and reusable structured types. CDS annotations allow for enriching data models with additional metadata.</li>
+<li><strong>Query Language</strong> (QL) for <strong>conveniently and efficiently reading data</strong>. The QL extends the SQL <code>SELECT</code> statement by allowing a path-like syntax for identifying associated entities that is much easier to use than an equivalent <code>JOIN</code> statement in SQL. QL can be used in SDL view definitions.</li>
+<li><strong>Expression Language</strong> (EL) for specifying calculated fields, default values, constraints, etc. with queries as well as for elements in data models.</li>
+<li><strong>Data Control Language</strong> (DCL) for defining the application’s authorization model. The DCL supports <code>static privileges</code> and <code>predicated privileges</code>.<ul>
+<li>Static privileges <strong>control access to an entire resource</strong>, e.g. a CDS view, in an all or nothing fashion.</li>
+<li>Predicated privileges allow for <strong>dynamic access control</strong>, based on the values of the attributes of entity instances.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>The CDS focus on providing functional services independent of any programming language and language paradigms.</p>
+</blockquote>
+<h3 id="CDS-Support-in-SAP-HANA"><a href="#CDS-Support-in-SAP-HANA" class="headerlink" title="CDS Support in SAP HANA"></a>CDS Support in SAP HANA</h3><p>CDS support in SAP HANA allows application developers to <strong>define the data models by creating CDS design-time files</strong> that contain CDS definitions. CDS can be used to define various aspects of an application such as persisted data model, views, analytical models, search models, and the authorization models. SAP HANA internally <strong>transforms the CDS definitions to the existing mechanisms</strong> for data definition, to SQL, to database privileges, to calculation models executed by the calculation engine, or to L programs.<br>The SQL <code>CREATE TABLE</code> statement now supports the <strong>definition of CDS associations</strong>, and in SQL queries you can <strong>navigate such associations with path expressions</strong>. The following code snippets from illustrate this feature.</p>
+<ul>
+<li><p>SQL data definition with CDS association:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> Employees (</span><br><span class="line">    <span class="keyword">id</span>, <span class="keyword">name</span>, ..., homeAddress_id <span class="built_in">INTEGER</span></span><br><span class="line">) <span class="keyword">WITH</span> ASSOCIATIONS (</span><br><span class="line">    <span class="keyword">JOIN</span> Address <span class="keyword">AS</span> homeAddress <span class="keyword">ON</span> homeAddress.id = homeAddress_id;  </span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>SQL query with CDS infix filters and path expressions along association:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span>, address[kind=<span class="string">'business'</span>].town.country.name</span><br><span class="line"><span class="keyword">FROM</span> Employees;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HANA/" rel="tag"># HANA</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/p/SAP-HANA-System-Architecture-Overview.html" rel="next" title="SAP HANA System Architecture Overview">
+                <i class="fa fa-chevron-left"></i> SAP HANA System Architecture Overview
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/p/使用-Dockerfile-创建镜像.html" rel="prev" title="使用 Dockerfile 创建镜像">
+                使用 Dockerfile 创建镜像 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clients"><span class="nav-number">2.</span> <span class="nav-text">Clients</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL"><span class="nav-number">3.</span> <span class="nav-text">SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modeled-Views"><span class="nav-number">4.</span> <span class="nav-text">Modeled Views</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Calculation-Views"><span class="nav-number">4.1.</span> <span class="nav-text">Calculation Views</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Traditionally-Used-Modeled-View-types"><span class="nav-number">4.2.</span> <span class="nav-text">Traditionally Used Modeled View types</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modeled-Views-and-Column-Views"><span class="nav-number">4.3.</span> <span class="nav-text">Modeled Views and Column Views</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Procedures"><span class="nav-number">5.</span> <span class="nav-text">Procedures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLScript"><span class="nav-number">6.</span> <span class="nav-text">SQLScript</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Calculation-Engine-Operators"><span class="nav-number">6.1.</span> <span class="nav-text">Calculation Engine Operators</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Read-Only-Procedures"><span class="nav-number">6.2.</span> <span class="nav-text">Read-Only Procedures</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Table-Functions"><span class="nav-number">6.3.</span> <span class="nav-text">Table Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scalar-SQLScript-Functions"><span class="nav-number">6.4.</span> <span class="nav-text">Scalar SQLScript Functions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#L"><span class="nav-number">7.</span> <span class="nav-text">L</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#L-Procedures"><span class="nav-number">7.1.</span> <span class="nav-text">L Procedures</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-AFL"><span class="nav-number">8.</span> <span class="nav-text">C++ (AFL)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R"><span class="nav-number">9.</span> <span class="nav-text">R</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MDX"><span class="nav-number">10.</span> <span class="nav-text">MDX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decision-Tables"><span class="nav-number">11.</span> <span class="nav-text">Decision Tables</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Declarative-OData-Provisioning-in-XS"><span class="nav-number">12.</span> <span class="nav-text">Declarative OData Provisioning in XS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Server-Side-Application-Code-in-XS"><span class="nav-number">13.</span> <span class="nav-text">Server-Side Application Code in XS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Core-Data-Services-CDS"><span class="nav-number">14.</span> <span class="nav-text">Core Data Services (CDS)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introducing-CDS"><span class="nav-number">14.1.</span> <span class="nav-text">Introducing CDS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CDS-Support-in-SAP-HANA"><span class="nav-number">14.2.</span> <span class="nav-text">CDS Support in SAP HANA</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,963 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="SystemDesign,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="What is an Online Movie Ticket Booking System?A movie ticket booking system provides its customers the ability to purchase theatre seats online. E-ticketing systems allow the customers to browse throu">
+<meta name="keywords" content="SystemDesign">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Designing Ticketmaster">
+<meta property="og:url" content="https://umarellyh.github.io/p/Designing-Ticketmaster.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="What is an Online Movie Ticket Booking System?A movie ticket booking system provides its customers the ability to purchase theatre seats online. E-ticketing systems allow the customers to browse throu">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/66.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/67.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/68.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Designing Ticketmaster">
+<meta name="twitter:description" content="What is an Online Movie Ticket Booking System?A movie ticket booking system provides its customers the ability to purchase theatre seats online. E-ticketing systems allow the customers to browse throu">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/66.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/p/Designing-Ticketmaster.html">
+
+
+
+
+
+  <title> Designing Ticketmaster | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/Designing-Ticketmaster.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Designing Ticketmaster
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-28T00:32:58+08:00">
+                2021-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="What-is-an-Online-Movie-Ticket-Booking-System"><a href="#What-is-an-Online-Movie-Ticket-Booking-System" class="headerlink" title="What is an Online Movie Ticket Booking System?"></a>What is an Online Movie Ticket Booking System?</h2><p>A movie ticket booking system provides its customers the ability to purchase theatre seats online. E-ticketing systems allow the customers to browse through movies currently being played and to book seats, anywhere anytime.</p>
+<h2 id="Requirements-and-Goals-of-the-System"><a href="#Requirements-and-Goals-of-the-System" class="headerlink" title="Requirements and Goals of the System"></a>Requirements and Goals of the System</h2><p>Our ticket booking service should meet the following requirements:<br><strong>Functional Requirements</strong>:</p>
+<ol>
+<li>Our ticket booking service should be able to list different cities where its affiliate cinemas are located;</li>
+<li>Once the user selects the city, the service should display the movies released in that particular city;</li>
+<li>Once the user selects a movie, the service should display the cinemas running that movie and its available showtimes;</li>
+<li>The user should be able to choose a show at a particular cinema and book their tickets;</li>
+<li>The service should be able to show the user the seating arrangement of the cinema hall. The user should be able to select multiple seats according to their preference;</li>
+<li>The user should be able to distinguish available seats from booked ones;</li>
+<li>Users should be able to put a hold on the seats for five minutes before they make a payment to finalize the booking;</li>
+<li>The user should be able to wait if there is a chance that the seats might become available, e.g., when holds by other users expire;</li>
+<li>Waiting customers should be serviced in a fair, first come, first serve manner;</li>
+</ol>
+<p><strong>Non-Functional Requirements</strong>:</p>
+<ol>
+<li>The system would need to be highly concurrent. There will be multiple booking requests for the same seat at any particular point in time. The service should handle this gracefully and fairly;</li>
+<li>The core thing of the service is ticket booking, which means financial transactions. This means that the system should be secure and the database ACID compliant;</li>
+</ol>
+<a id="more"></a>
+<h2 id="Some-Design-Considerations"><a href="#Some-Design-Considerations" class="headerlink" title="Some Design Considerations"></a>Some Design Considerations</h2><ol>
+<li>For simplicity, let’s assume our service does not require any user authentication;</li>
+<li>The system will not handle partial ticket orders. Either user gets all the tickets they want or they get nothing;</li>
+<li>Fairness is mandatory for the system;</li>
+<li>To stop system abuse, we can restrict users from booking more than ten seats at a time;</li>
+<li>We can assume that traffic would spike on popular/much-awaited movie releases and the seats would fill up pretty fast. The system should be scalable and highly available to keep up with the surge in traffic;</li>
+</ol>
+<h2 id="Capacity-Estimation"><a href="#Capacity-Estimation" class="headerlink" title="Capacity Estimation"></a>Capacity Estimation</h2><p><strong>Traffic estimates</strong>: Let’s assume that our service has 3 billion page views per month and sells 10 million tickets a month;<br><strong>Storage estimates</strong>: Let’s assume that we have 500 cities and, on average each city has ten cinemas. If there are 2000 seats in each cinema and on average, there are two shows every day.<br>Let’s assume each seat booking needs 50 bytes (IDs, NumberOfSeats, ShowID, MovieID, SeatNumbers, SeatStatus, Timestamp, etc.) to store in the database. We would also need to store information about movies and cinemas; let’s assume it’ll take 50 bytes. So, to store all the data about all shows of all cinemas of all cities for a day:</p>
+<blockquote>
+<p>500 cities * 10 cinemas * 2000 seats * 2 shows * (50 + 50) bytes = 2 GB/day</p>
+</blockquote>
+<p>To store five years of this data, we would need around 3.6TB.</p>
+<h2 id="System-APIs"><a href="#System-APIs" class="headerlink" title="System APIs"></a>System APIs</h2><p>We can have SOAP or REST APIs to expose the functionality of our service. The following could be the definition of the APIs to search movie shows and reserve seats:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">searchMovies(api_dev_key, keyword, city, lat_long, radius, start_datetime, end_datetime, postal_code, includeSpellcheck, results_per_page, sorting_order)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Parameters</strong>:</p>
+<ol>
+<li>api_dev_key: The API developer key of a registered account. This will be used to, among other things, throttle users based on their allocated quota;</li>
+<li>keyword: Keyword to search on;</li>
+<li>city: City to filter movies by;</li>
+<li>lat_long: Latitude and longitude to filter by;</li>
+<li>radius: Radius of the area in which we want to search for events;</li>
+<li>start_datetime: Filter movies with a starting datetime;</li>
+<li>end_datetime: Filter movies with an ending datetime;</li>
+<li>postal_code: Filter movies by postal code/ZIP code;</li>
+<li>include_spell_check: Yes, to include spell check suggestions in the response;</li>
+<li>results_per_page: Number of results to return per page. Maximum is 30;</li>
+<li>sorting_order: Sorting order of the search result. Some allowable values: “name, asc”, “name, desc”, “date, asc”, “date, desc”, “distance, asc”, etc.;</li>
+</ol>
+<p><strong>Returns</strong>: Here is a sample list of movies and their shows:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">"MovieID"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"ShowID"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"Title"</span>: <span class="string">"Cars 2"</span>,</span><br><span class="line">        <span class="attr">"Description"</span>: <span class="string">"About cars."</span>,</span><br><span class="line">        <span class="attr">"Duration"</span>: <span class="number">120</span>,</span><br><span class="line">        <span class="attr">"Genre"</span>: <span class="string">"Animation"</span>,</span><br><span class="line">        <span class="attr">"Language"</span>: <span class="string">"English"</span>,</span><br><span class="line">        <span class="attr">"ReleaseDate"</span>: <span class="string">"8th Oct. 2014"</span>,</span><br><span class="line">        <span class="attr">"Country"</span>: <span class="string">"USA"</span>,</span><br><span class="line">        <span class="attr">"StartTime"</span>: <span class="string">"14:00"</span>,</span><br><span class="line">        <span class="attr">"EndTime"</span>: <span class="string">"16:00"</span>,</span><br><span class="line">        <span class="attr">"Seats"</span>: </span><br><span class="line">        [</span><br><span class="line">            &#123;  </span><br><span class="line">                <span class="attr">"Type"</span>: <span class="string">"Regular"</span>,</span><br><span class="line">                <span class="attr">"Price"</span>: <span class="number">14.99</span>,</span><br><span class="line">                <span class="attr">"Status"</span>: <span class="string">"Almost Full"</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;  </span><br><span class="line">                <span class="attr">"Type"</span>: <span class="string">"Premium"</span>,</span><br><span class="line">                <span class="attr">"Price"</span>: <span class="number">24.99</span>,</span><br><span class="line">                <span class="attr">"Status"</span>: <span class="string">"Available"</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">"MovieID"</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">"ShowID"</span>: <span class="number">2</span>,</span><br><span class="line">        <span class="attr">"Title"</span>: <span class="string">"Cars 2"</span>,</span><br><span class="line">        <span class="attr">"Description"</span>: <span class="string">"About cars."</span>,</span><br><span class="line">        <span class="attr">"Duration"</span>: <span class="number">120</span>,</span><br><span class="line">        <span class="attr">"Genre"</span>: <span class="string">"Animation"</span>,</span><br><span class="line">        <span class="attr">"Language"</span>: <span class="string">"English"</span>,</span><br><span class="line">        <span class="attr">"ReleaseDate"</span>: <span class="string">"8th Oct. 2014"</span>,</span><br><span class="line">        <span class="attr">"Country"</span>: <span class="string">"USA"</span>,</span><br><span class="line">        <span class="attr">"StartTime"</span>: <span class="string">"16:30"</span>,</span><br><span class="line">        <span class="attr">"EndTime"</span>: <span class="string">"18:30"</span>,</span><br><span class="line">        <span class="attr">"Seats"</span>: </span><br><span class="line">        [</span><br><span class="line">            &#123;  </span><br><span class="line">                <span class="attr">"Type"</span>: <span class="string">"Regular"</span>,</span><br><span class="line">                <span class="attr">"Price"</span>: <span class="number">14.99</span>,</span><br><span class="line">                <span class="attr">"Status"</span>: <span class="string">"Full"</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;  </span><br><span class="line">                <span class="attr">"Type"</span>: <span class="string">"Premium"</span>,</span><br><span class="line">                <span class="attr">"Price"</span>: <span class="number">24.99</span>,</span><br><span class="line">                <span class="attr">"Status"</span>: <span class="string">"Almost Full"</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line"> ]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reserveSeats(api_dev_key, session_id, movie_id, show_id, seats_to_reserve[])</span><br></pre></td></tr></table></figure>
+
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li>api_dev_key: Same as above;</li>
+<li>session_id: User’s session ID to track this reservation. Once the reservation time expires, user’s reservation on the server will be removed using this ID;</li>
+<li>movie_id: Movie to reserve;</li>
+<li>show_id: Show to reserve;</li>
+<li>seats_to_reserve: An array containing seat IDs to reserve;</li>
+</ul>
+<p><strong>Returns</strong>: Returns the status of the reservation, which would be one of the following:</p>
+<ol>
+<li>“Reservation Successful”;</li>
+<li>“Reservation Failed - Show Full”;</li>
+<li>“Reservation Failed - Retry, as other users are holding reserved seats”;</li>
+</ol>
+<h2 id="Database-Design"><a href="#Database-Design" class="headerlink" title="Database Design"></a>Database Design</h2><p>Here are a few observations about the data we are going to store:</p>
+<ol>
+<li>Each City can have multiple Cinemas;</li>
+<li>Each Cinema will have multiple Halls;</li>
+<li>Each Movie will have many Shows and each Show will have multiple Bookings;</li>
+<li>A User can have multiple Bookings;</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/66.png" alt></p>
+<h2 id="High-Level-Design"><a href="#High-Level-Design" class="headerlink" title="High-Level Design"></a>High-Level Design</h2><p>At a high level, our web servers will manage users’ sessions and application servers will handle all the ticket management, storing data in the databases as well as working with the cache servers to process reservations:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/67.png" alt></p>
+<h2 id="Detailed-Component-Design"><a href="#Detailed-Component-Design" class="headerlink" title="Detailed Component Design"></a>Detailed Component Design</h2><p>First, let’s try to build our service assuming it is being served from a single server.</p>
+<p><strong>Ticket Booking Workflow</strong>: The following would be a typical ticket booking workflow:</p>
+<ol>
+<li>The user searches for a movie;</li>
+<li>The user selects a movie;</li>
+<li>The user is shown the available shows of the movie;</li>
+<li>The user selects a show;</li>
+<li>The user selects the number of seats to be reserved;</li>
+<li>If the required number of seats are available, the user is shown a map of the theater to select seats. If not, the user is taken to “step 8” below;</li>
+<li>Once the user selects the seat, the system will try to reserve those selected seats;</li>
+<li>If seats can’t be reserved, we have the following options:<ul>
+<li>Show is full; the user is shown the error message;</li>
+<li>The seats the user wants to reserve are no longer available, but there are other seats available, so the user is taken back to the theater map to choose different seats;</li>
+<li>There are no seats available to reserve, but all the seats are not booked yet, as there are some seats that other users are holding in the reservation pool and have not booked yet. The user will be taken to a waiting page where they can wait until the required seats get freed from the reservation pool. This waiting could result in the following options:<ul>
+<li>If the required number of seats become available, the user is taken to the theater map page where they can choose seats;</li>
+<li>While waiting, if all seats get booked or there are fewer seats in the reservation pool than the user intends to book, the user is shown the error message;</li>
+<li>User cancels the waiting and is taken back to the movie search page;</li>
+<li>At maximum, a user can wait one hour, after that user’s session gets expired and the user is taken back to the movie search page;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>If seats are reserved successfully, the user has five minutes to pay for the reservation. After payment, the booking is marked complete. If the user is not able to pay within five minutes, all their reserved seats are freed to become available to other users;</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/68.png" alt></p>
+<p>We need two daemon services, one to keep track of all active reservations and remove any expired reservation from the system; let’s call it <code>ActiveReservationService</code>. The other service would be keeping track of all the waiting user requests and, as soon as the required number of seats become available, it will notify the (the longest waiting) user to choose the seats; let’s call it <code>WaitingUserService</code>.</p>
+<h3 id="ActiveReservationsService"><a href="#ActiveReservationsService" class="headerlink" title="ActiveReservationsService"></a>ActiveReservationsService</h3><p>We can keep all the reservations of a “show” in memory in a data structure similar to LinkedHashMap or a TreeMap in addition to keeping all the data in the database. We will need a LinkedHashMap kind of data structure that allows us to jump to any reservation to remove it when the booking is complete. Also, since we will have expiry time associated with each reservation, the head of the HashMap will always point to the oldest reservation record so that the reservation can be expired when the timeout is reached.<br>To store every reservation for every show, we can have a HashTable where the “key” would be “ShowID”, and the “value” would be the LinkedHashMap containing “BookingID” and creation “Timestamp”:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Show ID: LinkedHashMap&lt;BookingID, TimeStamp&gt;</span><br><span class="line"><span class="number">123</span>    : &#123;(<span class="number">1</span>, <span class="number">1499818500</span>), (<span class="number">2</span>, <span class="number">1499818700</span>), (<span class="number">3</span>, <span class="number">1499818800</span>)&#125;</span><br></pre></td></tr></table></figure>
+
+<p>In the database, we will store the reservation in the Booking table and the expiry time will be in the Timestamp column. The Status field will have a value of “Reserved (1)” and, as soon as a booking is complete, the system will update the Status to “Booked (2)” and remove the reservation record from the LinkedHashMap of the relevant show. When the reservation is expired, we can either remove it from the Booking table or mark it “Expired (3)” in addition to removing it from memory.<br>ActiveReservationsService will also work with the external financial service to process user payments. Whenever a booking is completed, or a reservation gets expired, WaitingUsersService will get a signal so that any waiting customer can be served.</p>
+<h3 id="WaitingUsersService"><a href="#WaitingUsersService" class="headerlink" title="WaitingUsersService"></a>WaitingUsersService</h3><p>Just like ActiveReservationsService, we can keep all the waiting users of a show in memory in a LinkedHashMap or a TreeMap. We need a data structure similar to LinkedHashMap so that we can jump to any user to remove them from the HashMap when the user cancels their request. Also, since we are serving in a first-come-first-serve manner, the head of the LinkedHashMap would always be pointing to the longest waiting user, so that whenever seats become available, we can serve users in a fair manner.<br>We will have a HashTable to store all the waiting users for every Show. The “key” would be “ShowID”, and the “value” would be a LinkedHashMap containing ‘UserIDs’ and their wait-start-time.<br>Clients can use Long Polling for keeping themselves updated for their reservation status. Whenever seats become available, the server can use this request to notify the user.</p>
+<p><strong>Reservation Expiration</strong>: On the server, ActiveReservationsService keeps track of expiry (based on reservation time) of active reservations. As the client will be shown a timer (for the expiration time), which could be a little out of sync with the server, we can add a buffer of five seconds on the server to safeguard from a broken experience, such that the client never times out after the server, preventing a successful purchase.</p>
+<h2 id="Concurrency"><a href="#Concurrency" class="headerlink" title="Concurrency"></a>Concurrency</h2><p><strong>How to handle concurrency, such that no two users are able to book the same seat</strong>. We can use transactions in SQL databases to avoid any clashes. For example, if we are using an SQL server we can utilize Transaction Isolation Levels to lock the rows before we can update them. Here is the sample code:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> <span class="keyword">TRANSACTION</span> <span class="keyword">ISOLATION</span> <span class="keyword">LEVEL</span> <span class="keyword">SERIALIZABLE</span>;</span><br><span class="line"><span class="keyword">BEGIN</span> <span class="keyword">TRANSACTION</span>;</span><br><span class="line">    <span class="comment">-- suppose we intend to reserve three seats (IDs: 54, 55, 56) for ShowID=99 </span></span><br><span class="line">    <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Show_Seat <span class="keyword">WHERE</span> ShowID=<span class="number">99</span> &amp;&amp; ShowSeatID <span class="keyword">in</span> (<span class="number">54</span>, <span class="number">55</span>, <span class="number">56</span>) &amp;&amp; <span class="keyword">Status</span>=<span class="number">0</span></span><br><span class="line">    <span class="comment">-- if the number of rows returned by the above statement is three, we can update to </span></span><br><span class="line">    <span class="comment">-- return success otherwise return failure to the user.</span></span><br><span class="line">    <span class="keyword">UPDATE</span> Show_Seat</span><br><span class="line">    <span class="keyword">UPDATE</span> Booking</span><br><span class="line"><span class="keyword">COMMIT</span> <span class="keyword">TRANSACTION</span>;</span><br></pre></td></tr></table></figure>
+
+<p>“Serializable” is the highest isolation level and guarantees safety from Dirty, Non-repeatable, and Phantoms reads. One thing to note here; within a transaction, if we read rows, we get a write lock on them so that they can’t be updated by anyone else.<br>Once the above database transaction is successful, we can start tracking the reservation in ActiveReservationService.</p>
+<h2 id="Fault-Tolerance"><a href="#Fault-Tolerance" class="headerlink" title="Fault Tolerance"></a>Fault Tolerance</h2><p><strong>What happens when ActiveReservationsService or WaitingUsersService crashes</strong>? Whenever ActiveReservationsService crashes, we can read all the active reservations from the “Booking” table. Remember that we keep the “Status” column as “Reserved (1)” until a reservation gets booked. Another option is to have a primary-secondary configuration so that, when the primary crashes, the secondary can take over. We are not storing the waiting users in the database, so, when WaitingUsersService crashes, we don’t have any means to recover that data unless we have a primary-secondary setup.<br>Similarly, we’ll have a primary-secondary setup for databases to make them fault-tolerant.</p>
+<h2 id="Data-Partitioning"><a href="#Data-Partitioning" class="headerlink" title="Data Partitioning"></a>Data Partitioning</h2><p>If we partition by “MovieID”, then all the Shows of a movie will be on a single server. For a very hot movie, this could cause a lot of load on that server. A better approach would be to partition based on “ShowID”; this way, the load gets distributed among different servers.</p>
+<p><strong>ActiveReservationService and WaitingUserService partitioning</strong>: Our web servers will manage all the active users’ sessions and handle all the communication with the users. We can use the Consistent Hashing to allocate application servers for both ActiveReservationService and WaitingUserService based upon the “ShowID”. This way, all reservations and waiting users of a particular show will be handled by a certain set of servers. Let’s assume for load balancing our Consistent Hashing allocates three servers for any Show, so whenever a reservation is expired, the server holding that reservation will do the following things:</p>
+<ol>
+<li>Update the database to remove the Booking (or mark it expired) and update the seats’ Status in Show_Seat table;</li>
+<li>Remove the reservation from the LinkedHashMap;</li>
+<li>Notify the user that their reservation has expired;</li>
+<li>Broadcast a message to all WaitingUserService servers that are holding waiting users of that Show to figure out the longest waiting user. Consistent Hashing scheme will tell what servers are holding these users;</li>
+<li>Send a message to the WaitingUserService server holding the longest waiting user to process their request if required seats have become available;</li>
+</ol>
+<p>Whenever a reservation is successful, following things will happen:</p>
+<ol>
+<li>The server holding that reservation sends a message to all servers holding the waiting users of that Show, so that those servers can expire all the waiting users that need more seats than the available seats;</li>
+<li>Upon receiving the above message, all servers holding the waiting users will query the database to find how many free seats are available now. A database cache would greatly help here to run this query only once;</li>
+<li>Expire all waiting users who want to reserve more seats than the available seats. For this, WaitingUserService has to iterate through the LinkedHashMap of all the waiting users;</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SystemDesign/" rel="tag"># SystemDesign</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/p/Designing-Uber-backend.html" rel="next" title="Designing Uber backend">
+                <i class="fa fa-chevron-left"></i> Designing Uber backend
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/p/Additional-Resources.html" rel="prev" title="Additional Resources">
+                Additional Resources <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-an-Online-Movie-Ticket-Booking-System"><span class="nav-number">1.</span> <span class="nav-text">What is an Online Movie Ticket Booking System?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Requirements-and-Goals-of-the-System"><span class="nav-number">2.</span> <span class="nav-text">Requirements and Goals of the System</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Some-Design-Considerations"><span class="nav-number">3.</span> <span class="nav-text">Some Design Considerations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Capacity-Estimation"><span class="nav-number">4.</span> <span class="nav-text">Capacity Estimation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#System-APIs"><span class="nav-number">5.</span> <span class="nav-text">System APIs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Database-Design"><span class="nav-number">6.</span> <span class="nav-text">Database Design</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#High-Level-Design"><span class="nav-number">7.</span> <span class="nav-text">High-Level Design</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Detailed-Component-Design"><span class="nav-number">8.</span> <span class="nav-text">Detailed Component Design</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ActiveReservationsService"><span class="nav-number">8.1.</span> <span class="nav-text">ActiveReservationsService</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WaitingUsersService"><span class="nav-number">8.2.</span> <span class="nav-text">WaitingUsersService</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Concurrency"><span class="nav-number">9.</span> <span class="nav-text">Concurrency</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fault-Tolerance"><span class="nav-number">10.</span> <span class="nav-text">Fault Tolerance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Partitioning"><span class="nav-number">11.</span> <span class="nav-text">Data Partitioning</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

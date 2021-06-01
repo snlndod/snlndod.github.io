@@ -280,7 +280,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/Singleton-Design-Pattern.html">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/Singleton-Design-Pattern.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -302,7 +302,7 @@
             
               
                 
-                <a class="post-title-link" href="/Singleton-Design-Pattern.html" itemprop="url">
+                <a class="post-title-link" href="/p/Singleton-Design-Pattern.html" itemprop="url">
                   Singleton Design Pattern
                 </a>
               
@@ -361,7 +361,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Logger</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> FileWriter writer;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Logger</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">"/Users/wangzheng/log.txt"</span>);</span><br><span class="line">        writer = <span class="keyword">new</span> FileWriter(file, <span class="keyword">true</span>); <span class="comment">// true 表示追加写入</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        writer.write(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Logger 类的应用示例：</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Logger logger = <span class="keyword">new</span> Logger();</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">login</span><span class="params">(String username, String password)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//...省略业务逻辑代码...</span></span><br><span class="line">        logger.log(username + <span class="string">" logged-in!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderController</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Logger logger = <span class="keyword">new</span> Logger();</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">create</span><span class="params">(OrderVo order)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//...省略业务逻辑代码...</span></span><br><span class="line">        logger.log(<span class="string">"Created an order: "</span> + order.toString());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Singleton-Design-Pattern.html#more" rel="contents">
+            <a class="btn" href="/p/Singleton-Design-Pattern.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -404,7 +404,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/编程技巧.html">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/编程技巧.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -426,7 +426,7 @@
             
               
                 
-                <a class="post-title-link" href="/编程技巧.html" itemprop="url">
+                <a class="post-title-link" href="/p/编程技巧.html" itemprop="url">
                   编程技巧
                 </a>
               
@@ -484,7 +484,7 @@
 <p>这里我举一个例子来进一步解释一下。重构前，在 invest() 函数中，最开始的那段关于时间处理的代码，是不是很难看懂？重构之后，我们将这部分逻辑抽象成一个函数，并且命名为 isLastDayOfMonth，从名字就能清晰地了解它的功能，判断今天是不是当月的最后一天。这里，我们就是通过将复杂的逻辑代码提炼成函数，<strong>大大提高了代码的可读性</strong>。代码具体如下所示：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/编程技巧.html#more" rel="contents">
+            <a class="btn" href="/p/编程技巧.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -527,7 +527,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/代码风格.html">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/代码风格.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -549,7 +549,7 @@
             
               
                 
-                <a class="post-title-link" href="/代码风格.html" itemprop="url">
+                <a class="post-title-link" href="/p/代码风格.html" itemprop="url">
                   代码风格
                 </a>
               
@@ -609,7 +609,7 @@
 <h2 id="一行代码多长最合适？"><a href="#一行代码多长最合适？" class="headerlink" title="一行代码多长最合适？"></a>一行代码多长最合适？</h2><p>不同的编程语言、不同的规范、不同的项目团队，对此的限制可能都不相同。不管这个限制是多少，总体上来讲我们要遵循的一个原则是：<strong>一行代码最长不能超过 IDE 显示的宽度</strong>。需要滚动鼠标才能查看一行的全部代码，显然不利于代码的阅读。当然，这个限制也不能太小，太小会导致很多稍长点的语句被折成两行，也会影响到代码的整洁，不利于阅读。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/代码风格.html#more" rel="contents">
+            <a class="btn" href="/p/代码风格.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -652,7 +652,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/命名与注释.html">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/命名与注释.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -674,7 +674,7 @@
             
               
                 
-                <a class="post-title-link" href="/命名与注释.html" itemprop="url">
+                <a class="post-title-link" href="/p/命名与注释.html" itemprop="url">
                   命名与注释
                 </a>
               
@@ -735,7 +735,7 @@
 <p>总之，命名的一个原则就是以能准确达意为目标。不过，对于代码的编写者来说，自己对代码的逻辑很清楚，总感觉用什么样的命名都可以达意，实际上，对于不熟悉你代码的同事来讲，可能就不这么认为了。所以，命名的时候，我们一定<strong>要学会换位思考</strong>，假设自己不熟悉这块代码，从代码阅读者的角度去考量命名是否足够直观。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/命名与注释.html#more" rel="contents">
+            <a class="btn" href="/p/命名与注释.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -778,7 +778,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/解耦.html">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/解耦.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -800,7 +800,7 @@
             
               
                 
-                <a class="post-title-link" href="/解耦.html" itemprop="url">
+                <a class="post-title-link" href="/p/解耦.html" itemprop="url">
                   解耦
                 </a>
               
@@ -861,7 +861,7 @@
 <p>当然，这种判断还是有<strong>比较强的主观色彩</strong>，但是可以作为一种参考和梳理依赖的手段，配合间接的衡量标准一块来使用。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/解耦.html#more" rel="contents">
+            <a class="btn" href="/p/解耦.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>

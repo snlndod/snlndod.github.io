@@ -1,0 +1,872 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="CLRS,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="我们知道，CPU 资源是有限的，任务的处理速度与线程个数并不是线性正相关。相反，过多的线程反而会导致 CPU 频繁切换，处理性能下降。所以，线程池的大小一般都是综合考虑要处理任务的特点和硬件环境，来事先设置的。 如何理解“队列”？队列（Queue）这个概念非常好理解。你可以把它想象成排队买票，先来的先买，后来的人只能站末尾，不允许插队。先进者先出，这就是典型的队列。 我们知道，栈只支持两个基本操作">
+<meta name="keywords" content="CLRS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="队列">
+<meta property="og:url" content="https://umarellyh.github.io/p/队列.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="我们知道，CPU 资源是有限的，任务的处理速度与线程个数并不是线性正相关。相反，过多的线程反而会导致 CPU 频繁切换，处理性能下降。所以，线程池的大小一般都是综合考虑要处理任务的特点和硬件环境，来事先设置的。 如何理解“队列”？队列（Queue）这个概念非常好理解。你可以把它想象成排队买票，先来的先买，后来的人只能站末尾，不允许插队。先进者先出，这就是典型的队列。 我们知道，栈只支持两个基本操作">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/29.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/30.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/31.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/32.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/33.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/34.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/35.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/36.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/37.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/38.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="队列">
+<meta name="twitter:description" content="我们知道，CPU 资源是有限的，任务的处理速度与线程个数并不是线性正相关。相反，过多的线程反而会导致 CPU 频繁切换，处理性能下降。所以，线程池的大小一般都是综合考虑要处理任务的特点和硬件环境，来事先设置的。 如何理解“队列”？队列（Queue）这个概念非常好理解。你可以把它想象成排队买票，先来的先买，后来的人只能站末尾，不允许插队。先进者先出，这就是典型的队列。 我们知道，栈只支持两个基本操作">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/29.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/p/队列.html">
+
+
+
+
+
+  <title> 队列 | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/队列.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                队列
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-28T13:39:07+08:00">
+                2020-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我们知道，CPU 资源是有限的，<strong>任务的处理速度与线程个数并不是线性正相关</strong>。相反，过多的线程反而会导致 CPU 频繁切换，处理性能下降。所以，线程池的大小一般都是综合考虑要处理任务的特点和硬件环境，来事先设置的。</p>
+<h2 id="如何理解“队列”？"><a href="#如何理解“队列”？" class="headerlink" title="如何理解“队列”？"></a>如何理解“队列”？</h2><p><code>队列</code>（Queue）这个概念非常好理解。你可以把它想象成排队买票，先来的先买，后来的人只能站末尾，不允许插队。<strong>先进者先出</strong>，这就是典型的队列。</p>
+<p>我们知道，栈只支持两个基本操作：入栈 push()和出栈 pop()。队列跟栈非常相似，支持的操作也很有限，最基本的操作也是两个：<strong>入队 enqueue()</strong>，放一个数据到队列尾部；<strong>出队 dequeue()</strong>，从队列头部取一个元素。所以，队列跟栈一样，也是一种操作受限的线性表数据结构：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/29.png" alt></p>
+<p>队列的概念很好理解，基本操作也很容易掌握。作为一种非常基础的数据结构，队列的应用也非常广泛，特别是一些具有某些额外特性的队列，比如循环队列、阻塞队列、并发队列。它们<strong>在很多偏底层系统、框架、中间件的开发中，起着关键性的作用</strong>。比如高性能队列 Disruptor、Linux 环形缓存，都用到了循环并发队列；java.util.concurrent 并发包利用 ArrayBlockingQueue 来实现公平锁等。</p>
+<a id="more"></a>
+
+<h2 id="顺序队列和链式队列"><a href="#顺序队列和链式队列" class="headerlink" title="顺序队列和链式队列"></a>顺序队列和链式队列</h2><p>跟栈一样，队列可以用数组来实现，也可以用链表来实现。用数组实现的队列叫作<code>顺序队列</code>，用链表实现的队列叫作<code>链式队列</code>。我们先来看下基于数组的实现方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用数组实现的队列</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayQueue</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 数组：items，数组大小：n</span></span><br><span class="line">    <span class="keyword">private</span> String[] items;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// head 表示队头下标，tail 表示队尾下标</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> head = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> tail = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 申请一个大小为 capacity 的数组</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArrayQueue</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        items = <span class="keyword">new</span> String[capacity];</span><br><span class="line">        n = capacity;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 入队</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">enqueue</span><span class="params">(String item)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果 tail == n 表示队列已经满了</span></span><br><span class="line">        <span class="keyword">if</span> (tail == n) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        items[tail] = item;</span><br><span class="line">        ++tail;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 出队</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">dequeue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果 head == tail 表示队列为空</span></span><br><span class="line">        <span class="keyword">if</span> (head == tail) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        String ret = items[head];</span><br><span class="line">        ++head;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于栈来说，我们只需要一个栈顶指针就可以了。但是<strong>队列需要两个指针：一个是 head 指针，指向队头；一个是 tail 指针，指向队尾</strong>。你可以结合下面这张图来理解。当 a, b, c, d 依次入队之后，队列中的 head 指针指向下标为 0 的位置，tail 指针指向下标为 4 的位置：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/30.png" alt></p>
+<p>当我们调用两次出队操作之后，队列中 head 指针指向下标为 2 的位置，tail 指针仍然指向下标为 4 的位置：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/31.png" alt></p>
+<p>你肯定已经发现了，随着不停地进行入队、出队操作，head 和 tail 都会持续往后移动。当 tail 移动到最右边，即使数组中还有空闲空间，也无法继续往队列中添加数据了。实际上，我们在出队时可以不用搬移数据。如果没有空闲空间了，我们<strong>只需要在入队时，再集中触发一次数据的搬移操作</strong>。借助这个思想，出队函数 dequeue() 保持不变，我们稍加改造一下入队函数 enqueue() 的实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 入队操作，将 item 放入队尾</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">enqueue</span><span class="params">(String item)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// tail == n 表示队列末尾没有空间了</span></span><br><span class="line">    <span class="keyword">if</span> (tail == n) &#123;</span><br><span class="line">        <span class="comment">// tail==n &amp;&amp; head==0，表示整个队列都占满了</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 数据搬移</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = head; i &lt; tail; ++i) &#123;</span><br><span class="line">            items[i-head] = items[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 搬移完之后重新更新 head 和 tail</span></span><br><span class="line">        tail -= head;</span><br><span class="line">        head = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    items[tail] = item;</span><br><span class="line">    ++tail;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从代码中我们看到，当队列的 tail 指针移动到数组的最右边后，如果有新的数据入队，我们可以<strong>将 head 到 tail 之间的数据，整体搬移到数组中 0 到 tail-head 的位置</strong>：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/32.png" alt></p>
+<p>基于链表的实现，我们同样需要两个指针：head 指针和 tail 指针。它们分别指向链表的第一个结点和最后一个结点。如图所示，入队时，tail-&gt;next= new_node, tail = tail-&gt;next；出队时，head = head-&gt;next：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/33.png" alt></p>
+<h2 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h2><p><code>循环队列</code>，顾名思义，它长得像一个环。原本数组是有头有尾的，是一条直线。现在我们把首尾相连，扳成了一个环。我画了一张图，你可以直观地感受一下：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/34.png" alt></p>
+<p>我们可以发现，图中这个队列的大小为 8，当前 head=4, tail=7。当有一个新的元素 a 入队时，我们放入下标为 7 的位置。但这个时候，我们<strong>并不把 tail 更新为 8，而是将其在环中后移一位，到下标为 0 的位置</strong>。当再有一个元素 b 入队时，我们将 b 放入下标为 0 的位置，然后 tail 加 1 更新为 1。所以，在 a, b 依次入队之后，循环队列中的元素就变成了下面的样子：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/35.png" alt></p>
+<p>通过这样的方法，我们成功避免了数据搬移操作。看起来不难理解，但是循环队列的代码实现难度要比前面讲的非循环队列难多了。要想写出没有 bug 的循环队列的实现代码，我个人觉得，最关键的是，<strong>确定好队空和队满的判定条件</strong>。在用数组实现的非循环队列中，队满的判断条件是 tail == n，队空的判断条件是 head == tail。针对循环队列，<strong>队列为空的判断条件仍然是 head == tail</strong>。但队列满的判断条件就稍微有点复杂了：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/36.png" alt></p>
+<p>就像我图中画的队满的情况，tail=3, head=4, n=8，所以总结一下规律就是：(3+1)%8=4。多画几张队满的图，你就会发现，<strong>当队满时，(tail+1)%n=head</strong>。你有没有发现，当队列满时，图中的 tail 指向的位置实际上是没有存储数据的。所以，循环队列会浪费一个数组的存储空间：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CircularQueue</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 数组：items，数组大小：n</span></span><br><span class="line">    <span class="keyword">private</span> String[] items;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// head 表示队头下标，tail 表示队尾下标</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> head = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> tail = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 申请一个大小为 capacity 的数组</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CircularQueue</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        items = <span class="keyword">new</span> String[capacity];</span><br><span class="line">        n = capacity;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 入队</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">enqueue</span><span class="params">(String item)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 队列满了</span></span><br><span class="line">        <span class="keyword">if</span> ((tail + <span class="number">1</span>) % n == head) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        items[tail] = item;</span><br><span class="line">        tail = (tail + <span class="number">1</span>) % n;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 出队</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">dequeue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果 head == tail 表示队列为空</span></span><br><span class="line">        <span class="keyword">if</span> (head == tail) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        String ret = items[head];</span><br><span class="line">        head = (head + <span class="number">1</span>) % n;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="阻塞队列和并发队列"><a href="#阻塞队列和并发队列" class="headerlink" title="阻塞队列和并发队列"></a>阻塞队列和并发队列</h2><p>队列这种数据结构很基础，平时的业务开发不大可能从零实现一个队列，甚至都不会直接用到。而<strong>一些具有特殊特性的队列应用却比较广泛</strong>，比如阻塞队列和并发队列。</p>
+<h3 id="阻塞队列"><a href="#阻塞队列" class="headerlink" title="阻塞队列"></a>阻塞队列</h3><p><code>阻塞队列</code>其实就是<strong>在队列基础上增加了阻塞操作</strong>。简单来说，就是在队列为空的时候，从队头取数据会被阻塞。因为此时还没有数据可取，直到队列中有了数据才能返回；如果队列已经满了，那么插入数据的操作就会被阻塞，直到队列中有空闲位置后再插入数据，然后再返回：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/37.png" alt></p>
+<p>这种基于阻塞队列实现的“生产者-消费者模型”，可以有效地协调生产和消费的速度。当“生产者”生产数据的速度过快，“消费者”来不及消费时，存储数据的队列很快就会满了。这个时候，生产者就阻塞等待，直到“消费者”消费了数据，“生产者”才会被唤醒继续“生产”。而且不仅如此，基于阻塞队列，我们还可以<strong>通过协调“生产者”和“消费者”的个数，来提高数据的处理效率</strong>。比如前面的例子，我们可以多配置几个“消费者”，来应对一个“生产者”：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/38.png" alt></p>
+<h3 id="并发队列"><a href="#并发队列" class="headerlink" title="并发队列"></a>并发队列</h3><p>前面我们讲了阻塞队列，在多线程情况下，会有多个线程同时操作队列，这个时候就会存在线程安全问题。<strong>线程安全的队列</strong>我们叫作<code>并发队列</code>。最简单直接的实现方式是直接在 enqueue()、dequeue() 方法上加锁，但是锁粒度大并发度会比较低，同一时刻仅允许一个存或者取操作。实际上，<strong>基于数组的循环队列，利用 CAS 原子操作，可以实现非常高效的并发队列</strong>。这也是循环队列比链式队列应用更加广泛的原因。</p>
+<h2 id="队列在有限资源池中的应用"><a href="#队列在有限资源池中的应用" class="headerlink" title="队列在有限资源池中的应用"></a>队列在有限资源池中的应用</h2><p>我们一般有两种处理策略。第一种是<strong>非阻塞的处理方式，直接拒绝任务请求</strong>；另一种是阻塞的处理方式，将请求排队，等到有空闲线程时，取出排队的请求继续处理。</p>
+<p>基于链表的实现方式，可以实现一个支持无限排队的<code>无界队列</code>（Unbounded Queue），但是可能会导致过多的请求排队等待，请求处理的响应时间过长。所以，<strong>针对响应时间比较敏感的系统，基于链表实现的无限排队的线程池是不合适的</strong>；而基于数组实现的<code>有界队列</code>（Bounded Queue），队列的大小有限，所以线程池中排队的请求超过队列大小时，接下来的请求就会被拒绝，这种方式对响应时间敏感的系统来说，就相对更加合理。不过，<strong>设置一个合理的队列大小，也是非常有讲究的</strong>。队列太大导致等待的请求太多，队列太小会导致无法充分利用系统资源、发挥最大性能。</p>
+<p>除了前面讲到队列应用在线程池请求排队的场景之外，队列可以应用在任何有限资源池中，用于排队请求，比如数据库连接池等。实际上，<strong>对于大部分资源有限的场景，当没有空闲资源时，基本上都可以通过队列这种数据结构来实现请求排队</strong>。</p>
+<h2 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h2><p><a href="https://leetcode.com/problems/design-circular-deque/" target="_blank" rel="noopener">Design Circular Deque</a><br><a href="https://leetcode.com/problems/sliding-window-maximum/" target="_blank" rel="noopener">Sliding Window Maximum</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CLRS/" rel="tag"># CLRS</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/p/栈.html" rel="next" title="栈">
+                <i class="fa fa-chevron-left"></i> 栈
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/p/递归.html" rel="prev" title="递归">
+                递归 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何理解“队列”？"><span class="nav-number">1.</span> <span class="nav-text">如何理解“队列”？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序队列和链式队列"><span class="nav-number">2.</span> <span class="nav-text">顺序队列和链式队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环队列"><span class="nav-number">3.</span> <span class="nav-text">循环队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阻塞队列和并发队列"><span class="nav-number">4.</span> <span class="nav-text">阻塞队列和并发队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阻塞队列"><span class="nav-number">4.1.</span> <span class="nav-text">阻塞队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发队列"><span class="nav-number">4.2.</span> <span class="nav-text">并发队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列在有限资源池中的应用"><span class="nav-number">5.</span> <span class="nav-text">队列在有限资源池中的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LeetCode"><span class="nav-number">6.</span> <span class="nav-text">LeetCode</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

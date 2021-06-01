@@ -280,7 +280,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/Bridge-Design-Pattern.html">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/Bridge-Design-Pattern.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -302,7 +302,7 @@
             
               
                 
-                <a class="post-title-link" href="/Bridge-Design-Pattern.html" itemprop="url">
+                <a class="post-title-link" href="/p/Bridge-Design-Pattern.html" itemprop="url">
                   Bridge Design Pattern
                 </a>
               
@@ -367,7 +367,7 @@
 <p>如此优雅的数据库切换是如何实现的呢？源码之下无秘密，我们先从 com.mysql.jdbc.Driver 这个类的代码看起：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Bridge-Design-Pattern.html#more" rel="contents">
+            <a class="btn" href="/p/Bridge-Design-Pattern.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -410,7 +410,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/Proxy-Design-Pattern.html">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/Proxy-Design-Pattern.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -432,7 +432,7 @@
             
               
                 
-                <a class="post-title-link" href="/Proxy-Design-Pattern.html" itemprop="url">
+                <a class="post-title-link" href="/p/Proxy-Design-Pattern.html" itemprop="url">
                   Proxy Design Pattern
                 </a>
               
@@ -491,7 +491,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">//...省略其他属性和方法...</span></span><br><span class="line">    <span class="keyword">private</span> MetricsCollector metricsCollector; <span class="comment">// 依赖注入</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserVo <span class="title">login</span><span class="params">(String telephone, String password)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> startTimestamp = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//...省略 login 逻辑...</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> endTimeStamp = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">long</span> responseTime = endTimeStamp - startTimestamp;</span><br><span class="line">        RequestInfo requestInfo = <span class="keyword">new</span> RequestInfo(<span class="string">"login"</span>, responseTime, startTimestamp);</span><br><span class="line">        metricsCollector.recordRequest(requestInfo);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//...返回 UserVo 数据...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> UserVo <span class="title">register</span><span class="params">(String telephone, String password)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> startTimestamp = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//...省略 register 逻辑...</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> endTimeStamp = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">long</span> responseTime = endTimeStamp - startTimestamp;</span><br><span class="line">        RequestInfo requestInfo = <span class="keyword">new</span> RequestInfo(<span class="string">"register"</span>, responseTime, startTimestamp);</span><br><span class="line">        metricsCollector.recordRequest(requestInfo);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//...返回 UserVo 数据...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Proxy-Design-Pattern.html#more" rel="contents">
+            <a class="btn" href="/p/Proxy-Design-Pattern.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -534,7 +534,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/Prototype-Design-Pattern.html">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/Prototype-Design-Pattern.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -556,7 +556,7 @@
             
               
                 
-                <a class="post-title-link" href="/Prototype-Design-Pattern.html" itemprop="url">
+                <a class="post-title-link" href="/p/Prototype-Design-Pattern.html" itemprop="url">
                   Prototype Design Pattern
                 </a>
               
@@ -616,7 +616,7 @@
 <p>不过，我们还有另外一个系统 B，专门用来分析搜索日志，定期（比如间隔 10 分钟）批量地更新数据库中的数据，并且标记为新的数据版本。比如，在下面的示例图中，我们对 v2 版本的数据进行更新，得到 v3 版本的数据。这里我们假设只有更新和新添关键词，没有删除关键词的行为：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Prototype-Design-Pattern.html#more" rel="contents">
+            <a class="btn" href="/p/Prototype-Design-Pattern.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -659,7 +659,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/Builder-Design-Pattern.html">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/Builder-Design-Pattern.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -681,7 +681,7 @@
             
               
                 
-                <a class="post-title-link" href="/Builder-Design-Pattern.html" itemprop="url">
+                <a class="post-title-link" href="/p/Builder-Design-Pattern.html" itemprop="url">
                   Builder Design Pattern
                 </a>
               
@@ -739,7 +739,7 @@
 <p>只要你稍微有点开发经验，那实现这样一个类对你来说并不是件难事。因为 maxTotal、maxIdle、minIdle 不是必填变量，所以在创建 ResourcePoolConfig 对象的时候，我们<strong>通过往构造函数中，给这几个参数传递 null 值，来表示使用默认值</strong>：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Builder-Design-Pattern.html#more" rel="contents">
+            <a class="btn" href="/p/Builder-Design-Pattern.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -782,7 +782,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/Factory-Design-Pattern.html">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/p/Factory-Design-Pattern.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -804,7 +804,7 @@
             
               
                 
-                <a class="post-title-link" href="/Factory-Design-Pattern.html" itemprop="url">
+                <a class="post-title-link" href="/p/Factory-Design-Pattern.html" itemprop="url">
                   Factory Design Pattern
                 </a>
               
@@ -862,7 +862,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RuleConfigSource</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> RuleConfig <span class="title">load</span><span class="params">(String ruleConfigFilePath)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        String ruleConfigFileExtension = getFileExtension(ruleConfigFilePath);</span><br><span class="line">        IRuleConfigParser parser = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"json"</span>.equalsIgnoreCase(ruleConfigFileExtension)) </span><br><span class="line">        &#123;</span><br><span class="line">            parser = <span class="keyword">new</span> JsonRuleConfigParser();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"xml"</span>.equalsIgnoreCase(ruleConfigFileExtension)) </span><br><span class="line">        &#123;</span><br><span class="line">            parser = <span class="keyword">new</span> XmlRuleConfigParser();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"yaml"</span>.equalsIgnoreCase(ruleConfigFileExtension)) </span><br><span class="line">        &#123;</span><br><span class="line">            parser = <span class="keyword">new</span> YamlRuleConfigParser();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"properties"</span>.equalsIgnoreCase(ruleConfigFileExtension)) </span><br><span class="line">        &#123;</span><br><span class="line">            parser = <span class="keyword">new</span> PropertiesRuleConfigParser();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> InvalidRuleConfigException(<span class="string">"Rule config file format is not supported: "</span> + ruleConfigFilePath);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        String configText = <span class="string">""</span>;</span><br><span class="line">        <span class="comment">// 从 ruleConfigFilePath 文件中读取配置文本到 configText 中</span></span><br><span class="line">        RuleConfig ruleConfig = parser.parse(configText);</span><br><span class="line">        <span class="keyword">return</span> ruleConfig;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">getFileExtension</span><span class="params">(String filePath)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//...解析文件名获取扩展名，比如 rule.json，返回 json</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"json"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/Factory-Design-Pattern.html#more" rel="contents">
+            <a class="btn" href="/p/Factory-Design-Pattern.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
