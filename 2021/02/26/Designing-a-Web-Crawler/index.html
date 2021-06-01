@@ -95,13 +95,13 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="What is a Web Crawler?A web crawler is a software program which browses the World Wide Web in a methodical and automated manner. It collects documents by recursively fetching links from a set of start">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/58.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/59.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/58.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/59.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Designing a Web Crawler">
 <meta name="twitter:description" content="What is a Web Crawler?A web crawler is a software program which browses the World Wide Web in a methodical and automated manner. It collects documents by recursively fetching links from a set of start">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/58.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/58.png">
 
 
 
@@ -411,9 +411,9 @@
 <li><strong>Duplicate Eliminator</strong>: To make sure the same content is not extracted twice unintentionally;</li>
 <li><strong>Datastore</strong>: To store retrieved pages, URLs, and other metadata;</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/58.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/58.png" alt></p>
 <h2 id="Detailed-Component-Design"><a href="#Detailed-Component-Design" class="headerlink" title="Detailed Component Design"></a>Detailed Component Design</h2><p>Let’s assume our crawler is running on one server and all the crawling is done by multiple working threads where each working thread performs all the steps needed to download and process a document in a loop.<br>The first step of this loop is to remove an absolute URL from the shared URL frontier for downloading. An absolute URL begins with a scheme (e.g., “HTTP”) which identifies the network protocol that should be used to download it. We can implement these protocols in a modular way for extensibility, so that later if our crawler needs to support more protocols, it can be easily done. Based on the URL’s scheme, the worker calls the appropriate protocol module to download the document. After downloading, the document is placed into a Document Input Stream (DIS). Putting documents into DIS will enable other modules to re-read the document multiple times.<br>Once the document has been written to the DIS, the worker thread invokes the dedupe test to determine whether this document (associated with a different URL) has been seen before. If so, the document is not processed any further and the worker thread removes the next URL from the frontier.<br>Next, our crawler needs to process the downloaded document. Each document can have a different MIME type like HTML page, Image, Video, etc. We can implement these MIME schemes in a modular way, so that later if our crawler needs to support more types, we can easily implement them. Based on the downloaded document’s MIME type, the worker invokes the process method of each processing module associated with that MIME type.<br>Furthermore, our HTML processing module will extract all links from the page. Each link is converted into an absolute URL and tested against a user-supplied URL filter to determine if it should be downloaded. If the URL passes the filter, the worker performs the URL-seen test, which checks if the URL has been seen before, namely, if it is in the URL frontier or has already been downloaded. If the URL is new, it is added to the frontier.</p>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/59.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/59.png" alt></p>
 <h3 id="URL-Frontier"><a href="#URL-Frontier" class="headerlink" title="URL Frontier"></a>URL Frontier</h3><p>The URL frontier is the data structure that contains all the URLs that remain to be downloaded. We can crawl by performing a breadth-first traversal of the Web, starting from the pages in the seed set. Such traversals are easily implemented by using a FIFO queue.<br>Since we’ll be having a huge list of URLs to crawl, we can distribute our URL frontier into multiple servers. Let’s assume on each server we have multiple worker threads performing the crawling tasks. Let’s also assume that our hash function maps each URL to a server which will be responsible for crawling it.<br>Following politeness requirements must be kept in mind while designing a distributed URL frontier:</p>
 <ol>
 <li>Our crawler should not overload a server by downloading a lot of pages from it;</li>

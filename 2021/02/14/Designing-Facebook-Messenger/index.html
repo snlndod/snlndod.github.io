@@ -95,15 +95,15 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="What is Facebook Messenger?Facebook Messenger is a software application which provides text-based instant messaging services to its users. Messenger users can chat with their Facebook friends both fro">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/36.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/37.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/38.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/39.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/36.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/37.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/38.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/39.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Designing Facebook Messenger">
 <meta name="twitter:description" content="What is Facebook Messenger?Facebook Messenger is a software application which provides text-based instant messaging services to its users. Messenger users can chat with their Facebook friends both fro">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/36.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/36.png">
 
 
 
@@ -394,8 +394,8 @@
 <p>2 TB / 86400 sec ≈ 25 MB/s</p>
 </blockquote>
 <p>Since each incoming message needs to go out to another user, we will need the same amount of bandwidth 25MB/s for both upload and download.</p>
-<p><strong>High-level estimates</strong>:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/36.png" alt></p>
-<h2 id="High-Level-Design"><a href="#High-Level-Design" class="headerlink" title="High-Level Design"></a>High-Level Design</h2><p>At a high level, we will need a chat server that will be the central piece, orchestrating all the communications between users. When a user wants to send a message to another user, they will connect to the chat server and send the message to the server; the server then passes that message to the other user and also stores it in the database:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/37.png" alt></p>
+<p><strong>High-level estimates</strong>:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/36.png" alt></p>
+<h2 id="High-Level-Design"><a href="#High-Level-Design" class="headerlink" title="High-Level Design"></a>High-Level Design</h2><p>At a high level, we will need a chat server that will be the central piece, orchestrating all the communications between users. When a user wants to send a message to another user, they will connect to the chat server and send the message to the server; the server then passes that message to the other user and also stores it in the database:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/37.png" alt></p>
 <p>The detailed workflow would look like this:</p>
 <ol>
 <li>User A sends a message to User B through the chat server;</li>
@@ -404,7 +404,7 @@
 <li>User B receives the message and sends the acknowledgment to the server;</li>
 <li>The server notifies User A that the message has been delivered successfully to User B;</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/38.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/38.png" alt></p>
 <h2 id="Detailed-Component-Design"><a href="#Detailed-Component-Design" class="headerlink" title="Detailed Component Design"></a>Detailed Component Design</h2><p>Let’s try to build a simple solution first where everything runs on one server. At the high level our system needs to handle the following use cases:</p>
 <ol>
 <li>Receive incoming messages and deliver outgoing messages;</li>
@@ -461,7 +461,7 @@
 <li>Clients can pull the status from the server about those users that are being shown on the user’s viewport. This should not be a frequent operation, as the server is broadcasting the online status of users and we can live with the stale offline status of users for a while;</li>
 <li>Whenever the client starts a new chat with another user, we can pull the status at that time;</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/39.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/39.png" alt></p>
 <p><strong>Design Summary</strong>: Clients will open a connection to the chat server to send a message; the server will then pass it to the requested user. All the active users will keep a connection open with the server to receive messages. Whenever a new message arrives, the chat server will push it to the receiving user on the long poll request. Messages can be stored in HBase, which supports quick small updates, and range based searches. The servers can broadcast the online status of a user to other relevant users. Clients can pull status updates for users who are visible in the client’s viewport on a less frequent basis.</p>
 <h2 id="Data-Partitioning"><a href="#Data-Partitioning" class="headerlink" title="Data Partitioning"></a>Data Partitioning</h2><p>Since we will be storing a lot of data (3.6PB for five years), we need to distribute it onto multiple database servers. What will be our partitioning scheme?</p>
 <p><strong>Partitioning based on UserID</strong>: Let’s assume we partition based on the hash of the UserID so that we can keep all messages of a user on the same database. If one DB shard is 4TB, we will have “3.6PB/4TB = 900” shards for five years. For simplicity, let’s assume we keep 1K shards. So we will find the shard number by “hash(UserID) % 1000” and then store/retrieve the data from there. This partitioning scheme will also be very quick to fetch chat history for any user.<br>In the beginning, we can start with fewer database servers with multiple shards residing on one physical server. Since we can have multiple database instances on a server, we can easily store multiple partitions on a single server. Our hash function needs to understand this logical partitioning scheme so that it can map multiple logical partitions on one physical server.<br>Since we will store an unlimited history of messages, we can start with a big number of logical partitions, which will be mapped to fewer physical servers, and as our storage demand increases, we can add more physical servers to distribute our logical partitions.</p>

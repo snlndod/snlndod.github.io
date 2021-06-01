@@ -95,19 +95,19 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="如何理解“图”？图（Graph）和树比起来，这是一种更加复杂的非线性表结构。我们知道，树中的元素我们称为节点，图中的元素我们就叫做顶点（Vertex）。从我画的图中可以看出来，图中的一个顶点可以与任意其他顶点建立连接关系。我们把这种建立的关系叫做边（Edge）： 我们生活中就有很多符合图这种结构的例子。比如，社交网络就是一个非常典型的图结构。我们就拿微信举例子吧。我们可以把每个用户看作一个顶点。如">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/157.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/158.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/159.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/160.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/161.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/162.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/163.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/164.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/157.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/158.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/159.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/160.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/161.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/162.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/163.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/164.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图的表示">
 <meta name="twitter:description" content="如何理解“图”？图（Graph）和树比起来，这是一种更加复杂的非线性表结构。我们知道，树中的元素我们称为节点，图中的元素我们就叫做顶点（Vertex）。从我画的图中可以看出来，图中的一个顶点可以与任意其他顶点建立连接关系。我们把这种建立的关系叫做边（Edge）： 我们生活中就有很多符合图这种结构的例子。比如，社交网络就是一个非常典型的图结构。我们就拿微信举例子吧。我们可以把每个用户看作一个顶点。如">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/157.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/157.png">
 
 
 
@@ -364,17 +364,17 @@
       
 
       
-        <h2 id="如何理解“图”？"><a href="#如何理解“图”？" class="headerlink" title="如何理解“图”？"></a>如何理解“图”？</h2><p><code>图</code>（Graph）和树比起来，这是一种更加复杂的非线性表结构。我们知道，树中的元素我们称为节点，图中的元素我们就叫做<code>顶点</code>（Vertex）。从我画的图中可以看出来，图中的一个顶点可以与任意其他顶点建立连接关系。我们把这种建立的关系叫做<code>边</code>（Edge）：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/157.png" alt></p>
+        <h2 id="如何理解“图”？"><a href="#如何理解“图”？" class="headerlink" title="如何理解“图”？"></a>如何理解“图”？</h2><p><code>图</code>（Graph）和树比起来，这是一种更加复杂的非线性表结构。我们知道，树中的元素我们称为节点，图中的元素我们就叫做<code>顶点</code>（Vertex）。从我画的图中可以看出来，图中的一个顶点可以与任意其他顶点建立连接关系。我们把这种建立的关系叫做<code>边</code>（Edge）：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/157.png" alt></p>
 <p>我们生活中就有很多符合图这种结构的例子。比如，社交网络就是一个非常典型的图结构。我们就拿微信举例子吧。我们可以把每个用户看作一个顶点。如果两个用户之间互加好友，那就在两者之间建立一条边。所以，整个微信的好友关系就可以用一张图来表示。其中，每个用户有多少个好友，对应到图中，就叫做顶点的<code>度</code>（Degree），就是跟顶点相连接的边的条数。</p>
-<p>实际上，微博的社交关系跟微信还有点不一样，或者说更加复杂一点。微博允许单向关注，如果用户 A 关注了用户 B，我们就在图中画一条从 A 到 B 的带箭头的边，来表示边的方向。如果用户 A 和用户 B 互相关注了，那我们就画一条从 A 指向 B 的边，再画一条从 B 指向 A 的边。我们把这种边有方向的图叫做<code>有向图</code>。以此类推，我们把边没有方向的图就叫做<code>无向图</code>：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/158.png" alt></p>
+<p>实际上，微博的社交关系跟微信还有点不一样，或者说更加复杂一点。微博允许单向关注，如果用户 A 关注了用户 B，我们就在图中画一条从 A 到 B 的带箭头的边，来表示边的方向。如果用户 A 和用户 B 互相关注了，那我们就画一条从 A 指向 B 的边，再画一条从 B 指向 A 的边。我们把这种边有方向的图叫做<code>有向图</code>。以此类推，我们把边没有方向的图就叫做<code>无向图</code>：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/158.png" alt></p>
 <p>无向图中有“度”这个概念，表示一个顶点有多少条边。在有向图中，我们把度分为<code>入度</code>（In-degree）和<code>出度</code>（Out-degree）。顶点的入度，表示有多少条边指向这个顶点；顶点的出度，表示有多少条边是以这个顶点为起点指向其他顶点。对应到微博的例子，入度就表示有多少粉丝，出度就表示关注了多少人。</p>
 <a id="more"></a>
 
-<p>QQ 中的社交关系要更复杂一点。不知道你有没有留意过 QQ 亲密度这样一个功能。QQ 不仅记录了用户之间的好友关系，还记录了两个用户之间的亲密度，如果两个用户经常往来，那亲密度就比较高；如果不经常往来，亲密度就比较低。这里就要用到另一种图，<code>带权图</code>（Weighted Graph）。在带权图中，每条边都有一个<code>权重</code>（Weight），我们可以通过这个权重来表示 QQ 好友间的亲密度：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/159.png" alt></p>
-<h2 id="邻接矩阵存储方法"><a href="#邻接矩阵存储方法" class="headerlink" title="邻接矩阵存储方法"></a>邻接矩阵存储方法</h2><p><code>邻接矩阵</code>（Adjacency Matrix）的底层依赖一个二维数组。对于无向图来说，如果顶点 i 与顶点 j 之间有边，我们就将 A[i][j]和 A[j][i]标记为 1；对于有向图来说，如果顶点 i 到顶点 j 之间，有一条箭头从顶点 i 指向顶点 j 的边，那我们就将 A[i][j]标记为 1。同理，如果有一条箭头从顶点 j 指向顶点 i 的边，我们就将 A[j][i]标记为 1。<strong>对于带权图，数组中就存储相应的权重</strong>：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/160.png" alt></p>
+<p>QQ 中的社交关系要更复杂一点。不知道你有没有留意过 QQ 亲密度这样一个功能。QQ 不仅记录了用户之间的好友关系，还记录了两个用户之间的亲密度，如果两个用户经常往来，那亲密度就比较高；如果不经常往来，亲密度就比较低。这里就要用到另一种图，<code>带权图</code>（Weighted Graph）。在带权图中，每条边都有一个<code>权重</code>（Weight），我们可以通过这个权重来表示 QQ 好友间的亲密度：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/159.png" alt></p>
+<h2 id="邻接矩阵存储方法"><a href="#邻接矩阵存储方法" class="headerlink" title="邻接矩阵存储方法"></a>邻接矩阵存储方法</h2><p><code>邻接矩阵</code>（Adjacency Matrix）的底层依赖一个二维数组。对于无向图来说，如果顶点 i 与顶点 j 之间有边，我们就将 A[i][j]和 A[j][i]标记为 1；对于有向图来说，如果顶点 i 到顶点 j 之间，有一条箭头从顶点 i 指向顶点 j 的边，那我们就将 A[i][j]标记为 1。同理，如果有一条箭头从顶点 j 指向顶点 i 的边，我们就将 A[j][i]标记为 1。<strong>对于带权图，数组中就存储相应的权重</strong>：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/160.png" alt></p>
 <p>对于无向图来说，如果 A[i][j]等于 1，那 A[j][i]也肯定等于 1。实际上，我们只需要存储一个就可以了。也就是说，无向图的二维数组中，如果我们将其用对角线划分为上下两部分，那我们<strong>只需要利用上面或者下面这样一半的空间就足够了，另外一半白白浪费掉了</strong>。还有，如果我们存储的是<code>稀疏图</code>（Sparse Matrix），也就是说，顶点很多，但每个顶点的边并不多，那<strong>邻接矩阵的存储方法就更加浪费空间</strong>了。</p>
 <p>但这也并不是说，邻接矩阵的存储方法就完全没有优点。首先，邻接矩阵的存储方式简单、直接，因为基于数组，所以<strong>在获取两个顶点的关系时，就非常高效</strong>。其次，用邻接矩阵存储图的另外一个好处是方便计算。这是因为，用邻接矩阵的方式存储图，<strong>可以将很多图的运算转换成矩阵之间的运算</strong>。</p>
-<h2 id="邻接表存储方法"><a href="#邻接表存储方法" class="headerlink" title="邻接表存储方法"></a>邻接表存储方法</h2><p>我画了一张<code>邻接表</code>（Adjacency List）的图，<strong>每个顶点对应一条链表，链表中存储的是与这个顶点相连接的其他顶点</strong>。另外我需要说明一下，图中画的是一个有向图的邻接表存储方式，每个顶点对应的链表里面，存储的是指向的顶点：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/161.png" alt></p>
+<h2 id="邻接表存储方法"><a href="#邻接表存储方法" class="headerlink" title="邻接表存储方法"></a>邻接表存储方法</h2><p>我画了一张<code>邻接表</code>（Adjacency List）的图，<strong>每个顶点对应一条链表，链表中存储的是与这个顶点相连接的其他顶点</strong>。另外我需要说明一下，图中画的是一个有向图的邻接表存储方式，每个顶点对应的链表里面，存储的是指向的顶点：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/161.png" alt></p>
 <p>邻接矩阵存储起来比较浪费空间，但是使用起来比较节省时间。相反，邻接表存储起来比较节省空间，但是使用起来就比较耗时间。如果我们要确定，是否存在一条从顶点 2 到顶点 4 的边，那我们就要遍历顶点 2 对应的那条链表，看链表中是否存在顶点 4。而且，<strong>链表的存储方式对缓存不友好</strong>。所以，比起邻接矩阵的存储方式，在邻接表中查询两个顶点之间的关系就没那么高效了。</p>
 <p>我们<strong>可以将邻接表中的链表改成平衡二叉查找树</strong>。实际开发中，我们可以选择用红黑树。这样，我们就可以更加快速地查找两个顶点之间是否存在边了。当然，这里的二叉查找树可以换成其他动态数据结构，比如跳表、散列表等。除此之外，我们<strong>还可以将链表改成有序动态数组</strong>，通过二分查找的方法来快速定位两个顶点之间否是存在边。</p>
 <h2 id="如何存储社交网络中的好友关系"><a href="#如何存储社交网络中的好友关系" class="headerlink" title="如何存储社交网络中的好友关系"></a>如何存储社交网络中的好友关系</h2><p>数据结构是为算法服务的，所以<strong>具体选择哪种存储方法，与期望支持的操作有关系</strong>。针对微博用户关系，假设我们需要支持下面这样几个操作：</p>
@@ -387,10 +387,10 @@
 <li>根据用户名称的首字母排序，分页获取用户的关注列表；</li>
 </ul>
 <p>因为社交网络是一张稀疏图，使用邻接矩阵存储比较浪费存储空间。所以，这里我们采用邻接表来存储。不过，用一个邻接表来存储这种有向图是不够的。我们去查找某个用户关注了哪些用户非常容易，但是如果要想知道某个用户都被哪些用户关注了，也就是用户的粉丝列表，是非常困难的。基于此，我们需要一个逆邻接表。<strong>邻接表中存储了用户的关注关系，逆邻接表中存储的是用户的被关注关系</strong>。</p>
-<p>对应到图上，邻接表中，每个顶点的链表中，存储的就是这个顶点指向的顶点，逆邻接表中，每个顶点的链表中，存储的是指向这个顶点的顶点。如果要查找某个用户关注了哪些用户，我们可以在邻接表中查找；如果要查找某个用户被哪些用户关注了，我们从逆邻接表中查找：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/162.png" alt></p>
+<p>对应到图上，邻接表中，每个顶点的链表中，存储的就是这个顶点指向的顶点，逆邻接表中，每个顶点的链表中，存储的是指向这个顶点的顶点。如果要查找某个用户关注了哪些用户，我们可以在邻接表中查找；如果要查找某个用户被哪些用户关注了，我们从逆邻接表中查找：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/162.png" alt></p>
 <p>基础的邻接表不适合快速判断两个用户之间是否是关注与被关注的关系，所以我们选择改进版本，<strong>将邻接表中的链表改为支持快速查找的动态数据结构</strong>。因为我们需要按照用户名称的首字母排序，分页来获取用户的粉丝列表或者关注列表，用跳表这种结构再合适不过了。这是因为，跳表插入、删除、查找都非常高效，时间复杂度是 O(logn)，空间复杂度上稍高，是 O(n)。最重要的一点，<strong>跳表中存储的数据本来就是有序的了，分页获取粉丝列表或关注列表，就非常高效</strong>。</p>
-<p>如果对于小规模的数据，比如社交网络中只有几万、几十万个用户，我们可以将整个社交关系存储在内存中，上面的解决思路是没有问题的。但是如果像微博那样有上亿的用户，数据规模太大，我们就无法全部存储在内存中了。我们可以<strong>通过哈希算法等数据分片方式，将邻接表存储在不同的机器上</strong>。你可以看下面这幅图，我们在机器 1 上存储顶点 1, 2, 3 的邻接表，在机器 2 上，存储顶点 4, 5 的邻接表。逆邻接表的处理方式也一样。当要查询顶点与顶点关系的时候，我们就利用同样的哈希算法，先定位顶点所在的机器，然后再在相应的机器上查找：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/163.png" alt></p>
-<p>除此之外，我们还有另外一种解决思路，就是利用外部存储（比如硬盘），因为<strong>外部存储的存储空间要比内存会宽裕很多</strong>。数据库是我们经常用来持久化存储关系数据的，我用下面这张表来存储这样一个图。<strong>为了高效地支持前面定义的操作，我们可以在表上建立多个索引</strong>，比如第一列、第二列，给这两列都建立索引：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/164.png" alt></p>
+<p>如果对于小规模的数据，比如社交网络中只有几万、几十万个用户，我们可以将整个社交关系存储在内存中，上面的解决思路是没有问题的。但是如果像微博那样有上亿的用户，数据规模太大，我们就无法全部存储在内存中了。我们可以<strong>通过哈希算法等数据分片方式，将邻接表存储在不同的机器上</strong>。你可以看下面这幅图，我们在机器 1 上存储顶点 1, 2, 3 的邻接表，在机器 2 上，存储顶点 4, 5 的邻接表。逆邻接表的处理方式也一样。当要查询顶点与顶点关系的时候，我们就利用同样的哈希算法，先定位顶点所在的机器，然后再在相应的机器上查找：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/163.png" alt></p>
+<p>除此之外，我们还有另外一种解决思路，就是利用外部存储（比如硬盘），因为<strong>外部存储的存储空间要比内存会宽裕很多</strong>。数据库是我们经常用来持久化存储关系数据的，我用下面这张表来存储这样一个图。<strong>为了高效地支持前面定义的操作，我们可以在表上建立多个索引</strong>，比如第一列、第二列，给这两列都建立索引：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/164.png" alt></p>
 <h2 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h2><p><a href="https://leetcode.com/problems/number-of-islands/description/" target="_blank" rel="noopener">Number of Islands</a><br><a href="https://leetcode.com/problems/valid-sudoku/" target="_blank" rel="noopener">Valid Sudoku</a></p>
 
       

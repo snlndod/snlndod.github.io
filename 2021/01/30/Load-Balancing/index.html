@@ -95,14 +95,14 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="Load Balancer (LB) is another critical component of any distributed system. It helps to spread the traffic across a cluster of servers to improve responsiveness and availability of applications, websi">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/01.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/02.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/03.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/01.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/02.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/03.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Load Balancing">
 <meta name="twitter:description" content="Load Balancer (LB) is another critical component of any distributed system. It helps to spread the traffic across a cluster of servers to improve responsiveness and availability of applications, websi">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/01.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/01.png">
 
 
 
@@ -360,7 +360,7 @@
 
       
         <p>Load Balancer (LB) is another critical component of any distributed system. It helps to spread the traffic across a cluster of servers to improve responsiveness and availability of applications, websites or databases. LB also keeps track of the status of all the resources while distributing requests. If a server is not available to take new requests or is not responding or has elevated error rate, LB will stop sending traffic to such a server.</p>
-<p>Typically a load balancer sits between the client and the server accepting incoming network and application traffic and distributing the traffic across multiple backend servers using various algorithms. By balancing application requests across multiple servers, a load balancer reduces individual server load and prevents any one application server from becoming a single point of failure, thus improving overall application availability and responsiveness:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/01.png" alt></p>
+<p>Typically a load balancer sits between the client and the server accepting incoming network and application traffic and distributing the traffic across multiple backend servers using various algorithms. By balancing application requests across multiple servers, a load balancer reduces individual server load and prevents any one application server from becoming a single point of failure, thus improving overall application availability and responsiveness:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/01.png" alt></p>
 <a id="more"></a>
 
 <p>To utilize full scalability and redundancy, we can try to balance the load at each layer of the system. We can add LBs at three places:</p>
@@ -369,7 +369,7 @@
 <li>Between web servers and an internal platform layer, like application servers or cache servers;</li>
 <li>Between internal platform layer and database;</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/02.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/02.png" alt></p>
 <h2 id="Benefits-of-Load-Balancing"><a href="#Benefits-of-Load-Balancing" class="headerlink" title="Benefits of Load Balancing"></a>Benefits of Load Balancing</h2><ul>
 <li>Users experience faster, uninterrupted service. Users won’t have to wait for a single struggling server to finish its previous tasks. Instead, their requests are immediately passed on to a more readily available resource;</li>
 <li>Service providers experience less downtime and higher throughput. Even a full server failure won’t affect the end user experience as the load balancer will simply route around it to a healthy server;</li>
@@ -388,7 +388,7 @@
 <li><strong>Weighted Round Robin Method</strong>: The weighted round-robin scheduling is designed to better handle servers with different processing capacities. Each server is assigned a weight (an integer value that indicates the processing capacity). Servers with higher weights receive new connections before those with less weights and servers with higher weights get more connections than those with less weights;</li>
 <li><strong>IP Hash</strong>: Under this method, a hash of the IP address of the client is calculated to redirect the request to a server;</li>
 </ul>
-<h2 id="Redundant-Load-Balancers"><a href="#Redundant-Load-Balancers" class="headerlink" title="Redundant Load Balancers"></a>Redundant Load Balancers</h2><p>The load balancer can be a single point of failure; to overcome this, a second load balancer can be connected to the first to form a cluster. Each LB monitors the health of the other and, since both of them are equally capable of serving traffic and failure detection, in the event the main load balancer fails, the second load balancer takes over:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/03.png" alt></p>
+<h2 id="Redundant-Load-Balancers"><a href="#Redundant-Load-Balancers" class="headerlink" title="Redundant Load Balancers"></a>Redundant Load Balancers</h2><p>The load balancer can be a single point of failure; to overcome this, a second load balancer can be connected to the first to form a cluster. Each LB monitors the health of the other and, since both of them are equally capable of serving traffic and failure detection, in the event the main load balancer fails, the second load balancer takes over:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/03.png" alt></p>
 <p>Following links have some good discussion about load balancers:<br>[1] <a href="https://avinetworks.com/what-is-load-balancing/" target="_blank" rel="noopener">What is load balancing</a><br>[2] <a href="https://lethain.com/introduction-to-architecting-systems-for-scale/" target="_blank" rel="noopener">Introduction to architecting systems</a><br>[3] <a href="https://en.wikipedia.org/wiki/Load_balancing_(computing)" target="_blank" rel="noopener">Load balancing</a></p>
 
       

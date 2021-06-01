@@ -95,13 +95,13 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="Dockerfile 是一个文本格式的配置文件，用户可以使用 Dockerfile 来快速创建自定义的镜像，本文会介绍使用 Dockerfile 的一些最佳实践。 基本结构Dockerfile 由一行行命令语句组成，并且支持以 # 开头的注释行。主体内容分为四部分：基础镜像信息、维护者信息、镜像操作指令、容器启动时执行指令。下面给出一个简单的示例： 123456789101112131415161">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Docker/8-1.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Docker/8-2.jpg">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Docker/8-1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Docker/8-2.jpg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 Dockerfile 创建镜像">
 <meta name="twitter:description" content="Dockerfile 是一个文本格式的配置文件，用户可以使用 Dockerfile 来快速创建自定义的镜像，本文会介绍使用 Dockerfile 的一些最佳实践。 基本结构Dockerfile 由一行行命令语句组成，并且支持以 # 开头的注释行。主体内容分为四部分：基础镜像信息、维护者信息、镜像操作指令、容器启动时执行指令。下面给出一个简单的示例： 123456789101112131415161">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Docker/8-1.jpg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Docker/8-1.jpg">
 
 
 
@@ -364,7 +364,7 @@
 
 <a id="more"></a>
 <p>首行可以通过注释来指定解析器命令，后续通过注释说明镜像的相关信息。主体部分首先使用 <code>FROM</code> 指令指明所基于的镜像名称，接下来一般是使用 <code>LABEL</code> 指令说明维护者信息。每运行一条 <code>RUN</code> 指令，镜像添加新的一层并提交，最后是 <code>CMD</code> 指令，来指定运行容器时的操作命令。</p>
-<h2 id="指令说明"><a href="#指令说明" class="headerlink" title="指令说明"></a>指令说明</h2><p>Dockerfile 中指令的一般格式为：INSTRUCTION arguments，包括<code>配置指令</code>（配置镜像信息）和<code>操作指令</code>（具体执行操作）。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Docker/8-1.jpg" alt></p>
+<h2 id="指令说明"><a href="#指令说明" class="headerlink" title="指令说明"></a>指令说明</h2><p>Dockerfile 中指令的一般格式为：INSTRUCTION arguments，包括<code>配置指令</code>（配置镜像信息）和<code>操作指令</code>（具体执行操作）。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Docker/8-1.jpg" alt></p>
 <h3 id="配置指令"><a href="#配置指令" class="headerlink" title="配置指令"></a>配置指令</h3><h4 id="ARG"><a href="#ARG" class="headerlink" title="ARG"></a>ARG</h4><p>定义创建镜像过程中使用的变量，在执行 docker build 时，可以通过 <code>-build-arg[=]</code> 来为变量赋值。当镜像编译成功后，ARG 指定的变量将不再存在（<strong>ENV 指定的变量将在镜像中保留</strong>），一些内置的变量：HTTP_PROXY、HTTPS_PROXY、FTP_PROXY、NO_PROXY 等。</p>
 <h4 id="FROM"><a href="#FROM" class="headerlink" title="FROM"></a>FROM</h4><p>指定所创建镜像的基础镜像，任何 Dockerfile 中<strong>第一条指令</strong>必须为 FROM 指令。为了保证镜像精简，可以选用体积较小的镜像。</p>
 <h4 id="LABEL"><a href="#LABEL" class="headerlink" title="LABEL"></a>LABEL</h4><p>LABEL 指令可以为生成的镜像添加元数据标签信息，用来<strong>辅助过滤出特定的镜像</strong>。</p>
@@ -435,7 +435,7 @@
 <li><strong>基础镜像</strong>（base image），其 Dockerfile 中往往不存在 FORM 指令，或者基于 scratch 镜像（FROM scratch），这意味着其在整个镜像树中处于根的位置。</li>
 <li><strong>普通镜像</strong>也可以作为父镜像来使用，包括常见的 busybox、debian、ubuntu 等。</li>
 </ul>
-<p>Docker 不同类型镜像之间的继承关系如图：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Docker/8-2.jpg" alt></p>
+<p>Docker 不同类型镜像之间的继承关系如图：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Docker/8-2.jpg" alt></p>
 <h3 id="使用-dockerignore-文件"><a href="#使用-dockerignore-文件" class="headerlink" title="使用 .dockerignore 文件"></a>使用 .dockerignore 文件</h3><p>可以通过 .dockerignore 来让 Docker 忽略匹配路径或文件，在创建镜像的时候，<strong>不将无关数据发送到服务端</strong>。<br>语法支持 Golang 风格的正则格式：</p>
 <ul>
 <li>“*”表示任意多个字符；</li>

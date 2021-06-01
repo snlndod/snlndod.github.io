@@ -357,7 +357,7 @@
       
         
           <p>Kubernetes 是 Google 团队发起并维护的开源容器集群管理系统，底层<strong>基于 Docker、rkt 等容器技术</strong>，提供强大的应用管理和资源调度能力。</p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Kubernetes 是 Google 公司于 2014 年开源的容器集群管理项目。该项目<strong>基于 Go 语言实现</strong>，遵守 Apache v2 许可，试图为基于容器的应用部署和生产管理打造一套强大并且易用的操作平台。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/01.png" alt><br>目前被云原生计算基金会（Cloud Native Computing Foundation，CNCF）管理，以开源项目形式持续演化。<br>Kubernetes 拥有鲜明的技术优势：</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Kubernetes 是 Google 公司于 2014 年开源的容器集群管理项目。该项目<strong>基于 Go 语言实现</strong>，遵守 Apache v2 许可，试图为基于容器的应用部署和生产管理打造一套强大并且易用的操作平台。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/01.png" alt><br>目前被云原生计算基金会（Cloud Native Computing Foundation，CNCF）管理，以开源项目形式持续演化。<br>Kubernetes 拥有鲜明的技术优势：</p>
 <ul>
 <li>优秀的 API 设计，以及简洁高效的架构设计；</li>
 <li>基于微服务模式的多层资源抽象模型，兼顾灵活性与可操作性；</li>
@@ -624,7 +624,7 @@
       
         
           <p>分布式系统和大数据处理平台是目前业界关注的热门技术。三大重量级武器：<strong>Hadoop、Spark、Storm</strong>，以及新一代的数据采集和分析引擎 Elasticsearch。<br>实际上，摩尔定律的失效，必将导致越来越多的复杂任务必须<strong>采用分布式架构进行处理</strong>。已有的开源平台提供了很好的实现参考，方便用户将更多的精力放到核心业务的维护上。</p>
-<h2 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h2><p>Hadoop 是 Apache 软件基金会旗下的一个开源<strong>分布式计算平台</strong>，基于 Java 语言实现，由三个核心子系统组成：<strong>HDFS、YARN、MapReduce</strong>。其中，HDFS 是一套分布式文件系统；YARN 是资源管理系统，MapReduce 是<strong>运行在 YARN 上的应用</strong>，负责分布式处理管理。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/02/01.jpg" alt><br>核心子系统说明如下：</p>
+<h2 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h2><p>Hadoop 是 Apache 软件基金会旗下的一个开源<strong>分布式计算平台</strong>，基于 Java 语言实现，由三个核心子系统组成：<strong>HDFS、YARN、MapReduce</strong>。其中，HDFS 是一套分布式文件系统；YARN 是资源管理系统，MapReduce 是<strong>运行在 YARN 上的应用</strong>，负责分布式处理管理。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/02/01.jpg" alt><br>核心子系统说明如下：</p>
 <ul>
 <li>HDFS：一个<strong>高度容错性的分布式文件系统</strong>，适合部署在大量廉价的机器上，提供高吞吐量的数据访问；</li>
 <li>YARN：<strong>资源管理器</strong>，可为上层应用提供统一的资源管理和调度，兼容多计算框架；</li>
@@ -760,7 +760,7 @@
 <blockquote>
 <p>需要注意<strong>数据的持久化</strong>。对于程序代码、资源目录、日志、数据库、文件等需要实时更新和保存的数据，一定要启动数据持久化机制，避免发生数据丢失。</p>
 </blockquote>
-<h2 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h2><p>Apache 是一个高稳定性的、商业级别的开源 Web 服务器，是目前世界使用排名第一的 <strong>Web 服务器软件</strong>。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/01/01.jpg" alt><br>在使用 Dockerfile 创建镜像时，会继承父镜像的开放端口，但却<strong>不会继承启动命令</strong>。因此，需要在 run.sh 脚本中添加启动 sshd 的服务的命令。</p>
+<h2 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h2><p>Apache 是一个高稳定性的、商业级别的开源 Web 服务器，是目前世界使用排名第一的 <strong>Web 服务器软件</strong>。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/01/01.jpg" alt><br>在使用 Dockerfile 创建镜像时，会继承父镜像的开放端口，但却<strong>不会继承启动命令</strong>。因此，需要在 run.sh 脚本中添加启动 sshd 的服务的命令。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/08/24/Web-服务与应用/#more" rel="contents">

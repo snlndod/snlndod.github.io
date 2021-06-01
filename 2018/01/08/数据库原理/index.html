@@ -95,15 +95,15 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="SQL 语言的功能SQL 是结构化查询语言（Structured Query Language）的缩写，其功能包括四个部分：  数据查询，数据库中最常见的操作，通过 select 语句可以得到所需的信息； 数据操纵，DML（Data Manipulation Language）主要包括插入数据、修改数据、删除数据； 数据定义，DDL（Data Definition Language）实现数据定义功">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/5_1.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/5_2.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/5_3.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/5_4.jpg">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/5_1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/5_2.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/5_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/5_4.jpg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库原理">
 <meta name="twitter:description" content="SQL 语言的功能SQL 是结构化查询语言（Structured Query Language）的缩写，其功能包括四个部分：  数据查询，数据库中最常见的操作，通过 select 语句可以得到所需的信息； 数据操纵，DML（Data Manipulation Language）主要包括插入数据、修改数据、删除数据； 数据定义，DDL（Data Definition Language）实现数据定义功">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/5_1.jpg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/5_1.jpg">
 
 
 
@@ -367,7 +367,7 @@
 <li>数据定义，<code>DDL</code>（Data Definition Language）实现数据定义功能，可对数据库用户、基本表、视图、索引进行定义与撤销；</li>
 <li>数据控制，<code>DCL</code>（Data Control Language）用于对数据库进行统一的控制管理，保证数据在多用户共享的情况下能够安全。</li>
 </ul>
-<p>基本的 SQL 语句：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/5_1.jpg" alt></p>
+<p>基本的 SQL 语句：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/5_1.jpg" alt></p>
 <a id="more"></a>
 <h3 id="delete-与-truncate-命令的区别"><a href="#delete-与-truncate-命令的区别" class="headerlink" title="delete 与 truncate 命令的区别"></a>delete 与 truncate 命令的区别</h3><p>相同点：都可以用来删除一个表中的数据。<br>不同点：</p>
 <ol>
@@ -384,7 +384,7 @@
 <h3 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h3><p>一个事务执行之前和执行之后，数据库数据必须保持一致性状态，一致性由用户来负责，由并发控制机制实现。</p>
 <h3 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h3><p>将一个事务内部的操作与事务的操作隔离起来，不被其他正在进行的事务看到。数据库有 <code>4 种类型</code>的事务隔离级别：未提交读、已提交读、可重复读、可序列化（最高级别）。</p>
 <h3 id="持久性"><a href="#持久性" class="headerlink" title="持久性"></a>持久性</h3><p>事务完成以后，DBMS 保证它对数据库中数据的修改是永久性的，持久性一般通过数据库备份与恢复来保证。</p>
-<h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><p>SQL 语句在执行时要先编译，然后再被执行。<br>在大型数据库系统中，为了提高效率，将为了完成特定功能的 <strong>SQL 语句集</strong>进行编译优化后，存储在数据库服务器中，用户通过指定存储过程的名字来调用执行。<br>创建存储过程的常用语法：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/5_2.jpg" alt><br>使用存储过程可以增强 SQL 语言的功能和灵活性；同时，存储过程可以使没有权限的用户间接地存取数据库，也保证了数据的<code>安全</code>。</p>
+<h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><p>SQL 语句在执行时要先编译，然后再被执行。<br>在大型数据库系统中，为了提高效率，将为了完成特定功能的 <strong>SQL 语句集</strong>进行编译优化后，存储在数据库服务器中，用户通过指定存储过程的名字来调用执行。<br>创建存储过程的常用语法：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/5_2.jpg" alt><br>使用存储过程可以增强 SQL 语言的功能和灵活性；同时，存储过程可以使没有权限的用户间接地存取数据库，也保证了数据的<code>安全</code>。</p>
 <h3 id="与函数的不同"><a href="#与函数的不同" class="headerlink" title="与函数的不同"></a>与函数的不同</h3><ol>
 <li>存储过程一般是作为一个独立的部分来执行，而函数可以作为查询语句的一部分来调用；</li>
 <li>存储过程实现的过程较复杂，而函数实现的功能针对性较强；</li>
@@ -392,13 +392,13 @@
 <li>函数不能直接操作实体表，只能操作内建表；</li>
 <li>存储过程在创建时即在服务器上进行了编译，其执行速度比函数快。</li>
 </ol>
-<h2 id="各种范式的区别"><a href="#各种范式的区别" class="headerlink" title="各种范式的区别"></a>各种范式的区别</h2><p>使用正确的数据结构，不仅有助于对数据库进行相应的存取操作，还可以极大地简化应用程序中的其他内容。<br><code>范化</code>是在识别数据库中的数据元素、关系以及定义所需的表和各表中的项目，这些初始工作之后的一个细化过程。常见的范式有 1NF、2NF、3NF、BCNF、4NF。<br>各范式的关系图：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/5_3.png" alt></p>
+<h2 id="各种范式的区别"><a href="#各种范式的区别" class="headerlink" title="各种范式的区别"></a>各种范式的区别</h2><p>使用正确的数据结构，不仅有助于对数据库进行相应的存取操作，还可以极大地简化应用程序中的其他内容。<br><code>范化</code>是在识别数据库中的数据元素、关系以及定义所需的表和各表中的项目，这些初始工作之后的一个细化过程。常见的范式有 1NF、2NF、3NF、BCNF、4NF。<br>各范式的关系图：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/5_3.png" alt></p>
 <h3 id="1NF"><a href="#1NF" class="headerlink" title="1NF"></a>1NF</h3><p>第一范式是指数据库表的每一列都是不可分割的基本数据项，同一列中不能有多个值，即实体中的某个属性不能有多个值或者不能有重复的属性。<br>简而言之，第一范式就是<strong>无重复的列</strong>。</p>
 <h3 id="2NF"><a href="#2NF" class="headerlink" title="2NF"></a>2NF</h3><p>第二范式是在第一范式的基础上建立起来的，即满足第二范式必须先满足第一范式。要求数据库表中的每个实例或行必须可以被唯一地区分。<br>如果关系模式 R 为第一范式，并且 R 中的每一个非主属性完全函数依赖于 R 的某个<code>候选键</code>，则称 R 为第二范式。</p>
 <h3 id="3NF"><a href="#3NF" class="headerlink" title="3NF"></a>3NF</h3><p>如果关系模式 R 是第二范式，且每个非主属性都<strong>不传递依赖</strong>于 R 的候选键，则称 R 是第三范式的模式。</p>
 <h3 id="BCNF"><a href="#BCNF" class="headerlink" title="BCNF"></a>BCNF</h3><p>构建在第三范式的基础上，如果关系模式 R 是第三范式，且<strong>每个属性</strong>都不传递依赖于 R 的候选键，那么称 R 为 BCNF 的模式。<br>排除关键字段决定关键字段的情况。</p>
 <h3 id="4NF"><a href="#4NF" class="headerlink" title="4NF"></a>4NF</h3><p>假设 R 是一个关系模式，D 是 R 上的多值依赖集合，如果 D 中但凡存在多值依赖 X→Y，X 必是 R 的<code>超键</code>，那么称 R 是第四范式的模式。</p>
-<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>触发器是一种特殊类型的存储过程，它由事件触发，而不是程序调用或手工启动。<br>触发器与存储过程的区别：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/5_4.jpg" alt></p>
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>触发器是一种特殊类型的存储过程，它由事件触发，而不是程序调用或手工启动。<br>触发器与存储过程的区别：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/5_4.jpg" alt></p>
 <h3 id="触发器的作用"><a href="#触发器的作用" class="headerlink" title="触发器的作用"></a>触发器的作用</h3><ol>
 <li>增加安全性；</li>
 <li>利用触发器，记录所进行的修改以及相关信息，跟踪用户对数据库的操作，实现审计；</li>

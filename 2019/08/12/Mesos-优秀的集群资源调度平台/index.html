@@ -95,16 +95,16 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="Mesos 项目是源自 UC Berkeley 的对集群资源进行抽象和管理的开源项目，类似于操作系统内核，使用它可以很容易地实现分布式应用的自动化调度。同时，Mesos 自身也很好地结合和支持了 Docker 等相关容器技术，基于 Mesos 已有的大量应用框架，可以是实现用户应用的快速上线。 简介Mesos 可以将整个数据中心的资源（包括 CPU、内存、存储、网络等）进行抽象和调度，使得多个应用">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/01.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/02.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/03.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/04.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/05.jpg">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/01.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/02.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/03.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/04.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/05.jpg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mesos - 优秀的集群资源调度平台">
 <meta name="twitter:description" content="Mesos 项目是源自 UC Berkeley 的对集群资源进行抽象和管理的开源项目，类似于操作系统内核，使用它可以很容易地实现分布式应用的自动化调度。同时，Mesos 自身也很好地结合和支持了 Docker 等相关容器技术，基于 Mesos 已有的大量应用框架，可以是实现用户应用的快速上线。 简介Mesos 可以将整个数据中心的资源（包括 CPU、内存、存储、网络等）进行抽象和调度，使得多个应用">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/01.jpg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/01.jpg">
 
 
 
@@ -401,10 +401,10 @@
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo<span class="built_in"> service </span>mesos-master/slave start</span><br></pre></td></tr></table></figure>
 
 <h4 id="Marathon"><a href="#Marathon" class="headerlink" title="Marathon"></a>Marathon</h4><p>Marathon 作为 Mesos 的一个应用框架，配置要更为简单，<strong>必需的配置项有 --master 和 --zk</strong>。<br>手动创建配置目录，并添加配置项，让 Marathon 能连接到已创建的 Mesos 集群中。</p>
-<h3 id="访问-Mesos-图形界面"><a href="#访问-Mesos-图形界面" class="headerlink" title="访问 Mesos 图形界面"></a>访问 Mesos 图形界面</h3><p>Mesos 自带了 Web 图形界面，可以方便用户查看集群状态。<br>用户在 Mesos 主节点服务和从节点服务都启动后，可以通过浏览器访问主节点 <code>5050</code> 端口，看到如下界面：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/01.jpg" alt></p>
-<h3 id="访问-Marathon-图形界面"><a href="#访问-Marathon-图形界面" class="headerlink" title="访问 Marathon 图形界面"></a>访问 Marathon 图形界面</h3><p>Marathon 服务启动后，在 Mesos 的 Web 界面的 Frameworks 标签页下面将能看到名称为 marathon 的框架出现。<br>同时，可以通过浏览器访问 <code>8080</code> 端口，看到 Marathon 自己的管理界面：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/02.jpg" alt></p>
+<h3 id="访问-Mesos-图形界面"><a href="#访问-Mesos-图形界面" class="headerlink" title="访问 Mesos 图形界面"></a>访问 Mesos 图形界面</h3><p>Mesos 自带了 Web 图形界面，可以方便用户查看集群状态。<br>用户在 Mesos 主节点服务和从节点服务都启动后，可以通过浏览器访问主节点 <code>5050</code> 端口，看到如下界面：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/01.jpg" alt></p>
+<h3 id="访问-Marathon-图形界面"><a href="#访问-Marathon-图形界面" class="headerlink" title="访问 Marathon 图形界面"></a>访问 Marathon 图形界面</h3><p>Marathon 服务启动后，在 Mesos 的 Web 界面的 Frameworks 标签页下面将能看到名称为 marathon 的框架出现。<br>同时，可以通过浏览器访问 <code>8080</code> 端口，看到 Marathon 自己的管理界面：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/02.jpg" alt></p>
 <h2 id="原理与架构"><a href="#原理与架构" class="headerlink" title="原理与架构"></a>原理与架构</h2><p>基于 Mesos，可以比较容易地为各种应用管理框架或者中间件平台，<strong>提供分布式运行能力</strong>；同时多个框架也可以同时运行在一个 Mesos 集群中，<strong>提高整体的资源使用率</strong>。</p>
-<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p>Mesos 的基本架构：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/03.jpg" alt><br>Mesos 采用了经典的主-从架构，其中主节点可以使用 ZooKeeper 来做 HA。<br>Mesos slave 服务运行在各个计算任务节点上，负责完成具体任务的应用框架，并与 Mesos master 进行交互申请资源。</p>
+<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p>Mesos 的基本架构：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/03.jpg" alt><br>Mesos 采用了经典的主-从架构，其中主节点可以使用 ZooKeeper 来做 HA。<br>Mesos slave 服务运行在各个计算任务节点上，负责完成具体任务的应用框架，并与 Mesos master 进行交互申请资源。</p>
 <h3 id="基本单元"><a href="#基本单元" class="headerlink" title="基本单元"></a>基本单元</h3><p>Mesos 有三个基本的组件：</p>
 <ul>
 <li><strong>管理服务（master）</strong>：主节点起到管理作用，将看到全局的信息，负责不同应用框架之间的资源调度和逻辑控制；</li>
@@ -439,7 +439,7 @@
 <p>实践中，可以通过部署多个 Mesos 集群来保持单个集群的规模不要过大。</p>
 </blockquote>
 <h2 id="Mesos-配置解析"><a href="#Mesos-配置解析" class="headerlink" title="Mesos 配置解析"></a>Mesos 配置解析</h2><p>Mesos 的配置项分为三种类型：通用项、master 专属配置项、slave 专属配置项。</p>
-<h3 id="通用项"><a href="#通用项" class="headerlink" title="通用项"></a>通用项</h3><p>通用项数量不多，主要涉及服务绑定地址和日志信息等：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/04.jpg" alt></p>
+<h3 id="通用项"><a href="#通用项" class="headerlink" title="通用项"></a>通用项</h3><p>通用项数量不多，主要涉及服务绑定地址和日志信息等：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/04.jpg" alt></p>
 <h3 id="master-专属配置项"><a href="#master-专属配置项" class="headerlink" title="master 专属配置项"></a>master 专属配置项</h3><p>这些配置项是针对主节点上的 Mesos master 服务的，围绕高可用、注册信息、对应用框架的资源管理等。<br><strong>必须指定</strong>的配置项有以下三个：</p>
 <ul>
 <li>--quorum=VALUE：利用 ZooKeeper 实现 HA 时，参与投票时的最少节点个数；</li>
@@ -459,7 +459,7 @@
 <li><strong>主节点</strong>：通过 <a href="http://MASTER_NODE:5050/metrics/snapshot" target="_blank" rel="noopener">http://MASTER_NODE:5050/metrics/snapshot</a> 地址，可以获取到 Mesos 主节点的各种状态统计信息，包括资源使用、系统状态、从节点、应用框架、任务状态等。</li>
 <li><strong>从节点</strong>：通过 <a href="http://SLAVE_NODE:5051/metrics/snapshot" target="_blank" rel="noopener">http://SLAVE_NODE:5051/metrics/snapshot</a> 地址，可以获取到 Mesos 从节点的各种状态统计信息，包括资源、系统状态、各种消息状态等。</li>
 </ul>
-<h2 id="常见应用框架"><a href="#常见应用框架" class="headerlink" title="常见应用框架"></a>常见应用框架</h2><p>应用框架是实际干活的，可以理解为 Mesos 之上跑的应用，应用框架<strong>注册到 Mesos master 服务</strong>上即可使用。<br>Mesos 目前支持的应用框架分为四大类：<strong>长期运行任务</strong>、<strong>大数据处理</strong>、<strong>批量调度</strong>、<strong>数据存储</strong>。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/05.jpg" alt></p>
+<h2 id="常见应用框架"><a href="#常见应用框架" class="headerlink" title="常见应用框架"></a>常见应用框架</h2><p>应用框架是实际干活的，可以理解为 Mesos 之上跑的应用，应用框架<strong>注册到 Mesos master 服务</strong>上即可使用。<br>Mesos 目前支持的应用框架分为四大类：<strong>长期运行任务</strong>、<strong>大数据处理</strong>、<strong>批量调度</strong>、<strong>数据存储</strong>。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/05.jpg" alt></p>
 <blockquote>
 <p>结合 Docker，Mesos 可以很容易部署一套私有的容器云，可以很好地应用并集成到生产环境中；但它的定位集中在资源调度，往往需要结合应用框架或二次开发。</p>
 </blockquote>

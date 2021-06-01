@@ -95,13 +95,13 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="Why Youtube?Youtube is one of the most popular video sharing websites in the world. Users of the service can upload, view, share, rate, and report videos as well as add comments on videos. Requirement">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/44.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/45.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/44.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/45.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Designing Youtube or Netflix">
 <meta name="twitter:description" content="Why Youtube?Youtube is one of the most popular video sharing websites in the world. Users of the service can upload, view, share, rate, and report videos as well as add comments on videos. Requirement">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/44.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/44.png">
 
 
 
@@ -441,7 +441,7 @@
 <li><strong>User Database</strong>: To store user’s information, e.g., name, email, address, etc;</li>
 <li><strong>Video Metadata Storage</strong>: A metadata database to store all the information about videos like title, file path in the system, uploading user, total views, likes, dislikes, etc. It will also be used to store all the video comments;</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/44.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/44.png" alt></p>
 <h2 id="Database-Schema"><a href="#Database-Schema" class="headerlink" title="Database Schema"></a>Database Schema</h2><p><strong>Video Metadata Storage</strong>:<br>Videos metadata can be stored in a SQL database. The following information should be stored with each video:</p>
 <ul>
 <li>VideoID;</li>
@@ -474,7 +474,7 @@
 <p>Let’s evaluate storing all the thumbnails on a disk. Given that we have a huge number of files, we have to perform many seeks to different locations on the disk to read these files. This is quite inefficient and will result in higher latencies.<br>Bigtable can be a reasonable choice here as it combines multiple files into one block to store on the disk and is very efficient in reading a small amount of data. Both of these are the two most significant requirements for our service. Keeping hot thumbnails in the cache will also help improve the latencies and, given that thumbnails files are small in size, we can easily cache a large number of such files in memory.</p>
 <p><strong>Video uploads</strong>: Since videos could be huge, if while uploading, the connection drops, we should support resuming from the same point.</p>
 <p><strong>Video encoding</strong>: Newly uploaded videos are stored on the server, and a new task is added to the processing queue to encode the video into multiple formats. Once all the encoding is completed, the uploader will be notified, and the video is made available for view/sharing.</p>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/45.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/45.png" alt></p>
 <h2 id="Metadata-Sharding"><a href="#Metadata-Sharding" class="headerlink" title="Metadata Sharding"></a>Metadata Sharding</h2><p>Since we have a huge number of new videos every day and our read load is extremely high, therefore, we need to distribute our data onto multiple machines so that we can perform read/write operations efficiently. We have many options to shard our data. Let’s go through different strategies of sharding this data one by one.</p>
 <p><strong>Sharding based on UserID</strong>: We can try storing all the data for a particular user on one server. While storing, we can pass the UserID to our hash function, which will map the user to a database server where we will store all the metadata for that user’s videos. While querying for videos of a user, we can ask our hash function to find the server holding the user’s data and then read it from there. To search videos by titles, we will have to query all servers, and each server will return a set of videos. A centralized server will then aggregate and rank these results before returning them to the user.<br>This approach has a couple of issues:</p>
 <ol>

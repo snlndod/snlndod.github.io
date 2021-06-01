@@ -95,16 +95,16 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="在大部分编程语言中，数组都是从 0 开始编号的，但你是否下意识地想过，为什么数组要从 0 开始编号，而不是从 1 开始呢？ 从 1 开始不是更符合人类的思维习惯吗？ 如何实现随机访问？数组（Array）是一种线性表数据结构。它用一组连续的内存空间，来存储一组具有相同类型的数据。 顾名思义，线性表（Linear List）就是数据排成像一条线一样的结构。每个线性表上的数据最多只有前和后两个方向。其实">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/05.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/06.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/07.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/08.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/09.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/05.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/06.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/07.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/08.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/09.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数组">
 <meta name="twitter:description" content="在大部分编程语言中，数组都是从 0 开始编号的，但你是否下意识地想过，为什么数组要从 0 开始编号，而不是从 1 开始呢？ 从 1 开始不是更符合人类的思维习惯吗？ 如何实现随机访问？数组（Array）是一种线性表数据结构。它用一组连续的内存空间，来存储一组具有相同类型的数据。 顾名思义，线性表（Linear List）就是数据排成像一条线一样的结构。每个线性表上的数据最多只有前和后两个方向。其实">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/05.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/05.png">
 
 
 
@@ -363,12 +363,12 @@
       
         <p>在大部分编程语言中，数组都是从 0 开始编号的，但你是否下意识地想过，为什么数组要从 0 开始编号，而不是从 1 开始呢？ 从 1 开始不是更符合人类的思维习惯吗？</p>
 <h2 id="如何实现随机访问？"><a href="#如何实现随机访问？" class="headerlink" title="如何实现随机访问？"></a>如何实现随机访问？</h2><p><code>数组</code>（Array）是一种线性表数据结构。它<strong>用一组连续的内存空间，来存储一组具有相同类型的数据</strong>。</p>
-<p>顾名思义，<code>线性表</code>（Linear List）就是数据排成像一条线一样的结构。每个线性表上的数据最多只有前和后两个方向。其实除了数组，链表、队列、栈等也是线性表结构：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/05.png" alt></p>
+<p>顾名思义，<code>线性表</code>（Linear List）就是数据排成像一条线一样的结构。每个线性表上的数据最多只有前和后两个方向。其实除了数组，链表、队列、栈等也是线性表结构：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/05.png" alt></p>
 <a id="more"></a>
 
-<p>而与它相对立的概念是<code>非线性表</code>，比如二叉树、堆、图等。之所以叫非线性，是因为，在非线性表中，<strong>数据之间并不是简单的前后关系</strong>：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/06.png" alt></p>
+<p>而与它相对立的概念是<code>非线性表</code>，比如二叉树、堆、图等。之所以叫非线性，是因为，在非线性表中，<strong>数据之间并不是简单的前后关系</strong>：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/06.png" alt></p>
 <p><strong>连续的内存空间和相同类型的数据</strong>。正是因为这两个限制，它才有了一个堪称“杀手锏”的特性：<code>随机访问</code>。但有利就有弊，这两个限制也让数组的很多操作变得非常低效，比如要想在数组中删除、插入一个数据，<strong>为了保证连续性，就需要做大量的数据搬移工作</strong>。</p>
-<p>我们拿一个长度为 10 的 int 类型的数组 int[] a = new int[10]来举例。在我画的这个图中，计算机给数组 a[10]，分配了一块连续内存空间 1000～1039，其中，内存块的首地址为 base_address = 1000：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/07.png" alt></p>
+<p>我们拿一个长度为 10 的 int 类型的数组 int[] a = new int[10]来举例。在我画的这个图中，计算机给数组 a[10]，分配了一块连续内存空间 1000～1039，其中，内存块的首地址为 base_address = 1000：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/07.png" alt></p>
 <p>我们知道，计算机会给每个内存单元分配一个地址，计算机通过地址来访问内存中的数据。当计算机需要随机访问数组中的某个元素时，它会首先通过下面的寻址公式，计算出该元素存储的内存地址：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a[i]_address = base_address + i * data_type_size</span><br></pre></td></tr></table></figure>
 
@@ -378,10 +378,10 @@
 <h3 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h3><p>假设数组的长度为 n，现在，如果我们需要将一个数据插入到数组中的第 k 个位置。为了把第 k 个位置腾出来，给新来的数据，我们需要将第 k~n 这部分的元素都顺序地往后挪一位。</p>
 <p>如果在数组的末尾插入元素，那就不需要移动数据了，这时的时间复杂度为 O(1)。但如果在数组的开头插入元素，那所有的数据都需要依次往后移动一位，所以最坏时间复杂度是 O(n)。 因为我们在每个位置插入元素的概率是一样的，所以<strong>平均情况时间复杂度为 (1+2+…+n)/n=O(n)</strong>。</p>
 <p>如果数组中的数据是有序的，我们在某个位置插入一个新的元素时，就必须按照刚才的方法搬移 k 之后的数据。但是，<strong>如果数组中存储的数据并没有任何规律，数组只是被当作一个存储数据的集合</strong>。在这种情况下，如果要将某个数据插入到第 k 个位置，为了避免大规模的数据搬移，我们还有一个简单的办法就是，直接将第 k 位的数据搬移到数组元素的最后，把新的元素直接放入第 k 个位置。</p>
-<p>假设数组 a[10] 中存储了如下 5 个元素：a, b, c, d, e，我们现在需要将元素 x 插入到第 3 个位置。我们只需要将 c 放入到 a[5]，将 a[2] 赋值为 x 即可。最后，数组中的元素如下： a, b, x, d, e, c：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/08.png" alt></p>
+<p>假设数组 a[10] 中存储了如下 5 个元素：a, b, c, d, e，我们现在需要将元素 x 插入到第 3 个位置。我们只需要将 c 放入到 a[5]，将 a[2] 赋值为 x 即可。最后，数组中的元素如下： a, b, x, d, e, c：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/08.png" alt></p>
 <p>利用这种处理技巧，在特定场景下，在第 k 个位置插入一个元素的<strong>时间复杂度就会降为 O(1)</strong>。这个处理思想在快排中也会用到。</p>
 <h3 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h3><p>跟插入数据类似，如果我们要删除第 k 个位置的数据，为了内存的连续性，也需要搬移数据，不然中间就会出现空洞，内存就不连续了。如果删除数组末尾的数据，则最好情况时间复杂度为 O(1)；如果删除开头的数据，则最坏情况时间复杂度为 O(n)；<strong>平均情况时间复杂度也为 O(n)</strong>。</p>
-<p>实际上，在某些特殊场景下，我们并不一定非得追求数组中数据的连续性。如果我们将多次删除操作集中在一起执行，删除的效率是不是会提高很多呢？数组 a[10] 中存储了 8 个元素：a, b, c, d, e, f, g, h。现在，我们要依次删除 a, b, c 三个元素：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/09.png" alt></p>
+<p>实际上，在某些特殊场景下，我们并不一定非得追求数组中数据的连续性。如果我们将多次删除操作集中在一起执行，删除的效率是不是会提高很多呢？数组 a[10] 中存储了 8 个元素：a, b, c, d, e, f, g, h。现在，我们要依次删除 a, b, c 三个元素：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/09.png" alt></p>
 <p>为了避免 d, e, f, g, h 这几个数据会被搬移三次，我们可以先记录下已经删除的数据。每次的删除操作并不是真正地搬移数据，只是记录数据已经被删除。<strong>当数组没有更多空间存储数据时，我们再触发执行一次真正的删除操作</strong>，这样就大大减少了删除操作导致的数据搬移。</p>
 <p>如果你了解 JVM，你会发现，这不就是 <strong>JVM 标记清除垃圾回收算法的核心思想</strong>吗？没错，数据结构和算法的魅力就在于此，很多时候我们并不是要去死记硬背某个数据结构或者算法，而是要<strong>学习它背后的思想和处理技巧，这些东西才是最有价值的</strong>。如果你细心留意，不管是在软件开发还是架构设计中，总能找到某些算法和数据结构的影子。</p>
 <h2 id="警惕数组的访问越界问题"><a href="#警惕数组的访问越界问题" class="headerlink" title="警惕数组的访问越界问题"></a>警惕数组的访问越界问题</h2><p>首先，我请你来分析一下这段 C 语言代码的运行结果：</p>

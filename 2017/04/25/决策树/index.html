@@ -95,13 +95,13 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="基本流程决策过程中提出的每个判定问题都是对某个属性的测试考虑范围在上一次决策结果的限定范围之内  叶结点对应于决策结果 其他每个结点对应于一个属性测试 根结点包含样本全集  目的决策树学习的目的是为了，产生一棵处理未见示例能力强的决策树。遵循简单且直观的分而治之（divide-and-comquer）策略。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/4_1.jpeg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/4_2.jpeg">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/MachineLearning/4_1.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/MachineLearning/4_2.jpeg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="决策树">
 <meta name="twitter:description" content="基本流程决策过程中提出的每个判定问题都是对某个属性的测试考虑范围在上一次决策结果的限定范围之内  叶结点对应于决策结果 其他每个结点对应于一个属性测试 根结点包含样本全集  目的决策树学习的目的是为了，产生一棵处理未见示例能力强的决策树。遵循简单且直观的分而治之（divide-and-comquer）策略。">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/4_1.jpeg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/MachineLearning/4_1.jpeg">
 
 
 
@@ -400,7 +400,7 @@
 <li>如何在属性值缺失的情况下进行划分属性选择：根据没有缺失值的样本子集来判断属性a的优劣；</li>
 <li>给定划分属性，若样本在该属性上的值缺失，如何对样本进行划分：让同一个样本以不同的概率划入到不同的子结点去；</li>
 </ol>
-<h2 id="多变量决策树"><a href="#多变量决策树" class="headerlink" title="多变量决策树"></a>多变量决策树</h2><p>决策树所形成的分类边界有一个明显的特点：<strong>轴平行</strong>（axis-parallel），即分类边界由若干个与坐标轴平行的分段组成。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/4_1.jpeg" alt><br>多变量决策树（multivariate decision tree）：实现<strong>斜划分</strong>甚至更复杂划分的决策树。<br>不是为每个非叶结点寻找一个最优划分属性，而是试图建立一个合适的线性分类器。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/4_2.jpeg" alt></p>
+<h2 id="多变量决策树"><a href="#多变量决策树" class="headerlink" title="多变量决策树"></a>多变量决策树</h2><p>决策树所形成的分类边界有一个明显的特点：<strong>轴平行</strong>（axis-parallel），即分类边界由若干个与坐标轴平行的分段组成。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/MachineLearning/4_1.jpeg" alt><br>多变量决策树（multivariate decision tree）：实现<strong>斜划分</strong>甚至更复杂划分的决策树。<br>不是为每个非叶结点寻找一个最优划分属性，而是试图建立一个合适的线性分类器。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/MachineLearning/4_2.jpeg" alt></p>
 <h2 id="阅读材料"><a href="#阅读材料" class="headerlink" title="阅读材料"></a>阅读材料</h2><p>剪枝方法和程度对决策树泛化性能的影响相当显著，最终规则集的泛化性能甚至可能优于原决策树。<br>有一些决策树学习算法可进行<strong>增量学习</strong>（incremental learning），接收到新样本后可对已学得的模型进行调整，不用完全重新学习。有效地降低每次接收到新样本后的训练时间开销。</p>
 <p><a href="http://blog.csdn.net/icefire_tyh/article/details/52082054" target="_blank" rel="noopener">习题答案</a></p>
 

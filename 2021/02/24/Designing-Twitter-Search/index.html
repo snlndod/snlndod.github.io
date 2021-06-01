@@ -95,13 +95,13 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="What is Twitter Search?Twitter users can update their status whenever they like. Each status (called tweet) consists of plain text and our goal is to design a system that allows searching over all the">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/56.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/57.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/56.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/57.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Designing Twitter Search">
 <meta name="twitter:description" content="What is Twitter Search?Twitter users can update their status whenever they like. Each status (called tweet) consists of plain text and our goal is to design a system that allows searching over all the">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/56.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/56.png">
 
 
 
@@ -388,7 +388,7 @@
 <li>page_token: This token will specify a page in the result set that should be returned;</li>
 </ul>
 <p><strong>Return</strong>: A JSON containing information about a list of tweets matching the search query. Each result entry can have the user ID &amp; name, tweet text, tweet ID, creation time, number of likes, etc.</p>
-<h2 id="High-Level-Design"><a href="#High-Level-Design" class="headerlink" title="High-Level Design"></a>High-Level Design</h2><p>At the high level, we need to store all the tweets in a database and also build an index that can keep track of which word appears in which tweet. This index will help us quickly find tweets that the users are trying to search for:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/56.png" alt></p>
+<h2 id="High-Level-Design"><a href="#High-Level-Design" class="headerlink" title="High-Level Design"></a>High-Level Design</h2><p>At the high level, we need to store all the tweets in a database and also build an index that can keep track of which word appears in which tweet. This index will help us quickly find tweets that the users are trying to search for:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/56.png" alt></p>
 <h2 id="Detailed-Component-Design"><a href="#Detailed-Component-Design" class="headerlink" title="Detailed Component Design"></a>Detailed Component Design</h2><h3 id="Storage"><a href="#Storage" class="headerlink" title="Storage"></a>Storage</h3><p>We need to store 120GB of new data every day. Given this huge amount of data, we need to come up with a data partitioning scheme that will be efficiently distributing the data onto multiple servers. If we plan for next five years, we will need the following storage:</p>
 <blockquote>
 <p>120 GB * 365 days * 5 years ≈ 200 TB</p>
@@ -418,7 +418,7 @@
 <li>Over time, some words can end up storing a lot of TweetIDs compared to others, therefore, maintaining a uniform distribution of words while tweets are growing is quite tricky;</li>
 </ol>
 <p>To recover from these situations we either have to repartition our data or use Consistent Hashing.</p>
-<p><strong>Sharding based on the tweet object</strong>: While storing, we will pass the TweetID to our hash function to find the server and index all the words of the tweet on that server. While querying for a particular word, we have to query all the servers, and each server will return a set of TweetIDs. A centralized server will aggregate these results to return them to the user:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/57.png" alt></p>
+<p><strong>Sharding based on the tweet object</strong>: While storing, we will pass the TweetID to our hash function to find the server and index all the words of the tweet on that server. While querying for a particular word, we have to query all the servers, and each server will return a set of TweetIDs. A centralized server will aggregate these results to return them to the user:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/57.png" alt></p>
 <h2 id="Fault-Tolerance"><a href="#Fault-Tolerance" class="headerlink" title="Fault Tolerance"></a>Fault Tolerance</h2><p>What will happen when an index server dies? We can have a secondary replica of each server and if the primary server dies it can take control after the failover. Both primary and secondary servers will have the same copy of the index.<br>What if both primary and secondary servers die at the same time? We have to allocate a new server and rebuild the same index on it. How can we do that? We don’t know what words/tweets were kept on this server. If we were using “Sharding based on the tweet object”, the brute-force solution would be to iterate through the whole database and filter TweetIDs using our hash function to figure out all the required tweets that would be stored on this server. This would be inefficient and also during the time when the server was being rebuilt we would not be able to serve any query from it, thus missing some tweets that should have been seen by the user.</p>
 <p>How can we efficiently retrieve a mapping between tweets and the index server? We have to build a reverse index that will map all the TweetID to their index server. Our Index-Builder server can hold this information. We will need to build a Hash Table where the “key” will be the index server number and the “value” will be a HashSet containing all the TweetIDs being kept at that index server. Notice that we are keeping all the TweetIDs in a HashSet; this will enable us to add/remove tweets from our index quickly. So now, whenever an index server has to rebuild itself, it can simply ask the Index-Builder server for all the tweets it needs to store and then fetch those tweets to build the index. This approach will surely be fast. We should also have a replica of the Index-Builder server for fault tolerance.</p>
 <h2 id="Cache"><a href="#Cache" class="headerlink" title="Cache"></a>Cache</h2><p>To deal with hot tweets we can introduce a cache in front of our database. We can use Memcached, which can store all such hot tweets in memory. Application servers, before hitting the backend database, can quickly check if the cache has that tweet. Based on clients’ usage patterns, we can adjust how many cache servers we need. For cache eviction policy, Least Recently Used (LRU) seems suitable for our system.</p>

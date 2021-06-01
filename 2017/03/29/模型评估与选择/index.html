@@ -95,14 +95,14 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="训练误差与过拟合精度（accuracy），精度 = 1-错误率。  在训练集上的误差称为训练误差（training error） 在新样本上的误差称为泛化误差（generalization error）  实际希望的，是在新样本上能表现得很好的学习器。  过拟合（overfitting）：把训练样本自身的一些特点，当作了所有潜在样本都会具有的一般性质。 欠拟合（underfitting）：对训练样">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/2_1.jpeg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/2_2.jpeg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/2_3.jpeg">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/MachineLearning/2_1.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/MachineLearning/2_2.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/MachineLearning/2_3.jpeg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模型评估与选择">
 <meta name="twitter:description" content="训练误差与过拟合精度（accuracy），精度 = 1-错误率。  在训练集上的误差称为训练误差（training error） 在新样本上的误差称为泛化误差（generalization error）  实际希望的，是在新样本上能表现得很好的学习器。  过拟合（overfitting）：把训练样本自身的一些特点，当作了所有潜在样本都会具有的一般性质。 欠拟合（underfitting）：对训练样">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/2_1.jpeg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/MachineLearning/2_1.jpeg">
 
 
 
@@ -393,7 +393,7 @@
 <h3 id="错误率与精度"><a href="#错误率与精度" class="headerlink" title="错误率与精度"></a>错误率与精度</h3><h3 id="查准率、查全率与-F1"><a href="#查准率、查全率与-F1" class="headerlink" title="查准率、查全率与 F1"></a>查准率、查全率与 F1</h3><p>查准率亦称“准确率”，查全率亦称“召回率”。<br>查准率和查全率是一对矛盾的度量<br>查准率-查全率曲线（P-R 曲线）：</p>
 <ul>
 <li>若一个学习器的 P-R 曲线被另一个学习器的曲线完全包住，后者性能优于前者。</li>
-<li>交叉时，比较面积，可借助于平衡点（Break-Even Point），即“查准率 = 查全率”时的取值。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/2_1.jpeg" alt></li>
+<li>交叉时，比较面积，可借助于平衡点（Break-Even Point），即“查准率 = 查全率”时的取值。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/MachineLearning/2_1.jpeg" alt></li>
 </ul>
 <p>BEP 还是过于简化了些，更常用的是 F1 度量。F1 是基于查准率和查全率的调和平均（harmonic mean）定义的，调和平均更重视较小值。<br>有多个二分类混淆矩阵：</p>
 <ul>
@@ -405,7 +405,7 @@
 <li>若正例的预测值小于反例，则记一个“罚分”，若相等，则记 0.5 个。</li>
 <li>对应 ROC 曲线之上的面积，AUC = 1-lrank。 </li>
 </ul>
-<h3 id="代价敏感错误率与代价曲线"><a href="#代价敏感错误率与代价曲线" class="headerlink" title="代价敏感错误率与代价曲线"></a>代价敏感错误率与代价曲线</h3><p>为权衡不同类型错误所造成的不同损失，可为错误赋予<strong>非均等代价</strong>（unequal cost）。<br>根据任务的领域知识设定一个<strong>代价矩阵</strong>（cost matrix），cost ij 表示将第 i 类样本预测为第 j 类样本的代价。<br>以二分类任务为例，损失程度相差越大，cost 01 与 cost 10 值的差别越大，重要的是代价比值而非绝对值。<br>在非均等代价下，ROC 曲线不能直接反映出学习器的期望总体代价，<strong>代价曲线</strong>（cost curve）则可达到该目的。<br>规范化（normalization）是将不同变化范围的值映射到相同的固定范围中。常见的是 [0, 1]，此时亦称<strong>归一化</strong>。<br>在代价平面上绘制一条从 (0, FPR) 到 (1, FNR) 的线段，取所有线段的下界，围成的面积即为，在所有条件下学习器的期望总体代价。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/2_2.jpeg" alt></p>
+<h3 id="代价敏感错误率与代价曲线"><a href="#代价敏感错误率与代价曲线" class="headerlink" title="代价敏感错误率与代价曲线"></a>代价敏感错误率与代价曲线</h3><p>为权衡不同类型错误所造成的不同损失，可为错误赋予<strong>非均等代价</strong>（unequal cost）。<br>根据任务的领域知识设定一个<strong>代价矩阵</strong>（cost matrix），cost ij 表示将第 i 类样本预测为第 j 类样本的代价。<br>以二分类任务为例，损失程度相差越大，cost 01 与 cost 10 值的差别越大，重要的是代价比值而非绝对值。<br>在非均等代价下，ROC 曲线不能直接反映出学习器的期望总体代价，<strong>代价曲线</strong>（cost curve）则可达到该目的。<br>规范化（normalization）是将不同变化范围的值映射到相同的固定范围中。常见的是 [0, 1]，此时亦称<strong>归一化</strong>。<br>在代价平面上绘制一条从 (0, FPR) 到 (1, FNR) 的线段，取所有线段的下界，围成的面积即为，在所有条件下学习器的期望总体代价。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/MachineLearning/2_2.jpeg" alt></p>
 <h2 id="比较检验"><a href="#比较检验" class="headerlink" title="比较检验"></a>比较检验</h2><h3 id="机器学习中性能的比较很复杂"><a href="#机器学习中性能的比较很复杂" class="headerlink" title="机器学习中性能的比较很复杂"></a>机器学习中性能的比较很复杂</h3><p>希望比较的是泛化性能，通过实验评估方法获得的是测试集上的性能，两者对比结果可能未必相同。<br>测试集上的性能与测试集本身的选择有很大关系（大小、样例）。<br>机器学习算法本身有一定的随机性。<br>统计假设检验（hypothesis test）为学习器性能的比较提供了重要依据（默认以错误率为性能度量）。</p>
 <h3 id="假设检验"><a href="#假设检验" class="headerlink" title="假设检验"></a>假设检验</h3><p>1-α 反映了结论的置信度（confidence）。<br>s.t. 是“subject to”的简写，使左边式子在右边条件满足时成立。</p>
 <h3 id="交叉验证-t-检验"><a href="#交叉验证-t-检验" class="headerlink" title="交叉验证 t 检验"></a>交叉验证 t 检验</h3><p>若两个学习器的性能相同，则使用相同的训练集、测试集得到的测试错误率应相同。<br>进行有效假设检验的<strong>重要前提：</strong>测试错误率均为泛化错误率的独立采样。<br>实际上，不同轮次的训练集会有一定程度的重叠，使得测试错误率并不独立，导致过高估计假设成立的概率。为缓解这一问题，可采用 <strong>5 X 2交叉验证</strong>（5 次二折交叉验证）。</p>
@@ -427,7 +427,7 @@
 <li>神经网络：控制训练轮数。</li>
 <li>集成学习方法：控制基学习器个数。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/MachineLearning/2_3.jpeg" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/MachineLearning/2_3.jpeg" alt></p>
 <h2 id="阅读材料"><a href="#阅读材料" class="headerlink" title="阅读材料"></a>阅读材料</h2><p>对分类任务，由于 0/1 损失函数的跳变性，推导出偏差-方差分解很困难。</p>
 <p><a href="http://blog.csdn.net/icefire_tyh/article/details/52065867" target="_blank" rel="noopener">习题答案</a></p>
 

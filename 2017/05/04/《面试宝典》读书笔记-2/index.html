@@ -95,12 +95,12 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="关键字、基本类型与运算、字符串与数组  变量命名的规则标识符 变量名 函数名 数组名  break、continue、return 的区别break用于直接强行跳出当前循环，不再执行剩余代码。仅仅终止了内层循环的执行，而不影响外层循环的执行。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/2_1.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/2_1.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《面试宝典》读书笔记-2">
 <meta name="twitter:description" content="关键字、基本类型与运算、字符串与数组  变量命名的规则标识符 变量名 函数名 数组名  break、continue、return 的区别break用于直接强行跳出当前循环，不再执行剩余代码。仅仅终止了内层循环的执行，而不影响外层循环的执行。">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/2_1.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/2_1.png">
 
 
 
@@ -435,7 +435,7 @@
 <li>左移运算，移除高位的同时在低位补 0。</li>
 </ul>
 <hr>
-<h2 id="new-String-“abc”-创建了几个对象？"><a href="#new-String-“abc”-创建了几个对象？" class="headerlink" title="new String(“abc”) 创建了几个对象？"></a>new String(“abc”) 创建了几个对象？</h2><p>一个或两个。如果字符串池中原来有“abc”，那么只创建一个对象；如果没有，就会创建两个。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/2_1.png" alt></p>
+<h2 id="new-String-“abc”-创建了几个对象？"><a href="#new-String-“abc”-创建了几个对象？" class="headerlink" title="new String(“abc”) 创建了几个对象？"></a>new String(“abc”) 创建了几个对象？</h2><p>一个或两个。如果字符串池中原来有“abc”，那么只创建一个对象；如果没有，就会创建两个。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/2_1.png" alt></p>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在常量区里面存放了一个“abc”字符串对象</span></span><br><span class="line"><span class="keyword">String</span> s1 = <span class="string">"abc"</span>;</span><br><span class="line"><span class="comment">//s2引用常量区中的对象，因此不会创建新对象</span></span><br><span class="line"><span class="keyword">String</span> s2 = <span class="string">"abc"</span>;</span><br><span class="line"><span class="comment">//在堆中创建新的对象</span></span><br><span class="line"><span class="keyword">String</span> s3 = <span class="keyword">new</span> <span class="keyword">String</span>(<span class="string">"abc"</span>);</span><br><span class="line"><span class="comment">//在堆中又创建一个新的对象</span></span><br><span class="line"><span class="keyword">String</span> s4 = <span class="keyword">new</span> <span class="keyword">String</span>(<span class="string">"abc"</span>);</span><br></pre></td></tr></table></figure>
 
 <h2 id="、equals、hashCode-的区别"><a href="#、equals、hashCode-的区别" class="headerlink" title="==、equals、hashCode 的区别"></a>==、equals、hashCode 的区别</h2><h3 id><a href="#" class="headerlink" title="=="></a>==</h3><p>用来比较两个变量的值是否相等。</p>

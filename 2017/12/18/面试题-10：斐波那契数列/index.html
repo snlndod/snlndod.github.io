@@ -95,13 +95,13 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="题目一：求斐波那契数列的第 n 项。写一个函数，输入 n，求 Fibonacci 数列的第 n 项，斐波那契数列的定义如下：    递归是在一个函数的内部调用这个函数自身；循环则是通过设置计算的初始值及终止条件，在一个范围内重复计算。 如果没有特别的要求，应聘者可以尽量多采用递归的方法编程，可能引起：调用栈溢出。 每一次函数调用，都需要在内存中分配空间以保存参数、返回地址、临时变量，而且往栈里压">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CodingInterview/10_1.jpeg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CodingInterview/10_2.jpeg">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CodingInterview/10_1.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CodingInterview/10_2.jpeg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试题 10：斐波那契数列">
 <meta name="twitter:description" content="题目一：求斐波那契数列的第 n 项。写一个函数，输入 n，求 Fibonacci 数列的第 n 项，斐波那契数列的定义如下：    递归是在一个函数的内部调用这个函数自身；循环则是通过设置计算的初始值及终止条件，在一个范围内重复计算。 如果没有特别的要求，应聘者可以尽量多采用递归的方法编程，可能引起：调用栈溢出。 每一次函数调用，都需要在内存中分配空间以保存参数、返回地址、临时变量，而且往栈里压">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CodingInterview/10_1.jpeg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CodingInterview/10_1.jpeg">
 
 
 
@@ -361,7 +361,7 @@
         <blockquote>
 <p>题目一：求斐波那契数列的第 n 项。<br>写一个函数，输入 n，求 Fibonacci 数列的第 n 项，斐波那契数列的定义如下：</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CodingInterview/10_1.jpeg" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CodingInterview/10_1.jpeg" alt></p>
 <ul>
 <li><strong>递归</strong>是在一个函数的内部调用这个函数自身；<strong>循环</strong>则是通过设置计算的初始值及终止条件，在一个范围内重复计算。</li>
 <li>如果没有特别的要求，应聘者可以尽量多采用递归的方法编程，可能引起：<strong>调用栈溢出</strong>。</li>
@@ -370,14 +370,14 @@
 <a id="more"></a>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> n)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Fibonacci(n<span class="number">-1</span>) + Fibonacci(n<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CodingInterview/10_2.jpeg" alt><br>在这棵树中有很多节点是重复的。重复的节点数会随着 n 的增大而急剧增加，往往意味着<strong>计算量</strong>的增大。<br>只要想办法避免重复计算就行了，比如我们可以把已经得到的数列中间项保存起来。更简单的做法是把递归的算法用循环实现，<strong>从下往上计算</strong>。</p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CodingInterview/10_2.jpeg" alt><br>在这棵树中有很多节点是重复的。重复的节点数会随着 n 的增大而急剧增加，往往意味着<strong>计算量</strong>的增大。<br>只要想办法避免重复计算就行了，比如我们可以把已经得到的数列中间项保存起来。更简单的做法是把递归的算法用循环实现，<strong>从下往上计算</strong>。</p>
 <blockquote>
 <p>题目二：青蛙跳台阶问题。<br>一只青蛙一次可以跳上 1 级台阶，也可以跳上 2 级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。</p>
 </blockquote>
 <ul>
 <li>第一次跳的时候有两种不同的选择：一是第一次只跳 1 级；二是第一次跳 2 级。</li>
 </ul>
-<p><a href="https://gist.githubusercontent.com/snlndod/e4adb29942c20eb30575d2812c30e149/raw/b6bdc1a838e17ae8c2d234514748332d79089a4d/10_Fibonacci.cpp" target="_blank" rel="noopener">Source Code</a></p>
+<p><a href="https://gist.githubusercontent.com/umarellyh/e4adb29942c20eb30575d2812c30e149/raw/b6bdc1a838e17ae8c2d234514748332d79089a4d/10_Fibonacci.cpp" target="_blank" rel="noopener">Source Code</a></p>
 
       
     </div>

@@ -95,18 +95,18 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="递归树与时间复杂度分析递归的思想就是，将大问题分解为小问题来求解，然后再将小问题分解为小小问题。这样一层一层地分解，直到问题的数据规模被分解得足够小，不用继续递归分解为止。如果我们把这个一层一层的分解过程画成图，它其实就是一棵树。我们给这棵树起一个名字，叫作递归树（Recursion Tree）。归并排序每次会将数据规模一分为二，我们把归并排序画成递归树，就是下面这个样子： 因为每次分解都是一分为">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/131.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/132.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/133.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/134.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/135.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/136.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/137.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/131.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/132.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/133.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/134.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/135.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/136.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/137.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="递归树">
 <meta name="twitter:description" content="递归树与时间复杂度分析递归的思想就是，将大问题分解为小问题来求解，然后再将小问题分解为小小问题。这样一层一层地分解，直到问题的数据规模被分解得足够小，不用继续递归分解为止。如果我们把这个一层一层的分解过程画成图，它其实就是一棵树。我们给这棵树起一个名字，叫作递归树（Recursion Tree）。归并排序每次会将数据规模一分为二，我们把归并排序画成递归树，就是下面这个样子： 因为每次分解都是一分为">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/131.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/131.png">
 
 
 
@@ -363,20 +363,20 @@
       
 
       
-        <h2 id="递归树与时间复杂度分析"><a href="#递归树与时间复杂度分析" class="headerlink" title="递归树与时间复杂度分析"></a>递归树与时间复杂度分析</h2><p>递归的思想就是，将大问题分解为小问题来求解，然后再将小问题分解为小小问题。这样一层一层地分解，直到问题的数据规模被分解得足够小，不用继续递归分解为止。如果我们<strong>把这个一层一层的分解过程画成图，它其实就是一棵树</strong>。我们给这棵树起一个名字，叫作<code>递归树</code>（Recursion Tree）。归并排序每次会将数据规模一分为二，我们把归并排序画成递归树，就是下面这个样子：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/131.png" alt></p>
+        <h2 id="递归树与时间复杂度分析"><a href="#递归树与时间复杂度分析" class="headerlink" title="递归树与时间复杂度分析"></a>递归树与时间复杂度分析</h2><p>递归的思想就是，将大问题分解为小问题来求解，然后再将小问题分解为小小问题。这样一层一层地分解，直到问题的数据规模被分解得足够小，不用继续递归分解为止。如果我们<strong>把这个一层一层的分解过程画成图，它其实就是一棵树</strong>。我们给这棵树起一个名字，叫作<code>递归树</code>（Recursion Tree）。归并排序每次会将数据规模一分为二，我们把归并排序画成递归树，就是下面这个样子：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/131.png" alt></p>
 <p>因为每次分解都是一分为二，所以代价很低，我们把时间上的消耗记作常量 1。归并算法中比较耗时的是归并操作，也就是把两个子数组合并为大数组。从图中我们可以看出，<strong>每一层归并操作消耗的时间总和是一样的，跟要排序的数据规模有关</strong>。我们把每一层归并操作消耗的时间记作 n。现在，我们只需要知道这棵树的高度 h，用高度 h 乘以每一层的时间消耗 n，就可以得到总的时间复杂度 O(n*h)。</p>
 <p>从归并排序的原理和递归树，可以看出来，归并排序递归树是一棵满二叉树。满二叉树的高度大约是 log2​n，所以，归并排序递归实现的时间复杂度就是 O(nlogn)。我这里的时间复杂度都是估算的，对树的高度的计算也没有那么精确，但是这并不影响复杂度的计算结果。</p>
 <a id="more"></a>
 
 <h2 id="实战一：分析快速排序的时间复杂度"><a href="#实战一：分析快速排序的时间复杂度" class="headerlink" title="实战一：分析快速排序的时间复杂度"></a>实战一：分析快速排序的时间复杂度</h2><p>快速排序在最好情况下，每次分区都能一分为二，这个时候用递推公式 T(n)=2T(n/2​)+n，很容易就能推导出时间复杂度是 O(nlogn)。但是，我们并不可能每次分区都这么幸运，正好一分为二。我们假设平均情况下，每次分区之后，两个分区的大小比例为 1:k。当 k=9 时，如果用递推公式的方法来求解时间复杂度的话，递推公式就写成 T(n)=T(n/10​)+T(9n/10​)+n。<strong>这个公式可以推导出时间复杂度，但是推导过程非常复杂</strong>。</p>
-<p>我们还是取 k 等于 9，也就是说，每次分区都很不平均，一个分区是另一个分区的 9 倍。如果我们把递归分解的过程画成递归树，就是下面这个样子：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/132.png" alt></p>
-<p>快速排序的过程中，每次分区都要遍历待分区区间的所有数据，所以，每一层分区操作所遍历的数据的个数之和就是 n。我们现在只要求出递归树的高度 h，这个快排过程遍历的数据个数就是 h*n ，也就是说，时间复杂度就是 O(h*n)。我们知道，快速排序结束的条件就是待排序的小区间，大小为 1，也就是说叶子节点里的数据规模是 1。从根节点 n 到叶子节点 1，<strong>递归树中最短的一个路径每次都乘以 1/10​，最长的一个路径每次都乘以 9/10</strong>。通过计算，我们可以得到，从根节点到叶子节点的最短路径是 log10​n，最长的路径是 log10/9​​n：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/133.png" alt></p>
+<p>我们还是取 k 等于 9，也就是说，每次分区都很不平均，一个分区是另一个分区的 9 倍。如果我们把递归分解的过程画成递归树，就是下面这个样子：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/132.png" alt></p>
+<p>快速排序的过程中，每次分区都要遍历待分区区间的所有数据，所以，每一层分区操作所遍历的数据的个数之和就是 n。我们现在只要求出递归树的高度 h，这个快排过程遍历的数据个数就是 h*n ，也就是说，时间复杂度就是 O(h*n)。我们知道，快速排序结束的条件就是待排序的小区间，大小为 1，也就是说叶子节点里的数据规模是 1。从根节点 n 到叶子节点 1，<strong>递归树中最短的一个路径每次都乘以 1/10​，最长的一个路径每次都乘以 9/10</strong>。通过计算，我们可以得到，从根节点到叶子节点的最短路径是 log10​n，最长的路径是 log10/9​​n：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/133.png" alt></p>
 <p>所以，遍历数据的个数总和就介于 nlog10​n 和 nlog10/9​​n 之间。根据复杂度的大 O 表示法，对数复杂度的底数不管是多少，我们统一写成 logn，所以，当分区大小比例是 1:9 时，快速排序的时间复杂度仍然是 O(nlogn)。</p>
-<h2 id="实战二：分析斐波那契数列的时间复杂度"><a href="#实战二：分析斐波那契数列的时间复杂度" class="headerlink" title="实战二：分析斐波那契数列的时间复杂度"></a>实战二：分析斐波那契数列的时间复杂度</h2><p>我们先把斐波那契数列的递归代码画成递归树，就是下面这个样子：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/134.png" alt></p>
+<h2 id="实战二：分析斐波那契数列的时间复杂度"><a href="#实战二：分析斐波那契数列的时间复杂度" class="headerlink" title="实战二：分析斐波那契数列的时间复杂度"></a>实战二：分析斐波那契数列的时间复杂度</h2><p>我们先把斐波那契数列的递归代码画成递归树，就是下面这个样子：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/134.png" alt></p>
 <p>f(n) 分解为 f(n−1) 和 f(n−2)，每次数据规模都是 −1 或者 −2，叶子节点的数据规模是 1 或者 2。所以，从根节点走到叶子节点，每条路径是长短不一的。<strong>如果每次都是 −1，那最长路径大约就是 n；如果每次都是 −2，那最短路径大约就是 n/2</strong>。每次分解之后的合并操作只需要一次加法运算，我们把这次加法运算的时间消耗记作 1。所以，从上往下，第一层的总时间消耗是 1，第二层的总时间消耗是 2，第三层的总时间消耗就是 2^2。依次类推，第 k 层的时间消耗就是 2^(k−1)，那整个算法的总的时间消耗就是每一层时间消耗之和：</p>
 <ul>
-<li>如果路径长度都为 n，那这个总和就是 2^n−1：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/135.png" alt></li>
-<li>如果路径长度都是 n/2​ ，那整个算法的总的时间消耗就是 2^(n/2)​−1：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/136.png" alt></li>
+<li>如果路径长度都为 n，那这个总和就是 2^n−1：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/135.png" alt></li>
+<li>如果路径长度都是 n/2​ ，那整个算法的总的时间消耗就是 2^(n/2)​−1：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/136.png" alt></li>
 </ul>
 <p>所以，这个算法的时间复杂度就介于 O(2^(n/2)) 和 O(2^n​) 之间。虽然这样得到的结果还不够精确，只是一个范围，但是我们也基本上知道了<strong>上面算法的时间复杂度是指数级的，非常高</strong>。</p>
 <h2 id="实战三：分析全排列的时间复杂度"><a href="#实战三：分析全排列的时间复杂度" class="headerlink" title="实战三：分析全排列的时间复杂度"></a>实战三：分析全排列的时间复杂度</h2><p>我们在高中的时候都学过排列组合。“如何把 n 个数据的所有排列都找出来”，这就是全排列的问题。我来举个例子。比如，1, 2, 3 这样 3 个数据，有下面这几种不同的排列：</p>
@@ -388,7 +388,7 @@
 <p>如果我们把递推公式改写成代码，就是下面这个样子：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用方式：</span></span><br><span class="line"><span class="comment">// int[] a = &#123;1, 2, 3, 4&#125;; printPermutations(a, 4, 4);</span></span><br><span class="line"><span class="comment">// k 表示要处理的子数组的数据个数</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printPermutations</span><span class="params">(<span class="keyword">int</span>[] data, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (k == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            System.out.print(data[i] + <span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> tmp = data[i];</span><br><span class="line">        data[i] = data[k-<span class="number">1</span>];</span><br><span class="line">        data[k-<span class="number">1</span>] = tmp;</span><br><span class="line"></span><br><span class="line">        printPermutations(data, n, k - <span class="number">1</span>);</span><br><span class="line">        </span><br><span class="line">        tmp = data[i];</span><br><span class="line">        data[i] = data[k-<span class="number">1</span>];</span><br><span class="line">        data[k-<span class="number">1</span>] = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>首先，我们还是画出递归树。不过，现在的递归树已经不是标准的二叉树了：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/137.png" alt></p>
+<p>首先，我们还是画出递归树。不过，现在的递归树已经不是标准的二叉树了：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/137.png" alt></p>
 <p>第一层分解有 n 次交换操作，第二层有 n 个节点，每个节点分解需要 n−1 次交换，所以第二层总的交换次数是 n*(n−1)。第三层有 n*(n−1) 个节点，每个节点分解需要 n−2 次交换，所以第三层总的交换次数是 n*(n−1)*(n−2)。以此类推，第 k 层总的交换次数就是 n*(n−1)*(n−2)*…*(n−k+1)。最后一层的交换次数就是 n*(n−1)*(n−2)*…*2*1。每一层的交换次数之和就是总的交换次数：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n + n*(n-<span class="number">1</span>) + n*(n-<span class="number">1</span>)*(n-<span class="number">2</span>) + ... + n*(n-<span class="number">1</span>)*(n-<span class="number">2</span>)*...*<span class="number">2</span>*<span class="number">1</span></span><br></pre></td></tr></table></figure>
 

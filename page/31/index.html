@@ -365,7 +365,7 @@
 <li>持久性（<strong>D</strong>urability）：事务提交后，对系统的影响是永久的。</li>
 </ul>
 <p>关系型数据库的扩展，包括许多技术：<code>主-从复制</code>、<code>主-主复制</code>、<code>联邦</code>、<code>分片</code>、<code>非规范化</code>和 <code>SQL 调优</code>。</p>
-<h3 id="主-从复制"><a href="#主-从复制" class="headerlink" title="主-从复制"></a>主-从复制</h3><p>主库同时负责读取和写入操作，并复制写入到一个或多个从库中，<strong>从库只负责读操作</strong>。树状形式的从库再将写入复制到更多的从库中去。如果<strong>主库离线，系统可以以只读模式运行</strong>，直到某个从库被提升为主库或有新的主库出现：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/00.jpg" alt></p>
+<h3 id="主-从复制"><a href="#主-从复制" class="headerlink" title="主-从复制"></a>主-从复制</h3><p>主库同时负责读取和写入操作，并复制写入到一个或多个从库中，<strong>从库只负责读操作</strong>。树状形式的从库再将写入复制到更多的从库中去。如果<strong>主库离线，系统可以以只读模式运行</strong>，直到某个从库被提升为主库或有新的主库出现：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/00.jpg" alt></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/01/15/数据库/#more" rel="contents">
@@ -488,7 +488,7 @@
       
         
           <h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><p><code>Reverse Proxy</code> 是一种可以<strong>集中调用内部服务，并提供统一公共接口</strong>的 Web 服务器。来自客户端的请求先被反向代理服务器转发到可响应请求的服务器，然后再把服务器的响应结果返回给客户端。</p>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/05/00.jpg" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/05/00.jpg" alt></p>
 <p>带来的好处包括：</p>
 <ul>
 <li><strong>增加安全性</strong>：隐藏后端服务器的信息，屏蔽黑名单中的 IP，限制每个客户端的连接数；</li>
@@ -630,7 +630,7 @@
 <li>防止资源过载</li>
 <li><strong>帮助消除单一的故障点</strong></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/04/00.jpg" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/04/00.jpg" alt></p>
 <p>负载均衡器可以通过硬件（昂贵）或 HAProxy 等软件来实现。 增加的好处包括：</p>
 <ul>
 <li>SSL 终结：<strong>解密传入的请求并加密服务器响应</strong>，这样的话后端服务器就不必再执行这些潜在高消耗运算了（不需要再每台服务器上安装 <code>X.509</code>）；</li>
@@ -758,7 +758,7 @@
       
         
           <h2 id="域名系统"><a href="#域名系统" class="headerlink" title="域名系统"></a>域名系统</h2><p><strong>D</strong>omain <strong>N</strong>ame <strong>S</strong>ystem（DNS）将 <a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a> 等域名转换成 IP 地址：</p>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/03/00.jpg" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/03/00.jpg" alt></p>
 <p>域名系统是分层次的，一些 DNS 服务器位于顶层。当查询（域名）IP 时，路由或 ISP 提供连接 DNS 服务器的信息。<strong>较底层的 DNS 服务器缓存映射</strong>，它可能会因为 DNS 传播延时而失效。DNS 结果可以缓存在浏览器或操作系统中一段时间，时间长短取决于 <code>TTL</code>（Time To Live）：</p>
 <ul>
 <li>NS 记录（域名服务）：指定解析域名或子域名的 DNS 服务器；</li>
@@ -904,7 +904,7 @@
 <li>如果你的系统有可扩展性问题，单个用户较快但在高负载下会变慢；</li>
 </ul>
 <h2 id="延迟与吞吐量"><a href="#延迟与吞吐量" class="headerlink" title="延迟与吞吐量"></a>延迟与吞吐量</h2><p>延迟是执行操作或运算结果所花费的时间。吞吐量是单位时间内（执行）此类操作或运算的数量。通常，你应该<strong>以可接受级延迟下最大化吞吐量为目标</strong>。</p>
-<h2 id="一致性与可用性"><a href="#一致性与可用性" class="headerlink" title="一致性与可用性"></a>一致性与可用性</h2><h3 id="CAP-理论"><a href="#CAP-理论" class="headerlink" title="CAP 理论"></a>CAP 理论</h3><p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/02/00.png" alt></p>
+<h2 id="一致性与可用性"><a href="#一致性与可用性" class="headerlink" title="一致性与可用性"></a>一致性与可用性</h2><h3 id="CAP-理论"><a href="#CAP-理论" class="headerlink" title="CAP 理论"></a>CAP 理论</h3><p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/02/00.png" alt></p>
 <p>在一个分布式计算系统中，只能同时满足下列的两点:</p>
 <ul>
 <li>一致性：每次访问都能获得最新数据但可能会收到错误响应；</li>

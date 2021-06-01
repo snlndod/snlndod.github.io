@@ -95,14 +95,14 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="What is an Online Movie Ticket Booking System?A movie ticket booking system provides its customers the ability to purchase theatre seats online. E-ticketing systems allow the customers to browse throu">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/66.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/67.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/68.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/66.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/67.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/68.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Designing Ticketmaster">
 <meta name="twitter:description" content="What is an Online Movie Ticket Booking System?A movie ticket booking system provides its customers the ability to purchase theatre seats online. E-ticketing systems allow the customers to browse throu">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/66.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/66.png">
 
 
 
@@ -433,8 +433,8 @@
 <li>Each Movie will have many Shows and each Show will have multiple Bookings;</li>
 <li>A User can have multiple Bookings;</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/66.png" alt></p>
-<h2 id="High-Level-Design"><a href="#High-Level-Design" class="headerlink" title="High-Level Design"></a>High-Level Design</h2><p>At a high level, our web servers will manage users’ sessions and application servers will handle all the ticket management, storing data in the databases as well as working with the cache servers to process reservations:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/67.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/66.png" alt></p>
+<h2 id="High-Level-Design"><a href="#High-Level-Design" class="headerlink" title="High-Level Design"></a>High-Level Design</h2><p>At a high level, our web servers will manage users’ sessions and application servers will handle all the ticket management, storing data in the databases as well as working with the cache servers to process reservations:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/67.png" alt></p>
 <h2 id="Detailed-Component-Design"><a href="#Detailed-Component-Design" class="headerlink" title="Detailed Component Design"></a>Detailed Component Design</h2><p>First, let’s try to build our service assuming it is being served from a single server.</p>
 <p><strong>Ticket Booking Workflow</strong>: The following would be a typical ticket booking workflow:</p>
 <ol>
@@ -459,7 +459,7 @@
 </li>
 <li>If seats are reserved successfully, the user has five minutes to pay for the reservation. After payment, the booking is marked complete. If the user is not able to pay within five minutes, all their reserved seats are freed to become available to other users;</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/68.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/68.png" alt></p>
 <p>We need two daemon services, one to keep track of all active reservations and remove any expired reservation from the system; let’s call it <code>ActiveReservationService</code>. The other service would be keeping track of all the waiting user requests and, as soon as the required number of seats become available, it will notify the (the longest waiting) user to choose the seats; let’s call it <code>WaitingUserService</code>.</p>
 <h3 id="ActiveReservationsService"><a href="#ActiveReservationsService" class="headerlink" title="ActiveReservationsService"></a>ActiveReservationsService</h3><p>We can keep all the reservations of a “show” in memory in a data structure similar to LinkedHashMap or a TreeMap in addition to keeping all the data in the database. We will need a LinkedHashMap kind of data structure that allows us to jump to any reservation to remove it when the booking is complete. Also, since we will have expiry time associated with each reservation, the head of the HashMap will always point to the oldest reservation record so that the reservation can be expired when the timeout is reached.<br>To store every reservation for every show, we can have a HashTable where the “key” would be “ShowID”, and the “value” would be the LinkedHashMap containing “BookingID” and creation “Timestamp”:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Show ID: LinkedHashMap&lt;BookingID, TimeStamp&gt;</span><br><span class="line"><span class="number">123</span>    : &#123;(<span class="number">1</span>, <span class="number">1499818500</span>), (<span class="number">2</span>, <span class="number">1499818700</span>), (<span class="number">3</span>, <span class="number">1499818800</span>)&#125;</span><br></pre></td></tr></table></figure>

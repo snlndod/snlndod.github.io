@@ -95,16 +95,16 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="异步（Asynchronism） 异步工作流有助于减少那些原本顺序执行的请求时间。它们可以通过提前进行一些耗时的工作来帮助减少请求时间，比如定期汇总数据。 消息队列消息队列接收、保留和传递消息。如果按顺序执行操作太慢的话，你可以使用有以下工作流的消息队列：  应用程序将作业发布到队列，然后通知用户作业状态； 一个 worker 从队列中取出该作业，对其进行处理，然后显示该作业完成；  不去阻塞用户">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/08/00.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/08/01.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/08/02.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/08/03.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/08/04.jpg">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/08/00.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/08/01.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/08/02.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/08/03.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/08/04.jpg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="异步与通讯">
 <meta name="twitter:description" content="异步（Asynchronism） 异步工作流有助于减少那些原本顺序执行的请求时间。它们可以通过提前进行一些耗时的工作来帮助减少请求时间，比如定期汇总数据。 消息队列消息队列接收、保留和传递消息。如果按顺序执行操作太慢的话，你可以使用有以下工作流的消息队列：  应用程序将作业发布到队列，然后通知用户作业状态； 一个 worker 从队列中取出该作业，对其进行处理，然后显示该作业完成；  不去阻塞用户">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/08/00.jpg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/08/00.jpg">
 
 
 
@@ -361,7 +361,7 @@
       
 
       
-        <h2 id="异步（Asynchronism）"><a href="#异步（Asynchronism）" class="headerlink" title="异步（Asynchronism）"></a>异步（Asynchronism）</h2><p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/08/00.jpg" alt></p>
+        <h2 id="异步（Asynchronism）"><a href="#异步（Asynchronism）" class="headerlink" title="异步（Asynchronism）"></a>异步（Asynchronism）</h2><p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/08/00.jpg" alt></p>
 <p>异步工作流有助于减少那些原本顺序执行的请求时间。它们可以通过<strong>提前进行一些耗时的工作</strong>来帮助减少请求时间，比如定期汇总数据。</p>
 <h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><p>消息队列接收、保留和传递消息。如果<strong>按顺序执行操作太慢</strong>的话，你可以使用有以下工作流的消息队列：</p>
 <ul>
@@ -378,7 +378,7 @@
 <h3 id="背压"><a href="#背压" class="headerlink" title="背压"></a>背压</h3><p>如果队列开始明显增长，那么<strong>队列大小可能会超过内存大小</strong>，导致 Cache 未命中，磁盘读取，甚至性能更慢。<code>Back Pressure</code> 可以通过限制队列大小来帮助我们，从而为队列中的作业保持高吞吐率和良好的响应时间。</p>
 <p>一旦队列填满，客户端将得到服务器忙或者 HTTP 503 状态码，以便稍后重试。客户端可以在稍后时间重试该请求，也许是<code>指数退避</code>。</p>
 <h3 id="缺陷：异步"><a href="#缺陷：异步" class="headerlink" title="缺陷：异步"></a>缺陷：异步</h3><p>简单的计算和实时工作流等场景可能更适用于同步操作，因为<strong>引入队列可能会增加延迟和复杂性</strong>。</p>
-<h2 id="通讯"><a href="#通讯" class="headerlink" title="通讯"></a>通讯</h2><p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/08/01.jpg" alt></p>
+<h2 id="通讯"><a href="#通讯" class="headerlink" title="通讯"></a>通讯</h2><p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/08/01.jpg" alt></p>
 <h3 id="超文本传输协议（HTTP）"><a href="#超文本传输协议（HTTP）" class="headerlink" title="超文本传输协议（HTTP）"></a>超文本传输协议（HTTP）</h3><p><code>HTTP</code> 是一种在客户端和服务器之间编码和传输数据的方法。它是一个 request/response 协议：客户端和服务端针对相关内容和完成状态信息的请求和响应。</p>
 <p><strong>HTTP 是独立的</strong>，允许请求和响应流经许多执行负载均衡、缓存、加密和压缩的中间路由器和服务器。</p>
 <p>一个基本的 HTTP 请求由一个动词（<code>method</code>）和一个资源（<code>endpoint</code>）组成。 以下是常见的 HTTP 动词：</p>
@@ -429,7 +429,7 @@
 </tr>
 </tbody></table>
 <p>HTTP 是依赖于较低级协议（例如，TCP 和 UDP）的<strong>应用层协议</strong>。</p>
-<h3 id="传输控制协议（TCP）"><a href="#传输控制协议（TCP）" class="headerlink" title="传输控制协议（TCP）"></a>传输控制协议（TCP）</h3><p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/08/02.jpg" alt></p>
+<h3 id="传输控制协议（TCP）"><a href="#传输控制协议（TCP）" class="headerlink" title="传输控制协议（TCP）"></a>传输控制协议（TCP）</h3><p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/08/02.jpg" alt></p>
 <p><code>TCP</code> 是 IP（<strong>I</strong>nternet <strong>P</strong>rotocol）网络上的面向连接协议。 <strong>使用握手</strong>建立和断开连接。 发送的所有数据包保证以原始顺序到达目的地，用以下措施保证数据包不被损坏：</p>
 <ul>
 <li>每个数据包的序列号和校验码（checksum）；</li>
@@ -443,7 +443,7 @@
 <li>你需要数据完好无损；</li>
 <li>你想对网络吞吐量<strong>自动进行最佳评估</strong>；</li>
 </ul>
-<h3 id="用户数据报协议（UDP）"><a href="#用户数据报协议（UDP）" class="headerlink" title="用户数据报协议（UDP）"></a>用户数据报协议（UDP）</h3><p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/08/03.jpg" alt></p>
+<h3 id="用户数据报协议（UDP）"><a href="#用户数据报协议（UDP）" class="headerlink" title="用户数据报协议（UDP）"></a>用户数据报协议（UDP）</h3><p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/08/03.jpg" alt></p>
 <p><code>UDP</code> 是无连接的。<strong>数据报（Datagram）类似于数据包（Packet）</strong>，只在数据报级别有保证。数据报可能会无序地到达，也有可能会丢失，UDP 不支持拥塞控制。虽然不如 TCP 那样有保证，但 <strong>UDP 通常效率更高</strong>。</p>
 <p>UDP 可以通过广播将数据报发送至子网内的所有设备。这<strong>对 DHCP 很有用</strong>，因为子网内的设备还没有分配 IP 地址，而 <strong>IP 地址对于 TCP 是必须的</strong>。</p>
 <p>UDP 可靠性更低，但适合网络电话、视频聊天、流媒体和实时多人游戏上。</p>
@@ -452,7 +452,7 @@
 <li>相对于数据丢失，更糟的是数据延迟；</li>
 <li>你想实现自己的<strong>错误校正方法</strong>；</li>
 </ul>
-<h3 id="远程过程调用（RPC）"><a href="#远程过程调用（RPC）" class="headerlink" title="远程过程调用（RPC）"></a>远程过程调用（RPC）</h3><p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/08/04.jpg" alt></p>
+<h3 id="远程过程调用（RPC）"><a href="#远程过程调用（RPC）" class="headerlink" title="远程过程调用（RPC）"></a>远程过程调用（RPC）</h3><p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/08/04.jpg" alt></p>
 <p>在 <code>RPC</code> 中，客户端会调用另一个地址空间（通常是远程服务器）里的过程。<strong>客户端和服务器交互的具体过程被抽象</strong>，看起来就像是本地调用。</p>
 <p>远程调用相对于本地调用，一般<strong>较慢而且可靠性较差</strong>，很容易区分两者。热门的 RPC 框架包括：<code>Protobuf</code>、<code>Thrift</code> 和 <code>Avro</code>。</p>
 <p>RPC 是一个 request/response 协议（客户端的响应与之相反）：</p>

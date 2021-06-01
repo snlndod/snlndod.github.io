@@ -95,12 +95,12 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="何为“高内聚、松耦合”？“高内聚、松耦合”是一个非常重要的设计思想，能够有效地提高代码的可读性和可维护性，缩小功能改动导致的代码改动范围。实际上，“高内聚、松耦合”是一个比较通用的设计思想，可以用来指导不同粒度代码的设计与开发，比如系统、模块、类，甚至是函数，也可以应用到不同的开发场景中，比如微服务、框架、组件、类库等。 为了方便我讲解，接下来我以“类”作为这个设计思想的应用对象来展开讲解，其他应">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/00.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/00.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="迪米特法则（LoD）">
 <meta name="twitter:description" content="何为“高内聚、松耦合”？“高内聚、松耦合”是一个非常重要的设计思想，能够有效地提高代码的可读性和可维护性，缩小功能改动导致的代码改动范围。实际上，“高内聚、松耦合”是一个比较通用的设计思想，可以用来指导不同粒度代码的设计与开发，比如系统、模块、类，甚至是函数，也可以应用到不同的开发场景中，比如微服务、框架、组件、类库等。 为了方便我讲解，接下来我以“类”作为这个设计思想的应用对象来展开讲解，其他应">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/00.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/00.png">
 
 
 
@@ -363,7 +363,7 @@
 <h3 id="松耦合"><a href="#松耦合" class="headerlink" title="松耦合"></a>松耦合</h3><p>所谓松耦合是说，在代码中，类与类之间的依赖关系简单清晰。即使两个类有依赖关系，<strong>一个类的代码改动不会或者很少导致依赖类的代码改动</strong>。</p>
 <h3 id="内聚和耦合的关系"><a href="#内聚和耦合的关系" class="headerlink" title="内聚和耦合的关系"></a>内聚和耦合的关系</h3><p>高内聚有助于松耦合，同理，<strong>低内聚也会导致紧耦合</strong>。关于这一点，我画了一张对比图来解释。图中左边部分的代码结构是“高内聚、松耦合”；右边部分正好相反，是“低内聚、紧耦合”：</p>
 <a id="more"></a>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/00.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/00.png" alt></p>
 <p>从图中我们也可以看出，高内聚、低耦合的代码结构更加简单、清晰，相应地，在可维护性和可读性上确实要好很多。</p>
 <h2 id="迪米特法则理论描述"><a href="#迪米特法则理论描述" class="headerlink" title="迪米特法则理论描述"></a>迪米特法则理论描述</h2><p>迪米特法则的英文翻译是：Law of Demeter，缩写是 LoD。它还有另外一个更加达意的名字，叫作最小知识原则，英文翻译为：</p>
 <blockquote>

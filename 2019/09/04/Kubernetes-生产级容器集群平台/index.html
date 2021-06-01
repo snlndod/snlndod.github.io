@@ -95,13 +95,13 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="Kubernetes 是 Google 团队发起并维护的开源容器集群管理系统，底层基于 Docker、rkt 等容器技术，提供强大的应用管理和资源调度能力。 简介Kubernetes 是 Google 公司于 2014 年开源的容器集群管理项目。该项目基于 Go 语言实现，遵守 Apache v2 许可，试图为基于容器的应用部署和生产管理打造一套强大并且易用的操作平台。目前被云原生计算基金会（Cl">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/01.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/02.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/01.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/02.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kubernetes - 生产级容器集群平台">
 <meta name="twitter:description" content="Kubernetes 是 Google 团队发起并维护的开源容器集群管理系统，底层基于 Docker、rkt 等容器技术，提供强大的应用管理和资源调度能力。 简介Kubernetes 是 Google 公司于 2014 年开源的容器集群管理项目。该项目基于 Go 语言实现，遵守 Apache v2 许可，试图为基于容器的应用部署和生产管理打造一套强大并且易用的操作平台。目前被云原生计算基金会（Cl">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/01.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/01.png">
 
 
 
@@ -359,7 +359,7 @@
 
       
         <p>Kubernetes 是 Google 团队发起并维护的开源容器集群管理系统，底层<strong>基于 Docker、rkt 等容器技术</strong>，提供强大的应用管理和资源调度能力。</p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Kubernetes 是 Google 公司于 2014 年开源的容器集群管理项目。该项目<strong>基于 Go 语言实现</strong>，遵守 Apache v2 许可，试图为基于容器的应用部署和生产管理打造一套强大并且易用的操作平台。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/01.png" alt><br>目前被云原生计算基金会（Cloud Native Computing Foundation，CNCF）管理，以开源项目形式持续演化。<br>Kubernetes 拥有鲜明的技术优势：</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Kubernetes 是 Google 公司于 2014 年开源的容器集群管理项目。该项目<strong>基于 Go 语言实现</strong>，遵守 Apache v2 许可，试图为基于容器的应用部署和生产管理打造一套强大并且易用的操作平台。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/01.png" alt><br>目前被云原生计算基金会（Cloud Native Computing Foundation，CNCF）管理，以开源项目形式持续演化。<br>Kubernetes 拥有鲜明的技术优势：</p>
 <ul>
 <li>优秀的 API 设计，以及简洁高效的架构设计；</li>
 <li>基于微服务模式的多层资源抽象模型，兼顾灵活性与可操作性；</li>
@@ -370,7 +370,7 @@
 <li>自带控制台、客户端命令等工具。</li>
 </ul>
 <a id="more"></a>
-<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><p>要想深入理解 Kubernetes 的特性和工作机制，首先要掌握 Kubernetes 模型中的<strong>核心概念</strong>。这些核心概念反映了 Kubernetes 设计过程中，对应用容器集群的认知模型。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Kubernetes/02.png" alt><br>Kubernetes 中每种对象都拥有一个对应的<strong>声明式 API</strong>。对象包括<strong>三大属性</strong>：元数据（metadata）、规范（spec）和状态（status）。<br>每个对象可以使用一个外部的 <strong>JSON 或 YAML 模板文件</strong>来定义，通过参数传递给命令或 API。<br>基础的操作对象，主要是指<strong>资源抽象对象</strong>，包括：</p>
+<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><p>要想深入理解 Kubernetes 的特性和工作机制，首先要掌握 Kubernetes 模型中的<strong>核心概念</strong>。这些核心概念反映了 Kubernetes 设计过程中，对应用容器集群的认知模型。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Kubernetes/02.png" alt><br>Kubernetes 中每种对象都拥有一个对应的<strong>声明式 API</strong>。对象包括<strong>三大属性</strong>：元数据（metadata）、规范（spec）和状态（status）。<br>每个对象可以使用一个外部的 <strong>JSON 或 YAML 模板文件</strong>来定义，通过参数传递给命令或 API。<br>基础的操作对象，主要是指<strong>资源抽象对象</strong>，包括：</p>
 <ul>
 <li>容器组（Pod）：Kubernetes 中<strong>最小的资源单位</strong>。由位于同一节点上的若干容器组成，彼此<strong>共享网络命名空间和存储卷</strong>。Pod 是短暂的，随时可变的，通常<strong>不带有状态</strong>；除了应用容器外，还包括一个初始的 <code>Pause 容器</code>，完成网络和存储空间的初始化；</li>
 <li>服务（Service）：对外提供某个特定功能的一组 Pod 和所关联的访问配置。Kubernetes 通过服务提供<strong>唯一固定的访问地址</strong>，不随后面的 Pod 改变而变化；</li>

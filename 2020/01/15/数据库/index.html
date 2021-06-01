@@ -95,18 +95,18 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="关系型数据库管理系统（RDBMS）像 SQL 这样的关系型数据库，是一系列以表的形式组织的数据项集合。 ACID 用来描述关系型数据库事务的特性：  原子性（Atomicity）：每个事务内部所有操作要么全部完成，要么全部不完成； 一致性（Consistency）：任何事务都使数据库从一个有效的状态转换到另一个有效状态； 隔离性（Isolation）：并发执行事务的结果与顺序执行事务的结果相同；">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/00.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/01.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/02.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/03.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/04.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/05.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/06.jpg">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/00.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/01.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/02.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/03.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/04.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/05.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/06.jpg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库">
 <meta name="twitter:description" content="关系型数据库管理系统（RDBMS）像 SQL 这样的关系型数据库，是一系列以表的形式组织的数据项集合。 ACID 用来描述关系型数据库事务的特性：  原子性（Atomicity）：每个事务内部所有操作要么全部完成，要么全部不完成； 一致性（Consistency）：任何事务都使数据库从一个有效的状态转换到另一个有效状态； 隔离性（Isolation）：并发执行事务的结果与顺序执行事务的结果相同；">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/00.jpg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/00.jpg">
 
 
 
@@ -372,13 +372,13 @@
 <li>持久性（<strong>D</strong>urability）：事务提交后，对系统的影响是永久的。</li>
 </ul>
 <p>关系型数据库的扩展，包括许多技术：<code>主-从复制</code>、<code>主-主复制</code>、<code>联邦</code>、<code>分片</code>、<code>非规范化</code>和 <code>SQL 调优</code>。</p>
-<h3 id="主-从复制"><a href="#主-从复制" class="headerlink" title="主-从复制"></a>主-从复制</h3><p>主库同时负责读取和写入操作，并复制写入到一个或多个从库中，<strong>从库只负责读操作</strong>。树状形式的从库再将写入复制到更多的从库中去。如果<strong>主库离线，系统可以以只读模式运行</strong>，直到某个从库被提升为主库或有新的主库出现：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/00.jpg" alt></p>
+<h3 id="主-从复制"><a href="#主-从复制" class="headerlink" title="主-从复制"></a>主-从复制</h3><p>主库同时负责读取和写入操作，并复制写入到一个或多个从库中，<strong>从库只负责读操作</strong>。树状形式的从库再将写入复制到更多的从库中去。如果<strong>主库离线，系统可以以只读模式运行</strong>，直到某个从库被提升为主库或有新的主库出现：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/00.jpg" alt></p>
 <a id="more"></a>
 
 <h4 id="缺陷：主-从复制"><a href="#缺陷：主-从复制" class="headerlink" title="缺陷：主-从复制"></a>缺陷：主-从复制</h4><ul>
 <li>将从库提升为主库需要额外的逻辑</li>
 </ul>
-<h3 id="主-主复制"><a href="#主-主复制" class="headerlink" title="主-主复制"></a>主-主复制</h3><p>两个主库都负责读操作和写操作，<strong>写入操作时互相协调</strong>。如果其中一个主库挂机，系统可以继续读取和写入：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/01.jpg" alt></p>
+<h3 id="主-主复制"><a href="#主-主复制" class="headerlink" title="主-主复制"></a>主-主复制</h3><p>两个主库都负责读操作和写操作，<strong>写入操作时互相协调</strong>。如果其中一个主库挂机，系统可以继续读取和写入：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/01.jpg" alt></p>
 <h4 id="缺陷：主-主复制"><a href="#缺陷：主-主复制" class="headerlink" title="缺陷：主-主复制"></a>缺陷：主-主复制</h4><ul>
 <li>需要添加负载均衡器或者在应用逻辑中做改动，来确定写入哪一个数据库；</li>
 <li>多数主-主系统要么不能保证一致性（违反 ACID），要么因为同步产生了写入延迟；</li>
@@ -391,14 +391,14 @@
 <li>在某些数据库系统中，写入主库的操作可以用多个线程并行写入，但写入副本只支持单线程顺序写入；</li>
 <li>复制意味着更多的硬件和额外的复杂度。</li>
 </ul>
-<h3 id="联邦"><a href="#联邦" class="headerlink" title="联邦"></a>联邦</h3><p><code>Federation</code> 将数据库<strong>按对应功能分割</strong>。例如，你可以有三个数据库：论坛、用户和产品，而不仅是一个单体数据库，从而减少每个数据库的读取和写入流量，减少复制延迟。较小的数据库意味着更多适合放入内存的数据，进而意味着<strong>更高的缓存命中几率</strong>。没有只能串行写入的中心化主库，你可以并行写入，<strong>提高负载能力</strong>:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/02.jpg" alt></p>
+<h3 id="联邦"><a href="#联邦" class="headerlink" title="联邦"></a>联邦</h3><p><code>Federation</code> 将数据库<strong>按对应功能分割</strong>。例如，你可以有三个数据库：论坛、用户和产品，而不仅是一个单体数据库，从而减少每个数据库的读取和写入流量，减少复制延迟。较小的数据库意味着更多适合放入内存的数据，进而意味着<strong>更高的缓存命中几率</strong>。没有只能串行写入的中心化主库，你可以并行写入，<strong>提高负载能力</strong>:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/02.jpg" alt></p>
 <h4 id="缺陷：联邦"><a href="#缺陷：联邦" class="headerlink" title="缺陷：联邦"></a>缺陷：联邦</h4><ul>
 <li>如果你的数据库模式需要大量的功能和数据表，联邦的效率并不好；</li>
 <li>你需要<strong>更新应用程序的逻辑</strong>，来确定要读取和写入哪个数据库；</li>
 <li>用 <strong>server link</strong> 从两个库 JOIN 数据更复杂；</li>
 <li>联邦需要更多的硬件和额外的复杂度。</li>
 </ul>
-<h3 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h3><p><code>Sharding</code> 将数据分配在不同的数据库上，使得<strong>每个数据库仅管理整个数据集的一个子集</strong>。以用户数据库为例，随着用户数量的增加，越来越多的分片会被添加到集群中：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/03.jpg" alt></p>
+<h3 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h3><p><code>Sharding</code> 将数据分配在不同的数据库上，使得<strong>每个数据库仅管理整个数据集的一个子集</strong>。以用户数据库为例，随着用户数量的增加，越来越多的分片会被添加到集群中：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/03.jpg" alt></p>
 <p>类似联邦的优点，分片可以减少读取和写入流量，减少复制并提高缓存命中率。也<strong>减少了索引</strong>，通常意味着查询更快，性能更好。如果一个分片出问题，其他的仍能运行，你可以使用某种形式的冗余来防止数据丢失。类似联邦，没有只能串行写入的中心化主库，你可以并行写入，提高负载能力。</p>
 <p>常见的做法是：通过用户姓氏的首字母，或者用户的地理位置来分隔用户表。</p>
 <h4 id="缺陷：分片"><a href="#缺陷：分片" class="headerlink" title="缺陷：分片"></a>缺陷：分片</h4><ul>
@@ -469,20 +469,20 @@
 <p>基于底层实现，文档可以根据集合、标签（<code>tag</code>）、元数据（<code>metadata</code>）或文件夹组织。尽管不同文档可以被组织在一起或分成一组，但<strong>相互之间可能具有完全不同的字段</strong>。</p>
 <p><code>MongoDB</code> 和 <code>Apache CouchDB</code> 等一些文档存储数据库，还提供了类似 SQL 的查询语句来实现复杂查询。<code>Amazon DynamoDB</code> 同时支持键-值存储和文档存储。</p>
 <p>文档存储具备高度的灵活性，常<strong>用于处理偶尔变化的数据</strong>。</p>
-<h3 id="宽列存储"><a href="#宽列存储" class="headerlink" title="宽列存储"></a>宽列存储</h3><p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/04.jpg" alt></p>
+<h3 id="宽列存储"><a href="#宽列存储" class="headerlink" title="宽列存储"></a>宽列存储</h3><p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/04.jpg" alt></p>
 <blockquote>
 <p>抽象模型：Nested map，ColumnFamily&lt;RowKey, Columns&lt;ColKey, Value, Timestamp&gt;&gt;</p>
 </blockquote>
 <p>宽列存储的<strong>基本数据单元是列</strong>（名/值对）。列可以在<code>列簇</code>（类似于 SQL 的数据表）中被分组，超级列簇再分组普通列簇。你可以使用行键独立访问每一列，<strong>具有相同行键值的列组成一行</strong>。每个值都包含时间戳，用于解决版本冲突。</p>
 <p>Google 发布了第一个列型存储数据库 <code>Bigtable</code>，它影响了 Hadoop 生态系统中活跃的开源数据库 <code>HBase</code> 和 Facebook 的 <code>Cassandra</code>。它们将键<strong>以字典序存储，实现高效检索</strong>。</p>
 <p>宽列存储具备高可用性和高可扩展性，常被<strong>用于大数据领域</strong>。</p>
-<h3 id="图存储"><a href="#图存储" class="headerlink" title="图存储"></a>图存储</h3><p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/05.jpg" alt></p>
+<h3 id="图存储"><a href="#图存储" class="headerlink" title="图存储"></a>图存储</h3><p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/05.jpg" alt></p>
 <blockquote>
 <p>抽象模型：Graph</p>
 </blockquote>
 <p>在图数据库中，一个节点对应一条记录，<strong>一条弧对应两个节点之间的关系</strong>。图数据库被优化用于表示外键繁多的复杂关系或多对多关系。</p>
 <p>图数据库为存储复杂关系的数据模型，如社交网络，提供了很高的性能。它们相对较新，尚未广泛应用，查找开发工具和资源相对较难，<strong>许多图只能通过 RESTful API 访问</strong>。</p>
-<h2 id="SQL-or-NoSQL"><a href="#SQL-or-NoSQL" class="headerlink" title="SQL or NoSQL"></a>SQL or NoSQL</h2><p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/06/06.jpg" alt></p>
+<h2 id="SQL-or-NoSQL"><a href="#SQL-or-NoSQL" class="headerlink" title="SQL or NoSQL"></a>SQL or NoSQL</h2><p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/06/06.jpg" alt></p>
 <h3 id="选择-SQL-的原因"><a href="#选择-SQL-的原因" class="headerlink" title="选择 SQL 的原因"></a>选择 SQL 的原因</h3><ul>
 <li>结构化数据；</li>
 <li>严格的模式；</li>

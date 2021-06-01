@@ -95,13 +95,13 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="IntroductionThis chapter presents the application developer’s view of SAP HANA. It gives an overview of both the programming languages for writing code that runs inside SAP HANA, and the client librar">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/4-1.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/4-2.jpg">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/4-1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/4-2.jpg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Programmer&#39;s View of SAP HANA">
 <meta name="twitter:description" content="IntroductionThis chapter presents the application developer’s view of SAP HANA. It gives an overview of both the programming languages for writing code that runs inside SAP HANA, and the client librar">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/4-1.jpg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/4-1.jpg">
 
 
 
@@ -366,7 +366,7 @@
 <li>Developers can use XS to provide service APIs, data and resources to HTTP clients, <strong>without the need of an additional application server</strong>.</li>
 <li>SAP HANA has been enhanced with a new abstraction layer, called <code>Core Data Services</code> (CDS). The CDS allow application developers to create data models on a high level of abstraction. These models can then <strong>be reused from different application development environments</strong>.</li>
 </ul>
-<p>It shows <strong>most elements</strong> of the SAP HANA programming model and their relationships:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/4-1.jpg" alt></p>
+<p>It shows <strong>most elements</strong> of the SAP HANA programming model and their relationships:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/4-1.jpg" alt></p>
 <h2 id="Clients"><a href="#Clients" class="headerlink" title="Clients"></a>Clients</h2><p>SAP HANA supports clients using the following development environments and interfaces:</p>
 <ul>
 <li>Client applications written in C/C++, which use the <code>ODBC</code> (Open DataBase Connectivity) interface.</li>
@@ -378,7 +378,7 @@
 <li>XS applications can execute SQL statements using a database API provided by the <code>XS</code> server.</li>
 <li>The <code>InA</code> (InformationAccess) infrastructure provides a client API, which combines analytical queries, search and planning. It connects to the InA service in the backend via HTTP using an InA-specific internal protocol.</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/HANA/4-2.jpg" alt><br>ODBC is a standard, implementation-agnostic C-based API for accessing a database. Analogously, JDBC is a data access API for Java, and the Python Database API is the data access interface for Python. All three interfaces provide methods for creating and maintaining connections, as well as transactions, and other mechanisms for querying and updating data in a database, which map directly to underlying SQL semantics, <strong>hiding the actual communication details</strong>.<br>ODBO is a Microsoft specification and an industry standard for multi-dimensional data processing. The ODBO API is used by applications that use the MDX query language to access multi-dimensional data in SAP HANA. <strong>As alternative to ODBO</strong>, MDX clients can use XMLA which exposes a similar interface as a <code>SOAP</code> (Simple Object Access Protocol) web service over HTTP. On the server side, the <strong>XMLA interface is provided by an application that runs in the XS server</strong>.</p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/HANA/4-2.jpg" alt><br>ODBC is a standard, implementation-agnostic C-based API for accessing a database. Analogously, JDBC is a data access API for Java, and the Python Database API is the data access interface for Python. All three interfaces provide methods for creating and maintaining connections, as well as transactions, and other mechanisms for querying and updating data in a database, which map directly to underlying SQL semantics, <strong>hiding the actual communication details</strong>.<br>ODBO is a Microsoft specification and an industry standard for multi-dimensional data processing. The ODBO API is used by applications that use the MDX query language to access multi-dimensional data in SAP HANA. <strong>As alternative to ODBO</strong>, MDX clients can use XMLA which exposes a similar interface as a <code>SOAP</code> (Simple Object Access Protocol) web service over HTTP. On the server side, the <strong>XMLA interface is provided by an application that runs in the XS server</strong>.</p>
 <h2 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h2><p>The SAP HANA SQL implementation is based on the <code>P*TIME</code> (Parallel<em>Transact-In-Memory Engine) SQL dialect which implements SQL 92 entry level and some features of SQL 99. SAP HANA *</em>offers several SQL extensions** on top of this standard, for example:</p>
 <ul>
 <li>SQL extensions for creating tables as row-based or column-based and for conversion <strong>between both storage formats</strong>. Row-based tables can be converted into columnar tables and vice versa.</li>

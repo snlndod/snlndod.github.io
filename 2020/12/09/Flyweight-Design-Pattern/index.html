@@ -95,14 +95,14 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="享元模式原理与实现所谓享元，顾名思义就是被共享的单元。享元模式的意图是复用对象，节省内存，前提是享元对象是不可变对象。 具体来讲，当一个系统中存在大量重复对象的时候，如果这些重复的对象是不可变对象，我们就可以利用享元模式将对象设计成享元，在内存中只保留一份实例，供多处代码引用。这样可以减少内存中对象的数量，起到节省内存的目的。实际上，不仅仅相同对象可以设计成享元，对于相似对象，我们也可以将这些对象">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/16.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/17.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/18.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/16.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/17.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/18.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flyweight Design Pattern">
 <meta name="twitter:description" content="享元模式原理与实现所谓享元，顾名思义就是被共享的单元。享元模式的意图是复用对象，节省内存，前提是享元对象是不可变对象。 具体来讲，当一个系统中存在大量重复对象的时候，如果这些重复的对象是不可变对象，我们就可以利用享元模式将对象设计成享元，在内存中只保留一份实例，供多处代码引用。这样可以减少内存中对象的数量，起到节省内存的目的。实际上，不仅仅相同对象可以设计成享元，对于相似对象，我们也可以将这些对象">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/16.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/16.png">
 
 
 
@@ -394,7 +394,7 @@
 <li>如何判定两个 Java 对象是否相等；</li>
 <li>什么是<code>自动装箱</code>（Autoboxing）和<code>自动拆箱</code>（Unboxing）；</li>
 </ul>
-<p>Java 为基本数据类型提供了对应的包装器类型。具体如下所示：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/16.png" alt></p>
+<p>Java 为基本数据类型提供了对应的包装器类型。具体如下所示：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/16.png" alt></p>
 <p>所谓的自动装箱，就是自动将基本数据类型转换为<strong>包装器类型</strong>。所谓的自动拆箱，也就是自动将包装器类型转化为基本数据类型。具体的代码示例如下所示：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer i = <span class="number">56</span>; <span class="comment">// 自动装箱</span></span><br><span class="line"><span class="keyword">int</span> j = i; <span class="comment">// 自动拆箱</span></span><br></pre></td></tr></table></figure>
 
@@ -407,7 +407,7 @@
 <p>弄清楚了自动装箱和自动拆箱，我们再来看，如何判定两个对象是否相等？不过，在此之前，我们先要搞清楚，<strong>Java 对象在内存中是如何存储的</strong>：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User a = <span class="keyword">new</span> User(<span class="number">123</span>, <span class="number">23</span>); <span class="comment">// id=123, age=23</span></span><br></pre></td></tr></table></figure>
 
-<p>针对这条语句，我画了一张内存存储结构图。a 存储的值是 User 对象的内存地址，在图中就表现为 a 指向 User 对象。当我们通过“==”来判定两个对象是否相等的时候，实际上是在判断两个局部变量存储的地址是否相同，换句话说，是在<strong>判断两个局部变量是否指向相同的对象</strong>：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/17.png" alt></p>
+<p>针对这条语句，我画了一张内存存储结构图。a 存储的值是 User 对象的内存地址，在图中就表现为 a 指向 User 对象。当我们通过“==”来判定两个对象是否相等的时候，实际上是在判断两个局部变量存储的地址是否相同，换句话说，是在<strong>判断两个局部变量是否指向相同的对象</strong>：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/17.png" alt></p>
 <p>Integer 用到了享元模式来复用对象。当我们通过自动装箱，也就是调用 valueOf() 来创建 Integer 对象的时候，如果要创建的 Integer 对象的值在 -128 到 127 之间，会从 IntegerCache 类中直接返回，否则才调用 new 方法创建。看代码更加清晰一些，Integer 类的 valueOf() 函数的具体代码如下所示：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -425,7 +425,7 @@
 <h2 id="享元模式在-Java-String-中的应用"><a href="#享元模式在-Java-String-中的应用" class="headerlink" title="享元模式在 Java String 中的应用"></a>享元模式在 Java String 中的应用</h2><p>同样，我们还是先来看一段代码，你觉得这段代码输出的结果是什么呢：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="string">"小争哥"</span>;</span><br><span class="line">String s2 = <span class="string">"小争哥"</span>;</span><br><span class="line">String s3 = <span class="keyword">new</span> String(<span class="string">"小争哥"</span>);</span><br><span class="line"></span><br><span class="line">System.out.println(s1 == s2);</span><br><span class="line">System.out.println(s1 == s3);</span><br></pre></td></tr></table></figure>
 
-<p>上面代码的运行结果是：一个 true，一个 false。跟 Integer 类的设计思路相似，String 类利用享元模式来复用相同的字符串常量（也就是代码中的“小争哥”）。JVM 会专门开辟一块存储区来存储字符串常量，这块存储区叫作<code>字符串常量池</code>。上面代码对应的内存存储结构如下所示：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/18.png" alt></p>
+<p>上面代码的运行结果是：一个 true，一个 false。跟 Integer 类的设计思路相似，String 类利用享元模式来复用相同的字符串常量（也就是代码中的“小争哥”）。JVM 会专门开辟一块存储区来存储字符串常量，这块存储区叫作<code>字符串常量池</code>。上面代码对应的内存存储结构如下所示：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/18.png" alt></p>
 <p>不过，String 类的享元模式的设计，跟 Integer 类稍微有些不同。Integer 类中要共享的对象，是<strong>在类加载的时候，就集中一次性创建好</strong>的。但是，对于字符串来说，我们没法事先知道要共享哪些字符串常量，所以没办法事先创建好，只能<strong>在某个字符串常量第一次被用到的时候，存储到常量池中</strong>，当之后再用到的时候，直接引用常量池中已经存在的即可，就不需要再重新创建了。</p>
 <p>实际上，<strong>享元模式对 JVM 的垃圾回收并不友好</strong>。因为享元工厂类一直保存了对享元对象的引用，这就导致享元对象在没有任何代码使用的情况下，也并不会被 JVM 垃圾回收机制自动回收掉。因此，在某些情况下，如果对象的生命周期很短，也不会被密集使用，利用享元模式反倒可能会浪费更多的内存。所以，<strong>除非经过线上验证，利用享元模式真的可以大大节省内存，否则，就不要过度使用这个模式</strong>，为了一点点内存的节省而引入一个复杂的设计模式，得不偿失。</p>
 

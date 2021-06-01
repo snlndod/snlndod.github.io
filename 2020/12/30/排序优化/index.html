@@ -95,12 +95,12 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="几乎所有的编程语言都会提供排序函数，比如 C 语言中 qsort()，C++ STL 中的 sort()、stable_sort()，还有 Java 语言中的 Collections.sort()。在平时的开发中，我们也都是直接使用这些现成的函数来实现业务逻辑中的排序功能。那你知道这些排序函数是如何实现的吗？ 如何选择合适的排序算法？如果要实现一个通用的、高效率的排序函数，我们应该选择哪种排序算法">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/67.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/67.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="排序优化">
 <meta name="twitter:description" content="几乎所有的编程语言都会提供排序函数，比如 C 语言中 qsort()，C++ STL 中的 sort()、stable_sort()，还有 Java 语言中的 Collections.sort()。在平时的开发中，我们也都是直接使用这些现成的函数来实现业务逻辑中的排序功能。那你知道这些排序函数是如何实现的吗？ 如何选择合适的排序算法？如果要实现一个通用的、高效率的排序函数，我们应该选择哪种排序算法">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/67.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/67.png">
 
 
 
@@ -358,7 +358,7 @@
 
       
         <p>几乎所有的编程语言都会提供排序函数，比如 C 语言中 qsort()，C++ STL 中的 sort()、stable_sort()，还有 Java 语言中的 Collections.sort()。在平时的开发中，我们也都是直接使用这些现成的函数来实现业务逻辑中的排序功能。那你知道这些排序函数是如何实现的吗？</p>
-<h2 id="如何选择合适的排序算法？"><a href="#如何选择合适的排序算法？" class="headerlink" title="如何选择合适的排序算法？"></a>如何选择合适的排序算法？</h2><p>如果要实现一个通用的、高效率的排序函数，我们应该选择哪种排序算法？我们先回顾一下前面讲过的几种排序算法：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/67.png" alt></p>
+<h2 id="如何选择合适的排序算法？"><a href="#如何选择合适的排序算法？" class="headerlink" title="如何选择合适的排序算法？"></a>如何选择合适的排序算法？</h2><p>如果要实现一个通用的、高效率的排序函数，我们应该选择哪种排序算法？我们先回顾一下前面讲过的几种排序算法：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/67.png" alt></p>
 <p>我们前面讲过，线性排序算法的时间复杂度比较低，适用场景比较特殊。所以如果要写一个通用的排序函数，<strong>不能选择线性排序算法</strong>。如果对小规模数据进行排序，可以选择时间复杂度是 O(n^2) 的算法；如果对大规模数据进行排序，时间复杂度是 O(nlogn) 的算法更加高效。所以，为了兼顾任意规模数据的排序，一般都会<strong>首选时间复杂度是 O(nlogn) 的排序算法来实现排序函数</strong>。</p>
 <a id="more"></a>
 

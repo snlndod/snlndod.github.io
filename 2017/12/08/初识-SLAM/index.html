@@ -95,14 +95,14 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="引子：小萝卜的例子希望小萝卜具有自主运动能力。定位和建图可以看成感知的内外之分：  一方面，要明白自身的状态（即位置）； 另一方面，也要了解外在的环境（即地图）。  一类传感器是携带于机器人本体上的，测到的通常都是一些间接的物理量而不是直接的位置数据，这种定位方案可适用于未知环境；另一类是安装于环境中的，限制了机器人的使用范围。当谈论视觉 SLAM时，主要是指如何用相机解决定位和建图问题。相机：以">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SLAM/2_1.jpeg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SLAM/2_2.jpeg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SLAM/2_3.jpeg">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SLAM/2_1.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SLAM/2_2.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SLAM/2_3.jpeg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识 SLAM">
 <meta name="twitter:description" content="引子：小萝卜的例子希望小萝卜具有自主运动能力。定位和建图可以看成感知的内外之分：  一方面，要明白自身的状态（即位置）； 另一方面，也要了解外在的环境（即地图）。  一类传感器是携带于机器人本体上的，测到的通常都是一些间接的物理量而不是直接的位置数据，这种定位方案可适用于未知环境；另一类是安装于环境中的，限制了机器人的使用范围。当谈论视觉 SLAM时，主要是指如何用相机解决定位和建图问题。相机：以">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SLAM/2_1.jpeg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SLAM/2_1.jpeg">
 
 
 
@@ -372,7 +372,7 @@
 </blockquote>
 <h3 id="双目相机"><a href="#双目相机" class="headerlink" title="双目相机"></a>双目相机</h3><p>两个相机之间的距离（<code>基线</code>：Baseline）是已知的，这和人眼非常相似。<br>基线距离越大，能够测量到的就越远。<br>相对于人类非常笨拙，需要大量的计算才能估计每一个像素点的深度。需要使用 GPU 和 FPGA 设备加速后，才能实时输出整张图像的距离信息，<code>计算量</code>是双目的主要问题之一。</p>
 <h3 id="深度相机"><a href="#深度相机" class="headerlink" title="深度相机"></a>深度相机</h3><p>通过红外结构光或 Time-of-Flight（ToF）原理，主动向物体发射光并接收返回的光。<br>不像双目相机那样通过软件计算来解决。<br>主要用于室内，室外则较难应用。</p>
-<h2 id="经典视觉-SLAM-框架"><a href="#经典视觉-SLAM-框架" class="headerlink" title="经典视觉 SLAM 框架"></a>经典视觉 SLAM 框架</h2><p>SLAM 需要一个完善的框架：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SLAM/2_1.jpeg" alt><br>如果把工作环境限定在<strong>静态、刚体、光照变化不明显、没有人为干扰</strong>的场景，那么，这个 SLAM 系统是相当成熟的了。</p>
+<h2 id="经典视觉-SLAM-框架"><a href="#经典视觉-SLAM-框架" class="headerlink" title="经典视觉 SLAM 框架"></a>经典视觉 SLAM 框架</h2><p>SLAM 需要一个完善的框架：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SLAM/2_1.jpeg" alt><br>如果把工作环境限定在<strong>静态、刚体、光照变化不明显、没有人为干扰</strong>的场景，那么，这个 SLAM 系统是相当成熟的了。</p>
 <h3 id="视觉里程计（Visual-Odometry）"><a href="#视觉里程计（Visual-Odometry）" class="headerlink" title="视觉里程计（Visual Odometry）"></a>视觉里程计（Visual Odometry）</h3><p>VO 又称为前端（Front End），只计算相邻时刻的运动，而和再往前的过去的信息没有关联。<br>仅通过视觉里程计来估计轨迹，将不可避免地出现<strong>累积漂移</strong>（Accumulating Drift），解决漂移问题，需要两种技术：</p>
 <ul>
 <li>回环检测：负责把“机器人回到原始位置”的事情检测出来；</li>
@@ -394,7 +394,7 @@
 <li>运动：我们要考虑从 k-1 时刻到 k 时刻，小萝卜的位置 x 是如何变化的；</li>
 <li>观测：假设小萝卜在 k 时刻于 xk处探测到了某一路标yj，我们要考虑这件事情是如何用数学语言来描述的。</li>
 </ul>
-<p>针对不同的传感器，<strong>运动方程</strong>和<strong>观测方程</strong>有不同的参数化形式，我们把它们取成通用的抽象形式：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SLAM/2_2.jpeg" alt><br>这两个方程描述了最基本的 SLAM 问题：当知道运动测量的读数 u，以及传感器的读数 z 时，如何求解定位问题（估计 x）和建图问题（估计 y）？这时，我们就把 SLAM 问题建模成了一个<strong>状态估计问题：</strong>如何通过带有噪声的测量数据，估计内部的、隐藏着的状态变量？<br>按照运动和观测方程是否为线性，噪声是否服从高斯分布进行分类。分为<strong>线性/非线性</strong>和<strong>高斯/非高斯</strong>系统。<br>其中，线性高斯系统（Linear Gaussian，LG）是最简单的，它的无偏的最优估计可以由卡尔曼滤波器（Kalman Filter，KF）给出；而在复杂的非线形非高斯系统（Non-Linear Non-Gaussian，NLNG）中，我们会使用以扩展卡尔曼滤波器（Extended Kalman Filter，EKF）和非线性优化两大类方法去求解。<br>时至今日，主流视觉 SLAM 使用以<code>图优化</code>（Graph Optimization）为代表的优化技术进行状态估计。我们认为优化技术已经明显优于滤波器技术，只要计算资源允许，通常都偏向于使用优化方法。<br>数学知识：</p>
+<p>针对不同的传感器，<strong>运动方程</strong>和<strong>观测方程</strong>有不同的参数化形式，我们把它们取成通用的抽象形式：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SLAM/2_2.jpeg" alt><br>这两个方程描述了最基本的 SLAM 问题：当知道运动测量的读数 u，以及传感器的读数 z 时，如何求解定位问题（估计 x）和建图问题（估计 y）？这时，我们就把 SLAM 问题建模成了一个<strong>状态估计问题：</strong>如何通过带有噪声的测量数据，估计内部的、隐藏着的状态变量？<br>按照运动和观测方程是否为线性，噪声是否服从高斯分布进行分类。分为<strong>线性/非线性</strong>和<strong>高斯/非高斯</strong>系统。<br>其中，线性高斯系统（Linear Gaussian，LG）是最简单的，它的无偏的最优估计可以由卡尔曼滤波器（Kalman Filter，KF）给出；而在复杂的非线形非高斯系统（Non-Linear Non-Gaussian，NLNG）中，我们会使用以扩展卡尔曼滤波器（Extended Kalman Filter，EKF）和非线性优化两大类方法去求解。<br>时至今日，主流视觉 SLAM 使用以<code>图优化</code>（Graph Optimization）为代表的优化技术进行状态估计。我们认为优化技术已经明显优于滤波器技术，只要计算资源允许，通常都偏向于使用优化方法。<br>数学知识：</p>
 <ul>
 <li>对 6 自由度的位姿，如何表达它，如何优化它；</li>
 <li>观测方程如何参数化，空间中的路标点是如何投影到一张照片上。需要解释相机的成像模型；</li>
@@ -403,7 +403,7 @@
 <blockquote>
 <p>位姿这个词表示“位置”加上“姿态”，包含了旋转（Rotation）和平移（Translation）。</p>
 </blockquote>
-<h2 id="实践：编程基础"><a href="#实践：编程基础" class="headerlink" title="实践：编程基础"></a>实践：编程基础</h2><h3 id="使用-cmake"><a href="#使用-cmake" class="headerlink" title="使用 cmake"></a>使用 cmake</h3><p>任意一个 C++ 程序都可以用 g++ 来编译，在历史上工程师们曾使用 makefile 进行自动编译，cmake 比它更加方便。<br>在一个 cmake 工程中，我们会用 cmake 命令生成一个 makefile 文件，然后，用 make 命令根据这个 makefile 文件的内容编译整个工程。<br>MakeFile 是一个自动化编译的脚本，我们用 cmake-make 的做法，cmake 过程处理了<strong>工程文件之间的关系</strong>，降低了维护整个工程的难度；而 make 过程实际调用了 g++ 来编译程序。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SLAM/2_3.jpeg" alt><br>我们新建了一个中间文件夹“build”，这样，cmake 产生的中间文件就会生成在 build 文件夹中，当发布源代码时，只要把 build 文件夹删掉即可。</p>
+<h2 id="实践：编程基础"><a href="#实践：编程基础" class="headerlink" title="实践：编程基础"></a>实践：编程基础</h2><h3 id="使用-cmake"><a href="#使用-cmake" class="headerlink" title="使用 cmake"></a>使用 cmake</h3><p>任意一个 C++ 程序都可以用 g++ 来编译，在历史上工程师们曾使用 makefile 进行自动编译，cmake 比它更加方便。<br>在一个 cmake 工程中，我们会用 cmake 命令生成一个 makefile 文件，然后，用 make 命令根据这个 makefile 文件的内容编译整个工程。<br>MakeFile 是一个自动化编译的脚本，我们用 cmake-make 的做法，cmake 过程处理了<strong>工程文件之间的关系</strong>，降低了维护整个工程的难度；而 make 过程实际调用了 g++ 来编译程序。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SLAM/2_3.jpeg" alt><br>我们新建了一个中间文件夹“build”，这样，cmake 产生的中间文件就会生成在 build 文件夹中，当发布源代码时，只要把 build 文件夹删掉即可。</p>
 <h3 id="使用库"><a href="#使用库" class="headerlink" title="使用库"></a>使用库</h3><p>程序代码由头文件和源文件组成，带有 main 函数的源文件编译成可执行程序，其他的编译成<code>库文件</code>。<br>一个库往往是许多算法、程序的集合。<br>在 Linux 中，库文件分成<code>静态库</code>和<code>共享库</code>两种，静态库以 .a 作为后缀名，共享库以 .so 结尾。<br>静态库每次被调用都会生成一个副本，而共享库则只有一个副本。<br>如果可执行程序想调用库文件中的函数，它需要参考该库提供的头文件，以明白调用的格式。同时，要把可执行程序<code>链接</code>到库文件上。</p>
 <blockquote>
 <p>只要拿到了头文件和库文件，就可以调用这个库了。</p>

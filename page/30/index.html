@@ -613,7 +613,7 @@
 </blockquote>
 <p>优秀的开源项目、框架、中间件，代码量、类的个数都会比较多，类结构、类之间的关系极其复杂，常常调用来调用去。所以，为了保证代码的扩展性、灵活性、可维护性等，代码中会使用到很多设计模式、设计原则或者设计思想。如果你不懂这些设计模式、原则、思想，在看代码的时候，你可能就会琢磨不透作者的设计思路，对于一些很明显的设计思路，你可能要花费很多时间才能参悟。相反，<strong>如果你对设计模式、原则、思想非常了解，一眼就能参透作者的设计思路、设计初衷</strong>，很快就可以把脑容量释放出来，重点思考其他问题，代码读起来就会变得轻松了。</p>
 <h2 id="代码质量评价标准"><a href="#代码质量评价标准" class="headerlink" title="代码质量评价标准"></a>代码质量评价标准</h2><p>仔细看前面罗列的所有代码质量评价标准，你会发现，有些词语过于笼统、抽象，比较偏向对于整体的描述，比如优雅、好、坏、整洁、清晰等；有些过于细节、偏重方法论，比如模块化、高内聚低耦合、文档详尽、分层清晰等；有些可能并不仅仅局限于编码，跟架构设计等也有关系，比如可伸缩性、可用性、稳定性等。要写出满足这些评价标准的高质量代码，我们<strong>需要掌握一些更加细化、更加能落地的编程方法论</strong>，包括面向对象设计思想、设计原则、设计模式、编程规范、重构技巧等。而所有这些编程方法论的最终目的都是为了编写出高质量的代码。</p>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/04.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/04.png" alt></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/08/20/设计模式学习导读/#more" rel="contents">
@@ -735,7 +735,7 @@
 
       
         
-          <p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/07/00.jpg" alt></p>
+          <p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/07/00.jpg" alt></p>
 <p><code>Cache</code> 可以<strong>提高页面加载速度</strong>，并可以减少服务器和数据库的负载。在这个模型中，<code>Dispatcher</code> 先查看请求之前是否被响应过，如果有则将之前的结果直接返回，来省去真正的处理。</p>
 <p>数据库因分区（<code>Partition</code>）读写而获益，但是热数据会导致<strong>读写不均，造成瓶颈</strong>。如果在数据库前加个缓存，就会减轻不均匀的负载和突发流量对数据库的影响。</p>
           <!--noindex-->
@@ -859,7 +859,7 @@
 
       
         
-          <h2 id="异步（Asynchronism）"><a href="#异步（Asynchronism）" class="headerlink" title="异步（Asynchronism）"></a>异步（Asynchronism）</h2><p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/08/00.jpg" alt></p>
+          <h2 id="异步（Asynchronism）"><a href="#异步（Asynchronism）" class="headerlink" title="异步（Asynchronism）"></a>异步（Asynchronism）</h2><p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/08/00.jpg" alt></p>
 <p>异步工作流有助于减少那些原本顺序执行的请求时间。它们可以通过<strong>提前进行一些耗时的工作</strong>来帮助减少请求时间，比如定期汇总数据。</p>
 <h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><p>消息队列接收、保留和传递消息。如果<strong>按顺序执行操作太慢</strong>的话，你可以使用有以下工作流的消息队列：</p>
 <ul>

@@ -95,12 +95,12 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="Whenever we are designing a large system, we need to consider a few things:  What are the different architectural pieces that can be used? How do these pieces work with each other? How can we best uti">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/00.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/00.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="System Design Basics">
 <meta name="twitter:description" content="Whenever we are designing a large system, we need to consider a few things:  What are the different architectural pieces that can be used? How do these pieces work with each other? How can we best uti">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/00.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/00.png">
 
 
 
@@ -370,7 +370,7 @@
 <h2 id="Scalability"><a href="#Scalability" class="headerlink" title="Scalability"></a>Scalability</h2><p>Scalability is the capability of a system, process, or a network to grow and manage increased demand. Any distributed system that can continuously evolve in order to support the growing amount of work is considered to be scalable.</p>
 <p>A system may have to scale because of many reasons like increased data volume or increased amount of work, e.g., number of transactions. A scalable system would like to achieve this scaling without performance loss.</p>
 <p>Generally, the performance of a system, although designed (or claimed) to be scalable, declines with the system size due to the management or environment cost. For instance, network speed may become slower because machines tend to be far apart from one another. More generally, some tasks may not be distributed, either because of their inherent atomic nature or because of some flaw in the system design. At some point, such tasks would limit the speed-up obtained by distribution. A scalable architecture avoids this situation and attempts to balance the load on all the participating nodes evenly.</p>
-<p><strong>Horizontal vs. Vertical Scaling</strong>: Horizontal scaling means that you scale by adding more servers into your pool of resources whereas Vertical scaling means that you scale by adding more power (CPU, RAM, Storage, etc.) to an existing server:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/00.png" alt></p>
+<p><strong>Horizontal vs. Vertical Scaling</strong>: Horizontal scaling means that you scale by adding more servers into your pool of resources whereas Vertical scaling means that you scale by adding more power (CPU, RAM, Storage, etc.) to an existing server:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/00.png" alt></p>
 <p>With horizontal-scaling it is often easier to scale dynamically by adding more machines into the existing pool; Vertical-scaling is usually limited to the capacity of a single server and scaling beyond that capacity often involves downtime and comes with an upper limit.</p>
 <p>Good examples of horizontal scaling are <code>Cassandra</code> and <code>MongoDB</code> as they both provide an easy way to scale horizontally by adding more machines to meet growing needs. Similarly, a good example of vertical scaling is <code>MySQL</code> as it allows for an easy way to scale vertically by switching from smaller to bigger machines. However, this process often involves downtime.</p>
 <h2 id="Reliability"><a href="#Reliability" class="headerlink" title="Reliability"></a>Reliability</h2><p>By definition, reliability is the probability a system will fail in a given period. In simple terms, a distributed system is considered reliable if it keeps delivering its services even when one or several of its software or hardware components fail. Reliability represents one of the main characteristics of any distributed system, since in such systems any failing machine can always be replaced by another healthy one, ensuring the completion of the requested task.</p>

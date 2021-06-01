@@ -95,13 +95,13 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="容器、多线程、Java 数据库操作  Java Collections 框架包含了大量集合接口以及这些接口的实现类和操作它们的算法。Collection 是整个集合框架的基础，它里面储存一组对象，表示不同类型的 Collections，它的作用只是维护一组对象的基本接口而已。Set、List、Map 都继承自 Collection 接口：">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/4_1.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/4_2.jpg">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/4_1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/4_2.jpg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《面试宝典》读书笔记-4">
 <meta name="twitter:description" content="容器、多线程、Java 数据库操作  Java Collections 框架包含了大量集合接口以及这些接口的实现类和操作它们的算法。Collection 是整个集合框架的基础，它里面储存一组对象，表示不同类型的 Collections，它的作用只是维护一组对象的基本接口而已。Set、List、Map 都继承自 Collection 接口：">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/4_1.jpg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/4_1.jpg">
 
 
 
@@ -361,7 +361,7 @@
         <blockquote>
 <p>容器、多线程、Java 数据库操作</p>
 </blockquote>
-<h2 id="Java-Collections-框架"><a href="#Java-Collections-框架" class="headerlink" title="Java Collections 框架"></a>Java Collections 框架</h2><p>包含了大量集合接口以及这些接口的实现类和操作它们的算法。<br><code>Collection</code> 是整个集合框架的基础，它里面储存一组对象，表示不同类型的 Collections，它的作用只是维护一组对象的基本接口而已。<br>Set、List、Map 都继承自 Collection 接口：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/4_1.jpg" alt></p>
+<h2 id="Java-Collections-框架"><a href="#Java-Collections-框架" class="headerlink" title="Java Collections 框架"></a>Java Collections 框架</h2><p>包含了大量集合接口以及这些接口的实现类和操作它们的算法。<br><code>Collection</code> 是整个集合框架的基础，它里面储存一组对象，表示不同类型的 Collections，它的作用只是维护一组对象的基本接口而已。<br>Set、List、Map 都继承自 Collection 接口：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/4_1.jpg" alt></p>
 <a id="more"></a>
 <h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>表示数学意义上的<strong>集合概念</strong>，集合中的元素不能重复，必须定义 equals() 方法来确保对象的唯一性。<br>两个实现类：HashSet、TreeSet，TreeSet 容器中的元素是有序的。</p>
 <h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>按对象进入的顺序保存对象，可以保存重复的对象。LinkedList、ArrayList、Vector 都实现了 List 接口。</p>
@@ -403,7 +403,7 @@
 <li>LinkedHashMap 是 HashMap 的一个子类，如果需要输出的顺序和输入的相同，那么用 LinkedHashMap 可以实现。</li>
 </ul>
 <h3 id="WeakHashMap"><a href="#WeakHashMap" class="headerlink" title="WeakHashMap"></a>WeakHashMap</h3><p>与 HashMap 类似，不同之处在于 WeakHashMap 中，key 采用的是<code>弱引用</code>的方式，只要 key 不再被外部引用，它就可以被垃圾回收器回收。</p>
-<h2 id="用自定义类作为-HashMap-HashTable-的-key-时，需要注意的问题"><a href="#用自定义类作为-HashMap-HashTable-的-key-时，需要注意的问题" class="headerlink" title="用自定义类作为 HashMap/HashTable 的 key 时，需要注意的问题"></a>用自定义类作为 HashMap/HashTable 的 key 时，需要注意的问题</h2><p>对于不同的 key 值可能会得到相同的 hash 值，因此就需要对冲突进行处理。<code>处理冲突</code>的方法有：开放地址发、再hash法、链地址法。<br>HashMap 使用的是链地址法来解决冲突：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/4_2.jpg" alt></p>
+<h2 id="用自定义类作为-HashMap-HashTable-的-key-时，需要注意的问题"><a href="#用自定义类作为-HashMap-HashTable-的-key-时，需要注意的问题" class="headerlink" title="用自定义类作为 HashMap/HashTable 的 key 时，需要注意的问题"></a>用自定义类作为 HashMap/HashTable 的 key 时，需要注意的问题</h2><p>对于不同的 key 值可能会得到相同的 hash 值，因此就需要对冲突进行处理。<code>处理冲突</code>的方法有：开放地址发、再hash法、链地址法。<br>HashMap 使用的是链地址法来解决冲突：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/4_2.jpg" alt></p>
 <ul>
 <li>如果想根据<strong>对象的相关属性</strong>来自定义对象是否相等的逻辑，就需要重写 equals() 方法，一旦重写了 equals() 方法，那么就必须重写 hashCode() 方法。</li>
 <li>当自定义类的多项作为 HashMap 的 key 时，最好把这个类设计为不可变类。</li>

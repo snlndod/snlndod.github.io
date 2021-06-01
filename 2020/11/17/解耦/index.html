@@ -95,12 +95,12 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="解耦为何如此重要？软件设计与开发最重要的工作之一就是应对复杂性。人处理复杂性的能力是有限的。过于复杂的代码往往在可读性、可维护性上都不友好。那如何来控制代码的复杂性呢？手段有很多，我个人认为，最关键的就是解耦，保证代码松耦合、高内聚。如果说重构是保证代码质量不至于腐化到无可救药地步的有效手段，那么利用解耦的方法对代码重构，就是保证代码不至于复杂到无法控制的有效手段。 实际上，“高内聚、松耦合”是一">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/01.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/01.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解耦">
 <meta name="twitter:description" content="解耦为何如此重要？软件设计与开发最重要的工作之一就是应对复杂性。人处理复杂性的能力是有限的。过于复杂的代码往往在可读性、可维护性上都不友好。那如何来控制代码的复杂性呢？手段有很多，我个人认为，最关键的就是解耦，保证代码松耦合、高内聚。如果说重构是保证代码质量不至于腐化到无可救药地步的有效手段，那么利用解耦的方法对代码重构，就是保证代码不至于复杂到无法控制的有效手段。 实际上，“高内聚、松耦合”是一">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/01.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/01.png">
 
 
 
@@ -366,7 +366,7 @@
 
 <h2 id="如何给代码解耦？"><a href="#如何给代码解耦？" class="headerlink" title="如何给代码解耦？"></a>如何给代码解耦？</h2><h3 id="封装与抽象"><a href="#封装与抽象" class="headerlink" title="封装与抽象"></a>封装与抽象</h3><p>封装和抽象作为两个非常通用的设计思想，可以应用在很多设计场景中，比如系统、模块、lib、组件、接口、类等等的设计。封装和抽象可以<strong>有效地隐藏实现的复杂性，隔离实现的易变性</strong>，给依赖的模块提供稳定且易用的抽象接口。</p>
 <p>比如，Unix 系统提供的 open() 文件操作函数，我们用起来非常简单，但是底层实现却非常复杂，涉及权限控制、并发控制、物理存储等等。我们通过将其封装成一个抽象的 open() 函数，能够有效控制代码复杂性的蔓延，将复杂性封装在局部代码中。除此之外，因为 open() 函数基于抽象而非具体的实现来定义，所以我们在<strong>改动 open() 函数的底层实现的时候，并不需要改动依赖它的上层代码</strong>，也符合我们前面提到的“高内聚、松耦合”代码的评判标准。</p>
-<h3 id="中间层"><a href="#中间层" class="headerlink" title="中间层"></a>中间层</h3><p>引入中间层能<strong>简化模块或类之间的依赖关系</strong>。下面这张图是引入中间层前后的依赖关系对比图。在引入数据存储中间层之前，A、B、C 三个模块都要依赖内存一级缓存、Redis 二级缓存、DB 持久化存储三个模块。在引入中间层之后，三个模块只需要依赖数据存储一个模块即可。从图上可以看出，中间层的引入明显地简化了依赖关系，让代码结构更加清晰：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/01.png" alt></p>
+<h3 id="中间层"><a href="#中间层" class="headerlink" title="中间层"></a>中间层</h3><p>引入中间层能<strong>简化模块或类之间的依赖关系</strong>。下面这张图是引入中间层前后的依赖关系对比图。在引入数据存储中间层之前，A、B、C 三个模块都要依赖内存一级缓存、Redis 二级缓存、DB 持久化存储三个模块。在引入中间层之后，三个模块只需要依赖数据存储一个模块即可。从图上可以看出，中间层的引入明显地简化了依赖关系，让代码结构更加清晰：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/01.png" alt></p>
 <p>除此之外，我们在进行重构的时候，<strong>引入中间层可以起到过渡的作用</strong>，能够让开发和重构同步进行，不互相干扰。比如，某个接口设计得有问题，我们需要修改它的定义，同时，所有调用这个接口的代码都要做相应的改动。如果新开发的代码也用到这个接口，那开发就跟重构冲突了。为了让重构能小步快跑，我们可以分下面四个阶段来完成接口的修改：</p>
 <ol>
 <li>引入一个中间层，包裹老的接口，提供新的接口定义；</li>

@@ -95,15 +95,15 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="二分查找（Binary Search）算法，也叫折半查找算法。二分查找的思想非常简单，很多非计算机专业的同学很容易就能理解，但是看似越简单的东西往往越难掌握好，想要灵活应用就更加困难。 无处不在的二分思想我们现在来做一个猜字游戏：我随机写一个 0 到 99 之间的数字，然后你来猜我写的是什么。猜的过程中，你每猜一次，我就会告诉你猜的大了还是小了，直到猜中为止。假设我写的数字是 23，你可以按照下面">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/68.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/69.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/69.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/71.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/68.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/69.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/69.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/71.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二分查找">
 <meta name="twitter:description" content="二分查找（Binary Search）算法，也叫折半查找算法。二分查找的思想非常简单，很多非计算机专业的同学很容易就能理解，但是看似越简单的东西往往越难掌握好，想要灵活应用就更加困难。 无处不在的二分思想我们现在来做一个猜字游戏：我随机写一个 0 到 99 之间的数字，然后你来猜我写的是什么。猜的过程中，你每猜一次，我就会告诉你猜的大了还是小了，直到猜中为止。假设我写的数字是 23，你可以按照下面">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/68.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/68.png">
 
 
 
@@ -361,12 +361,12 @@
 
       
         <p><code>二分查找</code>（Binary Search）算法，也叫折半查找算法。二分查找的思想非常简单，很多非计算机专业的同学很容易就能理解，但是看似越简单的东西往往越难掌握好，想要灵活应用就更加困难。</p>
-<h2 id="无处不在的二分思想"><a href="#无处不在的二分思想" class="headerlink" title="无处不在的二分思想"></a>无处不在的二分思想</h2><p>我们现在来做一个猜字游戏：我随机写一个 0 到 99 之间的数字，然后你来猜我写的是什么。猜的过程中，你每猜一次，我就会告诉你猜的大了还是小了，直到猜中为止。假设我写的数字是 23，你可以按照下面的步骤来试一试：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/68.png" alt></p>
+<h2 id="无处不在的二分思想"><a href="#无处不在的二分思想" class="headerlink" title="无处不在的二分思想"></a>无处不在的二分思想</h2><p>我们现在来做一个猜字游戏：我随机写一个 0 到 99 之间的数字，然后你来猜我写的是什么。猜的过程中，你每猜一次，我就会告诉你猜的大了还是小了，直到猜中为止。假设我写的数字是 23，你可以按照下面的步骤来试一试：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/68.png" alt></p>
 <a id="more"></a>
 
-<p>假设有 1000 条订单数据，已经按照订单金额从小到大排序，每个订单金额都不同，并且最小单位是元。我们现在想知道是否存在金额等于 19 元的订单。如果存在，则返回订单数据，如果不存在则返回 null。为了方便讲解，我们假设只有 10 个订单，订单金额分别是：8, 11, 19, 23, 27, 33, 45, 55, 67, 98。还是利用二分思想，每次都与区间的中间数据比对大小，缩小查找区间的范围。为了更加直观，我画了一张查找过程的图。其中，low 和 high 表示待查找区间的下标，mid 表示待查找区间的中间元素下标：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/69.png" alt></p>
+<p>假设有 1000 条订单数据，已经按照订单金额从小到大排序，每个订单金额都不同，并且最小单位是元。我们现在想知道是否存在金额等于 19 元的订单。如果存在，则返回订单数据，如果不存在则返回 null。为了方便讲解，我们假设只有 10 个订单，订单金额分别是：8, 11, 19, 23, 27, 33, 45, 55, 67, 98。还是利用二分思想，每次都与区间的中间数据比对大小，缩小查找区间的范围。为了更加直观，我画了一张查找过程的图。其中，low 和 high 表示待查找区间的下标，mid 表示待查找区间的中间元素下标：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/69.png" alt></p>
 <p>二分查找针对的是一个<strong>有序的数据集合</strong>，查找思想有点类似分治思想。每次都通过跟区间的中间元素对比，将待查找的区间缩小为之前的一半，<strong>直到找到要查找的元素，或者区间被缩小为 0</strong>。</p>
-<h2 id="O-logn-惊人的查找速度"><a href="#O-logn-惊人的查找速度" class="headerlink" title="O(logn) 惊人的查找速度"></a>O(logn) 惊人的查找速度</h2><p>我们假设数据大小是 n，每次查找后数据都会缩小为原来的一半，也就是会除以 2。最坏情况下，直到查找区间被缩小为空，才停止：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/69.png" alt></p>
+<h2 id="O-logn-惊人的查找速度"><a href="#O-logn-惊人的查找速度" class="headerlink" title="O(logn) 惊人的查找速度"></a>O(logn) 惊人的查找速度</h2><p>我们假设数据大小是 n，每次查找后数据都会缩小为原来的一半，也就是会除以 2。最坏情况下，直到查找区间被缩小为空，才停止：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/69.png" alt></p>
 <p>可以看出来，这是一个等比数列。其中 n/2^k=1 时，k 的值就是总共缩小的次数。而每一次缩小操作只涉及两个数据的大小比较，所以，<strong>经过了 k 次区间缩小操作，时间复杂度就是 O(k)</strong>。通过 n/2^k=1，我们可以求得 k=log2n，所以时间复杂度就是 O(logn)。</p>
 <p>logn 是一个非常恐怖的数量级，即便 n 非常非常大，对应的 logn 也很小。比如 n 等于 2 的 32 次方，这个数很大了吧？大约是 42 亿。也就是说，如果我们在 42 亿个数据中用二分查找一个数据，最多需要比较 32 次。我们前面讲过，用大 O 标记法表示时间复杂度的时候，会省略掉常数、系数和低阶。对于常量级时间复杂度的算法来说，O(1) 有可能表示的是一个非常大的常量值，比如 O(1000)、O(10000)。所以，<strong>常量级时间复杂度的算法有时候可能还没有 O(logn) 的算法执行效率高</strong>。</p>
 <blockquote>
@@ -394,7 +394,7 @@
 </ol>
 <h2 id="如何在-1000-万个整数中快速查找某个整数"><a href="#如何在-1000-万个整数中快速查找某个整数" class="headerlink" title="如何在 1000 万个整数中快速查找某个整数"></a>如何在 1000 万个整数中快速查找某个整数</h2><p>这个问题并不难。我们的内存限制是 100MB，每个数据大小是 8 字节，最简单的办法就是将数据存储在数组中，内存占用差不多是 80MB，符合内存的限制。我们可以<strong>先对这 1000 万数据从小到大排序，然后再利用二分查找算法</strong>，就可以快速地查找想要的数据了。</p>
 <p>虽然大部分情况下，用二分查找可以解决的问题，用散列表、二叉树都可以解决。但是，<strong>不管是散列表还是二叉树，都会需要比较多的额外的内存空间</strong>。如果用散列表或者二叉树来存储这 1000 万的数据，用 100MB 的内存肯定是存不下的。而二分查找底层依赖的是数组，除了数据本身之外，不需要额外存储其他信息，是最省内存空间的存储方式，所以刚好能在限定的内存大小下解决这个问题。</p>
-<h2 id="变体一：查找第一个值等于给定值的元素"><a href="#变体一：查找第一个值等于给定值的元素" class="headerlink" title="变体一：查找第一个值等于给定值的元素"></a>变体一：查找第一个值等于给定值的元素</h2><p>我们将问题稍微修改下，<strong>有序数据集合中存在重复的数据</strong>，我们希望找到第一个值等于给定值的数据。比如下面这样一个有序数组，其中，a[5]，a[6]，a[7] 的值都等于 8，是重复的数据。我们希望查找第一个等于 8 的数据，也就是下标是 5 的元素：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/71.png" alt></p>
+<h2 id="变体一：查找第一个值等于给定值的元素"><a href="#变体一：查找第一个值等于给定值的元素" class="headerlink" title="变体一：查找第一个值等于给定值的元素"></a>变体一：查找第一个值等于给定值的元素</h2><p>我们将问题稍微修改下，<strong>有序数据集合中存在重复的数据</strong>，我们希望找到第一个值等于给定值的数据。比如下面这样一个有序数组，其中，a[5]，a[6]，a[7] 的值都等于 8，是重复的数据。我们希望查找第一个等于 8 的数据，也就是下标是 5 的元素：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/71.png" alt></p>
 <p>如果我们用上一节课讲的二分查找的代码实现，首先拿 8 与区间的中间值 a[4] 比较，8 比 6 大，于是在下标 5 到 9 之间继续查找。下标 5 和 9 的中间位置是下标 7，a[7] 正好等于 8，所以代码就返回了。尽管 a[7] 也等于 8，但它并不是我们想要找的第一个等于 8 的元素，因为第一个值等于 8 的元素是数组下标为 5 的元素。所以，我换了一种实现方法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">bsearch</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> n, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> high = n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">        <span class="keyword">int</span> mid =  low + ((high - low) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (a[mid] &gt; value) &#123;</span><br><span class="line">            high = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (a[mid] &lt; value) &#123;</span><br><span class="line">            low = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> ((mid == <span class="number">0</span>) || (a[mid - <span class="number">1</span>] != value)) &#123;</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                high = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 

@@ -95,13 +95,13 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="What is Facebook’s Newsfeed?A Newsfeed is the constantly updating list of stories in the middle of Facebook’s homepage. It includes status updates, photos, videos, links, app activity, and “likes” fro">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/60.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/61.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/60.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/61.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Designing Facebook&#39;s Newsfeed">
 <meta name="twitter:description" content="What is Facebook’s Newsfeed?A Newsfeed is the constantly updating list of stories in the middle of Facebook’s homepage. It includes status updates, photos, videos, links, app activity, and “likes” fro">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/60.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/60.png">
 
 
 
@@ -398,7 +398,7 @@
 <li>Each FeedItem will have a UserID which will point to the User who created it. For simplicity, let’s assume that only users can create feed items, although, on Facebook Pages can post feed item too;</li>
 <li>Each FeedItem can optionally have an EntityID pointing to the page or the group where that post was created;</li>
 </ul>
-<p>If we are using a relational database, we would need to model two relations: User-Entity relation and FeedItem-Media relation. Since each user can be friends with many people and follow a lot of entities, we can store this relation in a separate table. The “Type” column in “UserFollow” identifies if the entity being followed is a User or Entity. Similarly, we can have a table for FeedMedia relation:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/60.png" alt></p>
+<p>If we are using a relational database, we would need to model two relations: User-Entity relation and FeedItem-Media relation. Since each user can be friends with many people and follow a lot of entities, we can store this relation in a separate table. The “Type” column in “UserFollow” identifies if the entity being followed is a User or Entity. Similarly, we can have a table for FeedMedia relation:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/60.png" alt></p>
 <h2 id="High-Level-System-Design"><a href="#High-Level-System-Design" class="headerlink" title="High-Level System Design"></a>High-Level System Design</h2><h3 id="Feed-Generation"><a href="#Feed-Generation" class="headerlink" title="Feed Generation"></a>Feed Generation</h3><p>Newsfeed is generated from the posts (or feed items) of users and entities (pages and groups) that a user follows. So, whenever our system receives a request to generate the feed for a user (say Jane), we will perform the following steps:</p>
 <ol>
 <li>Retrieve IDs of all users and entities that Jane follows;</li>
@@ -419,7 +419,7 @@
 <li><strong>Newsfeed Generation Service</strong>: To gather and rank all the relevant posts for a user to generate newsfeed and store in the cache. This service will also receive live updates and will add these newer feed items to any user’s timeline;</li>
 <li><strong>Feed Notification Service</strong>: To notify the user that there are newer items available for their newsfeed;</li>
 </ol>
-<p>Following is the high-level architecture diagram of our system. User B and C are following User A:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/61.png" alt></p>
+<p>Following is the high-level architecture diagram of our system. User B and C are following User A:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/61.png" alt></p>
 <h2 id="Detailed-Component-Design"><a href="#Detailed-Component-Design" class="headerlink" title="Detailed Component Design"></a>Detailed Component Design</h2><h3 id="Feed-Generation-1"><a href="#Feed-Generation-1" class="headerlink" title="Feed Generation"></a>Feed Generation</h3><p>Let’s take the simple case of the newsfeed generation service fetching most recent posts from all the users and entities that Jane follows; the query would look like this:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">SELECT</span> FeedItemID <span class="keyword">FROM</span> FeedItem <span class="keyword">WHERE</span> UserID <span class="keyword">in</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> EntityOrFriendID <span class="keyword">FROM</span> UserFollow <span class="keyword">WHERE</span> UserID = &lt;current_user_id&gt; <span class="keyword">and</span> <span class="keyword">type</span> = <span class="number">0</span>(<span class="keyword">user</span>))</span><br><span class="line">)</span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line">(<span class="keyword">SELECT</span> FeedItemID <span class="keyword">FROM</span> FeedItem <span class="keyword">WHERE</span> EntityID <span class="keyword">in</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> EntityOrFriendID <span class="keyword">FROM</span> UserFollow <span class="keyword">WHERE</span> UserID = &lt;current_user_id&gt; <span class="keyword">and</span> <span class="keyword">type</span> = <span class="number">1</span>(entity))</span><br><span class="line">)</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> CreationDate <span class="keyword">DESC</span> </span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
 

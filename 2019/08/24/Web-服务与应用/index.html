@@ -95,18 +95,18 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="Web 服务和应用是目前互联网技术领域的热门技术。重点介绍如何使用 Docker 来运行常见的 Web 服务器（包括 Apache、Nginx、Tomcat 等），以及一些常见应用（包括 LAMP 和 CI/CD）。包括 Web 服务在内的中间件领域十分适合引入容器技术：  中间件服务器是除数据库服务器外的主要计算节点，很容易成为性能瓶颈，所以通常需要大批量部署，而 Docker 对于批量部署有着">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/01/01.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/01/02.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/01/03.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/01/04.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/01/05.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/01/06.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/01/07.jpg">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/01/01.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/01/02.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/01/03.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/01/04.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/01/05.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/01/06.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/01/07.jpg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Web 服务与应用">
 <meta name="twitter:description" content="Web 服务和应用是目前互联网技术领域的热门技术。重点介绍如何使用 Docker 来运行常见的 Web 服务器（包括 Apache、Nginx、Tomcat 等），以及一些常见应用（包括 LAMP 和 CI/CD）。包括 Web 服务在内的中间件领域十分适合引入容器技术：  中间件服务器是除数据库服务器外的主要计算节点，很容易成为性能瓶颈，所以通常需要大批量部署，而 Docker 对于批量部署有着">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/01/01.jpg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/01/01.jpg">
 
 
 
@@ -372,9 +372,9 @@
 <blockquote>
 <p>需要注意<strong>数据的持久化</strong>。对于程序代码、资源目录、日志、数据库、文件等需要实时更新和保存的数据，一定要启动数据持久化机制，避免发生数据丢失。</p>
 </blockquote>
-<h2 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h2><p>Apache 是一个高稳定性的、商业级别的开源 Web 服务器，是目前世界使用排名第一的 <strong>Web 服务器软件</strong>。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/01/01.jpg" alt><br>在使用 Dockerfile 创建镜像时，会继承父镜像的开放端口，但却<strong>不会继承启动命令</strong>。因此，需要在 run.sh 脚本中添加启动 sshd 的服务的命令。</p>
+<h2 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h2><p>Apache 是一个高稳定性的、商业级别的开源 Web 服务器，是目前世界使用排名第一的 <strong>Web 服务器软件</strong>。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/01/01.jpg" alt><br>在使用 Dockerfile 创建镜像时，会继承父镜像的开放端口，但却<strong>不会继承启动命令</strong>。因此，需要在 run.sh 脚本中添加启动 sshd 的服务的命令。</p>
 <a id="more"></a>
-<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>Nginx 是一款功能强大的开源<strong>反向代理服务器</strong>，支持 HTTP、HTTPS、SMTP、POP3、IMAP 等协议。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/01/02.jpg" alt><br>特性如下：</p>
+<h2 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h2><p>Nginx 是一款功能强大的开源<strong>反向代理服务器</strong>，支持 HTTP、HTTPS、SMTP、POP3、IMAP 等协议。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/01/02.jpg" alt><br>特性如下：</p>
 <ul>
 <li><strong>热部署</strong>：采用 master 管理进程与 worker 工作进程的分离设计，支持热部署；</li>
 <li><strong>高并发连接</strong>：Nginx 可以轻松支持超过 100K 的并发，理论上支持的并发连接上限取决于机器内存；</li>
@@ -382,9 +382,9 @@
 <li><strong>响应快</strong>：在高峰期，Nginx 可以比其他的 Web 服务器更快地响应请求；</li>
 <li><strong>高可靠性</strong>：高可靠性来自其核心框架代码的优秀设计和实现。</li>
 </ul>
-<h2 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h2><p>Tomcat 由 Apache 软件基金会开发，实现了对 Servlet 和 JSP 的支持。同时，它提供了作为 Web 服务器的<strong>一些特有功能</strong>，如 Tomcat 管理和控制平台、安全域管理和 Tomcat 阀等。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/01/03.jpg" alt><br>在实际环境中，可以通过 -v 参数来挂载 Tomcat 的日志文件、程序所在目录，以及相关配置。</p>
-<h2 id="Jetty"><a href="#Jetty" class="headerlink" title="Jetty"></a>Jetty</h2><p>Jetty 是一个优秀的开源 <strong>Servlet 容器</strong>，以其高效、小巧、可嵌入式等优点深得人心，它为基于 Java 的 Web 内容提供运行环境。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/01/04.jpg" alt><br>与相对老牌的 Tomcat 比，Jetty <strong>架构更合理、性能更优</strong>。尤其在启动速度上，让 Tomcat 望尘莫及，目前在国内外互联网企业中应用广泛。</p>
-<h2 id="LAMP"><a href="#LAMP" class="headerlink" title="LAMP"></a>LAMP</h2><p>LAMP 是目前流行的 <strong>Web 工具栈</strong>，其中包括：Linux 操作系统、Apache 网络服务器、MySQL 数据库、PHP 编程语言。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/01/05.jpg" alt></p>
+<h2 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h2><p>Tomcat 由 Apache 软件基金会开发，实现了对 Servlet 和 JSP 的支持。同时，它提供了作为 Web 服务器的<strong>一些特有功能</strong>，如 Tomcat 管理和控制平台、安全域管理和 Tomcat 阀等。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/01/03.jpg" alt><br>在实际环境中，可以通过 -v 参数来挂载 Tomcat 的日志文件、程序所在目录，以及相关配置。</p>
+<h2 id="Jetty"><a href="#Jetty" class="headerlink" title="Jetty"></a>Jetty</h2><p>Jetty 是一个优秀的开源 <strong>Servlet 容器</strong>，以其高效、小巧、可嵌入式等优点深得人心，它为基于 Java 的 Web 内容提供运行环境。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/01/04.jpg" alt><br>与相对老牌的 Tomcat 比，Jetty <strong>架构更合理、性能更优</strong>。尤其在启动速度上，让 Tomcat 望尘莫及，目前在国内外互联网企业中应用广泛。</p>
+<h2 id="LAMP"><a href="#LAMP" class="headerlink" title="LAMP"></a>LAMP</h2><p>LAMP 是目前流行的 <strong>Web 工具栈</strong>，其中包括：Linux 操作系统、Apache 网络服务器、MySQL 数据库、PHP 编程语言。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/01/05.jpg" alt></p>
 <ul>
 <li>和 Java/J2EE 架构相比，LAMP 具有 Web 资源丰富、轻量、快速开发等特点；</li>
 <li>和微软的 .NET 架构相比，LAMP 具有通用、跨平台、高性能、低价格的优势。</li>
@@ -395,8 +395,8 @@
 <li><strong>需要有持续集成系统的支持</strong>，包括代码托管机制支持，以及集成服务器等。</li>
 </ul>
 <p>持续交付（Continuous Delivery，CD）是经典的敏捷软件开发方法的自然延伸，它强调产品在修改后到部署上线的流程要敏捷化、自动化。甚至一些<strong>较少的改变也要尽早地部署上线</strong>。</p>
-<h3 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h3><p>Jenkins 是一个得到广泛应用的 CI/CD 工具。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/01/06.jpg" alt><br>作为开源软件项目，它旨在提供一个开放易用的持续集成平台。Jenkins 能实时监控集成中存在的错误，<strong>提供详细的日志文件和提醒功能</strong>，并用图表的形式形象地展示项目构建的趋势和稳定性。</p>
-<h3 id="GitLab"><a href="#GitLab" class="headerlink" title="GitLab"></a>GitLab</h3><p>GitLab 是一款非常强大的开源源码管理系统。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/OpenSource/01/07.jpg" alt><br>它支持基于 Git 的源码管理、代码评审、Issues 跟踪、活动管理、Wiki 页面、<strong>持续集成和测试等功能</strong>。</p>
+<h3 id="Jenkins"><a href="#Jenkins" class="headerlink" title="Jenkins"></a>Jenkins</h3><p>Jenkins 是一个得到广泛应用的 CI/CD 工具。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/01/06.jpg" alt><br>作为开源软件项目，它旨在提供一个开放易用的持续集成平台。Jenkins 能实时监控集成中存在的错误，<strong>提供详细的日志文件和提醒功能</strong>，并用图表的形式形象地展示项目构建的趋势和稳定性。</p>
+<h3 id="GitLab"><a href="#GitLab" class="headerlink" title="GitLab"></a>GitLab</h3><p>GitLab 是一款非常强大的开源源码管理系统。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/OpenSource/01/07.jpg" alt><br>它支持基于 Git 的源码管理、代码评审、Issues 跟踪、活动管理、Wiki 页面、<strong>持续集成和测试等功能</strong>。</p>
 
       
     </div>

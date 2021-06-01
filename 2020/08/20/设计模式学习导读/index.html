@@ -95,15 +95,15 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="如果说数据结构和算法是教你如何写出高效代码，那设计模式讲的是如何写出可扩展、可读、可维护的高质量代码。  优秀的开源项目、框架、中间件，代码量、类的个数都会比较多，类结构、类之间的关系极其复杂，常常调用来调用去。所以，为了保证代码的扩展性、灵活性、可维护性等，代码中会使用到很多设计模式、设计原则或者设计思想。如果你不懂这些设计模式、原则、思想，在看代码的时候，你可能就会琢磨不透作者的设计思路，对">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/04.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/05.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/06.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/07.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/04.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/05.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/06.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/07.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式学习导读">
 <meta name="twitter:description" content="如果说数据结构和算法是教你如何写出高效代码，那设计模式讲的是如何写出可扩展、可读、可维护的高质量代码。  优秀的开源项目、框架、中间件，代码量、类的个数都会比较多，类结构、类之间的关系极其复杂，常常调用来调用去。所以，为了保证代码的扩展性、灵活性、可维护性等，代码中会使用到很多设计模式、设计原则或者设计思想。如果你不懂这些设计模式、原则、思想，在看代码的时候，你可能就会琢磨不透作者的设计思路，对">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/04.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/04.png">
 
 
 
@@ -365,7 +365,7 @@
 </blockquote>
 <p>优秀的开源项目、框架、中间件，代码量、类的个数都会比较多，类结构、类之间的关系极其复杂，常常调用来调用去。所以，为了保证代码的扩展性、灵活性、可维护性等，代码中会使用到很多设计模式、设计原则或者设计思想。如果你不懂这些设计模式、原则、思想，在看代码的时候，你可能就会琢磨不透作者的设计思路，对于一些很明显的设计思路，你可能要花费很多时间才能参悟。相反，<strong>如果你对设计模式、原则、思想非常了解，一眼就能参透作者的设计思路、设计初衷</strong>，很快就可以把脑容量释放出来，重点思考其他问题，代码读起来就会变得轻松了。</p>
 <h2 id="代码质量评价标准"><a href="#代码质量评价标准" class="headerlink" title="代码质量评价标准"></a>代码质量评价标准</h2><p>仔细看前面罗列的所有代码质量评价标准，你会发现，有些词语过于笼统、抽象，比较偏向对于整体的描述，比如优雅、好、坏、整洁、清晰等；有些过于细节、偏重方法论，比如模块化、高内聚低耦合、文档详尽、分层清晰等；有些可能并不仅仅局限于编码，跟架构设计等也有关系，比如可伸缩性、可用性、稳定性等。要写出满足这些评价标准的高质量代码，我们<strong>需要掌握一些更加细化、更加能落地的编程方法论</strong>，包括面向对象设计思想、设计原则、设计模式、编程规范、重构技巧等。而所有这些编程方法论的最终目的都是为了编写出高质量的代码。</p>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/04.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/04.png" alt></p>
 <a id="more"></a>
 
 <h3 id="可维护性（Maintainability）"><a href="#可维护性（Maintainability）" class="headerlink" title="可维护性（Maintainability）"></a>可维护性（Maintainability）</h3><p>所以，从正面去分析一个代码是否易维护稍微有点难度。不过，我们可以从侧面上给出一个比较主观但又比较准确的感受。如果 bug 容易修复，修改、添加功能能够轻松完成，那我们就可以主观地认为代码对我们来说易维护。相反，如果修改一个 bug，修改、添加一个功能，需要花费很长的时间，那我们就可以主观地认为代码对我们来说不易维护。</p>
@@ -389,7 +389,7 @@
 <li>多用组合少用继承的设计思想；</li>
 <li>面向过程的贫血模型和面向对象的充血模型；</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/05.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/05.png" alt></p>
 <h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><p>设计原则是指导我们代码设计的一些经验总结。设计原则这块儿的知识有一个非常大的特点，那就是这些原则听起来都比较抽象，定义描述都比较模糊，不同的人会有不同的解读。所以，如果单纯地去记忆定义，对于编程、设计能力的提高，意义并不大。对于每一种设计原则，我们<strong>需要掌握它的设计初衷，能解决哪些编程问题，有哪些应用场景</strong>。只有这样，我们才能在项目中灵活恰当地应用这些原则。</p>
 <p>几个常用的设计原则：</p>
 <ul>
@@ -400,7 +400,7 @@
 <li>DIP 依赖倒置原则；</li>
 <li>DRY 原则、KISS 原则、YAGNI 原则、LoD 法则；</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/06.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/06.png" alt></p>
 <h2 id="规范与重构"><a href="#规范与重构" class="headerlink" title="规范与重构"></a>规范与重构</h2><p><strong>编程规范主要解决的是代码的可读性问题</strong>。编程规范相对于设计原则、设计模式，更加具体、更加偏重代码细节。即便你可能对设计原则不熟悉、对设计模式不了解，但你最起码要掌握基本的编码规范，比如，如何给变量、类、函数命名，如何写代码注释，函数不宜过长、参数不能过多等等。</p>
 <p>在软件开发中，只要软件在不停地迭代，就没有一劳永逸的设计。随着需求的变化，代码的不停堆砌，原有的设计必定会存在这样那样的问题。针对这些问题，我们就需要进行代码重构。重构是软件开发中非常重要的一个环节。<strong>持续重构是保持代码质量不下降的有效手段</strong>，能有效避免代码腐化到无可救药的地步。</p>
 <p>几个知识点：</p>
@@ -410,7 +410,7 @@
 <li>大重构（大规模高层次）；</li>
 <li>小重构（小规模低层次）；</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/07.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/07.png" alt></p>
 <h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><p>设计模式是针对软件开发中经常遇到的一些设计问题，总结出来的一套解决方案或者设计思路。<strong>大部分设计模式要解决的都是代码的可扩展性问题</strong>。设计模式相对于设计原则来说，没有那么抽象，而且大部分都不难理解，代码实现也并不复杂。这一块的学习难点是了解它们都能解决哪些问题，掌握典型的应用场景，并且懂得不过度应用。</p>
 <h3 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h3><p>创建型设计模式主要解决“对象的创建”问题：</p>
 <ul>

@@ -95,12 +95,12 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="A lot of software engineers struggle with System Design Interviews (SDIs) primarily because of three reasons:  The unstructured nature of SDIs, where the candidates are asked to work on an open-ended">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/18.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/18.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A Step by Step Guide">
 <meta name="twitter:description" content="A lot of software engineers struggle with System Design Interviews (SDIs) primarily because of three reasons:  The unstructured nature of SDIs, where the candidates are asked to work on an open-ended">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/18.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/18.png">
 
 
 
@@ -396,7 +396,7 @@
 </ul>
 <p>Which database system should we use? Will NoSQL like Cassandra best fit our needs, or should we use a MySQL-like solution? What kind of block storage should we use to store photos and videos?</p>
 <h2 id="Step-5-High-Level-Design"><a href="#Step-5-High-Level-Design" class="headerlink" title="Step 5: High-Level Design"></a>Step 5: High-Level Design</h2><p>Draw a block diagram with 5-6 boxes representing the core components of our system. We should identify enough components that are needed to solve the actual problem from end-to-end.</p>
-<p>For Twitter, at a high level, we will need multiple application servers to serve all the read/write requests with load balancers in front of them for traffic distributions. If we’re assuming that we will have a lot more read traffic (compared to write), we can decide to have separate servers to handle these scenarios. On the backend, we need an efficient database that can store all the tweets and support a huge number of reads. We will also need a distributed file storage system for storing photos and videos:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/18.png" alt></p>
+<p>For Twitter, at a high level, we will need multiple application servers to serve all the read/write requests with load balancers in front of them for traffic distributions. If we’re assuming that we will have a lot more read traffic (compared to write), we can decide to have separate servers to handle these scenarios. On the backend, we need an efficient database that can store all the tweets and support a huge number of reads. We will also need a distributed file storage system for storing photos and videos:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/18.png" alt></p>
 <h2 id="Step-6-Detailed-Design"><a href="#Step-6-Detailed-Design" class="headerlink" title="Step 6: Detailed Design"></a>Step 6: Detailed Design</h2><p>Dig deeper into two or three major components; the interviewer’s feedback should always guide us to what parts of the system need further discussion. We should present different approaches, their Pros and Cons, and explain why we will prefer one approach over the other. Remember, there is no single answer; the only important thing is to consider tradeoffs between different options while keeping system constraints in mind:</p>
 <ul>
 <li>Since we will be storing a massive amount of data, how should we partition our data to distribute it to multiple databases? Should we try to store all the data of a user on the same database? What issue could it cause?</li>

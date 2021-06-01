@@ -95,13 +95,13 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="如何实现网页爬虫中的 URL 去重功能网页爬虫是搜索引擎中的非常重要的系统，负责爬取几十亿、上百亿的网页。爬虫的工作原理是，通过解析已经爬取页面中的网页链接，然后再爬取这些链接对应的网页。而同一个网页链接有可能被包含在多个页面中，这就会导致爬虫在爬取的过程中，重复爬取相同的网页。如果你是一名负责爬虫的工程师，你会如何避免这些重复的爬取呢？ 最容易想到的方法就是，我们记录已经爬取的网页链接（也就是">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/253.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/254.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/253.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/254.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="位图">
 <meta name="twitter:description" content="如何实现网页爬虫中的 URL 去重功能网页爬虫是搜索引擎中的非常重要的系统，负责爬取几十亿、上百亿的网页。爬虫的工作原理是，通过解析已经爬取页面中的网页链接，然后再爬取这些链接对应的网页。而同一个网页链接有可能被包含在多个页面中，这就会导致爬虫在爬取的过程中，重复爬取相同的网页。如果你是一名负责爬虫的工程师，你会如何避免这些重复的爬取呢？ 最容易想到的方法就是，我们记录已经爬取的网页链接（也就是">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/253.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/253.png">
 
 
 
@@ -378,8 +378,8 @@
 <p><strong>位图通过数组下标来定位数据</strong>，所以，访问效率非常高。而且，<strong>每个数字用一个二进制位来表示</strong>，在数字范围不大的情况下，所需要的内存空间非常节省。比如刚刚那个例子，如果用散列表存储这 1 千万的数据，数据是 32 位的整型数，也就是需要 4 个字节的存储空间，那总共至少需要 40MB 的存储空间。如果我们通过位图的话，数字范围在 1 到 1 亿之间，只需要 1 亿个二进制位，也就是 12MB 左右的存储空间就够了。</p>
 <p>这里我们有个假设，就是数字所在的范围不是很大。如果数字的范围很大，比如刚刚那个问题，数字范围不是 1 到 1 亿，而是 1 到 10 亿，那位图的大小就是 10 亿个二进制位，也就是 120MB 的大小，消耗的内存空间，不降反增。布隆过滤器的做法是，我们仍然使用一个 1 亿个二进制大小的位图，然后<strong>通过哈希函数，对数字进行处理，让它落在这 1 到 1 亿范围内</strong>。比如我们把哈希函数设计成 f(x)=x%n。其中，x 表示数字，n 表示位图的大小（1 亿），也就是，对数字跟位图的大小进行取模求余。</p>
 <p>为了降低这种冲突概率，当然我们可以设计一个复杂点、随机点的哈希函数。除此之外，我们还可以使用 K 个哈希函数，对同一个数字进行求哈希值，那会得到 K 个不同的哈希值，我们分别记作 X1​, X2​, X3​, …, XK​。我们把这 K 个数字作为位图中的下标，将对应的 BitMap[X1​], BitMap[X2​], BitMap[X3​], …, BitMap[XK​] 都设置成 true，也就是说，我们<strong>用 K 个二进制位，来表示一个数字的存在</strong>。</p>
-<p>当我们要查询某个数字是否存在的时候，我们用同样的 K 个哈希函数，对这个数字求哈希值，分别得到 Y1​, Y2​, Y3​, …, YK​。我们看这 K 个哈希值，对应位图中的数值是否都为 true，如果都是 true，则说明，这个数字存在，<strong>如果有其中任意一个不为 true，那就说明这个数字不存在</strong>：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/253.png" alt></p>
-<p>对于两个不同的数字来说，经过一个哈希函数处理之后，可能会产生相同的哈希值。但是经过 K 个哈希函数处理之后，K 个哈希值都相同的概率就非常低了。尽管<strong>采用 K 个哈希函数之后，两个数字哈希冲突的概率降低了</strong>，但是，这种处理方式又带来了新的问题，那就是容易误判：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/254.png" alt></p>
+<p>当我们要查询某个数字是否存在的时候，我们用同样的 K 个哈希函数，对这个数字求哈希值，分别得到 Y1​, Y2​, Y3​, …, YK​。我们看这 K 个哈希值，对应位图中的数值是否都为 true，如果都是 true，则说明，这个数字存在，<strong>如果有其中任意一个不为 true，那就说明这个数字不存在</strong>：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/253.png" alt></p>
+<p>对于两个不同的数字来说，经过一个哈希函数处理之后，可能会产生相同的哈希值。但是经过 K 个哈希函数处理之后，K 个哈希值都相同的概率就非常低了。尽管<strong>采用 K 个哈希函数之后，两个数字哈希冲突的概率降低了</strong>，但是，这种处理方式又带来了新的问题，那就是容易误判：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/254.png" alt></p>
 <p>布隆过滤器的误判有一个特点，那就是，它只会对存在的情况有误判。如果某个数字经过布隆过滤器判断不存在，那说明这个数字真的不存在，不会发生误判；<strong>如果某个数字经过布隆过滤器判断存在，这个时候才会有可能误判</strong>，有可能并不存在。不过，只要我们调整哈希函数的个数、位图大小跟要存储数字的个数之间的比例，那就可以将这种误判的概率降到非常低。</p>
 <p>尽管布隆过滤器会存在误判，但是，这并<strong>不影响它发挥大作用，很多场景对误判有一定的容忍度</strong>。比如我们今天要解决的爬虫判重这个问题，即便一个没有被爬取过的网页，被误判为已经被爬取，对于搜索引擎来说，也并不是什么大事情，是可以容忍的，毕竟网页太多了，搜索引擎也不可能 100% 都爬取到。</p>
 <p>我们用布隆过滤器来记录已经爬取过的网页链接，<strong>假设需要判重的网页有 10 亿，那我们可以用一个 10 倍大小的位图来存储</strong>，也就是 100 亿个二进制位，换算成字节，那就是大约 1.2GB。之前我们用散列表判重，需要至少 100GB 的空间。相比来讲，布隆过滤器在存储空间的消耗上，降低了非常多。</p>

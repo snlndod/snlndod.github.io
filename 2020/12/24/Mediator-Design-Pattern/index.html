@@ -95,12 +95,12 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="中介模式的原理和实现中介模式的英文翻译是 Mediator Design Pattern。它是这样定义的：  Mediator pattern defines a separate (mediator) object that encapsulates the interaction between a set of objects and the objects delegate their i">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/30.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/30.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mediator Design Pattern">
 <meta name="twitter:description" content="中介模式的原理和实现中介模式的英文翻译是 Mediator Design Pattern。它是这样定义的：  Mediator pattern defines a separate (mediator) object that encapsulates the interaction between a set of objects and the objects delegate their i">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/30.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/30.png">
 
 
 
@@ -362,7 +362,7 @@
 <p>Mediator pattern defines a separate (mediator) object that encapsulates the interaction between a set of objects and the objects delegate their interaction to a mediator object instead of interacting with each other directly.</p>
 </blockquote>
 <p>翻译成中文就是：中介模式定义了一个单独的（中介）对象，来封装一组对象之间的交互。<strong>将这组对象之间的交互委派给与中介对象交互，来避免对象之间的直接交互</strong>。实际上，中介模式的设计思想跟中间层很像，通过引入中介这个中间层，将一组对象之间的交互关系（或者说依赖关系）从多对多（网状关系）转换为一对多（星状关系）。原来一个对象要跟 n 个对象交互，现在只需要跟一个中介对象交互，从而<strong>最小化对象之间的交互关系，降低了代码的复杂度，提高了代码的可读性和可维护性</strong>。</p>
-<p>这里我画了一张对象交互关系的对比图。其中，右边的交互图是利用中介模式对左边交互关系优化之后的结果，从图中我们可以很直观地看出，右边的交互关系更加清晰、简洁：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/30.png" alt></p>
+<p>这里我画了一张对象交互关系的对比图。其中，右边的交互图是利用中介模式对左边交互关系优化之后的结果，从图中我们可以很直观地看出，右边的交互关系更加清晰、简洁：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/30.png" alt></p>
 <a id="more"></a>
 
 <p>假设我们有一个比较复杂的对话框，对话框中有很多控件，比如按钮、文本框、下拉框等。当我们对某个控件进行操作的时候，其他控件会做出相应的反应，比如，我们在下拉框中选择“注册”，注册相关的控件就会显示在对话框中。如果我们在下拉框中选择“登陆”，登陆相关的控件就会显示在对话框中。按照通常我们习惯的 UI 界面的开发方式，我们将刚刚的需求用代码实现出来。在这种实现方式中，<strong>控件和控件之间互相操作、互相依赖</strong>：</p>

@@ -735,7 +735,7 @@
 
       
         
-          <h2 id="为什么需要建造者模式？"><a href="#为什么需要建造者模式？" class="headerlink" title="为什么需要建造者模式？"></a>为什么需要建造者模式？</h2><p>假设有这样一道设计面试题：我们需要定义一个资源池配置类 ResourcePoolConfig。这里的资源池，你可以简单理解为<strong>线程池、连接池、对象池等</strong>。在这个资源池配置类中，有以下几个成员变量，也就是可配置项。现在，请你编写代码实现这个 ResourcePoolConfig 类：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/GoF/03.png" alt></p>
+          <h2 id="为什么需要建造者模式？"><a href="#为什么需要建造者模式？" class="headerlink" title="为什么需要建造者模式？"></a>为什么需要建造者模式？</h2><p>假设有这样一道设计面试题：我们需要定义一个资源池配置类 ResourcePoolConfig。这里的资源池，你可以简单理解为<strong>线程池、连接池、对象池等</strong>。在这个资源池配置类中，有以下几个成员变量，也就是可配置项。现在，请你编写代码实现这个 ResourcePoolConfig 类：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/GoF/03.png" alt></p>
 <p>只要你稍微有点开发经验，那实现这样一个类对你来说并不是件难事。因为 maxTotal、maxIdle、minIdle 不是必填变量，所以在创建 ResourcePoolConfig 对象的时候，我们<strong>通过往构造函数中，给这几个参数传递 null 值，来表示使用默认值</strong>：</p>
           <!--noindex-->
           <div class="post-button text-center">

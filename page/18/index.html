@@ -356,7 +356,7 @@
 
       
         
-          <h2 id="什么是“平衡二叉查找树”？"><a href="#什么是“平衡二叉查找树”？" class="headerlink" title="什么是“平衡二叉查找树”？"></a>什么是“平衡二叉查找树”？</h2><p>平衡二叉树的严格定义是这样的：<strong>二叉树中任意一个节点的左右子树的高度相差不能大于 1</strong>。从这个定义来看，上一节我们讲的完全二叉树、满二叉树其实都是平衡二叉树，但是非完全二叉树也有可能是平衡二叉树：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/114.png" alt></p>
+          <h2 id="什么是“平衡二叉查找树”？"><a href="#什么是“平衡二叉查找树”？" class="headerlink" title="什么是“平衡二叉查找树”？"></a>什么是“平衡二叉查找树”？</h2><p>平衡二叉树的严格定义是这样的：<strong>二叉树中任意一个节点的左右子树的高度相差不能大于 1</strong>。从这个定义来看，上一节我们讲的完全二叉树、满二叉树其实都是平衡二叉树，但是非完全二叉树也有可能是平衡二叉树：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/114.png" alt></p>
 <p>平衡二叉查找树不仅满足上面平衡二叉树的定义，还满足二叉查找树的特点。最先被发明的平衡二叉查找树是 <code>AVL 树</code>，它严格符合我刚讲到的平衡二叉查找树的定义，即任何节点的左右子树高度相差不超过 1，是一种高度平衡的二叉查找树。发明平衡二叉查找树这类数据结构的初衷是，<strong>解决普通二叉查找树在频繁的插入、删除等动态更新的情况下，出现时间复杂度退化的问题</strong>。</p>
 <p>平衡二叉查找树中“平衡”的意思，其实就是让整棵树左右看起来比较“对称”、比较“平衡”，不要出现左子树很高、右子树很矮的情况。这样就能让整棵树的高度相对来说低一些，相应的插入、删除、查找等操作的效率高一些。所以，如果我们现在设计一个新的平衡二叉查找树，<strong>只要树的高度不比 log2n 大很多（比如树的高度仍然是对数量级的）</strong>，尽管它不符合我们前面讲的严格的平衡二叉查找树的定义，但我们仍然可以说，这是一个合格的平衡二叉查找树。</p>
           <!--noindex-->
@@ -480,8 +480,8 @@
 
       
         
-          <h2 id="树（Tree）"><a href="#树（Tree）" class="headerlink" title="树（Tree）"></a>树（Tree）</h2><p>我们首先来看，什么是<code>树</code>？我在图中画了几棵树：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/96.png" alt></p>
-<p>树这种数据结构真的很像我们现实生活中的树，这里面每个元素我们叫做“节点”；用来连接相邻节点之间的关系，我们叫做“父子关系”。比如下面这幅图，A 节点就是 B 节点的<code>父节点</code>，B 节点是 A 节点的<code>子节点</code>。B、C、D 这三个节点的父节点是同一个节点，所以它们之间互称为<code>兄弟节点</code>。我们把没有父节点的节点叫做<code>根节点</code>，也就是图中的节点 E。我们把没有子节点的节点叫做<code>叶子节点</code>，比如图中的 G、H、I、J、K、L 都是叶子节点：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/97.png" alt></p>
+          <h2 id="树（Tree）"><a href="#树（Tree）" class="headerlink" title="树（Tree）"></a>树（Tree）</h2><p>我们首先来看，什么是<code>树</code>？我在图中画了几棵树：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/96.png" alt></p>
+<p>树这种数据结构真的很像我们现实生活中的树，这里面每个元素我们叫做“节点”；用来连接相邻节点之间的关系，我们叫做“父子关系”。比如下面这幅图，A 节点就是 B 节点的<code>父节点</code>，B 节点是 A 节点的<code>子节点</code>。B、C、D 这三个节点的父节点是同一个节点，所以它们之间互称为<code>兄弟节点</code>。我们把没有父节点的节点叫做<code>根节点</code>，也就是图中的节点 E。我们把没有子节点的节点叫做<code>叶子节点</code>，比如图中的 G、H、I、J、K、L 都是叶子节点：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/97.png" alt></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2021/01/03/二叉树基础/#more" rel="contents">
@@ -741,7 +741,7 @@
         
           <h2 id="散列思想"><a href="#散列思想" class="headerlink" title="散列思想"></a>散列思想</h2><p>散列表的英文叫“Hash Table”，我们平时也叫它“哈希表”或者“Hash 表”。散列表用的是数组支持按照下标随机访问数据的特性，所以<strong>散列表其实就是数组的一种扩展</strong>，由数组演化而来。可以说，如果没有数组，就没有散列表。</p>
 <p>假设校长说，参赛编号不能设置得这么简单，要加上年级、班级这些更详细的信息，所以我们把编号的规则稍微修改了一下，用 6 位数字来表示。比如 051167，其中，前两位 05 表示年级，中间两位 11 表示班级，最后两位还是原来的编号 1 到 89。尽管我们不能直接把编号作为数组下标，但我们可以截取参赛编号的后两位作为数组下标，来存取选手信息数据。当通过参赛编号查询选手信息的时候，我们用同样的方法，取参赛编号的后两位，作为数组下标，来读取数组中的数据。</p>
-<p>这就是典型的散列思想。其中，参赛选手的编号我们叫做<code>键值</code>。我们用它来标识一个选手。我们把参赛编号转化为数组下标的映射方法就叫作<code>散列函数</code>，而散列函数计算得到的值就叫作<code>散列值</code>：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/83.png" alt></p>
+<p>这就是典型的散列思想。其中，参赛选手的编号我们叫做<code>键值</code>。我们用它来标识一个选手。我们把参赛编号转化为数组下标的映射方法就叫作<code>散列函数</code>，而散列函数计算得到的值就叫作<code>散列值</code>：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/83.png" alt></p>
 <p>通过这个例子，我们可以总结出这样的规律：<strong>散列表用的就是数组支持按照下标随机访问的时候，时间复杂度是 O(1) 的特性</strong>。我们通过散列函数把元素的键值映射为下标，然后将数据存储在数组中对应下标的位置。当我们按照键值查询元素时，我们用同样的散列函数，将键值转化数组下标，从对应的数组下标的位置取数据。</p>
           <!--noindex-->
           <div class="post-button text-center">
@@ -865,8 +865,8 @@
       
         
           <p>我们只需要对链表稍加改造，就可以支持类似“二分”的查找算法。我们把改造之后的数据结构叫做<code>跳表</code>（Skip List）。它是一种<strong>各方面性能都比较优秀的动态数据结构</strong>，可以支持快速地插入、删除、查找操作，写起来也不复杂，甚至可以替代红黑树。</p>
-<h2 id="如何理解“跳表”？"><a href="#如何理解“跳表”？" class="headerlink" title="如何理解“跳表”？"></a>如何理解“跳表”？</h2><p>对于一个单链表来讲，即便链表中存储的数据是有序的，如果我们要想在其中查找某个数据，也只能从头到尾遍历链表。这样查找效率就会很低，时间复杂度会很高，是 O(n)：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/72.png" alt></p>
-<p>如果像图中那样，对链表建立一级“索引”，每两个结点提取一个结点到上一级，我们把抽出来的那一级叫做<code>索引层</code>。图中的 down 表示 down 指针，指向下一级结点：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/73.png" alt></p>
+<h2 id="如何理解“跳表”？"><a href="#如何理解“跳表”？" class="headerlink" title="如何理解“跳表”？"></a>如何理解“跳表”？</h2><p>对于一个单链表来讲，即便链表中存储的数据是有序的，如果我们要想在其中查找某个数据，也只能从头到尾遍历链表。这样查找效率就会很低，时间复杂度会很高，是 O(n)：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/72.png" alt></p>
+<p>如果像图中那样，对链表建立一级“索引”，每两个结点提取一个结点到上一级，我们把抽出来的那一级叫做<code>索引层</code>。图中的 down 表示 down 指针，指向下一级结点：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/73.png" alt></p>
 <p>如果我们现在要查找某个结点，比如 16。我们可以先在索引层遍历，当遍历到索引层中值为 13 的结点时，我们发现下一个结点是 17，那要查找的结点 16 肯定就在这两个结点之间。然后我们通过索引层结点的 down 指针，下降到原始链表这一层，继续遍历。这个时候，我们只需要再遍历 2 个结点，就可以找到值等于 16 的这个结点了。这样，<strong>原来如果要查找 16，需要遍历 10 个结点，现在只需要遍历 7 个结点</strong>。</p>
           <!--noindex-->
           <div class="post-button text-center">

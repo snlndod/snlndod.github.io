@@ -95,15 +95,15 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="异常处理、输入输出流、Java 平台与内存管理  finally 块不一定会被执行 当程序在进入try 块之前就出现异常，会直接结束，不会执行 finally 块中的代码； 当程序在 try 块中强制退出时，也不会去执行 finally 块中的代码。  异常处理的原理异常处理的目的：为了提高程序的安全性与鲁棒性。JVM 将出现的错误表示为一个异常并抛出，这个异常可以在 catch 块中进行捕获，">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/3_1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/3_2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/3_3.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/3_4.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/3_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/3_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/3_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/3_4.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《面试宝典》读书笔记-3">
 <meta name="twitter:description" content="异常处理、输入输出流、Java 平台与内存管理  finally 块不一定会被执行 当程序在进入try 块之前就出现异常，会直接结束，不会执行 finally 块中的代码； 当程序在 try 块中强制退出时，也不会去执行 finally 块中的代码。  异常处理的原理异常处理的目的：为了提高程序的安全性与鲁棒性。JVM 将出现的错误表示为一个异常并抛出，这个异常可以在 catch 块中进行捕获，">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/3_1.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/3_1.png">
 
 
 
@@ -399,7 +399,7 @@
 <h2 id="IO-流的实现机制"><a href="#IO-流的实现机制" class="headerlink" title="IO 流的实现机制"></a>IO 流的实现机制</h2><p>Java IO 类在设计时采用了<strong>装饰者</strong>（Decorator）设计模式。<br>在 java.io 包中有许多的流，流的作用主要是为了改善程序设计性能并且使用方便。</p>
 <h3 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h3><p>以字节（8 bit）为单位，包含两个抽象类：InputStream、OutputStream。<br>处理时，不会用到<code>缓存</code>。</p>
 <h3 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h3><p>以字符（16 bit）为单位，包含两个抽象类：Reader、Writer。<br>处理时，用到了缓存。</p>
-<h2 id="File-类"><a href="#File-类" class="headerlink" title="File 类"></a>File 类</h2><p>对文件或目录进行管理与操作在编程中有着非常重要的作用，Java 提供了一个非常重要的类（File）来管理文件和文件夹。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/3_1.png" alt></p>
+<h2 id="File-类"><a href="#File-类" class="headerlink" title="File 类"></a>File 类</h2><p>对文件或目录进行管理与操作在编程中有着非常重要的作用，Java 提供了一个非常重要的类（File）来管理文件和文件夹。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/3_1.png" alt></p>
 <h2 id="Java-Socket"><a href="#Java-Socket" class="headerlink" title="Java Socket"></a>Java Socket</h2><p>网络上的两个程序通过一个双向的通信连接实现数据的交换，这个双向链路的一端称为一个 Socket。<br>Socket 也称为<code>套接字</code>，可以用来实现不同虚拟机或不同计算机之间的通信。任何一个 Socket 都是由 IP 地址和端口号唯一确定的。</p>
 <h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><p>可以分为三个阶段：</p>
 <ol>
@@ -410,7 +410,7 @@
 <blockquote>
 <p>Java中，可以使用 ServerSocket 来作为服务器端，Socket 作为客户端来实现网络通信。</p>
 </blockquote>
-<h2 id="Java-NIO"><a href="#Java-NIO" class="headerlink" title="Java NIO"></a>Java NIO</h2><p>非阻塞IO（Nonblocking IO）通过 Selector、Channel、Buffer 来实现非阻塞的 IO 操作：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/3_2.png" alt><br>NIO 的实现主要采用了<strong>反应器</strong>（Reactor）设计模式，可以用来处理多个事件源。<br>与传统 Socket 方式相比，由于 NIO 采用了非阻塞的方式，在处理大量并发请求时，使用 NIO 要比使用 Socket 效率高出很多。</p>
+<h2 id="Java-NIO"><a href="#Java-NIO" class="headerlink" title="Java NIO"></a>Java NIO</h2><p>非阻塞IO（Nonblocking IO）通过 Selector、Channel、Buffer 来实现非阻塞的 IO 操作：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/3_2.png" alt><br>NIO 的实现主要采用了<strong>反应器</strong>（Reactor）设计模式，可以用来处理多个事件源。<br>与传统 Socket 方式相比，由于 NIO 采用了非阻塞的方式，在处理大量并发请求时，使用 NIO 要比使用 Socket 效率高出很多。</p>
 <h2 id="Java-序列化"><a href="#Java-序列化" class="headerlink" title="Java 序列化"></a>Java 序列化</h2><p>提供了两种对象持久化的方式：序列化、外部序列化。</p>
 <h3 id="序列化（Serialization）"><a href="#序列化（Serialization）" class="headerlink" title="序列化（Serialization）"></a>序列化（Serialization）</h3><p>序列化是一种将对象以一连串的字节描述的过程，用于解决在对对象进行读写操作时所引发的问题。<br>所有要实现序列化的类都必须实现 Serializable 接口，位于 java.lang 包中，它里面没有包含任何方法。<br><strong>特点：</strong></p>
 <ul>
@@ -460,7 +460,7 @@
 <li>扩展类</li>
 <li>自定义类</li>
 </ul>
-<p>Java 针对这 3 种不同的类，提供了 3 种类型的加载器：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/3_3.png" alt></p>
+<p>Java 针对这 3 种不同的类，提供了 3 种类型的加载器：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/3_3.png" alt></p>
 <h3 id="类加载的步骤"><a href="#类加载的步骤" class="headerlink" title="类加载的步骤"></a>类加载的步骤</h3><ul>
 <li>装载：根据查找路径找到对应的 class 文件，然后导入。</li>
 <li>链接：<ul>
@@ -504,7 +504,7 @@
 <li>单例模式。由于单例对象以静态变量的方式存储，因此它在 JVM 的整个生命周期中都存在。</li>
 </ul>
 <h2 id="堆与栈的区别"><a href="#堆与栈的区别" class="headerlink" title="堆与栈的区别"></a>堆与栈的区别</h2><h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><p>栈内存用来存放基本数据类型、引用变量。<br>主要是用来执行程序的，存取速度更快。但大小和生存周期必须是确定的，缺乏一定的灵活性。</p>
-<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>堆内存用来存放<strong>运行时创建的对象</strong>。<br>主要用来存放对象的，可以在运行时动态地分配内存，生存期不用提前告诉编译器，但这也导致了其存取速度的<code>缓慢</code>。<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/Java/3_4.png" alt></p>
+<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p>堆内存用来存放<strong>运行时创建的对象</strong>。<br>主要用来存放对象的，可以在运行时动态地分配内存，生存期不用提前告诉编译器，但这也导致了其存取速度的<code>缓慢</code>。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/3_4.png" alt></p>
 <blockquote>
 <p>存储在栈中的变量通过压栈、弹栈操作，将会在栈中被回收；而存储在堆中的对象将会由垃圾回收器来自动回收。</p>
 </blockquote>

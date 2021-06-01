@@ -95,14 +95,14 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="What is Pastebin?Pastebin like services enable users to store plain text or images over the network (typically the Internet) and generate unique URLs to access the uploaded data. Such services are als">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/25.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/26.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/27.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/25.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/26.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/27.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Designing Pastebin">
 <meta name="twitter:description" content="What is Pastebin?Pastebin like services enable users to store plain text or images over the network (typically the Internet) and generate unique URLs to access the uploaded data. Such services are als">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/25.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/25.png">
 
 
 
@@ -446,9 +446,9 @@
 <li>There are no relationships between records, except if we want to store which user created what paste;</li>
 <li>Our service is read-heavy;</li>
 </ol>
-<p><strong>Database Schema</strong>: We would need two tables, one for storing information about the pastes and the other for users’ data:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/25.png" alt></p>
+<p><strong>Database Schema</strong>: We would need two tables, one for storing information about the pastes and the other for users’ data:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/25.png" alt></p>
 <p>Here, “URLHash” is the URL equivalent of the TinyURL, and “ContentKey” is a reference to an external object storing the contents of the paste; we’ll discuss the external storage of the paste contents later in the chapter.</p>
-<h2 id="High-Level-Design"><a href="#High-Level-Design" class="headerlink" title="High-Level Design"></a>High-Level Design</h2><p>At a high level, we need an application layer that will serve all the read and write requests. Application layer will talk to a storage layer to store and retrieve data. We can segregate our storage layer with one database storing metadata related to each paste, users, etc., while the other storing the paste contents in some object storage (like Amazon S3). This division of data will also allow us to scale them individually:<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/26.png" alt></p>
+<h2 id="High-Level-Design"><a href="#High-Level-Design" class="headerlink" title="High-Level Design"></a>High-Level Design</h2><p>At a high level, we need an application layer that will serve all the read and write requests. Application layer will talk to a storage layer to store and retrieve data. We can segregate our storage layer with one database storing metadata related to each paste, users, etc., while the other storing the paste contents in some object storage (like Amazon S3). This division of data will also allow us to scale them individually:<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/26.png" alt></p>
 <h2 id="Component-Design"><a href="#Component-Design" class="headerlink" title="Component Design"></a>Component Design</h2><h3 id="Application-layer"><a href="#Application-layer" class="headerlink" title="Application layer"></a>Application layer</h3><p>Our application layer will process all incoming and outgoing requests. The application servers will be talking to the backend data store components to serve the requests.</p>
 <p><strong>How to handle a write-request</strong>? Upon receiving a write-request, our application server will generate a six-letter random string, which would serve as the key of the paste (if the user has not provided a custom key). The application server will then store the contents of the paste and the generated key in the database. After the successful insertion, the server can return the key to the user. One possible problem here could be that the insertion fails because of a duplicate key. Since we are generating a random key, there is a possibility that the newly generated key could match an existing one. In that case, we should regenerate a new key and try again. We should keep retrying until we don’t see failure due to the duplicate key. We should return an error to the user if the custom key they have provided is already present in our database.</p>
 <p>Another solution for the above problem could be to run a standalone <strong>Key Generation Service (KGS)</strong> that generates random six letters strings beforehand and stores them in a database (let’s call it key-DB). Whenever we want to store a new paste, we will just take one of the already generated keys and use it. This approach will make things quite simple and fast since we will not be worrying about duplications or collisions. KGS will make sure all the keys inserted in key-DB are unique. KGS can use two tables to store keys, one for keys that are not used yet and one for all the used keys. As soon as KGS gives some keys to an application server, it can move these to the used keys table. KGS can always keep some keys in memory so that whenever a server needs them, it can quickly provide them. As soon as KGS loads some keys in memory, it can move them to the used keys table, this way we can make sure each server gets unique keys. If KGS dies before using all the keys loaded in memory, we will be wasting those keys. We can ignore these keys given that we have a huge number of them.</p>
@@ -460,11 +460,11 @@
 <li>Metadata database: We can use a relational database like MySQL or a Distributed Key-Value store like Dynamo or Cassandra;</li>
 <li>Object storage: We can store our contents in an Object Storage like Amazon S3. Whenever we feel like hitting our full capacity on content storage, we can easily increase it by adding more servers;</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/27.png" alt></p>
-<h2 id="Purging-or-DB-Cleanup"><a href="#Purging-or-DB-Cleanup" class="headerlink" title="Purging or DB Cleanup"></a>Purging or DB Cleanup</h2><p>Please see <a href="https://snlndod.github.io/2021/02/08/Designing-TinyURL/" target="_blank" rel="noopener">Designing TinyURL</a>.</p>
-<h2 id="Data-Partitioning-and-Replication"><a href="#Data-Partitioning-and-Replication" class="headerlink" title="Data Partitioning and Replication"></a>Data Partitioning and Replication</h2><p>Please see <a href="https://snlndod.github.io/2021/02/08/Designing-TinyURL/" target="_blank" rel="noopener">Designing TinyURL</a>.</p>
-<h2 id="Cache-and-Load-Balancer"><a href="#Cache-and-Load-Balancer" class="headerlink" title="Cache and Load Balancer"></a>Cache and Load Balancer</h2><p>Please see <a href="https://snlndod.github.io/2021/02/08/Designing-TinyURL/" target="_blank" rel="noopener">Designing TinyURL</a>.</p>
-<h2 id="Security-and-Permissions"><a href="#Security-and-Permissions" class="headerlink" title="Security and Permissions"></a>Security and Permissions</h2><p>Please see <a href="https://snlndod.github.io/2021/02/08/Designing-TinyURL/" target="_blank" rel="noopener">Designing TinyURL</a>.</p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/27.png" alt></p>
+<h2 id="Purging-or-DB-Cleanup"><a href="#Purging-or-DB-Cleanup" class="headerlink" title="Purging or DB Cleanup"></a>Purging or DB Cleanup</h2><p>Please see <a href="https://umarellyh.github.io/2021/02/08/Designing-TinyURL/" target="_blank" rel="noopener">Designing TinyURL</a>.</p>
+<h2 id="Data-Partitioning-and-Replication"><a href="#Data-Partitioning-and-Replication" class="headerlink" title="Data Partitioning and Replication"></a>Data Partitioning and Replication</h2><p>Please see <a href="https://umarellyh.github.io/2021/02/08/Designing-TinyURL/" target="_blank" rel="noopener">Designing TinyURL</a>.</p>
+<h2 id="Cache-and-Load-Balancer"><a href="#Cache-and-Load-Balancer" class="headerlink" title="Cache and Load Balancer"></a>Cache and Load Balancer</h2><p>Please see <a href="https://umarellyh.github.io/2021/02/08/Designing-TinyURL/" target="_blank" rel="noopener">Designing TinyURL</a>.</p>
+<h2 id="Security-and-Permissions"><a href="#Security-and-Permissions" class="headerlink" title="Security and Permissions"></a>Security and Permissions</h2><p>Please see <a href="https://umarellyh.github.io/2021/02/08/Designing-TinyURL/" target="_blank" rel="noopener">Designing TinyURL</a>.</p>
 
       
     </div>

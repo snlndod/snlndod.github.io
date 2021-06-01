@@ -95,16 +95,16 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="Distributed Hash Table (DHT) is one of the fundamental components used in distributed scalable systems. Hash Tables need a key, a value, and a hash function where hash function maps the key to a locat">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/08.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/09.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/10.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/11.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/12.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/08.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/09.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/10.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/11.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/12.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Consistent Hashing">
 <meta name="twitter:description" content="Distributed Hash Table (DHT) is one of the fundamental components used in distributed scalable systems. Hash Tables need a key, a value, and a hash function where hash function maps the key to a locat">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/08.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/08.png">
 
 
 
@@ -387,7 +387,7 @@
 </ul>
 </li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/08.png" alt><br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/09.png" alt><br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/10.png" alt><br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/11.png" alt><br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/SystemDesign/educative/12.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/08.png" alt><br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/09.png" alt><br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/10.png" alt><br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/11.png" alt><br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SystemDesign/educative/12.png" alt></p>
 <p>To add a new server, say D, keys that were originally residing at C will be split. Some of them will be shifted to D, while other keys will not be touched.<br>To remove a cache or, if a cache fails, say A, all keys that were originally mapped to A will fall into B, and only those keys need to be moved to B; other keys will not be affected.</p>
 <p>For load balancing, as we discussed in the beginning, the real data is essentially randomly distributed and thus may not be uniform. It may make the keys on caches unbalanced.<br>To handle this issue, we add “virtual replicas” for caches. Instead of mapping each cache to a single point on the ring, we map it to multiple points on the ring, i.e., replicas. This way, each cache is associated with multiple portions of the ring.<br>If the hash function “mixes well”, as the number of replicas increases, the keys will be more balanced.</p>
 

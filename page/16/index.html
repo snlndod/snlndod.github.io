@@ -491,7 +491,7 @@
 
       
         
-          <h2 id="如何理解“贪心算法”？"><a href="#如何理解“贪心算法”？" class="headerlink" title="如何理解“贪心算法”？"></a>如何理解“贪心算法”？</h2><p>假设我们有一个可以容纳 100kg 物品的背包，可以装各种物品。我们有以下 5 种豆子，每种豆子的总量和总价值都各不相同。为了让背包中所装物品的总价值最大，我们如何选择在背包中装哪些豆子？每种豆子又该装多少呢：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/222.png" alt></p>
+          <h2 id="如何理解“贪心算法”？"><a href="#如何理解“贪心算法”？" class="headerlink" title="如何理解“贪心算法”？"></a>如何理解“贪心算法”？</h2><p>假设我们有一个可以容纳 100kg 物品的背包，可以装各种物品。我们有以下 5 种豆子，每种豆子的总量和总价值都各不相同。为了让背包中所装物品的总价值最大，我们如何选择在背包中装哪些豆子？每种豆子又该装多少呢：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/222.png" alt></p>
 <p>实际上，这个问题很简单，我们只要先算一算每个物品的单价，按照单价由高到低依次来装就好了。单价从高到低排列，依次是：黑豆、绿豆、红豆、青豆、黄豆，所以，我们可以往背包里装 20kg 黑豆、30kg 绿豆、50kg 红豆。这个问题的解决思路显而易见，它本质上借助的就是贪心算法。</p>
 <p><code>贪心算法</code>（Greedy Algorithm）解决问题的步骤：</p>
 <ol>
@@ -745,7 +745,7 @@
       
         
           <h2 id="什么是“Trie-树”？"><a href="#什么是“Trie-树”？" class="headerlink" title="什么是“Trie 树”？"></a>什么是“Trie 树”？</h2><p>Trie 树，也叫“字典树”。顾名思义，它是一个树形结构。它是一种专门处理字符串匹配的数据结构，用来<strong>解决在一组字符串集合中快速查找某个字符串的问题</strong>。我举个简单的例子来说明一下。我们有 6 个字符串，它们分别是：how, hi, her, hello, so, see。我们希望在里面多次查找某个字符串是否存在。如果每次查找，都是拿要查找的字符串跟这 6 个字符串依次进行字符串匹配，那效率就比较低。</p>
-<p>这个时候，我们就可以先对这 6 个字符串做一下预处理，组织成 Trie 树的结构，之后每次查找，都是在 Trie 树中进行匹配查找。Trie 树的本质，就是<strong>利用字符串之间的公共前缀，将重复的前缀合并在一起</strong>。最后构造出来的就是下面这个图中的样子：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/208.png" alt></p>
+<p>这个时候，我们就可以先对这 6 个字符串做一下预处理，组织成 Trie 树的结构，之后每次查找，都是在 Trie 树中进行匹配查找。Trie 树的本质，就是<strong>利用字符串之间的公共前缀，将重复的前缀合并在一起</strong>。最后构造出来的就是下面这个图中的样子：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/208.png" alt></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2021/01/12/Trie-树/#more" rel="contents">
@@ -868,7 +868,7 @@
       
         
           <h2 id="BF-算法"><a href="#BF-算法" class="headerlink" title="BF 算法"></a>BF 算法</h2><p>BF（Brute Force）算法，中文叫作暴力匹配算法，也叫朴素匹配算法。从名字可以看出，这种算法的字符串匹配方式很“暴力”，当然也就会比较简单、好懂，但相应的性能也不高。我们在字符串 A 中查找字符串 B，那字符串 A 就是<code>主串</code>，字符串 B 就是<code>模式串</code>。我们把主串的长度记作 n，模式串的长度记作 m。因为我们是在主串中查找模式串，所以 n&gt;m。</p>
-<p>作为最简单、最暴力的字符串匹配算法，BF 算法的思想可以用一句话来概括，那就是，我们<strong>在主串中，检查起始位置分别是 0, 1, 2, n-m 且长度为 m 的 n-m+1 个子串，看有没有跟模式串匹配的</strong>：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/170.png" alt></p>
+<p>作为最简单、最暴力的字符串匹配算法，BF 算法的思想可以用一句话来概括，那就是，我们<strong>在主串中，检查起始位置分别是 0, 1, 2, n-m 且长度为 m 的 n-m+1 个子串，看有没有跟模式串匹配的</strong>：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/170.png" alt></p>
 <p>从上面的算法思想和例子，我们可以看出，在极端情况下，比如主串是“aaaaa…aaaaaa”，模式串是“aaaaab”。我们每次都比对 m 个字符，要比对 n-m+1 次，所以，这种算法的<strong>最坏情况时间复杂度是 O(n*m)</strong>。尽管理论上，BF 算法的时间复杂度很高，是 O(n*m)，但在实际的开发中，它却是一个比较常用的字符串匹配算法。原因有两点：</p>
 <ol>
 <li>实际的软件开发中，大部分情况下，模式串和主串的长度都不会太长。而且每次模式串与主串中的子串匹配的时候，当<strong>中途遇到不能匹配的字符的时候，就可以就停止了</strong>，不需要把 m 个字符都比对一下。所以，尽管理论上的最坏情况时间复杂度是 O(n*m)，但是，统计意义上，大部分情况下，算法执行效率要比这个高很多；</li>

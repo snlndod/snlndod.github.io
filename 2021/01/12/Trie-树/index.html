@@ -95,19 +95,19 @@
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:description" content="什么是“Trie 树”？Trie 树，也叫“字典树”。顾名思义，它是一个树形结构。它是一种专门处理字符串匹配的数据结构，用来解决在一组字符串集合中快速查找某个字符串的问题。我举个简单的例子来说明一下。我们有 6 个字符串，它们分别是：how, hi, her, hello, so, see。我们希望在里面多次查找某个字符串是否存在。如果每次查找，都是拿要查找的字符串跟这 6 个字符串依次进行字符串">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/208.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/209.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/210.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/211.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/212.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/213.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/214.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/215.png">
-<meta property="og:updated_time" content="2021-05-28T15:48:07.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/208.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/209.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/210.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/211.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/212.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/213.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/214.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/215.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Trie 树">
 <meta name="twitter:description" content="什么是“Trie 树”？Trie 树，也叫“字典树”。顾名思义，它是一个树形结构。它是一种专门处理字符串匹配的数据结构，用来解决在一组字符串集合中快速查找某个字符串的问题。我举个简单的例子来说明一下。我们有 6 个字符串，它们分别是：how, hi, her, hello, so, see。我们希望在里面多次查找某个字符串是否存在。如果每次查找，都是拿要查找的字符串跟这 6 个字符串依次进行字符串">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/208.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/208.png">
 
 
 
@@ -365,18 +365,18 @@
 
       
         <h2 id="什么是“Trie-树”？"><a href="#什么是“Trie-树”？" class="headerlink" title="什么是“Trie 树”？"></a>什么是“Trie 树”？</h2><p>Trie 树，也叫“字典树”。顾名思义，它是一个树形结构。它是一种专门处理字符串匹配的数据结构，用来<strong>解决在一组字符串集合中快速查找某个字符串的问题</strong>。我举个简单的例子来说明一下。我们有 6 个字符串，它们分别是：how, hi, her, hello, so, see。我们希望在里面多次查找某个字符串是否存在。如果每次查找，都是拿要查找的字符串跟这 6 个字符串依次进行字符串匹配，那效率就比较低。</p>
-<p>这个时候，我们就可以先对这 6 个字符串做一下预处理，组织成 Trie 树的结构，之后每次查找，都是在 Trie 树中进行匹配查找。Trie 树的本质，就是<strong>利用字符串之间的公共前缀，将重复的前缀合并在一起</strong>。最后构造出来的就是下面这个图中的样子：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/208.png" alt></p>
+<p>这个时候，我们就可以先对这 6 个字符串做一下预处理，组织成 Trie 树的结构，之后每次查找，都是在 Trie 树中进行匹配查找。Trie 树的本质，就是<strong>利用字符串之间的公共前缀，将重复的前缀合并在一起</strong>。最后构造出来的就是下面这个图中的样子：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/208.png" alt></p>
 <a id="more"></a>
 
-<p>其中，根节点不包含任何信息。每个节点表示一个字符串中的字符，从根节点到红色节点的一条路径表示一个字符串（注意：<strong>红色节点并不都是叶子节点</strong>）。为了让你更容易理解 Trie 树是怎么构造出来的，我画了一个 Trie 树构造的分解过程。<strong>构造过程的每一步，都相当于往 Trie 树中插入一个字符串</strong>。当所有字符串都插入完成之后，Trie 树就构造好了：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/209.png" alt><br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/210.png" alt></p>
-<p>当我们在 Trie 树中查找一个字符串的时候，比如查找字符串“her”，那我们将要查找的字符串分割成单个的字符 h, e, r，然后从 Trie 树的根节点开始匹配。如图所示，绿色的路径就是在 Trie 树中匹配的路径：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/211.png" alt></p>
-<p>如果我们要查找的是字符串“he”呢？我们还用上面同样的方法，从根节点开始，沿着某条路径来匹配，如图所示，绿色的路径，是字符串“he”匹配的路径。但是，路径的最后一个节点“e”并不是红色的。也就是说，<strong>“he”是某个字符串的前缀子串，但并不能完全匹配任何字符串</strong>：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/212.png" alt></p>
+<p>其中，根节点不包含任何信息。每个节点表示一个字符串中的字符，从根节点到红色节点的一条路径表示一个字符串（注意：<strong>红色节点并不都是叶子节点</strong>）。为了让你更容易理解 Trie 树是怎么构造出来的，我画了一个 Trie 树构造的分解过程。<strong>构造过程的每一步，都相当于往 Trie 树中插入一个字符串</strong>。当所有字符串都插入完成之后，Trie 树就构造好了：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/209.png" alt><br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/210.png" alt></p>
+<p>当我们在 Trie 树中查找一个字符串的时候，比如查找字符串“her”，那我们将要查找的字符串分割成单个的字符 h, e, r，然后从 Trie 树的根节点开始匹配。如图所示，绿色的路径就是在 Trie 树中匹配的路径：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/211.png" alt></p>
+<p>如果我们要查找的是字符串“he”呢？我们还用上面同样的方法，从根节点开始，沿着某条路径来匹配，如图所示，绿色的路径，是字符串“he”匹配的路径。但是，路径的最后一个节点“e”并不是红色的。也就是说，<strong>“he”是某个字符串的前缀子串，但并不能完全匹配任何字符串</strong>：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/212.png" alt></p>
 <h2 id="如何实现一棵-Trie-树？"><a href="#如何实现一棵-Trie-树？" class="headerlink" title="如何实现一棵 Trie 树？"></a>如何实现一棵 Trie 树？</h2><p>Trie 树主要有两个操作：</p>
 <ol>
 <li>将字符串集合构造成 Trie 树。这个过程分解开来的话，就是一个将字符串插入到 Trie 树的过程；</li>
 <li>在 Trie 树中查询一个字符串；</li>
 </ol>
-<p>借助散列表的思想，我们通过一个下标与字符一一映射的数组，来存储子节点的指针。这句话稍微有点抽象，不怎么好懂，我画了一张图：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/213.png" alt></p>
+<p>借助散列表的思想，我们通过一个下标与字符一一映射的数组，来存储子节点的指针。这句话稍微有点抽象，不怎么好懂，我画了一张图：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/213.png" alt></p>
 <p>假设我们的字符串中只有从 a 到 z 这 26 个小写字母，我们在数组中下标为 0 的位置，存储指向子节点 a 的指针，下标为 1 的位置存储指向子节点 b 的指针，以此类推，下标为 25 的位置，存储的是指向的子节点 z 的指针。如果某个字符的子节点不存在，我们就在对应的下标的位置存储 null：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> data;</span><br><span class="line">    TrieNode children[<span class="number">26</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -386,7 +386,7 @@
 <p>如果要在一组字符串中，频繁地查询某些字符串，用 Trie 树会非常高效。构建 Trie 树的过程，需要扫描所有的字符串，<strong>时间复杂度是 O(n)（n 表示所有字符串的长度和）</strong>。但是<strong>一旦构建成功之后，后续的查询操作会非常高效</strong>。每次查询时，如果要查询的字符串长度是 k，那我们只需要比对大约 k 个节点，就能完成查询操作。跟原本那组字符串的长度和个数没有任何关系。所以说，构建好 Trie 树后，在其中<strong>查找字符串的时间复杂度是 O(k)</strong>，k 表示要查找的字符串的长度。</p>
 <h2 id="Trie-树真的很耗内存吗？"><a href="#Trie-树真的很耗内存吗？" class="headerlink" title="Trie 树真的很耗内存吗？"></a>Trie 树真的很耗内存吗？</h2><p>Trie 树是一种非常独特的、高效的字符串匹配方法。但是，关于 Trie 树，你有没有听过这样一种说法：“Trie 树是非常耗内存的，用的是一种空间换时间的思路”。Trie 树的本质是避免重复存储一组字符串的相同前缀子串，但是现在<strong>每个字符（对应一个节点）的存储远远大于 1 个字节</strong>。按照我们上面举的例子，数组长度为 26，每个元素是 8 字节，那每个节点就会额外需要 26*8=208 个字节。而且这还是只包含 26 个字符的情况。</p>
 <p>如果字符串中不仅包含小写字母，还包含大写字母、数字、甚至是中文，那需要的存储空间就更多了。所以，也就是说，在某些情况下，Trie 树不一定会节省存储空间。<strong>在重复的前缀并不多的情况下，Trie 树不但不能节省内存，还有可能会浪费更多的内存</strong>。我们可以稍微牺牲一点查询的效率，将每个节点中的数组换成其他数据结构，来存储一个节点的子节点指针。用哪种数据结构呢？我们的选择其实有很多，比如有序数组、跳表、散列表、红黑树等。</p>
-<p>假设我们用有序数组，数组中的指针按照所指向的子节点中的字符的大小顺序排列。查询的时候，我们可以通过二分查找的方法，快速查找到某个字符应该匹配的子节点的指针。但是，在往 Trie 树中插入一个字符串的时候，我们<strong>为了维护数组中数据的有序性，就会稍微慢了点</strong>。实际上，Trie 树的变体有很多，都可以在一定程度上解决内存消耗的问题。比如，<code>缩点优化</code>，就是<strong>对只有一个子节点的节点，而且此节点不是一个串的结束节点，可以将此节点与子节点合并</strong>。这样可以节省空间，但却增加了编码难度：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/214.png" alt></p>
+<p>假设我们用有序数组，数组中的指针按照所指向的子节点中的字符的大小顺序排列。查询的时候，我们可以通过二分查找的方法，快速查找到某个字符应该匹配的子节点的指针。但是，在往 Trie 树中插入一个字符串的时候，我们<strong>为了维护数组中数据的有序性，就会稍微慢了点</strong>。实际上，Trie 树的变体有很多，都可以在一定程度上解决内存消耗的问题。比如，<code>缩点优化</code>，就是<strong>对只有一个子节点的节点，而且此节点不是一个串的结束节点，可以将此节点与子节点合并</strong>。这样可以节省空间，但却增加了编码难度：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/214.png" alt></p>
 <h2 id="Trie-树与散列表、红黑树的比较"><a href="#Trie-树与散列表、红黑树的比较" class="headerlink" title="Trie 树与散列表、红黑树的比较"></a>Trie 树与散列表、红黑树的比较</h2><p>在一组字符串中查找字符串，Trie 树实际上表现得并不好。它对要处理的字符串有及其严苛的要求：</p>
 <ul>
 <li>字符串中包含的字符集不能太大。我们前面讲到，如果字符集太大，那存储空间可能就会浪费很多。即便可以优化，但也要付出牺牲查询、插入效率的代价；</li>
@@ -395,7 +395,7 @@
 <li>我们知道，通过指针串起来的数据块是不连续的，而 Trie 树中用到了指针，所以，对缓存并不友好，性能上会打个折扣；</li>
 </ul>
 <p>综合这几点，针对在一组字符串中查找字符串的问题，我们在工程中，更倾向于用散列表或者红黑树。因为这两种数据结构，我们都不需要自己去实现，直接利用编程语言中提供的现成类库就行了。实际上，Trie 树只是不适合精确匹配查找，这种问题更适合用散列表或者红黑树来解决；<strong>Trie 树比较适合的是查找前缀匹配的字符串</strong>。</p>
-<h2 id="如何实现搜索关键词的提示功能"><a href="#如何实现搜索关键词的提示功能" class="headerlink" title="如何实现搜索关键词的提示功能"></a>如何实现搜索关键词的提示功能</h2><p>我们假设关键词库由用户的热门搜索关键词组成。我们将这个词库构建成一个 Trie 树。当用户输入其中某个单词的时候，把这个词作为一个前缀子串在 Trie 树中匹配。为了讲解方便，我们假设词库里只有 hello, her, hi, how, so, see 这 6 个关键词。当用户输入了字母 h 的时候，我们就把以 h 为前缀的 hello, her, hi, how 展示在搜索提示框内。当用户继续键入字母 e 的时候，我们就把以 he 为前缀的 hello, her 展示在搜索提示框内。这就是<strong>搜索关键词提示的最基本的算法原理</strong>：<br><img src="https://raw.githubusercontent.com/snlndod/mPOST/master/CLRS/geek/215.png" alt></p>
+<h2 id="如何实现搜索关键词的提示功能"><a href="#如何实现搜索关键词的提示功能" class="headerlink" title="如何实现搜索关键词的提示功能"></a>如何实现搜索关键词的提示功能</h2><p>我们假设关键词库由用户的热门搜索关键词组成。我们将这个词库构建成一个 Trie 树。当用户输入其中某个单词的时候，把这个词作为一个前缀子串在 Trie 树中匹配。为了讲解方便，我们假设词库里只有 hello, her, hi, how, so, see 这 6 个关键词。当用户输入了字母 h 的时候，我们就把以 h 为前缀的 hello, her, hi, how 展示在搜索提示框内。当用户继续键入字母 e 的时候，我们就把以 he 为前缀的 hello, her 展示在搜索提示框内。这就是<strong>搜索关键词提示的最基本的算法原理</strong>：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/215.png" alt></p>
 <p>实际上，搜索引擎的搜索关键词提示功能远非我讲的这么简单。如果再稍微深入一点，你就会想到，上面的解决办法遇到下面几个问题：</p>
 <ul>
 <li>我刚讲的思路是针对英文的搜索关键词提示，对于更加复杂的中文来说，词库中的数据又该如何构建成 Trie 树呢；</li>
