@@ -89,7 +89,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="SDE PREPARES">
-<meta property="og:url" content="http://yoursite.com/page/22/index.html">
+<meta property="og:url" content="https://umarellyh.github.io/page/22/index.html">
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
@@ -121,7 +121,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/22/">
+  <link rel="canonical" href="https://umarellyh.github.io/page/22/">
 
 
 
@@ -280,7 +280,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/23/State-Design-Pattern/">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/State-Design-Pattern.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -302,7 +302,7 @@
             
               
                 
-                <a class="post-title-link" href="/2020/12/23/State-Design-Pattern/" itemprop="url">
+                <a class="post-title-link" href="/State-Design-Pattern.html" itemprop="url">
                   State Design Pattern
                 </a>
               
@@ -362,7 +362,7 @@
 <p>我写了一个骨架代码，如下所示。其中，obtainMushRoom()、obtainCape()、obtainFireFlower()、meetMonster() 这几个函数，能够根据当前的状态和事件，更新状态和增减积分：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/12/23/State-Design-Pattern/#more" rel="contents">
+            <a class="btn" href="/State-Design-Pattern.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -405,7 +405,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/20/Chain-of-Responsibility-Design-Pattern/">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/Chain-of-Responsibility-Design-Pattern.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -427,7 +427,7 @@
             
               
                 
-                <a class="post-title-link" href="/2020/12/20/Chain-of-Responsibility-Design-Pattern/" itemprop="url">
+                <a class="post-title-link" href="/Chain-of-Responsibility-Design-Pattern.html" itemprop="url">
                   Chain of Responsibility Design Pattern
                 </a>
               
@@ -489,7 +489,7 @@
 <p>第一种实现方式如下所示。其中，<strong>Handler 是所有处理器类的抽象父类，handle() 是抽象方法</strong>。每个具体的处理器类的 handle() 函数的代码结构类似，如果它能处理该请求，就不继续往下传递；如果不能处理，则交由后面的处理器来处理（也就是调用 successor.handle()）。<strong>HandlerChain 是处理器链，从数据结构的角度来看，它就是一个记录了链头、链尾的链表</strong>。其中，记录链尾是为了方便添加处理器：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/12/20/Chain-of-Responsibility-Design-Pattern/#more" rel="contents">
+            <a class="btn" href="/Chain-of-Responsibility-Design-Pattern.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -532,7 +532,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/19/Strategy-Design-Pattern/">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/Strategy-Design-Pattern.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -554,7 +554,7 @@
             
               
                 
-                <a class="post-title-link" href="/2020/12/19/Strategy-Design-Pattern/" itemprop="url">
+                <a class="post-title-link" href="/Strategy-Design-Pattern.html" itemprop="url">
                   Strategy Design Pattern
                 </a>
               
@@ -617,7 +617,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Strategy</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">algorithmInterface</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteStrategyA</span> <span class="keyword">implements</span> <span class="title">Strategy</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">algorithmInterface</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 具体的算法...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteStrategyB</span> <span class="keyword">implements</span> <span class="title">Strategy</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">algorithmInterface</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 具体的算法...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/12/19/Strategy-Design-Pattern/#more" rel="contents">
+            <a class="btn" href="/Strategy-Design-Pattern.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -660,7 +660,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/16/Template-Method-Design-Pattern/">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/Template-Method-Design-Pattern.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -682,7 +682,7 @@
             
               
                 
-                <a class="post-title-link" href="/2020/12/16/Template-Method-Design-Pattern/" itemprop="url">
+                <a class="post-title-link" href="/Template-Method-Design-Pattern.html" itemprop="url">
                   Template Method Design Pattern
                 </a>
               
@@ -744,7 +744,7 @@
 <p>原理很简单，代码实现就更加简单，我写了一个示例代码，templateMethod() 函数<strong>定义为 final，是为了避免子类重写它</strong>。method1() 和 method2() <strong>定义为 abstract，是为了强迫子类去实现</strong>。不过，这些都不是必须的，在实际的项目开发中，模板模式的代码实现比较灵活：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/12/16/Template-Method-Design-Pattern/#more" rel="contents">
+            <a class="btn" href="/Template-Method-Design-Pattern.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -787,7 +787,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/13/Observer-Design-Pattern/">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/Observer-Design-Pattern.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -809,7 +809,7 @@
             
               
                 
-                <a class="post-title-link" href="/2020/12/13/Observer-Design-Pattern/" itemprop="url">
+                <a class="post-title-link" href="/Observer-Design-Pattern.html" itemprop="url">
                   Observer Design Pattern
                 </a>
               
@@ -872,7 +872,7 @@
 <p>实际上，观察者模式是一个比较抽象的模式，根据不同的应用场景和需求，有完全不同的实现方式。现在，我们先来看其中最经典的一种实现方式：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/12/13/Observer-Design-Pattern/#more" rel="contents">
+            <a class="btn" href="/Observer-Design-Pattern.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>

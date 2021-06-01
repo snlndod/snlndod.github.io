@@ -1,0 +1,952 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Python,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="常常得先把那些乱七八糟的数据，处理成漂亮点的结构化形式。  Python 解释器一次执行一条语句。“&amp;gt;&amp;gt;&amp;gt;”是提示符，可以在那里输入表达式。 语言语义重视可读性、简洁性、明确性，可执行的伪代码。 缩进，而不是大括号通过空白符（4 个空格）来组织代码。冒号表示一段缩进代码块的开始，其后必须缩进相同的量，直到代码块结束为止：">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 语言精要-1">
+<meta property="og:url" content="https://umarellyh.github.io/Python-语言精要-1.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="常常得先把那些乱七八糟的数据，处理成漂亮点的结构化形式。  Python 解释器一次执行一条语句。“&amp;gt;&amp;gt;&amp;gt;”是提示符，可以在那里输入表达式。 语言语义重视可读性、简洁性、明确性，可执行的伪代码。 缩进，而不是大括号通过空白符（4 个空格）来组织代码。冒号表示一段缩进代码块的开始，其后必须缩进相同的量，直到代码块结束为止：">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/python/python_1.jpeg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 语言精要-1">
+<meta name="twitter:description" content="常常得先把那些乱七八糟的数据，处理成漂亮点的结构化形式。  Python 解释器一次执行一条语句。“&amp;gt;&amp;gt;&amp;gt;”是提示符，可以在那里输入表达式。 语言语义重视可读性、简洁性、明确性，可执行的伪代码。 缩进，而不是大括号通过空白符（4 个空格）来组织代码。冒号表示一段缩进代码块的开始，其后必须缩进相同的量，直到代码块结束为止：">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/python/python_1.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/Python-语言精要-1.html">
+
+
+
+
+
+  <title> Python 语言精要-1 | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/Python-语言精要-1.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python 语言精要-1
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-27T16:14:38+08:00">
+                2017-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>常常得先把那些乱七八糟的数据，处理成漂亮点的结构化形式。</p>
+</blockquote>
+<h2 id="Python-解释器"><a href="#Python-解释器" class="headerlink" title="Python 解释器"></a>Python 解释器</h2><p>一次执行一条语句。<br>“&gt;&gt;&gt;”是提示符，可以在那里输入表达式。</p>
+<h2 id="语言语义"><a href="#语言语义" class="headerlink" title="语言语义"></a>语言语义</h2><p>重视可读性、简洁性、明确性，可执行的伪代码。</p>
+<h3 id="缩进，而不是大括号"><a href="#缩进，而不是大括号" class="headerlink" title="缩进，而不是大括号"></a>缩进，而不是大括号</h3><p>通过空白符（4 个空格）来组织代码。<br><strong>冒号</strong>表示一段缩进代码块的开始，其后必须缩进相同的量，直到代码块结束为止：</p>
+<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> array:</span><br><span class="line">    <span class="keyword">if</span> x &lt; pivot:</span><br><span class="line">        less.append(x)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        greater.append(x)</span><br></pre></td></tr></table></figure>
+
+<p>在一行上放置多条语句的做法是不推荐的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">5</span>; b = <span class="number">6</span>; c = <span class="number">7</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="万物皆对象"><a href="#万物皆对象" class="headerlink" title="万物皆对象"></a>万物皆对象</h3><p>对象模型的一致性。<br>即使是函数也能被当做其他对象那样处理。</p>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>任何前缀为“#”的文本都会被解释器忽略掉。</p>
+<h3 id="函数调用和对象方法调用"><a href="#函数调用和对象方法调用" class="headerlink" title="函数调用和对象方法调用"></a>函数调用和对象方法调用</h3><p>函数的调用需要用到圆括号以及 0 个或多个参数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result = f(x, y, z)</span><br></pre></td></tr></table></figure>
+
+<p>几乎所有的 Python 对象都有一些附属函数（方法），可以访问该对象的内部数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj.some_method(x, y, z)</span><br></pre></td></tr></table></figure>
+
+<p>函数既可以接受位置参数，也可以接受关键字参数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result = f(a, b, c, d=<span class="number">5</span>, e=<span class="string">'foo'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="变量和按引用传递"><a href="#变量和按引用传递" class="headerlink" title="变量和按引用传递"></a>变量和按引用传递</h3><p>在 Python 中对变量赋值时，其实是在创建等号右侧对象的一个<strong>引用</strong>。<br>只是传入了一个引用而已，不会发生任何复制：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/python/python_1.jpeg" alt></p>
+<blockquote>
+<p>按引用传递，Python 函数可以修改其参数的内容。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">append_element(data, <span class="number">4</span>)</span><br><span class="line">data</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="动态引用，强类型"><a href="#动态引用，强类型" class="headerlink" title="动态引用，强类型"></a>动态引用，强类型</h3><p>Python 中的对象引用没有与之关联的类型信息，对象的类型信息是保存在它自己<strong>内部</strong>的。<br>Python 可以被认为是一种<strong>强类型</strong>语言，隐式转换只在很明显的情况下才会发生：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># TypeError</span></span><br><span class="line"><span class="string">'5'</span> + <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<p>通过 isinstance 函数，可以检查一个对象是否是某个特定类型的实例。可以接受由类型组成的元组：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">5</span></span><br><span class="line">isinstance(a, (int, float))</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="属性和方法"><a href="#属性和方法" class="headerlink" title="属性和方法"></a>属性和方法</h3><p>Python 中的对象通常都既有属性（attribute），又有方法（method）。它们都能通过 obj.attribute_name 这样的语法进行访问。</p>
+<ul>
+<li>属性：存储在该对象内部的，其他 Python <strong>对象</strong>；</li>
+<li>方法：与该对象有关的能够访问其内部数据的<strong>函数</strong>。</li>
+</ul>
+<h3 id="“鸭子”类型"><a href="#“鸭子”类型" class="headerlink" title="“鸭子”类型"></a>“鸭子”类型</h3><p>你可能不会关心对象的类型，只是想知道它到底有没有某些方法或行为。<br><strong>应用场景：</strong>在编写可以接受任何序列（列表、元祖、ndarray）或迭代器的函数时，先检查对象是不是列表，如果不是，就将其转换成是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> isinstance(x, list) <span class="keyword">and</span> isiterable(x):</span><br><span class="line">    x = list(x)</span><br></pre></td></tr></table></figure>
+
+<h3 id="引入（import）"><a href="#引入（import）" class="headerlink" title="引入（import）"></a>引入（import）</h3><p>模块（module）：一个含有函数和变量定义以及从其他 .py 文件引入的此类东西的 <strong>.py 文件</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># some_module.py</span></span><br><span class="line">PI = <span class="number">3.14159</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x + <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">g</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> a + b</span><br></pre></td></tr></table></figure>
+
+<p>通过 <strong>as 关键字</strong>，可以引入不同的变量名（定义别名）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> some_module <span class="keyword">as</span> sm</span><br><span class="line"><span class="keyword">from</span> some_module <span class="keyword">import</span> PI <span class="keyword">as</span> pi, g <span class="keyword">as</span> gf</span><br><span class="line"></span><br><span class="line">r1 = sm.f(pi)</span><br><span class="line">r2 = gf(<span class="number">6</span>, pi)</span><br></pre></td></tr></table></figure>
+
+<h3 id="二元运算符和比较运算符"><a href="#二元运算符和比较运算符" class="headerlink" title="二元运算符和比较运算符"></a>二元运算符和比较运算符</h3><p>判断两个引用是否指向同一对象，可以使用 is 关键字。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">b = a</span><br><span class="line"><span class="comment"># list 函数始终会创建新列表</span></span><br><span class="line">c = list(a)</span><br><span class="line"></span><br><span class="line">a <span class="keyword">is</span> b</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="literal">True</span></span><br><span class="line"></span><br><span class="line">a <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<p>跟比较运算“==”，不是一回事。<br>is 和 is not 常常用于判断变量是否为 None，因为 None 的实例只有一个。</p>
+<h3 id="严格与懒惰"><a href="#严格与懒惰" class="headerlink" title="严格与懒惰"></a>严格与懒惰</h3><p>在 Python 中，只要这些语句被求值，相关计算就会立即（也就是严格）发生。<br><strong>延迟计算</strong>（lazy evaluation）：具体值在被使用之前，不会被计算出来。<br>迭代器、生成器可以用于实现延迟计算，当执行一些负荷非常高的计算时，可以派上用场。</p>
+<h3 id="可变和不可变的对象"><a href="#可变和不可变的对象" class="headerlink" title="可变和不可变的对象"></a>可变和不可变的对象</h3><p>大部分 Python 对象是可变的（mutable），它们所包含的对象或值是可以被修改的；<br>字符串、元组是不可变的（immutable）。<br>建议尽量避免<strong>副作用</strong>（side effect），注重不变性。</p>
+<h2 id="标量类型"><a href="#标量类型" class="headerlink" title="标量类型"></a>标量类型</h2><h3 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h3><p>Python 会自动将非常大的整数转换为 long：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ival = <span class="number">17239871</span></span><br><span class="line">ival ** <span class="number">6</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">26254519291092456596965462913230729701102721L</span></span><br></pre></td></tr></table></figure>
+
+<p>得到 C 风格的整数除法，使用 //：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">3</span> // <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>复数的虚部是用 j 表示的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cval = <span class="number">1</span> + <span class="number">2j</span></span><br><span class="line">cval * (<span class="number">1</span> - <span class="number">2j</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">5</span> + <span class="number">0j</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>编写字符串时，既可以用单引号（’）也可以用双引号（’’）。<br>对于带有换行符的多行字符串，可以使用三重引号。<br>Python 字符串是<strong>不可变</strong>的，要修改字符串就只能创建一个新的。<br>许多对象都可以用 str 函数转换为字符串：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">5.6</span></span><br><span class="line">s = str(a)</span><br><span class="line">s</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'5.6'</span></span><br></pre></td></tr></table></figure>
+
+<p>字符串其实是一串<strong>字符序列</strong>，可以被当作某种序列类型进行处理：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">'python'</span></span><br><span class="line">list(s)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="string">'p'</span>, <span class="string">'y'</span>, <span class="string">'t'</span>, <span class="string">'h'</span>, <span class="string">'o'</span>, <span class="string">'n'</span>]</span><br><span class="line"></span><br><span class="line">s[:<span class="number">3</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'pyt'</span></span><br></pre></td></tr></table></figure>
+
+<p>用实参替换格式化形参：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">template = <span class="string">'%.2f %s are worth $%d'</span></span><br><span class="line">template % (<span class="number">4.5560</span>, <span class="string">'Argentine Pesos'</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'4.56 Argentine Pesos are worth $1'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h3><p>Python 中两个布尔值分别写作 True 和 False，可以用 and 和 or 关键字进行连接。<br>几乎所有内置的 Python 类型都能在 if 语句中被解释为 True 或 False：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">if</span> a:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'I found something!'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>I found something!</span><br></pre></td></tr></table></figure>
+
+<p>想知道某个对象究竟会被强制转换成哪个布尔值，使用 <strong>bool 函数</strong>即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bool([]), bool([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>(<span class="literal">False</span>, <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><p>str、bool、int、float 等类型，也可以作将值转换成该类型的函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">'3.14159'</span></span><br><span class="line">fval = float(s)</span><br><span class="line">type(fval)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>float</span><br></pre></td></tr></table></figure>
+
+<h3 id="None"><a href="#None" class="headerlink" title="None"></a>None</h3><p>None 是 Python 的空值类型。如果一个函数没有显式地返回值，则隐式返回 None。<br>None 是函数可选参数的一种常见默认值。<br>None 不是一个保留关键字，只是 NoneType 的一个<strong>实例</strong>而已。</p>
+<h3 id="日期和时间"><a href="#日期和时间" class="headerlink" title="日期和时间"></a>日期和时间</h3><p>Python 内置的 datetime 模块中，datetime 类型是用得最多的，它合并了保存在 date 和 time 中的信息：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, data, time</span><br><span class="line">dt = datetime(<span class="number">2011</span>, <span class="number">10</span>, <span class="number">29</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">21</span>)</span><br><span class="line"></span><br><span class="line">dt.day</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">29</span></span><br><span class="line"></span><br><span class="line">dt.minute</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">30</span></span><br></pre></td></tr></table></figure>
+
+<p>strftime 方法用于将 datetime 格式化为字符串（也可以反向解析）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dt.strftime(<span class="string">'%m/%d/%Y %H:%M'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'10/29/2011 20:30'</span></span><br></pre></td></tr></table></figure>
+
+<p>两个 datetime 对象的差会产生一个 datetime.timedelta 类型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dt2 = datetime(<span class="number">2011</span>, <span class="number">11</span>, <span class="number">15</span>, <span class="number">22</span>, <span class="number">30</span>)</span><br><span class="line">delta = dt2 - dt</span><br><span class="line">delta</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime.timedelta(<span class="number">17</span>, <span class="number">7179</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="控制流"><a href="#控制流" class="headerlink" title="控制流"></a>控制流</h2><h3 id="if、elif、else"><a href="#if、elif、else" class="headerlink" title="if、elif、else"></a>if、elif、else</h3><p>一条 if 语句可以跟上一个或多个 <strong>elif 块</strong>以及一个滴水不漏的 <strong>else 块</strong>（如果所有条件都为 False）。<br>对于用 and 或 or 组成的复合条件，各条件是按从左到右的顺序求值的，而且是<strong>短路型</strong>的。</p>
+<h3 id="for-循环"><a href="#for-循环" class="headerlink" title="for 循环"></a>for 循环</h3><p>for 循环用于对集合或迭代器进行迭代，<strong>标准语法：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> value <span class="keyword">in</span> collection:</span><br><span class="line">    <span class="comment"># 对 value 做一些处理</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="while-循环"><a href="#while-循环" class="headerlink" title="while 循环"></a>while 循环</h3><p>while 循环定义了<strong>一个条件</strong>和<strong>一个代码块</strong>。只要条件不为 False，代码块将一直不断地执行下去。</p>
+<h3 id="pass"><a href="#pass" class="headerlink" title="pass"></a>pass</h3><p>Python 中的空操作语句，在开发一个新功能时，常常会将 pass 用作代码中的<strong>占位符：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x, y, z)</span></span></span><br><span class="line"><span class="function">    # <span class="title">TODO</span>:</span> 实现这个函数</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><p>优雅地处理 Python 错误或异常是构建健壮程序的重要环节。<br>把对函数的调用放在一个 <strong>try/except 块</strong>中，在 except 后面加上异常类型组成的元组，即可捕获多个异常：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">attempt_float</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">return</span> float(x)</span><br><span class="line">    <span class="keyword">except</span> (TypeError, ValueError):</span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+
+<p>希望有一段代码不管 try 块代码成功与否都能被执行，使用 <strong>finally</strong> 即可；让某些代码只在 try 块成功时执行，使用 <strong>else</strong> 即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">f = open(path, <span class="string">'w'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    write_to_file(f)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Failed'</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Succeeded'</span></span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    f.close()</span><br></pre></td></tr></table></figure>
+
+<h3 id="range-和-xrange"><a href="#range-和-xrange" class="headerlink" title="range 和 xrange"></a>range 和 xrange</h3><p>range 函数用于产生一组间隔平均的整数，可以指定<strong>起始值、结束值、步长</strong>等信息：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">range(<span class="number">0</span>, <span class="number">20</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">14</span>, <span class="number">16</span>, <span class="number">18</span>]</span><br></pre></td></tr></table></figure>
+
+<p>range 所产生的蒸熟不包括末端值，常用于按索引对序列进行迭代：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">seq = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(seq)):</span><br><span class="line">    val = seq[i]</span><br></pre></td></tr></table></figure>
+
+<p>对于非常长的范围，建议使用 xrange。不会预先产生所有的值，而是返回一个用于逐个产生整数的<strong>迭代器</strong>。</p>
+<h3 id="三元表达式"><a href="#三元表达式" class="headerlink" title="三元表达式"></a>三元表达式</h3><p>允许将产生一个值的 <strong>if-else 块</strong>写到一行或一个表达式中，语法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value = true_expr <span class="keyword">if</span> condition <span class="keyword">else</span> false_expr</span><br></pre></td></tr></table></figure>
+
+<p>如果条件以及 true 和 false 表达式非常复杂，可能会牺牲可读性：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">5</span></span><br><span class="line"><span class="string">'Non-negative'</span> <span class="keyword">if</span> x &gt;= <span class="number">0</span> <span class="keyword">else</span> <span class="string">'Negative'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">'Non-negative'</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/决策树.html" rel="next" title="决策树">
+                <i class="fa fa-chevron-left"></i> 决策树
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/《面试宝典》读书笔记-1.html" rel="prev" title="《面试宝典》读书笔记-1">
+                《面试宝典》读书笔记-1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-解释器"><span class="nav-number">1.</span> <span class="nav-text">Python 解释器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语言语义"><span class="nav-number">2.</span> <span class="nav-text">语言语义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缩进，而不是大括号"><span class="nav-number">2.1.</span> <span class="nav-text">缩进，而不是大括号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#万物皆对象"><span class="nav-number">2.2.</span> <span class="nav-text">万物皆对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">2.3.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数调用和对象方法调用"><span class="nav-number">2.4.</span> <span class="nav-text">函数调用和对象方法调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量和按引用传递"><span class="nav-number">2.5.</span> <span class="nav-text">变量和按引用传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态引用，强类型"><span class="nav-number">2.6.</span> <span class="nav-text">动态引用，强类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性和方法"><span class="nav-number">2.7.</span> <span class="nav-text">属性和方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#“鸭子”类型"><span class="nav-number">2.8.</span> <span class="nav-text">“鸭子”类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引入（import）"><span class="nav-number">2.9.</span> <span class="nav-text">引入（import）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二元运算符和比较运算符"><span class="nav-number">2.10.</span> <span class="nav-text">二元运算符和比较运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#严格与懒惰"><span class="nav-number">2.11.</span> <span class="nav-text">严格与懒惰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可变和不可变的对象"><span class="nav-number">2.12.</span> <span class="nav-text">可变和不可变的对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标量类型"><span class="nav-number">3.</span> <span class="nav-text">标量类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数值类型"><span class="nav-number">3.1.</span> <span class="nav-text">数值类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">3.2.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔值"><span class="nav-number">3.3.</span> <span class="nav-text">布尔值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转换"><span class="nav-number">3.4.</span> <span class="nav-text">类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#None"><span class="nav-number">3.5.</span> <span class="nav-text">None</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日期和时间"><span class="nav-number">3.6.</span> <span class="nav-text">日期和时间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制流"><span class="nav-number">4.</span> <span class="nav-text">控制流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if、elif、else"><span class="nav-number">4.1.</span> <span class="nav-text">if、elif、else</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-循环"><span class="nav-number">4.2.</span> <span class="nav-text">for 循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#while-循环"><span class="nav-number">4.3.</span> <span class="nav-text">while 循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pass"><span class="nav-number">4.4.</span> <span class="nav-text">pass</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常处理"><span class="nav-number">4.5.</span> <span class="nav-text">异常处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#range-和-xrange"><span class="nav-number">4.6.</span> <span class="nav-text">range 和 xrange</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三元表达式"><span class="nav-number">4.7.</span> <span class="nav-text">三元表达式</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

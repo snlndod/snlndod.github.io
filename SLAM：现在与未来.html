@@ -1,0 +1,904 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="SLAM,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="除了经典 V-SLAM 框架之外，也积累了许多优秀的开源 SLAM 方案，大部分实现都比较复杂，不适合作为初学者的上手材料。 当前的开源方案在 SLAM 研究领域，能见到开源方案是很不容易的。论文中，往往介绍理论只占 20% 的内容，其他 80% 都写在代码中。">
+<meta name="keywords" content="SLAM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SLAM：现在与未来">
+<meta property="og:url" content="https://umarellyh.github.io/SLAM：现在与未来.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="除了经典 V-SLAM 框架之外，也积累了许多优秀的开源 SLAM 方案，大部分实现都比较复杂，不适合作为初学者的上手材料。 当前的开源方案在 SLAM 研究领域，能见到开源方案是很不容易的。论文中，往往介绍理论只占 20% 的内容，其他 80% 都写在代码中。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SLAM/14_1.jpeg">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SLAM：现在与未来">
+<meta name="twitter:description" content="除了经典 V-SLAM 框架之外，也积累了许多优秀的开源 SLAM 方案，大部分实现都比较复杂，不适合作为初学者的上手材料。 当前的开源方案在 SLAM 研究领域，能见到开源方案是很不容易的。论文中，往往介绍理论只占 20% 的内容，其他 80% 都写在代码中。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/SLAM/14_1.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/SLAM：现在与未来.html">
+
+
+
+
+
+  <title> SLAM：现在与未来 | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/SLAM：现在与未来.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                SLAM：现在与未来
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-10T01:30:35+08:00">
+                2018-07-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>除了经典 V-SLAM 框架之外，也积累了许多优秀的开源 SLAM 方案，大部分实现都比较复杂，不适合作为初学者的上手材料。</p>
+<h2 id="当前的开源方案"><a href="#当前的开源方案" class="headerlink" title="当前的开源方案"></a>当前的开源方案</h2><p>在 SLAM 研究领域，能见到开源方案是很不容易的。论文中，往往介绍理论只占 20% 的内容，其他 80% 都写在代码中。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/SLAM/14_1.jpeg" alt></p>
+<a id="more"></a>
+<h3 id="MonoSLAM"><a href="#MonoSLAM" class="headerlink" title="MonoSLAM"></a>MonoSLAM</h3><p>被认为是许多工作的发源地，<code>EKF</code> 在早期 SLAM 中占据着明显主导地位，所以 MonoSLAM也是建立在 EKF 的基础之上。<br>特征点在三维空间中的表示：在某个方向上显得越长，说明在该方向的位置就越不确定。<br>在当时已经是里程碑式的工作了，因为在此之前的 V-SLAM 系统基本不能在线运行。</p>
+<h3 id="PTAM"><a href="#PTAM" class="headerlink" title="PTAM"></a>PTAM</h3><p>PTAM（Parallel Tracking and Mapping）的重要意义：</p>
+<ul>
+<li>提出并实现了跟踪、建图过程的并行化。跟踪部分需要实时响应图像数据，而对地图的优化则没必要实时地计算。</li>
+<li>第一个使用非线性优化，而不是使用传统的滤波器作为后端的方案。引入了<code>关键帧</code>机制：不必精细地处理每一幅图像。</li>
+</ul>
+<blockquote>
+<p>PTAM 是早期结合 AR 的 SLAM 工作之一。</p>
+</blockquote>
+<h3 id="ORB-SLAM"><a href="#ORB-SLAM" class="headerlink" title="ORB-SLAM"></a>ORB-SLAM</h3><h4 id="明显优势"><a href="#明显优势" class="headerlink" title="明显优势"></a>明显优势</h4><ul>
+<li>支持单目、双目、RGB-D 三种模式，良好的泛用性。</li>
+<li>整个系统围绕 ORB 特征进行计算。</li>
+<li>ORB 的回环检测是亮点。</li>
+<li>创新式地使用了三个线程完成 SLAM：<ol>
+<li>实时跟踪特征点的 Tracking 线程</li>
+<li>局部 Bundle Adjustment 的优化线程（Co-visibility，<code>小图</code>）</li>
+<li>全局 Pose Graph 的回环检测与优化线程（Essential Graph，<code>大图</code>）<br>由于全局地图中的地图点太多，这个线程的优化不包括地图点，而只有相机位姿组成的位姿图。</li>
+</ol>
+</li>
+<li>围绕<strong>特征点</strong>进行了不少的优化：在 OpenCV 的特征提取基础上保证了特征点的均匀分布；在优化位姿时使用了一种得到更多正确匹配的方法；比 PTAM 更为宽松的关键帧选取策略。</li>
+</ul>
+<h4 id="不足之处"><a href="#不足之处" class="headerlink" title="不足之处"></a>不足之处</h4><ul>
+<li>必须对每幅图像都计算一遍 ORB 特征，这是非常耗时的，移植到嵌入式设备上有一定困难。</li>
+<li>稀疏特征点地图只能满足我们对定位的需求，而无法提供导航、避障、交互等诸多功能。</li>
+</ul>
+<h3 id="LSD-SLAM"><a href="#LSD-SLAM" class="headerlink" title="LSD-SLAM"></a>LSD-SLAM</h3><p>LSD-SLAM（Large Scale Direct monocular SLAM）标志着<strong>单目直接法</strong>在 SLAM 中的成功应用。</p>
+<h4 id="主要优点"><a href="#主要优点" class="headerlink" title="主要优点"></a>主要优点</h4><ul>
+<li>直接法是基于像素进行的。</li>
+<li>在 CPU 上实现了半稠密场景的重建。基于特征点的方法只能是稀疏的，进行稠密重建的方案大多要使用 RGB-D 传感器，或者使用 GPU 构建稠密地图。</li>
+<li>使用了一些精妙的手段来保证追踪的实时性与稳定性。</li>
+</ul>
+<p>半稠密地图建模了灰度图中有明显梯度的部分，既有直接法的优点（对特征缺失区域不敏感），也继承了直接法的缺点：</p>
+<ul>
+<li>对相机内参、曝光非常敏感，在相机快速运动时容易丢失。</li>
+<li>依赖于特征点方法进行回环检测，尚未完全摆脱特征点的计算。</li>
+</ul>
+<h3 id="SVO"><a href="#SVO" class="headerlink" title="SVO"></a>SVO</h3><p>SVO（Semi-direct Visual Odoemtry）是一种基于<strong>半直接法</strong>的视觉里程计。<code>半直接</code>在原文中的意思是指特征点与直接法的混合使用。<br>跟踪了一些关键点（角点，没有描述子），SVO 的最大优势是速度极快，非常适用于计算平台受限的场合，例如无人机、手持 AR/VR 设备的定位。</p>
+<blockquote>
+<p>SVO 的另一创新之处是提出了深度滤波器的概念。</p>
+</blockquote>
+<h4 id="一些问题"><a href="#一些问题" class="headerlink" title="一些问题"></a>一些问题</h4><ul>
+<li>目标应用平台为无人机的俯视相机，想要在平视相机中使用 SVO，必须自己加以修改。</li>
+<li>舍弃了后端优化和回环检测部分，也基本没有建图功能，而且没有描述子用来回环检测，所以，称它为一个 VO，而不是称它为完整的 SLAM。</li>
+</ul>
+<h3 id="RTAB-MAP"><a href="#RTAB-MAP" class="headerlink" title="RTAB-MAP"></a>RTAB-MAP</h3><p>RTAB-MAP（Real Time Appearance-Based Mapping）是 RGB-D 传感器上的 SLAM 方案，可以直接从 ROS 中获得其二进制程序，此外，在 Google Project Tango 上也可以获取其 App 使用。<br>由于<code>集成度</code>较高，进行二次开发变得困难，RTAB-MAP 更适合作为 SLAM 应用而非研究使用。</p>
+<h2 id="未来的-SLAM-话题"><a href="#未来的-SLAM-话题" class="headerlink" title="未来的 SLAM 话题"></a>未来的 SLAM 话题</h2><p>SLAM 将来的发展趋势有两大类：</p>
+<ul>
+<li>朝轻量级、小型化方向发展，让 SLAM 能够在嵌入式或手机等小型设备上良好运行，然后考虑以它为底层功能的应用。</li>
+<li>利用高性能计算设备，实现精密的三维重建、场景理解等功能。由于可以利用 GPU，这个方向和深度学习亦有结合点。</li>
+</ul>
+<h3 id="视觉-惯性导航-SLAM"><a href="#视觉-惯性导航-SLAM" class="headerlink" title="视觉 + 惯性导航 SLAM"></a>视觉 + 惯性导航 SLAM</h3><p><strong>学术界</strong>喜欢<code>大而且干净的问题</code>（Big Clean Problem），<strong>产业界</strong>则更注重让算法更加实用。</p>
+<h4 id="IMU-与相机传感器的互补性"><a href="#IMU-与相机传感器的互补性" class="headerlink" title="IMU 与相机传感器的互补性"></a>IMU 与相机传感器的互补性</h4><p>惯性传感器（IMU）能够测量传感器本体的角速度、加速度，被认为与相机传感器具有明显的互补性：</p>
+<ul>
+<li>IMU 的测量量存在明显的漂移（Drift），但是，对于短时间内的快速运动，IMU 能够提供一些较好的估计。</li>
+<li>相机数据可以有效地估计并修正 IMU 读数中的漂移。</li>
+<li>纯视觉 SLAM 难以处理动态的障碍物，而 IMU 能够感受到自己的运动信息，从某种程度上减轻动态物体的影响。</li>
+</ul>
+<blockquote>
+<p>IMU 为快速运动提供了较好的解决方式，而相机又能在慢速运动下解决 IMU 的漂移问题。</p>
+</blockquote>
+<p>不管是理论还是实践，VIO（Visual Inertial Odometry）都是相当复杂的，目前 VIO 的框架已经定型为两大类：<code>松耦合</code>（Loosely Coupled）、<code>紧耦合</code>（Tightly Coupled）。<br>尽管在纯视觉 SLAM 中优化方法已经占了主流，但在 VIO 中，由于 IMU 的数据频率非常高，对状态进行优化需要的计算量就更大，因此目前仍处于滤波与优化并存的阶段。<br>结合<strong>稀疏直接法</strong>，有望在低端硬件上取得良好的 SLAM 或 VO 效果，是非常有前景的。</p>
+<h3 id="语义-SLAM"><a href="#语义-SLAM" class="headerlink" title="语义 SLAM"></a>语义 SLAM</h3><p>到目前为止，SLAM的方案都处于特征点或者像素的层级，与我们人类的做法不怎么相似，SLAM 的另一个大方向就是和深度学习技术结合。</p>
+<h4 id="SLAM-和语义的结合点"><a href="#SLAM-和语义的结合点" class="headerlink" title="SLAM 和语义的结合点"></a>SLAM 和语义的结合点</h4><ul>
+<li>语义帮助 SLAM。能得到一个带有标签的地图，另外，物体信息亦可为回环检测、BA 优化带来更多的条件。</li>
+<li>SLAM 帮助语义。如果有自动生成的带高质量标注的样本数据，能够很大程度上加速分类器的训练过程。</li>
+</ul>
+<p>在深度学习广泛应用之前，我们只能利用<code>支持向量机</code>、<code>条件随机场</code>等传统工具对物体或场景进行分割和识别，或者直接将观测数据与数据库中的样本进行比较。<br>随着深度学习的发展，我们开始使用<code>神经网络</code>，越来越准确地对图像进行识别、检测和分割。<br>将 SLAM 与深度学习结合起来处理图像，亦是一个很有前景的研究方向。</p>
+<h3 id="SLAM-的未来"><a href="#SLAM-的未来" class="headerlink" title="SLAM 的未来"></a>SLAM 的未来</h3><p>V-SLAM 经过了三个大时代：提出问题、寻找算法、完善算法。我们目前正处于第三个时代。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SLAM/" rel="tag"># SLAM</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/ROS-入门.html" rel="next" title="ROS 入门">
+                <i class="fa fa-chevron-left"></i> ROS 入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/初识-Docker-与容器.html" rel="prev" title="初识 Docker 与容器">
+                初识 Docker 与容器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#当前的开源方案"><span class="nav-number">1.</span> <span class="nav-text">当前的开源方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MonoSLAM"><span class="nav-number">1.1.</span> <span class="nav-text">MonoSLAM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PTAM"><span class="nav-number">1.2.</span> <span class="nav-text">PTAM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ORB-SLAM"><span class="nav-number">1.3.</span> <span class="nav-text">ORB-SLAM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#明显优势"><span class="nav-number">1.3.1.</span> <span class="nav-text">明显优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不足之处"><span class="nav-number">1.3.2.</span> <span class="nav-text">不足之处</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LSD-SLAM"><span class="nav-number">1.4.</span> <span class="nav-text">LSD-SLAM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主要优点"><span class="nav-number">1.4.1.</span> <span class="nav-text">主要优点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVO"><span class="nav-number">1.5.</span> <span class="nav-text">SVO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些问题"><span class="nav-number">1.5.1.</span> <span class="nav-text">一些问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RTAB-MAP"><span class="nav-number">1.6.</span> <span class="nav-text">RTAB-MAP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未来的-SLAM-话题"><span class="nav-number">2.</span> <span class="nav-text">未来的 SLAM 话题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#视觉-惯性导航-SLAM"><span class="nav-number">2.1.</span> <span class="nav-text">视觉 + 惯性导航 SLAM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IMU-与相机传感器的互补性"><span class="nav-number">2.1.1.</span> <span class="nav-text">IMU 与相机传感器的互补性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语义-SLAM"><span class="nav-number">2.2.</span> <span class="nav-text">语义 SLAM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SLAM-和语义的结合点"><span class="nav-number">2.2.1.</span> <span class="nav-text">SLAM 和语义的结合点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SLAM-的未来"><span class="nav-number">2.3.</span> <span class="nav-text">SLAM 的未来</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

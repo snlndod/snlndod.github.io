@@ -1,0 +1,937 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Java,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="关键字、基本类型与运算、字符串与数组  变量命名的规则标识符 变量名 函数名 数组名  break、continue、return 的区别break用于直接强行跳出当前循环，不再执行剩余代码。仅仅终止了内层循环的执行，而不影响外层循环的执行。">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《面试宝典》读书笔记-2">
+<meta property="og:url" content="https://umarellyh.github.io/《面试宝典》读书笔记-2.html">
+<meta property="og:site_name" content="SDE PREPARES">
+<meta property="og:description" content="关键字、基本类型与运算、字符串与数组  变量命名的规则标识符 变量名 函数名 数组名  break、continue、return 的区别break用于直接强行跳出当前循环，不再执行剩余代码。仅仅终止了内层循环的执行，而不影响外层循环的执行。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/2_1.png">
+<meta property="og:updated_time" content="2021-06-01T01:25:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《面试宝典》读书笔记-2">
+<meta name="twitter:description" content="关键字、基本类型与运算、字符串与数组  变量命名的规则标识符 变量名 函数名 数组名  break、continue、return 的区别break用于直接强行跳出当前循环，不再执行剩余代码。仅仅终止了内层循环的执行，而不影响外层循环的执行。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/2_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://umarellyh.github.io/《面试宝典》读书笔记-2.html">
+
+
+
+
+
+  <title> 《面试宝典》读书笔记-2 | SDE PREPARES </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SDE PREPARES</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/《面试宝典》读书笔记-2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="umarellyh">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SDE PREPARES">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                《面试宝典》读书笔记-2
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-04T23:21:16+08:00">
+                2017-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>关键字、基本类型与运算、字符串与数组</p>
+</blockquote>
+<h2 id="变量命名的规则"><a href="#变量命名的规则" class="headerlink" title="变量命名的规则"></a>变量命名的规则</h2><h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><ul>
+<li>变量名</li>
+<li>函数名</li>
+<li>数组名</li>
+</ul>
+<h2 id="break、continue、return-的区别"><a href="#break、continue、return-的区别" class="headerlink" title="break、continue、return 的区别"></a>break、continue、return 的区别</h2><h3 id="break"><a href="#break" class="headerlink" title="break"></a>break</h3><p>用于直接强行跳出当前循环，不再执行剩余代码。<br>仅仅终止了内层循环的执行，而不影响外层循环的执行。</p>
+<a id="more"></a>
+<h3 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h3><p>用于停止当次循环，回到循环的起始处，进入下一次循环操作。<br>continue 只是中断了一次循环的执行而已。</p>
+<h3 id="return"><a href="#return" class="headerlink" title="return"></a>return</h3><p>是一个<strong>跳转语句</strong>，可以使程序控制返回到调用该方法的地方。</p>
+<h2 id="final、finally、finalize-的区别"><a href="#final、finally、finalize-的区别" class="headerlink" title="final、finally、finalize 的区别"></a>final、finally、finalize 的区别</h2><h3 id="final"><a href="#final" class="headerlink" title="final"></a>final</h3><ul>
+<li>final 属性：属性不可变</li>
+<li>final 方法：方法不可覆盖</li>
+<li>final 类：类不可被继承</li>
+</ul>
+<h3 id="finally"><a href="#finally" class="headerlink" title="finally"></a>finally</h3><p>作为异常处理的一部分，只能用在 <strong>try/catch 语句</strong>中，并且附带一个语句块。<br>表示这段语句最终一定被执行，经常被用在需要释放资源的情况下。</p>
+<h3 id="finalize"><a href="#finalize" class="headerlink" title="finalize"></a>finalize</h3><p>是 Object 类的一个方法，在<strong>垃圾回收器</strong>执行时会调用被回收对象的 finalize() 方法，可以覆盖此方法来实现对其他资源的回收。</p>
+<h3 id="JDK-中不能继承的类"><a href="#JDK-中不能继承的类" class="headerlink" title="JDK 中不能继承的类"></a>JDK 中不能继承的类</h3><ul>
+<li>用 final 关键字修饰的类。</li>
+<li>基本类型：String、StringBuffer 等。</li>
+</ul>
+<h2 id="assert-的作用"><a href="#assert-的作用" class="headerlink" title="assert 的作用"></a>assert 的作用</h2><p>断言（assert）作为一种<strong>软件调试</strong>的方法，提供了一种在代码中进行正确性检查的机制。<br>为了提高程序运行的效率，在软件发布后，assert 检查默认是被关闭的。</p>
+<h3 id="assert-与-if-的区别"><a href="#assert-与-if-的区别" class="headerlink" title="assert 与 if 的区别"></a>assert 与 if 的区别</h3><ul>
+<li>assert 一般在调试程序时使用；</li>
+<li>if 判断是逻辑判断，本身就是用来控制程序流程的。</li>
+</ul>
+<h3 id="Java-与-C-中，assert-的不同"><a href="#Java-与-C-中，assert-的不同" class="headerlink" title="Java 与 C++ 中，assert 的不同"></a>Java 与 C++ 中，assert 的不同</h3><ul>
+<li>Java 中使用 assert 关键字去实现其功能，而 C 中使用的是库函数；</li>
+<li>C 中的 assert 是在编译时开启，而 Java 中是在运行时开启。</li>
+</ul>
+<h2 id="static-的作用"><a href="#static-的作用" class="headerlink" title="static 的作用"></a>static 的作用</h2><h3 id="static-成员变量"><a href="#static-成员变量" class="headerlink" title="static 成员变量"></a>static 成员变量</h3><p>虽然 Java 中没有全局的概念，但可以通过 static 关键字来达到全局的效果。</p>
+<ul>
+<li><strong>静态变量</strong>属于类，只要静态变量所在的类被加载，这个静态变量就会被分配空间，因此就可以被使用了，它在内存中只有一个复制；</li>
+<li><strong>实例变量</strong>属于对象，只有对象被创建后，实例变量才会被分配空间，才能被使用，它在内存中存在多个复制。</li>
+</ul>
+<h3 id="static-成员方法"><a href="#static-成员方法" class="headerlink" title="static 成员方法"></a>static 成员方法</h3><p>static 方法中不能使用 this 和 super 关键字，不能调用非 static 方法。<br>一个很重要的用途是实现单例模式。</p>
+<h3 id="static-代码块"><a href="#static-代码块" class="headerlink" title="static 代码块"></a>static 代码块</h3><p>在类中是独立于成员变量和成员函数的代码块，只会被执行一次。</p>
+<h3 id="static-内部类"><a href="#static-内部类" class="headerlink" title="static 内部类"></a>static 内部类</h3><p>可以不依赖于外部类实例对象而被实例化。<br>只能访问外部类中的静态成员和静态方法（包括私有类型）。</p>
+<h2 id="volatile-的作用"><a href="#volatile-的作用" class="headerlink" title="volatile 的作用"></a>volatile 的作用</h2><p>一个类型修饰符，用来修饰被<strong>不同线程</strong>访问和修改的变量，使所有线程在任何时候所看到变量的值都是相同的。<br>不能保证操作的原子性，不能代替 <code>synchronized</code>；会阻止编译器对代码的优化，会降低程序的执行效率，尽量不要使用。</p>
+<h2 id="instanceof-的作用"><a href="#instanceof-的作用" class="headerlink" title="instanceof 的作用"></a>instanceof 的作用</h2><p>一个二元运算符，判断一个引用类型的变量所指向的对象是否是一个类的实例：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span>如果object是<span class="class"><span class="keyword">class</span>的一个实例，返回<span class="title">true</span>；反之，返回<span class="title">false</span></span></span><br><span class="line">result = object <span class="keyword">instanceof</span> <span class="class"><span class="keyword">class</span>;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="strictfp-的作用"><a href="#strictfp-的作用" class="headerlink" title="strictfp 的作用"></a>strictfp 的作用</h2><p>是 strict float point 的缩写，指的是<strong>精确浮点</strong>。<br>当一个类被 strictfp 修饰时，所有方法都会自动被修饰。</p>
+<hr>
+<h2 id="Java-的基本数据类型"><a href="#Java-的基本数据类型" class="headerlink" title="Java 的基本数据类型"></a>Java 的基本数据类型</h2><ul>
+<li><strong>8 种原始数据类型</strong>：byte、short、int、long、float、double、char、boolean。声明后会立刻在栈上分配内存空间；</li>
+<li>引用类型：类、接口、数组等，类似于 C++ 中的指针概念。声明后不会被分配内存空间，只是存储了一个内存地址而已。</li>
+</ul>
+<p>Java 还提供了对这些原始数据类型的封装类，封装类型和原始类型的不同点：</p>
+<ul>
+<li>原始类型按值传递，封装类型按引用传递；</li>
+<li>具有不同的特征和用法。</li>
+</ul>
+<p>默认声明的小数是 <code>double</code> 类型的，对 float 类型变量初始化时需要进行强制类型转换：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">float</span> f = (<span class="type">float</span>)<span class="number">3.4</span>;</span><br><span class="line"><span class="type">float</span> f = <span class="number">3.4</span>f;</span><br></pre></td></tr></table></figure>
+
+<h2 id="不可变类"><a href="#不可变类" class="headerlink" title="不可变类"></a>不可变类</h2><p>具有使用简单、线程安全、节省内存等优点。<br>不可变类的对象会因为值的不同而产生新的对象，从而导致无法预料的问题，切不可滥用。</p>
+<ul>
+<li>类中所有成员变量被 private 所修饰。</li>
+<li>类中没有写或者修改成员变量的方法。</li>
+<li>确保类中所有方法不会被子类覆盖，用 final。</li>
+<li>如果一个类成员不是不可变量，需要通过 clone 来确保类的不可变性。</li>
+<li>如果有必要，可使用覆盖 Object 类的 equals() 方法、hashCode() 方法。</li>
+<li>创建对象时，需要初始化所有成员变量。</li>
+</ul>
+<h2 id="类型转换的规则"><a href="#类型转换的规则" class="headerlink" title="类型转换的规则"></a>类型转换的规则</h2><h3 id="自动类型转换"><a href="#自动类型转换" class="headerlink" title="自动类型转换"></a>自动类型转换</h3><p>转换的规则为：从低精度向高精度转换，即优先级满足<code>byte &lt; short &lt; char &lt; int &lt; long &lt; float &lt; double</code>。</p>
+<h3 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><p>从高级数据类型转换为低级数据类型时，需要进行强制类型转换。<br>涉及 byte、short、char 类型的运算时，会自动转换为 int 类型：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编译器会报错</span></span><br><span class="line"><span class="keyword">short</span> s1 = <span class="number">1</span>; s1 = s1 + <span class="number">1</span>;</span><br><span class="line"><span class="comment">//正确</span></span><br><span class="line"><span class="keyword">short</span> s1 = <span class="number">1</span>; s1 = (<span class="keyword">short</span>)(s1 + <span class="number">1</span>);</span><br><span class="line"><span class="comment">//Java编译器会对“+=”进行特殊处理，正确</span></span><br><span class="line"><span class="keyword">short</span> s1 = <span class="number">1</span>; s1 += <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="移位运算"><a href="#移位运算" class="headerlink" title="移位运算"></a>移位运算</h2><p>Java 中，为了保证移动位数的有效性（不超过 32bit），采用了<code>取余操作</code>。<br>即：a &gt;&gt; n 等价于 a &gt;&gt; (n%32)。</p>
+<ul>
+<li>“&gt;&gt;”为有符号右移运算符，正数高位补 0，<strong>负数高位补 1</strong>；</li>
+<li>“&gt;&gt;&gt;”为无符号右移运算符，都补 0；</li>
+<li>左移运算，移除高位的同时在低位补 0。</li>
+</ul>
+<hr>
+<h2 id="new-String-“abc”-创建了几个对象？"><a href="#new-String-“abc”-创建了几个对象？" class="headerlink" title="new String(“abc”) 创建了几个对象？"></a>new String(“abc”) 创建了几个对象？</h2><p>一个或两个。如果字符串池中原来有“abc”，那么只创建一个对象；如果没有，就会创建两个。<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/Java/2_1.png" alt></p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在常量区里面存放了一个“abc”字符串对象</span></span><br><span class="line"><span class="keyword">String</span> s1 = <span class="string">"abc"</span>;</span><br><span class="line"><span class="comment">//s2引用常量区中的对象，因此不会创建新对象</span></span><br><span class="line"><span class="keyword">String</span> s2 = <span class="string">"abc"</span>;</span><br><span class="line"><span class="comment">//在堆中创建新的对象</span></span><br><span class="line"><span class="keyword">String</span> s3 = <span class="keyword">new</span> <span class="keyword">String</span>(<span class="string">"abc"</span>);</span><br><span class="line"><span class="comment">//在堆中又创建一个新的对象</span></span><br><span class="line"><span class="keyword">String</span> s4 = <span class="keyword">new</span> <span class="keyword">String</span>(<span class="string">"abc"</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="、equals、hashCode-的区别"><a href="#、equals、hashCode-的区别" class="headerlink" title="==、equals、hashCode 的区别"></a>==、equals、hashCode 的区别</h2><h3 id><a href="#" class="headerlink" title="=="></a>==</h3><p>用来比较两个变量的值是否相等。</p>
+<h3 id="equals"><a href="#equals" class="headerlink" title="equals"></a>equals</h3><p>用于比较两个对象的内容是否相同，即<code>堆中的内容</code>是否相同。<br><strong>与“==”的不同：</strong>equals() 方法可以被覆盖，可以通过覆盖的方法让它不是比较引用而是比较数据内容。<br>返回的是 boolean 型。</p>
+<h3 id="hashCode"><a href="#hashCode" class="headerlink" title="hashCode"></a>hashCode</h3><p>从 Object 类中继承过来，用来鉴定两个对象是否相等。<br>如果没有重写 hashCode() 方法，任何对象都不相等。<br><strong>与“equals”的不同：</strong>用户一般不会去调用 hashCode() 方法，它相当于是一个对象的编码，就好像文件中的 md5。<br>返回的是 int 型，比较起来不直观。</p>
+<h2 id="String、StringBuffer、StringBuilder、StringTokenizer-的区别"><a href="#String、StringBuffer、StringBuilder、StringTokenizer-的区别" class="headerlink" title="String、StringBuffer、StringBuilder、StringTokenizer 的区别"></a>String、StringBuffer、StringBuilder、StringTokenizer 的区别</h2><h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p><code>不可变类</code>，适合在需要被共享的场合中使用。<br>可以利用构造函数的方式来对其进行初始化，也可以用<strong>赋值的方式</strong>来初始化；而 StringBuffer 只能使用构造函数的方式来初始化。</p>
+<h3 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h3><p><code>可变类</code>，当一个字符串经常需要被修改时，最好使用 StringBuffer 来实现。<br>若使用 String，会多很多附加的操作，同时也生成了一些临时的对象，从而导致程序的执行效率降低。</p>
+<h3 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h3><p>与 StringBuffer 类似，都是字符串缓冲区，但 StringBuilder 不是线程安全的。<br>若只是在<strong>单线程</strong>中使用字符串缓冲区，那么 StringBuilder 的效率会更高些。</p>
+<blockquote>
+<p>执行效率：StringBuilder &gt; StringBuffer &gt; String。</p>
+</blockquote>
+<h3 id="StringTokenizer"><a href="#StringTokenizer" class="headerlink" title="StringTokenizer"></a>StringTokenizer</h3><p>用来分割字符串的工具类。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>如果操作的数据量比较小，应优先使用 String 类；</li>
+<li>如果是在单线程下操作大量数据，应优先使用 StringBuilder 类；</li>
+<li>如果是在多线程下操作大量数据，应优先考虑 StringBuffer 类。</li>
+</ul>
+<h2 id="Java-中数组是对象"><a href="#Java-中数组是对象" class="headerlink" title="Java 中数组是对象"></a>Java 中数组是对象</h2><p>数组不仅有其自己的属性（length 属性），也有一些方法可以被调用（clone 方法），从这个角度来讲，数组是对象。<br>每个数组类型都有其对应的类型，可以通过 instanceof 来判断数据的类型。</p>
+<h2 id="数组初始化与-C-的不同"><a href="#数组初始化与-C-的不同" class="headerlink" title="数组初始化与 C++ 的不同"></a>数组初始化与 C++ 的不同</h2><ul>
+<li>Java 数组被创建后会根据数组存放的数据类型初始化成对应的初始值，int 会初始化为 0，对象会初始化为 null；</li>
+<li>Java 数组在定义时，并不会给数组元素分配存储空间，因此[]中不需要指定数组的长度。</li>
+</ul>
+<h2 id="length-属性、length-方法、size-方法的区别"><a href="#length-属性、length-方法、size-方法的区别" class="headerlink" title="length 属性、length() 方法、size() 方法的区别"></a>length 属性、length() 方法、size() 方法的区别</h2><h3 id="length-属性"><a href="#length-属性" class="headerlink" title="length 属性"></a>length 属性</h3><p>数组提供了 length 属性来获取数组的长度。</p>
+<h3 id="length-方法"><a href="#length-方法" class="headerlink" title="length() 方法"></a>length() 方法</h3><p>是针对<code>字符串</code>而言的，String 提供了 length() 方法来计算字符串的长度。</p>
+<h3 id="size-方法"><a href="#size-方法" class="headerlink" title="size() 方法"></a>size() 方法</h3><p>是针对<code>泛型集合</code>而言的，用于查看泛型中有多少个元素。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/AOAPC-读书笔记-2.html" rel="next" title="AOAPC 读书笔记-2">
+                <i class="fa fa-chevron-left"></i> AOAPC 读书笔记-2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/《面试宝典》读书笔记-3.html" rel="prev" title="《面试宝典》读书笔记-3">
+                《面试宝典》读书笔记-3 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarellyh">
+          <p class="site-author-name" itemprop="name">umarellyh</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">213</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/umarellyh" target="_blank" title="GitHub">
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.linkedin.com/in/umarellyh" target="_blank" title="LinkedIn">
+                  
+                  LinkedIn
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量命名的规则"><span class="nav-number">1.</span> <span class="nav-text">变量命名的规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标识符"><span class="nav-number">1.1.</span> <span class="nav-text">标识符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#break、continue、return-的区别"><span class="nav-number">2.</span> <span class="nav-text">break、continue、return 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#break"><span class="nav-number">2.1.</span> <span class="nav-text">break</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#continue"><span class="nav-number">2.2.</span> <span class="nav-text">continue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#return"><span class="nav-number">2.3.</span> <span class="nav-text">return</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#final、finally、finalize-的区别"><span class="nav-number">3.</span> <span class="nav-text">final、finally、finalize 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#final"><span class="nav-number">3.1.</span> <span class="nav-text">final</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#finally"><span class="nav-number">3.2.</span> <span class="nav-text">finally</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#finalize"><span class="nav-number">3.3.</span> <span class="nav-text">finalize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK-中不能继承的类"><span class="nav-number">3.4.</span> <span class="nav-text">JDK 中不能继承的类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#assert-的作用"><span class="nav-number">4.</span> <span class="nav-text">assert 的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#assert-与-if-的区别"><span class="nav-number">4.1.</span> <span class="nav-text">assert 与 if 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-与-C-中，assert-的不同"><span class="nav-number">4.2.</span> <span class="nav-text">Java 与 C++ 中，assert 的不同</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#static-的作用"><span class="nav-number">5.</span> <span class="nav-text">static 的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#static-成员变量"><span class="nav-number">5.1.</span> <span class="nav-text">static 成员变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#static-成员方法"><span class="nav-number">5.2.</span> <span class="nav-text">static 成员方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#static-代码块"><span class="nav-number">5.3.</span> <span class="nav-text">static 代码块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#static-内部类"><span class="nav-number">5.4.</span> <span class="nav-text">static 内部类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#volatile-的作用"><span class="nav-number">6.</span> <span class="nav-text">volatile 的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#instanceof-的作用"><span class="nav-number">7.</span> <span class="nav-text">instanceof 的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#strictfp-的作用"><span class="nav-number">8.</span> <span class="nav-text">strictfp 的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-的基本数据类型"><span class="nav-number">9.</span> <span class="nav-text">Java 的基本数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不可变类"><span class="nav-number">10.</span> <span class="nav-text">不可变类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型转换的规则"><span class="nav-number">11.</span> <span class="nav-text">类型转换的规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自动类型转换"><span class="nav-number">11.1.</span> <span class="nav-text">自动类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强制类型转换"><span class="nav-number">11.2.</span> <span class="nav-text">强制类型转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移位运算"><span class="nav-number">12.</span> <span class="nav-text">移位运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new-String-“abc”-创建了几个对象？"><span class="nav-number">13.</span> <span class="nav-text">new String(“abc”) 创建了几个对象？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#、equals、hashCode-的区别"><span class="nav-number">14.</span> <span class="nav-text">==、equals、hashCode 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">14.1.</span> <span class="nav-text">==</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#equals"><span class="nav-number">14.2.</span> <span class="nav-text">equals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hashCode"><span class="nav-number">14.3.</span> <span class="nav-text">hashCode</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String、StringBuffer、StringBuilder、StringTokenizer-的区别"><span class="nav-number">15.</span> <span class="nav-text">String、StringBuffer、StringBuilder、StringTokenizer 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#String"><span class="nav-number">15.1.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#StringBuffer"><span class="nav-number">15.2.</span> <span class="nav-text">StringBuffer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#StringBuilder"><span class="nav-number">15.3.</span> <span class="nav-text">StringBuilder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#StringTokenizer"><span class="nav-number">15.4.</span> <span class="nav-text">StringTokenizer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">15.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-中数组是对象"><span class="nav-number">16.</span> <span class="nav-text">Java 中数组是对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组初始化与-C-的不同"><span class="nav-number">17.</span> <span class="nav-text">数组初始化与 C++ 的不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#length-属性、length-方法、size-方法的区别"><span class="nav-number">18.</span> <span class="nav-text">length 属性、length() 方法、size() 方法的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#length-属性"><span class="nav-number">18.1.</span> <span class="nav-text">length 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#length-方法"><span class="nav-number">18.2.</span> <span class="nav-text">length() 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#size-方法"><span class="nav-number">18.3.</span> <span class="nav-text">size() 方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">umarellyh</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="local-search-pop-overlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

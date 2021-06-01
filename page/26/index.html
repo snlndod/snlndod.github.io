@@ -89,7 +89,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="SDE PREPARES">
-<meta property="og:url" content="http://yoursite.com/page/26/index.html">
+<meta property="og:url" content="https://umarellyh.github.io/page/26/index.html">
 <meta property="og:site_name" content="SDE PREPARES">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
@@ -121,7 +121,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/26/">
+  <link rel="canonical" href="https://umarellyh.github.io/page/26/">
 
 
 
@@ -280,7 +280,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/15/代码的可测试性/">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/代码的可测试性.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -302,7 +302,7 @@
             
               
                 
-                <a class="post-title-link" href="/2020/11/15/代码的可测试性/" itemprop="url">
+                <a class="post-title-link" href="/代码的可测试性.html" itemprop="url">
                   代码的可测试性
                 </a>
               
@@ -359,7 +359,7 @@
           <h2 id="编写可测试代码案例实战"><a href="#编写可测试代码案例实战" class="headerlink" title="编写可测试代码案例实战"></a>编写可测试代码案例实战</h2><p>其中，Transaction 是经过我抽象简化之后的一个电商系统的交易类，用来记录每笔订单交易的情况。Transaction 类中的 execute() 函数负责执行转账操作，将钱从买家的钱包转到卖家的钱包中。真正的转账操作是通过调用 WalletRpcService RPC 服务来完成的。除此之外，代码中还涉及一个分布式锁 DistributedLock 单例类，用来避免 Transaction 并发执行，导致用户的钱被重复转出。具体的被测试代码如下所示：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/11/15/代码的可测试性/#more" rel="contents">
+            <a class="btn" href="/代码的可测试性.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -402,7 +402,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/13/单元测试/">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/单元测试.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -424,7 +424,7 @@
             
               
                 
-                <a class="post-title-link" href="/2020/11/13/单元测试/" itemprop="url">
+                <a class="post-title-link" href="/单元测试.html" itemprop="url">
                   单元测试
                 </a>
               
@@ -483,7 +483,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Text</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String content;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Text</span><span class="params">(String content)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.content = content;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将字符串转化成数字，忽略字符串中的首尾空格</span></span><br><span class="line"><span class="comment">     * 如果字符串中包含除首尾空格之外的非数字字符，则返回 null</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">toNumber</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (content == <span class="keyword">null</span> || content.isEmpty()) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//...省略代码实现...</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/11/13/单元测试/#more" rel="contents">
+            <a class="btn" href="/单元测试.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -526,7 +526,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/11/重构/">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/重构.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -548,7 +548,7 @@
             
               
                 
-                <a class="post-title-link" href="/2020/11/11/重构/" itemprop="url">
+                <a class="post-title-link" href="/重构.html" itemprop="url">
                   重构
                 </a>
               
@@ -612,7 +612,7 @@
 <p>最后，<strong>重构是避免过度设计的有效手段</strong>。在我们维护代码的过程中，真正遇到问题的时候，再对代码进行重构，能有效避免前期投入太多时间做过度的设计，做到有的放矢。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/11/11/重构/#more" rel="contents">
+            <a class="btn" href="/重构.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -655,7 +655,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/07/迪米特法则（LoD）/">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/迪米特法则（LoD）.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -677,7 +677,7 @@
             
               
                 
-                <a class="post-title-link" href="/2020/11/07/迪米特法则（LoD）/" itemprop="url">
+                <a class="post-title-link" href="/迪米特法则（LoD）.html" itemprop="url">
                   迪米特法则（LoD）
                 </a>
               
@@ -738,7 +738,7 @@
 <h3 id="内聚和耦合的关系"><a href="#内聚和耦合的关系" class="headerlink" title="内聚和耦合的关系"></a>内聚和耦合的关系</h3><p>高内聚有助于松耦合，同理，<strong>低内聚也会导致紧耦合</strong>。关于这一点，我画了一张对比图来解释。图中左边部分的代码结构是“高内聚、松耦合”；右边部分正好相反，是“低内聚、紧耦合”：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/11/07/迪米特法则（LoD）/#more" rel="contents">
+            <a class="btn" href="/迪米特法则（LoD）.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -781,7 +781,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/03/DRY-原则/">
+    <link itemprop="mainEntityOfPage" href="https://umarellyh.github.io/DRY-原则.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="umarellyh">
@@ -803,7 +803,7 @@
             
               
                 
-                <a class="post-title-link" href="/2020/11/03/DRY-原则/" itemprop="url">
+                <a class="post-title-link" href="/DRY-原则.html" itemprop="url">
                   DRY 原则
                 </a>
               
@@ -865,7 +865,7 @@
 <h2 id="实现逻辑重复"><a href="#实现逻辑重复" class="headerlink" title="实现逻辑重复"></a>实现逻辑重复</h2><p>我们先来看下面这样一段代码是否违反了 DRY 原则：</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/11/03/DRY-原则/#more" rel="contents">
+            <a class="btn" href="/DRY-原则.html#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
