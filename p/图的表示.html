@@ -103,7 +103,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/162.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/163.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/164.png">
-<meta property="og:updated_time" content="2021-06-03T15:49:05.000Z">
+<meta property="og:updated_time" content="2021-06-20T05:54:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图的表示">
 <meta name="twitter:description" content="如何理解“图”？图（Graph）和树比起来，这是一种更加复杂的非线性表结构。我们知道，树中的元素我们称为节点，图中的元素我们就叫做顶点（Vertex）。从我画的图中可以看出来，图中的一个顶点可以与任意其他顶点建立连接关系。我们把这种建立的关系叫做边（Edge）： 我们生活中就有很多符合图这种结构的例子。比如，社交网络就是一个非常典型的图结构。我们就拿微信举例子吧。我们可以把每个用户看作一个顶点。如">
@@ -391,7 +391,7 @@
 <p>基础的邻接表不适合快速判断两个用户之间是否是关注与被关注的关系，所以我们选择改进版本，<strong>将邻接表中的链表改为支持快速查找的动态数据结构</strong>。因为我们需要按照用户名称的首字母排序，分页来获取用户的粉丝列表或者关注列表，用跳表这种结构再合适不过了。这是因为，跳表插入、删除、查找都非常高效，时间复杂度是 O(logn)，空间复杂度上稍高，是 O(n)。最重要的一点，<strong>跳表中存储的数据本来就是有序的了，分页获取粉丝列表或关注列表，就非常高效</strong>。</p>
 <p>如果对于小规模的数据，比如社交网络中只有几万、几十万个用户，我们可以将整个社交关系存储在内存中，上面的解决思路是没有问题的。但是如果像微博那样有上亿的用户，数据规模太大，我们就无法全部存储在内存中了。我们可以<strong>通过哈希算法等数据分片方式，将邻接表存储在不同的机器上</strong>。你可以看下面这幅图，我们在机器 1 上存储顶点 1, 2, 3 的邻接表，在机器 2 上，存储顶点 4, 5 的邻接表。逆邻接表的处理方式也一样。当要查询顶点与顶点关系的时候，我们就利用同样的哈希算法，先定位顶点所在的机器，然后再在相应的机器上查找：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/163.png" alt></p>
 <p>除此之外，我们还有另外一种解决思路，就是利用外部存储（比如硬盘），因为<strong>外部存储的存储空间要比内存会宽裕很多</strong>。数据库是我们经常用来持久化存储关系数据的，我用下面这张表来存储这样一个图。<strong>为了高效地支持前面定义的操作，我们可以在表上建立多个索引</strong>，比如第一列、第二列，给这两列都建立索引：<br><img src="https://raw.githubusercontent.com/umarellyh/mPOST/master/CLRS/geek/164.png" alt></p>
-<h2 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h2><p><a href="https://leetcode.com/problems/number-of-islands/description/" target="_blank" rel="noopener">Number of Islands</a><br><a href="https://leetcode.com/problems/valid-sudoku/" target="_blank" rel="noopener">Valid Sudoku</a></p>
+<h2 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a>LeetCode</h2><p><a href="https://leetcode.com/problems/number-of-islands/" target="_blank" rel="noopener">Number of Islands</a><br><a href="https://leetcode.com/problems/valid-sudoku/" target="_blank" rel="noopener">Valid Sudoku</a></p>
 
       
     </div>
