@@ -87,15 +87,18 @@
 
 
 
+<meta name="description" content="项目背景公司成立初期，团队人少。公司集中精力开发一个金融理财产品（我们把这个项目叫做 X 项目）。整个项目只做了简单的前后端分离，后端的所有代码都在一个 GitHub 仓库中，整个后端作为一个应用来部署，没有划分微服务。遇到了行业风口，公司发展得不错，公司开始招更多人，开发更多的金融产品，比如专注房贷的理财产品、专注供应链的产品、专注消费贷的借款端产品等等。在产品形态上，每个金融产品都做成了独立的">
 <meta name="keywords" content="OpenSource">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计实现一个支持各种算法的限流框架">
 <meta property="og:url" content="https://umarelx.github.io/p/设计实现一个支持各种算法的限流框架.html">
 <meta property="og:site_name" content="fundamentals.cs">
+<meta property="og:description" content="项目背景公司成立初期，团队人少。公司集中精力开发一个金融理财产品（我们把这个项目叫做 X 项目）。整个项目只做了简单的前后端分离，后端的所有代码都在一个 GitHub 仓库中，整个后端作为一个应用来部署，没有划分微服务。遇到了行业风口，公司发展得不错，公司开始招更多人，开发更多的金融产品，比如专注房贷的理财产品、专注供应链的产品、专注消费贷的借款端产品等等。在产品形态上，每个金融产品都做成了独立的">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-06-03T15:49:05.000Z">
+<meta property="og:updated_time" content="2021-08-02T16:03:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计实现一个支持各种算法的限流框架">
+<meta name="twitter:description" content="项目背景公司成立初期，团队人少。公司集中精力开发一个金融理财产品（我们把这个项目叫做 X 项目）。整个项目只做了简单的前后端分离，后端的所有代码都在一个 GitHub 仓库中，整个后端作为一个应用来部署，没有划分微服务。遇到了行业风口，公司发展得不错，公司开始招更多人，开发更多的金融产品，比如专注房贷的理财产品、专注供应链的产品、专注消费贷的借款端产品等等。在产品形态上，每个金融产品都做成了独立的">
 
 
 
@@ -352,7 +355,33 @@
       
 
       
-        
+        <h3 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h3><p>公司成立初期，团队人少。公司集中精力开发一个金融理财产品（我们把这个项目叫做 X 项目）。整个项目只做了简单的前后端分离，后端的所有代码都在一个 GitHub 仓库中，整个后端作为一个应用来部署，没有划分微服务。遇到了行业风口，公司发展得不错，公司开始招更多人，开发更多的金融产品，比如专注房贷的理财产品、专注供应链的产品、专注消费贷的借款端产品等等。在产品形态上，每个金融产品都做成了独立的 App。对于不同的金融产品，尽管移动端长得不一样，但是后端的很多功能、代码都是可以复用的。为了快速上线，针对每个应用，公司都成立一个新的团队，然后拷贝 X 项目的代码，在此基础之上修改、添加新的功能。</p>
+<p>这样成立新团队，拷贝老代码，改改就能上线一个新产品的开发模式，在一开始很受欢迎。产品上线快，也给公司赢得了竞争上的优势。但时间一长，这样的开发模式暴露出来的问题就越来越多了。而且随着公司的发展，公司也过了急速扩张期，人招得太多，公司开始考虑研发效率问题了。因为所有的项目的代码都是从 X 项目拷贝来的，多个团队同时维护相似的代码，显然是重复劳动，协作起来也非常麻烦。任何团队发现代码的 bug，都要同步到其他团队做相同的修改。而且，各个团队对代码独立迭代，改得面目全非，即便要添加一个通用的功能，每个团队也都要基于自己的代码再重复开发。</p>
+<p>除此之外，公司成立初期，各个方面条件有限，只能招到开发水平一般的员工，而且追求快速上线，所以，X 项目的代码质量很差，结构混乱、命名不规范、到处是临时解决方案、埋了很多坑，在烂代码之上不停地堆砌烂代码，时间长了，代码的可读性越来越差、维护成本越来越高，甚至高过了重新开发的成本。</p>
+<a id="more"></a>
+
+<p>我们<strong>可以把公共的功能、代码抽离出来，形成一个独立的项目，部署成一个公共服务平台</strong>。所有金融产品的后端还是参照 MVC 三层架构独立开发，不过，它们只实现自己特有的功能，对于一些公共的功能，通过远程调用公共服务平台提供的接口来实现。这里提到的公共服务平台，有点类似现在比较火的“中台”或“微服务”。不过，为了减少部署、维护多个微服务的成本，我们把所有公共的功能，放到一个项目中开发，放到一个应用中部署。只不过，我们要未雨绸缪，事先按照领域模型，将代码的模块化做好，等到真的有哪个模块的接口调用过于集中，性能出现瓶颈的时候，我们再把它拆分出来，设计成独立的微服务来开发和部署。</p>
+<p>经过这样的拆分之后，我们可以指派一个团队，集中维护公共服务平台的代码。开发一个新的金融产品，也只需要更少的人员来参与，因为他们只需要开发、维护产品特有的功能和代码就可以了。整体上，维护成本降低了。除此之外，<strong>公共服务平台的代码集中到了一个团队手里，重构起来不需要协调其他团队和项目，也便于我们重构、改善代码质量</strong>。</p>
+<h3 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h3><p>对于公共服务平台来说，接口请求来自很多不同的系统（后面统称为调用方），比如各种金融产品的后端系统。在系统上线一段时间里，我们遇到了很多问题。比如，因为调用方代码 bug 、不正确地使用服务（比如启动 Job 来调用接口获取数据）、业务上面的突发流量（比如促销活动），导致来自某个调用方的接口请求数突增，过度争用服务的线程资源，而来自其他调用方的接口请求，因此来不及响应而排队等待，导致接口请求的响应时间大幅增加，甚至出现超时。</p>
+<p>我们<strong>可以开发接口限流功能，限制每个调用方对接口请求的频率</strong>。当超过预先设定的访问频率后，我们就触发限流熔断，比如，限制调用方 app-1 对公共服务平台总的接口请求频率不超过 1000 次/秒，超过之后的接口请求都会被拒绝。除此之外，为了更加精细化地限流，除了限制每个调用方对公共服务平台总的接口请求频率之外，我们还希望能对单独某个接口的访问频率进行限制，比如，限制 app-1 对接口 /user/query 的访问频率为每秒钟不超过 100 次。</p>
+<p>我们希望开发出来的东西有一定的影响力，即便做不到在行业内有影响力，起码也要做到在公司范围内有影响力。所以，从一开始，我们就不想把这个限流功能，做成只有我们项目可用。我们<strong>希望把它开发成一个通用的框架，能够应用到各个业务系统中，甚至可以集成到微服务治理平台中</strong>。实际上，这也体现了业务开发中要具备的抽象意识、框架意识。我们要善于识别出通用的功能模块，将它抽象成通用的框架、组件、类库等。</p>
+<h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><p>前面我们已经讲过一些需求分析的方法，比如画线框图、写用户用例、测试驱动开发等等。这里，我们借助用户用例和测试驱动开发的思想，先去思考，如果框架最终被开发出来之后，它会如何被使用。我一般会<strong>找一个框架的应用场景，针对这个场景写一个框架使用的 Demo 程序，这样能够很直观地看到框架长什么样子</strong>。知道了框架应该长什么样，就相当于应试教育中确定了考试题目。针对明确的考题去想解决方案，这是我们多年应试教育锻炼之后最擅长做的。</p>
+<p>首先我们需要设置限流规则。<strong>为了做到在不修改代码的前提下修改规则，我们一般会把规则放到配置文件中</strong>（比如 XML、YAML 配置文件）。在集成了限流框架的应用启动的时候，限流框架会将限流规则，按照事先定义的语法，解析并加载到内存中。我写了一个限流规则的 Demo 配置，如下所示：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">configs:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">appId:</span> <span class="string">app-1</span></span><br><span class="line">  <span class="attr">limits:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">api:</span> <span class="string">/v1/user</span></span><br><span class="line">    <span class="attr">limit:</span> <span class="number">100</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">api:</span> <span class="string">/v1/order</span></span><br><span class="line">    <span class="attr">limit:</span> <span class="number">50</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">appId:</span> <span class="string">app-2</span></span><br><span class="line">  <span class="attr">limits:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">api:</span> <span class="string">/v1/user</span></span><br><span class="line">    <span class="attr">limit:</span> <span class="number">50</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">api:</span> <span class="string">/v1/order</span></span><br><span class="line">    <span class="attr">limit:</span> <span class="number">50</span></span><br></pre></td></tr></table></figure>
+
+<p>在接收到接口请求之后，应用会将请求发送给限流框架，限流框架会告诉应用，这个接口请求是允许继续处理，还是触发限流熔断。如果我们用代码来将这个过程表示出来的话，就是下面这个 Demo 的样子。如果项目使用的是 Spring 框架，我们<strong>可以利用 Spring AOP，把这段限流代码放在统一的切面中，在切面中拦截接口请求</strong>，解析出请求对应的调用方 APP ID 和 URL，然后验证是否对此调用方的这个接口请求进行限流：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">String appId = <span class="string">"app-1"</span>; <span class="comment">// 调用方 APP-ID</span></span><br><span class="line">String url = <span class="string">"http://www.eudemon.com/v1/user/12345"</span>;<span class="comment">// 请求 url</span></span><br><span class="line">RateLimiter ratelimiter = <span class="keyword">new</span> RateLimiter();</span><br><span class="line"><span class="keyword">boolean</span> passed = ratelimiter.limit(appId, url);</span><br><span class="line"><span class="keyword">if</span> (passed) &#123;</span><br><span class="line">  <span class="comment">// 放行接口请求，继续后续的处理</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// 接口请求被限流</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结合刚刚的 Demo，从使用的角度来说，限流框架主要包含两部分功能：配置限流规则和提供编程接口（RateLimiter 类）验证请求是否被限流。不过，作为通用的框架，除了功能性需求之外，<strong>非功能性需求也非常重要，有时候会决定一个框架的成败</strong>，比如，框架的易用性、扩展性、灵活性、性能、容错性等：</p>
+<ul>
+<li>易用性方面，我们希望限流规则的配置、编程接口的使用都很简单。我们希望提供各种不同的限流算法，比如基于内存的单机限流算法、基于 Redis 的分布式限流算法，能够让使用者自由选择。除此之外，因为大部分项目都是基于 Spring 开发的，我们还希望限流框架能非常方便地集成到使用 Spring 框架的项目中；</li>
+<li>扩展性、灵活性方面，我们希望能够灵活地扩展各种限流算法。同时，我们还希望支持不同格式（JSON、YAML、XML 等格式）、不同数据源（本地文件配置或 Zookeeper 集中配置等）的限流规则的配置方式；</li>
+<li>性能方面，因为每个接口请求都要被检查是否限流，这或多或少会增加接口请求的响应时间。而对于响应时间比较敏感的接口服务来说，我们要让限流框架尽可能低延迟，尽可能减少对接口请求本身响应时间的影响；</li>
+<li>容错性方面，接入限流框架是为了提高系统的可用性、稳定性，不能因为限流框架的异常，反过来影响到服务本身的可用性。所以，限流框架要有高度的容错性。比如，分布式限流算法依赖集中存储器 Redis。如果 Redis 挂掉了，限流逻辑无法正常运行，这个时候业务接口也要能正常服务才行；</li>
+</ul>
+<hr>
+<h3 id="限流规则"><a href="#限流规则" class="headerlink" title="限流规则"></a>限流规则</h3><h3 id="限流算法"><a href="#限流算法" class="headerlink" title="限流算法"></a>限流算法</h3><h3 id="限流模式"><a href="#限流模式" class="headerlink" title="限流模式"></a>限流模式</h3><h3 id="集成使用"><a href="#集成使用" class="headerlink" title="集成使用"></a>集成使用</h3><hr>
+<h3 id="V1-版本功能需求"><a href="#V1-版本功能需求" class="headerlink" title="V1 版本功能需求"></a>V1 版本功能需求</h3><h3 id="最小原型代码"><a href="#最小原型代码" class="headerlink" title="最小原型代码"></a>最小原型代码</h3><h3 id="Review-最小原型代码"><a href="#Review-最小原型代码" class="headerlink" title="Review 最小原型代码"></a>Review 最小原型代码</h3><h3 id="重构最小原型代码"><a href="#重构最小原型代码" class="headerlink" title="重构最小原型代码"></a>重构最小原型代码</h3>
       
     </div>
 
@@ -447,8 +476,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarelx">
           <p class="site-author-name" itemprop="name">umarelx</p>
@@ -497,6 +535,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目背景"><span class="nav-number">1.</span> <span class="nav-text">项目背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求背景"><span class="nav-number">2.</span> <span class="nav-text">需求背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求分析"><span class="nav-number">3.</span> <span class="nav-text">需求分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#限流规则"><span class="nav-number">4.</span> <span class="nav-text">限流规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#限流算法"><span class="nav-number">5.</span> <span class="nav-text">限流算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#限流模式"><span class="nav-number">6.</span> <span class="nav-text">限流模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集成使用"><span class="nav-number">7.</span> <span class="nav-text">集成使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#V1-版本功能需求"><span class="nav-number">8.</span> <span class="nav-text">V1 版本功能需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最小原型代码"><span class="nav-number">9.</span> <span class="nav-text">最小原型代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Review-最小原型代码"><span class="nav-number">10.</span> <span class="nav-text">Review 最小原型代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重构最小原型代码"><span class="nav-number">11.</span> <span class="nav-text">重构最小原型代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
