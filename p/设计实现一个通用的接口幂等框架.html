@@ -87,15 +87,18 @@
 
 
 
+<meta name="description" content="需求场景需求分析 幂等处理正常流程业务代码异常处理业务系统宕机处理幂等框架异常处理 V1 版本功能需求最小原型代码实现Review 最小原型代码重构最小原型代码">
 <meta name="keywords" content="OpenSource">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计实现一个通用的接口幂等框架">
 <meta property="og:url" content="https://umarelx.github.io/p/设计实现一个通用的接口幂等框架.html">
 <meta property="og:site_name" content="fundamentals.cs">
+<meta property="og:description" content="需求场景需求分析 幂等处理正常流程业务代码异常处理业务系统宕机处理幂等框架异常处理 V1 版本功能需求最小原型代码实现Review 最小原型代码重构最小原型代码">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-06-03T15:49:05.000Z">
+<meta property="og:updated_time" content="2021-08-03T16:05:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计实现一个通用的接口幂等框架">
+<meta name="twitter:description" content="需求场景需求分析 幂等处理正常流程业务代码异常处理业务系统宕机处理幂等框架异常处理 V1 版本功能需求最小原型代码实现Review 最小原型代码重构最小原型代码">
 
 
 
@@ -352,7 +355,9 @@
       
 
       
-        
+        <h3 id="需求场景"><a href="#需求场景" class="headerlink" title="需求场景"></a>需求场景</h3><h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><hr>
+<h3 id="幂等处理正常流程"><a href="#幂等处理正常流程" class="headerlink" title="幂等处理正常流程"></a>幂等处理正常流程</h3><h3 id="业务代码异常处理"><a href="#业务代码异常处理" class="headerlink" title="业务代码异常处理"></a>业务代码异常处理</h3><h3 id="业务系统宕机处理"><a href="#业务系统宕机处理" class="headerlink" title="业务系统宕机处理"></a>业务系统宕机处理</h3><h3 id="幂等框架异常处理"><a href="#幂等框架异常处理" class="headerlink" title="幂等框架异常处理"></a>幂等框架异常处理</h3><hr>
+<h3 id="V1-版本功能需求"><a href="#V1-版本功能需求" class="headerlink" title="V1 版本功能需求"></a>V1 版本功能需求</h3><h3 id="最小原型代码实现"><a href="#最小原型代码实现" class="headerlink" title="最小原型代码实现"></a>最小原型代码实现</h3><h3 id="Review-最小原型代码"><a href="#Review-最小原型代码" class="headerlink" title="Review 最小原型代码"></a>Review 最小原型代码</h3><h3 id="重构最小原型代码"><a href="#重构最小原型代码" class="headerlink" title="重构最小原型代码"></a>重构最小原型代码</h3>
       
     </div>
 
@@ -447,8 +452,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarelx">
           <p class="site-author-name" itemprop="name">umarelx</p>
@@ -497,6 +511,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求场景"><span class="nav-number">1.</span> <span class="nav-text">需求场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求分析"><span class="nav-number">2.</span> <span class="nav-text">需求分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#幂等处理正常流程"><span class="nav-number">3.</span> <span class="nav-text">幂等处理正常流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#业务代码异常处理"><span class="nav-number">4.</span> <span class="nav-text">业务代码异常处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#业务系统宕机处理"><span class="nav-number">5.</span> <span class="nav-text">业务系统宕机处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#幂等框架异常处理"><span class="nav-number">6.</span> <span class="nav-text">幂等框架异常处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#V1-版本功能需求"><span class="nav-number">7.</span> <span class="nav-text">V1 版本功能需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最小原型代码实现"><span class="nav-number">8.</span> <span class="nav-text">最小原型代码实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Review-最小原型代码"><span class="nav-number">9.</span> <span class="nav-text">Review 最小原型代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重构最小原型代码"><span class="nav-number">10.</span> <span class="nav-text">重构最小原型代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
