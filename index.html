@@ -729,11 +729,16 @@
 
       
         
-          
-            <h3 id="需求场景"><a href="#需求场景" class="headerlink" title="需求场景"></a>需求场景</h3><h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><hr>
-<h3 id="幂等处理正常流程"><a href="#幂等处理正常流程" class="headerlink" title="幂等处理正常流程"></a>幂等处理正常流程</h3><h3 id="业务代码异常处理"><a href="#业务代码异常处理" class="headerlink" title="业务代码异常处理"></a>业务代码异常处理</h3><h3 id="业务系统宕机处理"><a href="#业务系统宕机处理" class="headerlink" title="业务系统宕机处理"></a>业务系统宕机处理</h3><h3 id="幂等框架异常处理"><a href="#幂等框架异常处理" class="headerlink" title="幂等框架异常处理"></a>幂等框架异常处理</h3><hr>
-<h3 id="V1-版本功能需求"><a href="#V1-版本功能需求" class="headerlink" title="V1 版本功能需求"></a>V1 版本功能需求</h3><h3 id="最小原型代码实现"><a href="#最小原型代码实现" class="headerlink" title="最小原型代码实现"></a>最小原型代码实现</h3><h3 id="Review-最小原型代码"><a href="#Review-最小原型代码" class="headerlink" title="Review 最小原型代码"></a>Review 最小原型代码</h3><h3 id="重构最小原型代码"><a href="#重构最小原型代码" class="headerlink" title="重构最小原型代码"></a>重构最小原型代码</h3>
-          
+          <h3 id="需求场景"><a href="#需求场景" class="headerlink" title="需求场景"></a>需求场景</h3><p>调用方访问公共服务平台的接口，会有<strong>三种可能的结果：成功、失败和超时</strong>。前两种结果非常明确，调用方可以自己决定收到结果之后如何处理。结果为“成功”，万事大吉；结果为“失败”，一般情况下，调用方会将失败的结果，反馈给用户（移动端 App），让用户自行决定是否重试。但是，当接口请求超时时，处理起来就没那么容易了。有可能业务逻辑已经执行成功了，只是公共服务平台返回结果给调用方的时候超时了，但也有可能业务逻辑没有执行成功，比如，因为数据库当时存在集中写入，导致部分数据写入超时。总之，<strong>超时对应的执行结果是未决的</strong>。</p>
+<p><strong>如果接口只包含查询、删除、更新这些操作，那接口天然是幂等的</strong>。所以，超时之后，重新再执行一次，也没有任何副作用。不过，这里有两点需要特殊说明一下。</p>
+<p><strong>删除操作需要当心 ABA 问题</strong>。删除操作超时了，又触发一次删除，但在这次删除之前，又有一次新的插入。后一次删除操作删除了新插入的数据，而新插入的数据本不应该删除。不过，大部分业务都可以容忍 ABA 问题。对于少数不能容忍的业务场景，我们可以针对性的特殊处理。除此之外，细究起来，update x = x + delta 这样格式的更新操作并非幂等，只有 update x = y 这样格式的更新操作才是幂等的。不过，后者也存在跟删除同样的 ABA 问题。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/p/设计实现一个通用的接口幂等框架.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
