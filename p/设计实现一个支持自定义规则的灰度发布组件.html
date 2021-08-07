@@ -87,15 +87,18 @@
 
 
 
+<meta name="description" content="需求场景最初，公共服务平台提供的是，基于某个开源 RPC 框架的 RPC 格式的接口。在上线一段时间后，我们发现这个开源 RPC 框架的 Bug 很多，多次因为框架本身的 Bug，导致整个公共服务平台的接口不可用，但又因为团队成员对框架源码不熟悉，并且框架的代码质量本身也不高，排查、修复起来花费了很长时间，影响面非常大。所以，我们评估下来，觉着这个框架的可靠性不够，维护成本、二次开发成本都太高，最">
 <meta name="keywords" content="OpenSource">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计实现一个支持自定义规则的灰度发布组件">
 <meta property="og:url" content="https://umarelx.github.io/p/设计实现一个支持自定义规则的灰度发布组件.html">
 <meta property="og:site_name" content="fundamentals.cs">
+<meta property="og:description" content="需求场景最初，公共服务平台提供的是，基于某个开源 RPC 框架的 RPC 格式的接口。在上线一段时间后，我们发现这个开源 RPC 框架的 Bug 很多，多次因为框架本身的 Bug，导致整个公共服务平台的接口不可用，但又因为团队成员对框架源码不熟悉，并且框架的代码质量本身也不高，排查、修复起来花费了很长时间，影响面非常大。所以，我们评估下来，觉着这个框架的可靠性不够，维护成本、二次开发成本都太高，最">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-06-03T15:49:05.000Z">
+<meta property="og:updated_time" content="2021-08-07T17:19:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计实现一个支持自定义规则的灰度发布组件">
+<meta name="twitter:description" content="需求场景最初，公共服务平台提供的是，基于某个开源 RPC 框架的 RPC 格式的接口。在上线一段时间后，我们发现这个开源 RPC 框架的 Bug 很多，多次因为框架本身的 Bug，导致整个公共服务平台的接口不可用，但又因为团队成员对框架源码不熟悉，并且框架的代码质量本身也不高，排查、修复起来花费了很长时间，影响面非常大。所以，我们评估下来，觉着这个框架的可靠性不够，维护成本、二次开发成本都太高，最">
 
 
 
@@ -352,7 +355,21 @@
       
 
       
-        
+        <h3 id="需求场景"><a href="#需求场景" class="headerlink" title="需求场景"></a>需求场景</h3><p>最初，公共服务平台提供的是，基于某个开源 RPC 框架的 RPC 格式的接口。在上线一段时间后，我们发现这个开源 RPC 框架的 Bug 很多，多次因为框架本身的 Bug，导致整个公共服务平台的接口不可用，但又因为团队成员对框架源码不熟悉，并且框架的代码质量本身也不高，排查、修复起来花费了很长时间，影响面非常大。所以，我们评估下来，觉着这个框架的可靠性不够，维护成本、二次开发成本都太高，最终决定替换掉它。<strong>对于引入新的框架，我们的要求是成熟、简单，并且与我们现有的技术栈（Spring）相吻合</strong>。这样，即便出了问题，我们也能利用之前积累的知识、经验来快速解决。所以，我们决定直接使用 Spring 框架来提供 RESTful 格式的远程接口。</p>
+<p>把 RPC 接口替换成 RESTful 接口，除了需要修改公共服务平台的代码之外，调用方的接口调用代码也要做相应的修改。除此之外，对于公共服务平台的代码，尽管我们只是改动接口暴露方式，对业务代码基本上没有改动，但是，我们也并不能保证就完全不出问题。所以，为了保险起见，我们希望<strong>灰度替换掉老的 RPC 服务，而不是一刀切，在某个时间点上，让所有的调用方一下子都变成调用新的 RESTful 接口</strong>。因为替换的过程是灰度的，所以老的 RPC 服务不能下线，同时还要部署另外一套新的 RESTful 服务。我们先让业务不是很重要、流量不大的某个调用方，替换成调用新的 RESTful 接口。经过这个调用方一段时间的验证之后，如果新的 RESTful 接口没有问题，我们再逐步让其他调用方，替换成调用新的 RESTful 接口。</p>
+<p>但是，如果万一中途出现问题，我们就需要将调用方的代码回滚，再重新部署，这就会导致调用方一段时间内服务不可用。而且，如果新的代码还包含调用方自身新的业务代码，简单通过 Git 回滚代码重新部署，会导致新的业务代码也被回滚。所以，为了避免这种情况的发生，我们就得手动将调用新的 RESTful 接口的代码删除，再改回为调用老的 RPC 接口；除此之外，为了不影响调用方本身业务的开发进度，调用方基于回滚之后的老代码，来做新功能开发，那替换成新的 RESTful 接口的那部分代码，要想再重新 merge 回去就比较难了，有可能会出现代码冲突，需要再重新开发。</p>
+<a id="more"></a>
+
+<p>在替换新的接口调用方式的时候，调用方并<strong>不直接将调用 RPC 接口的代码逻辑删除，而是新增调用 RESTful 接口的代码，通过一个功能开关，灵活切换走老的代码逻辑还是新的代码逻辑</strong>。代码示例如下所示。如果 callRestfulApi 为 true，就会走新的代码逻辑，调用 RESTful 接口，相反，就会走老的代码逻辑，继续调用 RPC 接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">boolean</span> callRestfulApi = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!callRestfulApi) &#123;</span><br><span class="line">    <span class="comment">// 老的调用 RPC 接口的代码逻辑</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 新的调用 RESTful 接口的代码逻辑</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不过，更改 callRestfulApi 的值需要修改代码，而修改代码就要重新部署，这样的设计还是不够灵活。优化的方法，我想你应该已经想到了，<strong>把这个值放到配置文件或者配置中心</strong>就可以了。为了更加保险，不只是使用功能开关做新老接口调用方式的切换，我们还希望调用方在替换某个接口的时候，先让小部分接口请求，调用新的 RESTful 接口，剩下的大部分接口请求，还是调用老的 RPC 接口，验证没有问题之后，再<strong>逐步加大调用新接口的请求比例</strong>，最终，将所有的接口请求，都替换成调用新的接口。这就是所谓的“灰度”。</p>
+<p>首先，我们要<strong>决定使用什么来做灰度，也就是灰度的对象</strong>。我们可以针对请求携带的时间戳信息、业务 ID 等信息，按照区间、比例或者具体的值来做灰度。我举个例子来解释一下，假设，我们要灰度的是根据用户 ID 查询用户信息接口。接口请求会携带用户 ID 信息，所以，我们就可以把用户 ID 作为灰度的对象。为了实现逐渐放量，我们先配置用户 ID 是 918、879、123（具体的值）的查询请求调用新接口，验证没有问题之后，我们再扩大范围，让用户 ID 在 1020~1120（区间值）之间的查询请求调用新接口。</p>
+<p>如果验证之后还是没有问题，我们再继续扩大范围，让 10% 比例（比例值）的查询请求调用新接口（对应<strong>用户 ID 跟 10 取模求余小于 1 的请求</strong>）。以此类推，灰度范围逐步扩大到 20%、30%、50% 直到 100%。当灰度比例达到 100%，并且运行一段时间没有问题之后，调用方就可以把老的代码逻辑删除掉了。</p>
+<p>实际上，类似的灰度需求场景还有很多。比如，在金融产品的清结算系统中，我们修改了清结算的算法。为了安全起见，我们可以灰度替换新的算法，把贷款 ID 作为灰度对象，先对某几个贷款应用新的算法，如果没有问题，再继续按照区间或者比例，扩大灰度范围。除此之外，为了保证代码万无一失，提前做好预案，添加或者修改一些复杂功能、核心功能，即便不做灰度，我们也建议通过功能开关，灵活控制这些功能的上下线。<strong>在不需要重新部署和重启系统的情况，做到快速回滚或新老代码逻辑的切换</strong>。</p>
+<h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><hr>
+<h3 id="非功能性需求"><a href="#非功能性需求" class="headerlink" title="非功能性需求"></a>非功能性需求</h3><h3 id="框架设计思路"><a href="#框架设计思路" class="headerlink" title="框架设计思路"></a>框架设计思路</h3><hr>
+<h3 id="灰度组件功能需求整理"><a href="#灰度组件功能需求整理" class="headerlink" title="灰度组件功能需求整理"></a>灰度组件功能需求整理</h3><h3 id="实现灰度组件基本功能"><a href="#实现灰度组件基本功能" class="headerlink" title="实现灰度组件基本功能"></a>实现灰度组件基本功能</h3><h3 id="添加、优化灰度组件功能"><a href="#添加、优化灰度组件功能" class="headerlink" title="添加、优化灰度组件功能"></a>添加、优化灰度组件功能</h3>
       
     </div>
 
@@ -447,8 +464,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="umarelx">
           <p class="site-author-name" itemprop="name">umarelx</p>
@@ -497,6 +523,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求场景"><span class="nav-number">1.</span> <span class="nav-text">需求场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求分析"><span class="nav-number">2.</span> <span class="nav-text">需求分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非功能性需求"><span class="nav-number">3.</span> <span class="nav-text">非功能性需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#框架设计思路"><span class="nav-number">4.</span> <span class="nav-text">框架设计思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#灰度组件功能需求整理"><span class="nav-number">5.</span> <span class="nav-text">灰度组件功能需求整理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现灰度组件基本功能"><span class="nav-number">6.</span> <span class="nav-text">实现灰度组件基本功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加、优化灰度组件功能"><span class="nav-number">7.</span> <span class="nav-text">添加、优化灰度组件功能</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
